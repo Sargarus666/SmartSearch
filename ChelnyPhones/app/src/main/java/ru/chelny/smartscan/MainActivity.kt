@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
             "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         }
+        // Material You: динамический цвет Android 12+ (как в MMO Calendar)
+        com.google.android.material.color.DynamicColors.applyToActivityIfAvailable(this)
         super.onCreate(b)
         if (b != null) tab = b.getInt("tab", 0)
 

@@ -25,6 +25,8 @@ data class Phone(
     val cpu: String,
     val colorStart: Int,
     val colorEnd: Int,
+    val photoUrl: String,
+    val photoRes: String,
     val accent: String,      // цвет корпуса текстом
     val offline: List<StoreOffer>,
     val online: List<StoreOffer>
@@ -47,6 +49,8 @@ object Catalog {
             battery = "6000 мА·ч, 45 Вт", camera = "108+2 Мп, OIS + 32 Мп фронт",
             cpu = "Helio G100 Ultra", colorStart = 0xFF1A2A6C.toInt(), colorEnd = 0xFF2EBF91.toInt(),
             accent = "Midnight Black",
+            photoUrl = "https://www.mobiledokan.com/media/xiaomi-redmi-note-15-4g-forest-green-official-image.webp",
+            photoRes = "phone_1",
             offline = listOf(
                 StoreOffer("DNS", "Московский пр-т, 128А, Челны", 19899, "RU-версия, самовывоз сегодня", "https://www.dns-shop.ru", false),
                 StoreOffer("М.Видео", "пр. Мира, 49А, ТРК Торговый квартал", 20490, "Рассрочка 0-0-12", "https://www.mvideo.ru", false),
@@ -66,6 +70,8 @@ object Catalog {
             battery = "5200 мА·ч, 45 Вт", camera = "50 Мп + 13 Мп фронт",
             cpu = "Helio G100 Ultimate", colorStart = 0xFF141E30.toInt(), colorEnd = 0xFF4B6CB7.toInt(),
             accent = "Moon Titanium",
+            photoUrl = "https://fdn2.gsmarena.com/vv/pics/tecno/techno-spark-40-pro-1.jpg",
+            photoRes = "phone_2",
             offline = listOf(
                 StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 14999, "Хит, витрина + склад", "https://www.dns-shop.ru", false),
                 StoreOffer("МТС", "пр. Хасана Туфана, 12, Челны", 15490, "Скидка при переносе номера", "https://shop.mts.ru", false),
@@ -82,9 +88,11 @@ object Catalog {
             ramGb = 8, storageGb = 256, price = 19490, oldPrice = 21990,
             promo = "Проверено 14.10.2026 • −11% • Dimensity 7100, лучший для игр",
             rating = 4.8, screen = "6.78\" AMOLED 120 Гц, Gorilla 7i",
-            battery = "6150 мА·ч, 45 Вт", camera = "50 Мп + 13 Мп фронт",
+            battery = "6500 мА·ч, 45 Вт", camera = "50 Мп + 13 Мп фронт",
             cpu = "Dimensity 7100", colorStart = 0xFF3A1C71.toInt(), colorEnd = 0xFFD76D77.toInt(),
             accent = "Shadow Black",
+            photoUrl = "https://www.mobilemaya.com/public/media/infinix-note-edge-5g-official-image.webp",
+            photoRes = "phone_3",
             offline = listOf(
                 StoreOffer("Эльдорадо", "пр. Московский, 140, ТЦ Омега", 19490, "Ростест, гарантия 12 мес.", "https://www.eldorado.ru", false),
                 StoreOffer("DNS", "пр-т Сююмбике, 67В, Челны", 19990, "В наличии, 5G-версия", "https://www.dns-shop.ru", false),
@@ -100,10 +108,12 @@ object Catalog {
             id = 4, brand = "TECNO", model = "Pova 7 Neo 8/256",
             ramGb = 8, storageGb = 256, price = 15490, oldPrice = 17490,
             promo = "Проверено 14.10.2026 • −11% • 7000 мА·ч, рекорд автономности",
-            rating = 4.7, screen = "6.78\" IPS 120 Гц, 2460×1080",
-            battery = "7000 мА·ч, 45 Вт + реверс", camera = "108+2 Мп + 13 Мп фронт",
+            rating = 4.7, screen = "6.78\" AMOLED 120 Гц, 2460×1080",
+            battery = "7000 мА·ч, 45 Вт + реверс", camera = "108+2 Мп + 8 Мп фронт",
             cpu = "Helio G100 Ultimate", colorStart = 0xFF0F2027.toInt(), colorEnd = 0xFF2C5364.toInt(),
             accent = "Neon Black",
+            photoUrl = "https://hamariweb.com/mobiles/LargeImages/6933_01.jpg",
+            photoRes = "phone_4",
             offline = listOf(
                 StoreOffer("DNS", "Московский пр-т, 128А, Челны", 15490, "Топ iChip и Т-Ж", "https://www.dns-shop.ru", false),
                 StoreOffer("М.Видео", "пр. Мира, 49А, Торговый квартал", 15990, "Бонусы М.Клуб 10%", "https://www.mvideo.ru", false)
@@ -118,9 +128,11 @@ object Catalog {
             ramGb = 8, storageGb = 256, price = 16599, oldPrice = 18999,
             promo = "Проверено 14.10.2026 • −13% • IP69 + 7000 мА·ч",
             rating = 4.7, screen = "6.8\" AMOLED 120 Гц",
-            battery = "7000 мА·ч, 45 Вт", camera = "108 Мп + 16 Мп фронт",
+            battery = "7000 мА·ч, 45 Вт", camera = "50 Мп + 8 Мп фронт",
             cpu = "Snapdragon 685", colorStart = 0xFFF7971E.toInt(), colorEnd = 0xFFFFD200.toInt(),
             accent = "Peacock Green",
+            photoUrl = "https://mobiledevices.com.pk/images/realme/realme-c85-pro-peacock-green.webp",
+            photoRes = "phone_5",
             offline = listOf(
                 StoreOffer("М.Видео", "пр. Мира, 49А, Торговый квартал", 16599, "Официальная гарантия", "https://www.mvideo.ru", false),
                 StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 16990, "Самовывоз сегодня", "https://www.dns-shop.ru", false),
@@ -139,6 +151,8 @@ object Catalog {
             battery = "5000 мА·ч, 25 Вт", camera = "50+5+2 Мп, 13 Мп фронт",
             cpu = "Exynos 1330", colorStart = 0xFF000428.toInt(), colorEnd = 0xFF004E92.toInt(),
             accent = "Blue Black",
+            photoUrl = "https://clickbuy.com.vn/uploads/news/anh-render-galaxy-a17-4g-8584470723638779187.jpg",
+            photoRes = "phone_6",
             offline = listOf(
                 StoreOffer("МТС", "пр. Хасана Туфана, 12", 19099, "Шесть лет обновлений", "https://shop.mts.ru", false),
                 StoreOffer("DNS", "пр-т Сююмбике, 67В", 19490, "Витрина + склад", "https://www.dns-shop.ru", false),
@@ -157,6 +171,8 @@ object Catalog {
             battery = "7000 мА·ч, 33 Вт", camera = "50 Мп + 8 Мп фронт",
             cpu = "Snapdragon 685", colorStart = 0xFFCB0000.toInt(), colorEnd = 0xFF3A0000.toInt(),
             accent = "Power Black",
+            photoUrl = "https://cdn.movertix.com/media/catalog/product/cache/image/1200x/x/i/xiaomi-poco-m7-dual-sim-silver-256gb-and-8gb-ram_2.jpg",
+            photoRes = "phone_7",
             offline = listOf(
                 StoreOffer("DNS", "Московский пр-т, 128А", 17990, "Фирменный стенд POCO", "https://www.dns-shop.ru", false),
                 StoreOffer("Эльдорадо", "пр. Московский, 140", 18490, "Подарок: наушники", "https://www.eldorado.ru", false)
@@ -174,6 +190,8 @@ object Catalog {
             battery = "5000 мА·ч, 35 Вт", camera = "108 Мп OIS + 50 Мп фронт",
             cpu = "Snapdragon 685", colorStart = 0xFF134E5E.toInt(), colorEnd = 0xFF71B280.toInt(),
             accent = "Emerald Lake",
+            photoUrl = "https://cdn.beebom.com/mobile/honor-x8c-front-and-back.png",
+            photoRes = "phone_8",
             offline = listOf(
                 StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 16999, "Топ Hi-Tech Mail", "https://www.dns-shop.ru", false),
                 StoreOffer("Билайн", "пр. Сююмбике, 2/19", 17490, "Комплект со связью", "https://beeline.ru", false)
@@ -191,6 +209,8 @@ object Catalog {
             battery = "6000 мА·ч, 45 Вт", camera = "50+2 Мп + 16 Мп фронт",
             cpu = "Snapdragon 6 Gen 4", colorStart = 0xFF8E2DE2.toInt(), colorEnd = 0xFF4A00E0.toInt(),
             accent = "Mecha Silver",
+            photoUrl = "https://image01.realme.net/general/20250403/174367344340048fc865b1978495aaf45046bd9a508b3.png",
+            photoRes = "phone_9",
             offline = listOf(
                 StoreOffer("М.Видео", "пр. Мира, 49А", 17599, "Топ Price.ru 06/2026", "https://www.mvideo.ru", false),
                 StoreOffer("DNS", "пр-т Сююмбике, 67В", 17990, "Самовывоз", "https://www.dns-shop.ru", false)
@@ -208,6 +228,8 @@ object Catalog {
             battery = "5200 мА·ч, 45 Вт", camera = "50 Мп OIS + 32 Мп фронт",
             cpu = "Helio G100", colorStart = 0xFF232526.toInt(), colorEnd = 0xFF414345.toInt(),
             accent = "Emerald Lake Green",
+            photoUrl = "https://cdn.kalvo.com/uploads/img/gallery/69477-tecno-camon-40-6.jpg",
+            photoRes = "phone_10",
             offline = listOf(
                 StoreOffer("Эльдорадо", "пр. Московский, 140", 17199, "Рассрочка 0-0-12", "https://www.eldorado.ru", false),
                 StoreOffer("DNS", "Московский пр-т, 128А", 17490, "В наличии", "https://www.dns-shop.ru", false)

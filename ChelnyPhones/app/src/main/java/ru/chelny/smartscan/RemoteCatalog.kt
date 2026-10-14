@@ -9,7 +9,7 @@ import java.net.URL
 /** Онлайн-каталог: новые смартфоны подтягиваются из сети, встроенный — запасной вариант. */
 object RemoteCatalog {
     const val URL_JSON =
-        "https://github.com/Sargarus666/SmartSearch/releases/download/v1.0/phones.json"
+        "https://github.com/Sargarus666/SmartSearch/releases/download/v1.1/phones.json"
 
     /** Последний загруженный онлайн-список (видят все вкладки). */
     var live: List<Phone>? = null
@@ -65,7 +65,9 @@ object RemoteCatalog {
                 o.optString("promo"), o.optDouble("rating", 4.5),
                 o.optString("screen"), o.optString("battery"),
                 o.optString("camera"), o.optString("cpu"),
-                hex("colorStart"), hex("colorEnd"), o.optString("accent"),
+                hex("colorStart"), hex("colorEnd"),
+                o.optString("photoUrl", ""), o.optString("photoRes", ""),
+                o.optString("accent"),
                 stores("offline", false), stores("online", true)
             ))
         }

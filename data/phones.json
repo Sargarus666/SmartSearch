@@ -1,11 +1,11 @@
 {
- "updated": "2026-10-14",
+ "updated": "2026-10-15",
  "city": "Набережные Челны",
  "currency": "RUB",
  "minRamGb": 8,
  "minPrice": 10000,
  "maxPrice": 20000,
- "source": "Пересечение топов осени-2026: МТС 10/2026, Т-Ж 09/2026, iChip 08/2026, Price.ru 06/2026, kod.ru, M.Video топ-15, Hi-Tech Mail",
+ "source": "Пересечение топов осени-2026: МТС 10/2026, Т-Ж 09/2026, iChip 08/2026, Price.ru 06/2026, kod.ru, M.Video топ-15, Hi-Tech Mail. Фото: производители + GSMArena",
  "phones": [
   {
    "id": 1,
@@ -23,6 +23,8 @@
    "cpu": "Helio G100 Ultra",
    "colorStart": "#1A2A6C",
    "colorEnd": "#2EBF91",
+   "photoUrl": "https://www.mobiledokan.com/media/xiaomi-redmi-note-15-4g-forest-green-official-image.webp",
+   "photoRes": "phone_1",
    "accent": "Midnight Black",
    "offline": [
     {
@@ -93,6 +95,8 @@
    "cpu": "Helio G100 Ultimate",
    "colorStart": "#141E30",
    "colorEnd": "#4B6CB7",
+   "photoUrl": "https://fdn2.gsmarena.com/vv/pics/tecno/techno-spark-40-pro-1.jpg",
+   "photoRes": "phone_2",
    "accent": "Moon Titanium",
    "offline": [
     {
@@ -158,11 +162,13 @@
    "promo": "Проверено 14.10.2026 • −11% • Dimensity 7100, лучший для игр",
    "rating": 4.8,
    "screen": "6.78\" AMOLED 120 Гц, Gorilla 7i",
-   "battery": "6150 мА·ч, 45 Вт",
+   "battery": "6500 мА·ч, 45 Вт",
    "camera": "50 Мп + 13 Мп фронт",
    "cpu": "Dimensity 7100",
    "colorStart": "#3A1C71",
    "colorEnd": "#D76D77",
+   "photoUrl": "https://www.mobilemaya.com/public/media/infinix-note-edge-5g-official-image.webp",
+   "photoRes": "phone_3",
    "accent": "Shadow Black",
    "offline": [
     {
@@ -227,12 +233,14 @@
    "oldPrice": 17490,
    "promo": "Проверено 14.10.2026 • −11% • 7000 мА·ч, рекорд автономности",
    "rating": 4.7,
-   "screen": "6.78\" IPS 120 Гц, 2460×1080",
+   "screen": "6.78\" AMOLED 120 Гц, 2460×1080",
    "battery": "7000 мА·ч, 45 Вт + реверс",
-   "camera": "108+2 Мп + 13 Мп фронт",
+   "camera": "108+2 Мп + 8 Мп фронт",
    "cpu": "Helio G100 Ultimate",
    "colorStart": "#0F2027",
    "colorEnd": "#2C5364",
+   "photoUrl": "https://hamariweb.com/mobiles/LargeImages/6933_01.jpg",
+   "photoRes": "phone_4",
    "accent": "Neon Black",
    "offline": [
     {
@@ -283,10 +291,12 @@
    "rating": 4.7,
    "screen": "6.8\" AMOLED 120 Гц",
    "battery": "7000 мА·ч, 45 Вт",
-   "camera": "108 Мп + 16 Мп фронт",
+   "camera": "50 Мп + 8 Мп фронт",
    "cpu": "Snapdragon 685",
    "colorStart": "#F7971E",
    "colorEnd": "#FFD200",
+   "photoUrl": "https://mobiledevices.com.pk/images/realme/realme-c85-pro-peacock-green.webp",
+   "photoRes": "phone_5",
    "accent": "Peacock Green",
    "offline": [
     {
@@ -349,6 +359,8 @@
    "cpu": "Exynos 1330",
    "colorStart": "#000428",
    "colorEnd": "#004E92",
+   "photoUrl": "https://clickbuy.com.vn/uploads/news/anh-render-galaxy-a17-4g-8584470723638779187.jpg",
+   "photoRes": "phone_6",
    "accent": "Blue Black",
    "offline": [
     {
@@ -411,6 +423,8 @@
    "cpu": "Snapdragon 685",
    "colorStart": "#CB0000",
    "colorEnd": "#3A0000",
+   "photoUrl": "https://cdn.movertix.com/media/catalog/product/cache/image/1200x/x/i/xiaomi-poco-m7-dual-sim-silver-256gb-and-8gb-ram_2.jpg",
+   "photoRes": "phone_7",
    "accent": "Power Black",
    "offline": [
     {
@@ -465,6 +479,8 @@
    "cpu": "Snapdragon 685",
    "colorStart": "#134E5E",
    "colorEnd": "#71B280",
+   "photoUrl": "https://cdn.beebom.com/mobile/honor-x8c-front-and-back.png",
+   "photoRes": "phone_8",
    "accent": "Emerald Lake",
    "offline": [
     {
@@ -519,6 +535,8 @@
    "cpu": "Snapdragon 6 Gen 4",
    "colorStart": "#8E2DE2",
    "colorEnd": "#4A00E0",
+   "photoUrl": "https://image01.realme.net/general/20250403/174367344340048fc865b1978495aaf45046bd9a508b3.png",
+   "photoRes": "phone_9",
    "accent": "Mecha Silver",
    "offline": [
     {
@@ -573,6 +591,8 @@
    "cpu": "Helio G100",
    "colorStart": "#232526",
    "colorEnd": "#414345",
+   "photoUrl": "https://cdn.kalvo.com/uploads/img/gallery/69477-tecno-camon-40-6.jpg",
+   "photoRes": "phone_10",
    "accent": "Emerald Lake Green",
    "offline": [
     {

@@ -2,6 +2,7 @@ package ru.chelny.smartscan
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
@@ -10,6 +11,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.color.DynamicColors
 
 class DetailActivity : AppCompatActivity() {
     companion object {
@@ -17,56 +19,90 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onCreate(b: Bundle?) {
-        applyThemeMode()
+        when (Prefs.theme(this)) {
+            "light" -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO)
+            "dark" -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES)
+            else -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }
+        DynamicColors.applyToActivityIfAvailable(this)
         super.onCreate(b)
         val ctx = this
         val dp = resources.displayMetrics.density
         val id = intent.getIntExtra("id", 1)
         val all = (RemoteCatalog.live ?: emptyList()) + Catalog.phones
-        val ph = all.firstOrNull { it.id == id } ?: Catalog.phones[0]
-        val accent = Prefs.ACCENTS[Prefs.accent(ctx) % Prefs.ACCENTS.size]
+        val seen = HashSet<Int>()
+        val ph = all.firstOrNull { it.id == id && seen.add(it.id) } ?: Catalog.phones[0]
+        val ac = accent(ctx)
 
         val scroll = ScrollView(ctx)
         val col = LinearLayout(ctx).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding((16 * dp).toInt(), (16 * dp).toInt(), (16 * dp).toInt(), (24 * dp).toInt())
+            setPadding((20 * dp).toInt(), (16 * dp).toInt(), (20 * dp).toInt(), (28 * dp).toInt())
         }
 
-        // топ-превью: фото + кнопки избранное/поделиться
-        val top = LinearLayout(ctx).apply { orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL }
-        top.addView(makePhonePreview(ctx, ph))
-        val tt = LinearLayout(ctx).apply {
-            orientation = LinearLayout.VERTICAL
-            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f).apply {
-                marginStart = (14 * dp).toInt()
-            }
+        // большое фото
+        val photo = phonePhoto(ctx, ph, 320, 240).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, (240 * dp).toInt())
         }
-        tt.addView(TextView(ctx).apply { text = "${ph.brand} ${ph.model}"; textSize = 20f; typeface = Typeface.DEFAULT_BOLD })
-        tt.addView(TextView(ctx).apply { text = "RAM ${ph.ramGb} ГБ физическая • ${ph.storageGb} ГБ"; textSize = 13f })
-        tt.addView(TextView(ctx).apply {
-            text = "${fmtPrice(ph.price)}  −${ph.discountPct}%"; textSize = 22f
-            typeface = Typeface.DEFAULT_BOLD; setTextColor(accent)
+        col.addView(photo)
+
+        col.addView(TextView(ctx).apply {
+            text = "${ph.brand} ${ph.model}"
+            textSize = 22f; typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            setPadding(0, (14 * dp).toInt(), 0, 0)
         })
-        tt.addView(TextView(ctx).apply { text = "Было ${fmtPrice(ph.oldPrice)}"; textSize = 13f })
-        tt.addView(TextView(ctx).apply { text = "⚡ ${ph.promo}"; textSize = 13f })
-        top.addView(tt)
-        col.addView(top)
-
-        val btnRow = LinearLayout(ctx).apply { orientation = LinearLayout.HORIZONTAL }
-        val favB = Button(ctx, null, android.R.attr.buttonStyleSmall).apply {
-            text = if (Prefs.isFav(ctx, ph.id)) "★ В ИЗБРАННОМ" else "☆ В ИЗБРАННОЕ"
-            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
-            setOnClickListener {
-                val now = Prefs.toggleFav(ctx, ph.id)
-                text = if (now) "★ В ИЗБРАННОМ" else "☆ В ИЗБРАННОЕ"
+        col.addView(TextView(ctx).apply {
+            text = "RAM ${ph.ramGb} ГБ физическая • ${ph.storageGb} ГБ • ${ph.cpu}"
+            textSize = 13.5f
+            setTextColor(surface(ctx, com.google.android.material.R.attr.colorOnSurfaceVariant, 0xFF44474F.toInt()))
+        })
+        val priceRow = LinearLayout(ctx).apply {
+            orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL
+            setPadding(0, (8 * dp).toInt(), 0, 0)
+        }
+        priceRow.addView(TextView(ctx).apply {
+            text = fmtPrice(ph.price); textSize = 26f
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD); setTextColor(ac)
+        })
+        priceRow.addView(TextView(ctx).apply {
+            text = fmtPrice(ph.oldPrice); textSize = 14f
+            setTextColor(0xFF9AA0A6.toInt())
+            paintFlags = paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+                marginStart = (10 * dp).toInt()
             }
+        })
+        priceRow.addView(chip(ctx, "−${ph.discountPct}%", 0xFFE11D2E.toInt(), 0xFFFFFFFF.toInt()).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+                marginStart = (10 * dp).toInt()
+            }
+        })
+        col.addView(priceRow)
+        col.addView(TextView(ctx).apply { text = "⚡ ${ph.promo}"; textSize = 13.5f })
+
+        // ★ ⤴ в карточке
+        val btnRow = LinearLayout(ctx).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(0, (12 * dp).toInt(), 0, 0)
         }
-        val shB = Button(ctx, null, android.R.attr.buttonStyleSmall).apply {
-            text = "⤴ Поделиться"
-            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
-            setOnClickListener { sharePhone(ctx, ph) }
+        fun mBtn(text: String, tonal: Boolean, act: (Button) -> Unit): Button =
+            Button(ctx).apply {
+                this.text = text
+                layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f).apply {
+                    if (text.startsWith("⤴")) marginStart = (8 * dp).toInt()
+                }
+                setOnClickListener { act(this) }
+            }
+        val favB = mBtn(if (Prefs.isFav(ctx, ph.id)) "★ В избранном" else "☆ В избранное", true) {
+            val now = Prefs.toggleFav(ctx, ph.id)
+            it.text = if (now) "★ В избранном" else "☆ В избранное"
+            Toast.makeText(ctx, if (now) "В избранном" else "Убрано", Toast.LENGTH_SHORT).show()
         }
-        btnRow.addView(favB); btnRow.addView(shB)
+        btnRow.addView(favB)
+        btnRow.addView(mBtn("⤴ Поделиться", true) { sharePhone(ctx, ph) })
         col.addView(btnRow)
 
         col.addView(h("Характеристики"))
@@ -77,50 +113,54 @@ class DetailActivity : AppCompatActivity() {
         col.addView(spec("Корпус", ph.accent))
 
         col.addView(h("🏬 Офлайн • Набережные Челны"))
-        ph.offline.forEach { col.addView(storeCard(it, accent)) }
+        ph.offline.forEach { col.addView(storeCard(it)) }
         col.addView(h("🛒 Онлайн • доставка в Челны"))
-        ph.online.forEach { col.addView(storeCard(it, accent)) }
+        ph.online.forEach { col.addView(storeCard(it)) }
 
-        val back = Button(ctx).apply { text = "← НАЗАД К СПИСКУ"; setOnClickListener { finish() } }
-        col.addView(back)
+        col.addView(Button(ctx).apply {
+            text = "Назад"; setOnClickListener { finish() }
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+                topMargin = (16 * dp).toInt()
+            }
+        })
         scroll.addView(col)
         setContentView(scroll)
     }
 
     private fun h(t: String) = TextView(this).apply {
-        text = t; textSize = 16f; typeface = Typeface.DEFAULT_BOLD; setPadding(0, 20, 0, 8)
+        text = t; textSize = 15f
+        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD); setPadding(0, 22, 0, 8)
     }
     private fun spec(k: String, v: String) = TextView(this).apply {
-        text = "• $k: $v"; textSize = 14f; setPadding(0, 2, 0, 2)
+        text = "$k  ·  $v"; textSize = 14f; setPadding(0, 3, 0, 3)
     }
-    private fun storeCard(o: StoreOffer, accent: Int): LinearLayout {
+    private fun storeCard(o: StoreOffer): LinearLayout {
         val dp = resources.displayMetrics.density
         val c = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            background = GradientDrawable().apply { setColor(0xFFF5F5F5.toInt()); cornerRadius = 12 * dp; setStroke(1, accent) }
-            setPadding((12 * dp).toInt(), (10 * dp).toInt(), (12 * dp).toInt(), (10 * dp).toInt())
+            background = GradientDrawable().apply {
+                setColor(surface(context, com.google.android.material.R.attr.colorSurfaceVariant, 0xFFF3F4F9.toInt()))
+                cornerRadius = 20 * dp
+            }
+            setPadding((16 * dp).toInt(), (12 * dp).toInt(), (16 * dp).toInt(), (12 * dp).toInt())
             layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
                 bottomMargin = (8 * dp).toInt()
             }
         }
-        c.addView(TextView(this).apply { text = "${o.shop} — ${fmtPrice(o.price)}"; typeface = Typeface.DEFAULT_BOLD; textSize = 15f })
-        c.addView(TextView(this).apply { text = o.address; textSize = 12f })
-        c.addView(TextView(this).apply { text = o.note; textSize = 12f })
+        c.addView(TextView(this).apply {
+            text = "${o.shop} — ${fmtPrice(o.price)}"
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD); textSize = 15f
+        })
+        c.addView(TextView(this).apply { text = o.address; textSize = 12.5f })
+        c.addView(TextView(this).apply { text = o.note; textSize = 12.5f })
         c.addView(Button(this, null, android.R.attr.buttonStyleSmall).apply {
-            text = "ОТКРЫТЬ САЙТ"
+            text = "Открыть сайт"
             setOnClickListener {
                 try { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(o.url))) }
                 catch (_: Exception) { Toast.makeText(context, o.url, Toast.LENGTH_LONG).show() }
             }
         })
         return c
-    }
-
-    private fun applyThemeMode() {
-        when (Prefs.theme(this)) {
-            "light" -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO)
-            "dark" -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES)
-            else -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        }
     }
 }

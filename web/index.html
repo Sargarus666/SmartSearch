@@ -1,164 +1,157 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="ru" data-theme="auto">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Челны СмартСкан — сканер смартфонов 10–20к ₽ • Набережные Челны</title>
+<title>Челны СмартСкан 1.1 — смартфоны 10–20к • Набережные Челны</title>
 <style>
-:root{
-  --accent:#e11d2e; --bg:#0d0d17; --card:#171726; --fg:#f5f5f7; --sub:#a9a9c0;
-  --radius:18px;
-}
-[data-theme="light"]{ --bg:#f4f4f8; --card:#ffffff; --fg:#14141c; --sub:#5c5c72; }
-*{box-sizing:border-box} body{margin:0;font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden}
+:root{--acc:#e11d2e;--bg:#fdf8f8;--card:#fff;--fg:#1a1c1e;--sub:#44474f;--line:#e5e0e3;--r:28px}
+@media(prefers-color-scheme:dark){:root[data-theme="auto"]{--bg:#141218;--card:#1d1b20;--fg:#e6e0e9;--sub:#cac4d0;--line:#2c2831}}
+[data-theme="dark"]{--bg:#141218;--card:#1d1b20;--fg:#e6e0e9;--sub:#cac4d0;--line:#2c2831}
+*{box-sizing:border-box}body{margin:0;font-family:Roboto,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--fg);transition:background .4s}
+/* Flash-style splash */
+#splash{position:fixed;inset:0;background:#141218;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;animation:splashOut .6s 1.6s forwards}
+#splash .ph{font-size:64px;animation:bounce 1s infinite alternate}
+#splash b{color:#fff;font-size:22px;letter-spacing:1px}
+#splash small{color:#ff8a94}
+@keyframes bounce{from{transform:scale(1) rotate(-6deg)}to{transform:scale(1.15) rotate(6deg)}}
+@keyframes splashOut{to{opacity:0;visibility:hidden}}
 #stars{position:fixed;inset:0;z-index:0;pointer-events:none}
-.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 16px 120px}
-header.hero{padding:56px 0 24px;text-align:center}
-.badge{display:inline-block;background:linear-gradient(90deg,var(--accent),#7b1fa2);padding:6px 16px;border-radius:99px;font-size:13px;font-weight:700;letter-spacing:.5px;animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-h1{font-size:clamp(30px,6vw,58px);margin:16px 0 8px;line-height:1.05}
-h1 span{background:linear-gradient(90deg,var(--accent),#ff8f00);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{color:var(--sub);font-size:16px}
-.btn{background:var(--accent);color:#fff;border:0;border-radius:14px;padding:14px 26px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px -8px var(--accent);transition:.2s}
-.btn:hover{transform:translateY(-2px) scale(1.02)} .btn.ghost{background:transparent;border:2px solid var(--accent);color:var(--fg);box-shadow:none}
-.scanbar{height:8px;background:#ffffff22;border-radius:99px;overflow:hidden;margin:14px auto;max-width:520px;display:none}
-.scanbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#ffeb3b)}
-nav.tabs{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(14px);border:1px solid #ffffff22;border-radius:99px;display:flex;padding:6px;z-index:5;box-shadow:0 10px 40px #0008}
-nav.tabs button{border:0;background:transparent;color:var(--fg);padding:10px 18px;border-radius:99px;font-size:14px;font-weight:700;cursor:pointer}
-nav.tabs button.on{background:var(--accent);color:#fff}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
-.toolbar input,.toolbar select{background:var(--card);color:var(--fg);border:1px solid #ffffff22;border-radius:12px;padding:10px 14px;font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid #ffffff18;border-radius:var(--radius);padding:16px;display:flex;gap:14px;transform-style:preserve-3d;transition:transform .25s,box-shadow .25s;animation:pop .5s backwards}
-@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}}
-.card:hover{box-shadow:0 20px 50px -18px var(--accent)}
-.phone{width:104px;height:150px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.phone .body{width:62px;height:118px;background:#111;border-radius:12px;border:2px solid #ffffff55;display:flex;flex-direction:column;align-items:center;padding-top:8px}
-.phone .cam{width:40px;height:40px;background:#222831;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
-.phone .cam i{width:13px;height:13px;border-radius:50%;background:#4fc3f7;border:2px solid #0d47a1;display:block}
-.phone .ram{position:absolute;top:6px;right:6px;background:#ffeb3b;color:#000;font-size:10px;font-weight:800;border-radius:8px;padding:2px 7px}
-.info{flex:1;min-width:0} .info h3{margin:0 0 2px;font-size:16px} .muted{color:var(--sub);font-size:12px}
-.price{color:var(--accent);font-size:21px;font-weight:900} .old{color:#999;font-size:12px;text-decoration:line-through;margin-left:6px}
-.off{background:#e11d2e;color:#fff;border-radius:8px;padding:2px 8px;font-size:12px;font-weight:800;margin-left:6px}
-.promo{font-size:12px;color:var(--sub);margin:4px 0}
-.rowbtns{display:flex;gap:6px;margin-top:8px}
-.iconbtn{flex:1;border:1px solid #ffffff2a;background:transparent;color:var(--fg);border-radius:10px;padding:8px;cursor:pointer;font-size:13px;font-weight:700}
-.iconbtn.fav.on{background:#ffeb3b;color:#000;border-color:#ffeb3b}
-.detail{display:none;margin-top:10px;border-top:1px dashed #ffffff33;padding-top:10px;font-size:13px}
-.detail.open{display:block;animation:pop .3s}
-.shop{background:#ffffff0d;border-radius:10px;padding:8px 10px;margin:6px 0}
-.shop b{color:var(--accent)} .shop a{color:#4fc3f7}
-h2.st{margin:26px 0 6px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
-.panel{background:var(--card);border-radius:var(--radius);padding:18px;margin-top:14px;border:1px solid #ffffff18}
-.swatches{display:flex;gap:8px;flex-wrap:wrap} .sw{width:38px;height:38px;border-radius:50%;cursor:pointer;border:3px solid transparent}
-.sw.on{border-color:#fff;transform:scale(1.15)}
-.flash-note{font-size:13px;color:var(--sub);line-height:1.6}
-canvas#radar{width:100%;height:120px;background:#00000040;border-radius:14px}
-footer{text-align:center;color:var(--sub);font-size:12px;margin:40px 0}
-.reveal{opacity:0;transform:translateY(26px);transition:.6s} .reveal.vis{opacity:1;transform:none}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 20px 130px}
+/* ticker — бегущая строка цен как на флеш-сайтах */
+.ticker{overflow:hidden;white-space:nowrap;background:var(--card);border:1px solid var(--line);border-radius:99px;margin:18px 0;font-size:13px}
+.ticker span{display:inline-block;padding:9px 0;animation:tick 30s linear infinite}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+header{padding:44px 0 8px;animation:fadeUp .7s .9s backwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}}
+h1{font-size:clamp(32px,6vw,54px);margin:0;line-height:1.05;letter-spacing:-1px}
+h1 em{font-style:normal;color:var(--acc)}
+.sub{color:var(--sub);margin:10px 0 18px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.btn{background:var(--acc);color:#fff;border:0;border-radius:99px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;text-decoration:none;display:inline-block}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px -10px var(--acc)}
+.btn.tonal{background:color-mix(in srgb,var(--acc) 14%,var(--card));color:var(--acc)}
+.scanbar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:14px 0 4px;display:none;max-width:520px}
+.scanbar i{display:block;height:100%;width:0;background:var(--acc);border-radius:99px;transition:width .1s}
+nav.tabs{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:color-mix(in srgb,var(--card) 90%,transparent);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:99px;display:flex;padding:6px;z-index:5;box-shadow:0 12px 40px #0003}
+nav.tabs button{border:0;background:transparent;color:var(--fg);padding:11px 20px;border-radius:99px;font-size:14px;font-weight:700;cursor:pointer;transition:.25s}
+nav.tabs button.on{background:var(--acc);color:#fff}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.toolbar input,.toolbar select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:99px;padding:12px 18px;font-size:14px;outline:none}
+.toolbar input{flex:2;min-width:200px}.toolbar input:focus{border-color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;gap:16px;transition:transform .2s,box-shadow .2s;animation:fadeUp .5s backwards}
+.card:hover{box-shadow:0 18px 44px -20px var(--acc)}
+.card img.ph{width:104px;height:132px;object-fit:cover;border-radius:20px;background:#e8eaf6;flex:none}
+.info{flex:1;min-width:0}.info h3{margin:0;font-size:16.5px}
+.mut{color:var(--sub);font-size:12.5px;margin-top:2px}
+.pr{font-size:21px;font-weight:800;margin-top:6px}.old{color:#9aa0a6;font-size:12px;text-decoration:line-through;margin-left:8px}
+.off{background:#e11d2e;color:#fff;border-radius:99px;padding:3px 10px;font-size:11.5px;font-weight:800;margin-left:8px}
+.promo{font-size:12.5px;color:var(--sub);margin:5px 0}
+.rowbtns{display:flex;gap:8px;margin-top:10px}
+.ic{flex:1;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:99px;padding:9px;cursor:pointer;font-size:13px;font-weight:700;transition:.2s}
+.ic:hover{border-color:var(--acc);color:var(--acc)}
+.ic.fav.on{background:#ffe93b;border-color:#ffe93b;color:#000}
+.det{display:none;margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;font-size:13px}
+.det.open{display:block;animation:fadeUp .3s}
+.shop{background:color-mix(in srgb,var(--acc) 7%,var(--card));border-radius:16px;padding:9px 12px;margin:6px 0}
+.shop b{color:var(--acc)}
+h2.st{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin:18px 0 4px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-top:16px}
+.swatches{display:flex;gap:10px}.sw{width:40px;height:40px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.2s}
+.sw.on{border-color:var(--fg);transform:scale(1.15)}
+footer{text-align:center;color:var(--sub);font-size:12px;margin:44px 0 10px}
+.rv{opacity:0;transform:translateY(24px);transition:.6s}.rv.vis{opacity:1;transform:none}
 </style>
 </head>
 <body>
+<div id="splash"><div class="ph">📱</div><b>ЧЕЛНЫ СМАРТСКАН</b><small>сканирую цены…</small></div>
 <canvas id="stars"></canvas>
 <div class="wrap">
-  <header class="hero">
-    <div class="badge">📡 НАБЕРЕЖНЫЕ ЧЕЛНЫ • RAM ≥ 8 ГБ ФИЗИЧЕСКАЯ • 10–20К ₽</div>
-    <h1>Челны <span>СмартСкан</span></h1>
-    <p class="sub">Сканер цен, скидок и акций. Превью: фото • цена • скидка • акция. Внутри — магазины <b>онлайн / офлайн</b>.</p>
-    <div>
-      <button class="btn" id="scanBtn">⟳ Сканировать цены Челны</button>
-      <a class="btn ghost" id="apkBtn" href="../ChelnyPhones/app/build/outputs/apk/debug/app-debug.apk" style="text-decoration:none;display:inline-block">⬇ Скачать APK 1.0</a>
+  <div class="ticker"><span id="tick"></span></div>
+  <header>
+    <h1>Сканер цен <em>Челны</em></h1>
+    <p class="sub">Топовые бюджетники 10–20 тыс ₽ • только физическая RAM ≥ 8 ГБ • Набережные Челны: офлайн + онлайн. Фото: производители и GSMArena.</p>
+    <div class="btnrow">
+      <button class="btn" id="scanBtn">Сканировать цены</button>
+      <a class="btn tonal" href="https://github.com/Sargarus666/SmartSearch/releases/download/v1.1/chelny-smartscan-1.1.apk">Скачать APK 1.1</a>
     </div>
     <div class="scanbar" id="scanbar"><i id="scanfill"></i></div>
-    <p class="sub" id="scanLabel">Обновлено: только что • 10 моделей</p>
-    <canvas id="radar" width="900" height="120"></canvas>
+    <p class="sub" id="scanLabel" style="margin:6px 0 0"></p>
   </header>
 
   <nav class="tabs" id="tabs">
-    <button data-t="list" class="on">📋 Список</button>
-    <button data-t="fav">★ Избранное <span id="favCount"></span></button>
-    <button data-t="news">📰 Новости</button>
-    <button data-t="set">⚙ Настройки</button>
+    <button data-t="list" class="on">Список</button>
+    <button data-t="fav">Избранное <span id="favCount"></span></button>
+    <button data-t="news">Новости</button>
+    <button data-t="set">Настройки</button>
   </nav>
 
   <section id="v-list">
     <div class="toolbar">
-      <input id="q" placeholder="🔍 Поиск: redmi, tecno, amoled…" style="flex:2;min-width:200px">
+      <input id="q" placeholder="Поиск: redmi, tecno, amoled…">
       <select id="f"><option value="0">Все</option><option value="1">До 15 000 ₽</option><option value="2">AMOLED</option><option value="3">Скидка ≥15%</option></select>
-      <select id="s"><option value="0">Сначала со скидкой</option><option value="1">Подешевле</option><option value="2">По рейтингу</option></select>
+      <select id="s"><option value="0">Со скидкой</option><option value="1">Подешевле</option><option value="2">По рейтингу</option></select>
     </div>
     <div class="grid" id="grid"></div>
   </section>
-
-  <section id="v-fav" style="display:none">
-    <div class="panel"><h3>★ Избранное</h3><p class="sub">Жми ★ на карточке — всё сохраняется в браузере.</p><div class="grid" id="favGrid"></div></div>
-  </section>
-
+  <section id="v-fav" style="display:none"><div class="panel"><h3 style="margin:0">Избранное</h3><p class="sub">Жми ★ на карточке — сохраняется в браузере.</p><div class="grid" id="favGrid"></div></div></section>
   <section id="v-news" style="display:none"><div id="newsList"></div></section>
-
   <section id="v-set" style="display:none">
     <div class="panel">
-      <h3>⚙ Настройки — как в MMO Calendar</h3>
-      <h2 class="st">Тема (3 шт)</h2>
-      <div><label><input type="radio" name="th" value="dark" checked> Тёмная</label> <label><input type="radio" name="th" value="light"> Светлая</label> <label><input type="radio" name="th" value="auto"> Системная</label></div>
-      <h2 class="st">Акцент (7 шт)</h2>
-      <div class="swatches" id="sw"></div>
-      <h2 class="st">Про Flash и чем заменён</h2>
-      <p class="flash-note">Adobe Flash умер в 2020-м. Вместо него здесь: <b>Canvas 2D</b> (звёзды + радар сканера), <b>CSS 3D + Web Animations API</b> (наклон карточек, reveal при скролле — раньше делали во Flash), <b>SVG/Lottie-стиль</b> (бейджи, шильдики скидок без картинок), планируемо — <b>WebGL / Rive</b> для 3D-превью телефонов. Всё работает без плагинов, на телефоне и десктопе.</p>
+      <h3 style="margin:0">Настройки — как в MMO Calendar</h3>
+      <h2 class="st">Тема</h2>
+      <label><input type="radio" name="th" value="auto" checked> Системная</label>
+      <label><input type="radio" name="th" value="light"> Светлая</label>
+      <label><input type="radio" name="th" value="dark"> Тёмная</label>
+      <h2 class="st">Акцент</h2><div class="swatches" id="sw"></div>
+      <h2 class="st">Чем заменён Flash</h2>
+      <p class="sub" style="line-height:1.7">Adobe Flash закрыт в 2020-м. Здесь вместо него: <b>Canvas 2D</b> (частицы + сплэш), <b>CSS-анимации и Web Animations</b> (бегущая строка цен, tilt карточек, reveal при скролле — классика флеш-сайтов), <b>SVG</b> вместо флеш-вектора. Дальше — WebGL/Rive для 3D-превью.</p>
     </div>
   </section>
-
-  <footer>Челны СмартСкан 1.0 • цены-ориентиры DNS / М.Видео / Эльдорадо / OZON / WB / Маркет, Челны • RAM только физическая</footer>
+  <footer>Челны СмартСкан 1.1 • DNS / М.Видео / Эльдорадо / OZON / WB / Маркет, Челны • RAM только физическая</footer>
 </div>
-
 <script>
+const ASSET=i=>"assets/phone_"+i+".jpg";
 const PHONES=[
-{id:1,brand:"Xiaomi",model:"Redmi Note 15 8/256",ram:8,st:256,price:19899,old:21990,promo:"Проверено 14.10.2026 • −9% • камера 108 Мп",rate:4.9,scr:"6.77\" AMOLED 120 Гц",bat:"6000 мА·ч 45 Вт",cam:"108 Мп OIS",cpu:"Helio G100 Ultra",g:["#1a2a6c","#2ebf91"],off:[["DNS","Московский пр-т 128А",19899],["М.Видео","пр. Мира 49А",20490],["Эльдорадо","Московский 140",20690]],on:[["Маркет","доставка 1–2 дня",20500],["OZON","ПВЗ Сююмбике 61",19990],["WB","Набережночелнинский 41",20290]]},
-{id:2,brand:"TECNO",model:"Spark 40 Pro 8/256",ram:8,st:256,price:14999,old:17990,promo:"Проверено 14.10.2026 • −17% • топ МТС и M.Video",rate:4.8,scr:"6.78\" AMOLED 1.5K 144 Гц",bat:"5200 мА·ч 45 Вт",cam:"50 Мп",cpu:"Helio G100 Ultra",g:["#141e30","#4b6cb7"],off:[["DNS","Набережночелнинский 10Б",14999],["МТС","Туфана 12",15490]],on:[["OZON","ПВЗ Московский 140",14490],["DNS онлайн","Сююмбике 67В",14999]]},
-{id:3,brand:"Infinix",model:"Note Edge 8/256",ram:8,st:256,price:19490,old:21990,promo:"Проверено 14.10.2026 • −11% • Dimensity 7100",rate:4.8,scr:"6.78\" AMOLED 120 Гц",bat:"6150 мА·ч",cam:"50 Мп",cpu:"Dimensity 7100",g:["#3a1c71","#d76d77"],off:[["Эльдорадо","Московский 140",19490],["DNS","Сююмбике 67В",19990]],on:[["WB","ПВЗ Мира 52",19690],["OZON","Татарстан 25",19790]]},
-{id:4,brand:"TECNO",model:"Pova 7 Neo 8/256",ram:8,st:256,price:15490,old:17490,promo:"Проверено 14.10.2026 • −11% • 7000 мА·ч",rate:4.7,scr:"6.78\" IPS 120 Гц",bat:"7000 мА·ч",cam:"108+2 Мп",cpu:"Helio G100U",g:["#0f2027","#2c5364"],off:[["DNS","Московский 128А",15490],["М.Видео","Мира 49А",15990]],on:[["OZON","Чулман 23",15190],["Маркет","1–3 дня",15490]]},
-{id:5,brand:"realme",model:"C85 Pro 8/256",ram:8,st:256,price:16599,old:18999,promo:"Проверено 14.10.2026 • −13% • IP69",rate:4.7,scr:"6.8\" AMOLED 120 Гц",bat:"7000 мА·ч",cam:"108 Мп",cpu:"Snapdragon 685",g:["#f7971e","#ffd200"],off:[["М.Видео","Мира 49А",16599],["DNS","Набережночелнинский 10Б",16990]],on:[["Маркет","доставка",16590],["OZON","ПВЗ",16790]]},
-{id:6,brand:"Samsung",model:"Galaxy A17 8/256",ram:8,st:256,price:19099,old:21499,promo:"Проверено 14.10.2026 • −11% • 6 лет обновлений",rate:4.6,scr:"6.7\" Super AMOLED 90 Гц",bat:"5000 мА·ч",cam:"50+5+2 Мп",cpu:"Exynos 1330",g:["#000428","#004e92"],off:[["МТС","Туфана 12",19099],["DNS","Сююмбике 67В",19490]],on:[["М.Видео онлайн","2 дня",19099],["WB","ПВЗ",19290]]},
-{id:7,brand:"POCO",model:"M7 8/256",ram:8,st:256,price:17990,old:19990,promo:"Проверено 14.10.2026 • −10% • 7000 мА·ч",rate:4.6,scr:"6.9\" IPS 144 Гц",bat:"7000 мА·ч 33 Вт",cam:"50 Мп",cpu:"Snapdragon 685",g:["#cb0000","#3a0000"],off:[["DNS","Московский 128А",17990],["Эльдорадо","Московский 140",18490]],on:[["OZON","ПВЗ",17590],["Маркет","—",17990]]},
-{id:8,brand:"HONOR",model:"X8c 8/256",ram:8,st:256,price:16999,old:19999,promo:"Проверено 14.10.2026 • −15% • 108 Мп OIS",rate:4.6,scr:"6.7\" AMOLED 120 Гц",bat:"5000 мА·ч",cam:"108 Мп OIS",cpu:"Snapdragon 685",g:["#134e5e","#71b280"],off:[["DNS","Набережночелнинский 10Б",16999]],on:[["WB","ПВЗ",16790],["OZON","ПВЗ",16990]]},
-{id:9,brand:"realme",model:"14 5G 8/256",ram:8,st:256,price:17599,old:19999,promo:"Проверено 14.10.2026 • −12% • SD 6 Gen 4",rate:4.7,scr:"6.67\" AMOLED 120 Гц",bat:"6000 мА·ч",cam:"50+2 Мп",cpu:"Snapdragon 6 Gen 4",g:["#8e2de2","#4a00e0"],off:[["М.Видео","Мира 49А",17599],["DNS","Сююмбике 67В",17990]],on:[["Маркет","—",17599],["OZON","ПВЗ",17790]]},
-{id:10,brand:"TECNO",model:"Camon 40 8/256",ram:8,st:256,price:17199,old:18999,promo:"Проверено 14.10.2026 • −9% • выбор Т-Ж",rate:4.6,scr:"6.78\" AMOLED 120 Гц",bat:"5200 мА·ч",cam:"50 Мп OIS",cpu:"Helio G100",g:["#232526","#414345"],off:[["Эльдорадо","Московский 140",17199],["DNS","Московский 128А",17490]],on:[["OZON","ПВЗ",16890],["Ситилинк","доставка",17190]]}
+{id:1,brand:"Xiaomi",model:"Redmi Note 15 8/256",ram:8,st:256,price:19899,old:21990,promo:"Проверено 14.10 • −9% • 108 Мп",rate:4.9,scr:'6.77" AMOLED 120 Гц',cpu:"Helio G100 Ultra",off:[["DNS","Московский 128А",19899],["М.Видео","Мира 49А",20490],["Эльдорадо","Московский 140",20690]],on:[["Маркет","1–2 дня",20500],["OZON","Сююмбике 61",19990],["WB","Набережночелнинский 41",20290]]},
+{id:2,brand:"TECNO",model:"Spark 40 Pro 8/256",ram:8,st:256,price:14999,old:17990,promo:"Проверено 14.10 • −17% • топ МТС",rate:4.8,scr:'6.78" AMOLED 144 Гц',cpu:"Helio G100U",off:[["DNS","Набережночелнинский 10Б",14999],["МТС","Туфана 12",15490]],on:[["OZON","Московский 140",14490],["DNS онлайн","Сююмбике 67В",14999]]},
+{id:3,brand:"Infinix",model:"Note Edge 8/256",ram:8,st:256,price:19490,old:21990,promo:"Проверено 14.10 • −11% • Dimensity 7100",rate:4.8,scr:'6.78" AMOLED 120 Гц',cpu:"Dimensity 7100",off:[["Эльдорадо","Московский 140",19490],["DNS","Сююмбике 67В",19990]],on:[["WB","Мира 52",19690],["OZON","Татарстан 25",19790]]},
+{id:4,brand:"TECNO",model:"Pova 7 Neo 8/256",ram:8,st:256,price:15490,old:17490,promo:"Проверено 14.10 • −11% • 7000 мА·ч",rate:4.7,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100U",off:[["DNS","Московский 128А",15490],["М.Видео","Мира 49А",15990]],on:[["OZON","Чулман 23",15190],["Маркет","1–3 дня",15490]]},
+{id:5,brand:"realme",model:"C85 Pro 8/256",ram:8,st:256,price:16599,old:18999,promo:"Проверено 14.10 • −13% • IP69",rate:4.7,scr:'6.8" AMOLED 120 Гц',cpu:"Snapdragon 685",off:[["М.Видео","Мира 49А",16599],["DNS","Набережночелнинский 10Б",16990]],on:[["Маркет","доставка",16590],["OZON","ПВЗ",16790]]},
+{id:6,brand:"Samsung",model:"Galaxy A17 8/256",ram:8,st:256,price:19099,old:21499,promo:"Проверено 14.10 • −11% • 6 лет обновлений",rate:4.6,scr:'6.7" Super AMOLED',cpu:"Exynos 1330",off:[["МТС","Туфана 12",19099],["DNS","Сююмбике 67В",19490]],on:[["М.Видео онлайн","2 дня",19099],["WB","ПВЗ",19290]]},
+{id:7,brand:"POCO",model:"M7 8/256",ram:8,st:256,price:17990,old:19990,promo:"Проверено 14.10 • −10% • 7000 мА·ч",rate:4.6,scr:'6.9" IPS 144 Гц',cpu:"Snapdragon 685",off:[["DNS","Московский 128А",17990],["Эльдорадо","Московский 140",18490]],on:[["OZON","ПВЗ",17590],["Маркет","—",17990]]},
+{id:8,brand:"HONOR",model:"X8c 8/256",ram:8,st:256,price:16999,old:19999,promo:"Проверено 14.10 • −15% • 108 Мп OIS",rate:4.6,scr:'6.7" AMOLED 120 Гц',cpu:"Snapdragon 685",off:[["DNS","Набережночелнинский 10Б",16999]],on:[["WB","ПВЗ",16790],["OZON","ПВЗ",16990]]},
+{id:9,brand:"realme",model:"14 5G 8/256",ram:8,st:256,price:17599,old:19999,promo:"Проверено 14.10 • −12% • SD 6 Gen 4",rate:4.7,scr:'6.67" AMOLED 120 Гц',cpu:"Snapdragon 6 Gen 4",off:[["М.Видео","Мира 49А",17599],["DNS","Сююмбике 67В",17990]],on:[["Маркет","—",17599],["OZON","ПВЗ",17790]]},
+{id:10,brand:"TECNO",model:"Camon 40 8/256",ram:8,st:256,price:17199,old:18999,promo:"Проверено 14.10 • −9% • выбор Т-Ж",rate:4.6,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100",off:[["Эльдорадо","Московский 140",17199],["DNS","Московский 128А",17490]],on:[["OZON","ПВЗ",16890],["Ситилинк","доставка",17190]]}
 ];
 const NEWS=[
-["POCO M8 Pro вылетел из бюджета: 25–28 тыс. в октябре","Ещё летом был 18 900 ₽, теперь от 25 990 ₽. В подборке его заменил POCO M7 8/256 за 17 990 ₽.","14.10.2026 • Проверка цен"],
-["Redmi Note 15 8/256: реально 19 899 ₽, а не 17 900","Официалы просят 21 990 ₽, RU-версия — 19 899 ₽. Старые цены из нейросетей устарели.","14.10.2026 • Проверка цен"],
-["Топ-пересечение осени-2026: 10 моделей из 2+ рейтингов","МТС 10/2026, Т-Ж 09/2026, iChip 08/2026, Price.ru, kod.ru, M.Video — в каталоге только повторы.","14.10.2026 • Методология"],
-["8+8 — это не 16 ГБ","В подборку идут только физические 8 ГБ RAM, виртуальная из накопителя не считается.","12.10.2026 • Гайд"]
-];
+["POCO M8 Pro вылетел из бюджета","Был 18 900 ₽, стал 25–28 тыс. Замена — POCO M7 за 17 990 ₽.","14.10 • Проверка цен"],
+["Redmi Note 15: реально 19 899 ₽","Официалы — 21 990 ₽. Старые цены нейросетей устарели.","14.10 • Проверка цен"],
+["Только топ из топов","Модель в каталоге, если есть в 2+ свежих рейтингах осени-2026.","14.10 • Методология"],
+["8+8 — это не 16 ГБ","Считается только физическая RAM.","12.10 • Гайд"]];
 let favs=new Set(JSON.parse(localStorage.getItem("ss_fav")||"[]"));
 const fmt=n=>n.toLocaleString("ru-RU")+" ₽";
 const grid=document.getElementById("grid"),favGrid=document.getElementById("favGrid");
+document.getElementById("tick").textContent=(PHONES.map(p=>`${p.brand} ${p.model} — ${fmt(p.price)}`).join(" • ")+" • ").repeat(2);
 function card(p){
   const d=Math.round((p.old-p.price)/p.old*100);
-  const el=document.createElement("div");el.className="card reveal vis";
-  el.innerHTML=`<div class="phone" style="background:linear-gradient(135deg,${p.g[0]},${p.g[1]})">
-    <div class="body"><div class="cam"><i></i><i></i></div><div style="color:#fff;font-size:9px;font-weight:800;margin-top:6px">${p.brand.toUpperCase()}</div></div>
-    <div class="ram">${p.ram} ГБ</div></div>
+  const el=document.createElement("div");el.className="card rv vis";
+  el.innerHTML=`<img class="ph" loading="lazy" src="${ASSET(p.id)}" alt="${p.brand} ${p.model}">
   <div class="info"><h3>${p.brand} ${p.model}</h3>
-    <div class="muted">RAM ${p.ram} ГБ физ. • ${p.st} ГБ • ${p.scr}</div>
-    <div><span class="price">${fmt(p.price)}</span><span class="old">${fmt(p.old)}</span><span class="off">−${d}%</span></div>
+    <div class="mut">${p.ram} ГБ физ. • ${p.st} ГБ • ${p.cpu}</div>
+    <div class="pr">${fmt(p.price)}<span class="old">${fmt(p.old)}</span><span class="off">−${d}%</span></div>
     <div class="promo">⚡ ${p.promo}</div>
-    <div class="muted">★ ${p.rate} • 🏬 от ${fmt(Math.min(...p.off.map(o=>o[2])))} • 🛒 от ${fmt(Math.min(...p.on.map(o=>o[2])))}</div>
-    <div class="rowbtns">
-      <button class="iconbtn fav ${favs.has(p.id)?"on":""}">★ Избранное</button>
-      <button class="iconbtn sh">⤴ Поделиться</button>
-    </div>
-    <div class="detail">
-      <b>📋 ${p.cpu} • ${p.bat} • ${p.cam}</b>
-      <h2 class="st">🏬 Офлайн • Челны</h2>${p.off.map(o=>`<div class="shop"><b>${o[0]}</b> — ${fmt(o[2])}<br>${o[1]}</div>`).join("")}
-      <h2 class="st">🛒 Онлайн • в Челны</h2>${p.on.map(o=>`<div class="shop"><b>${o[0]}</b> — ${fmt(o[2])}<br>${o[1]}</div>`).join("")}
-    </div>
-    <button class="iconbtn more" style="margin-top:8px;width:100%">Магазины • онлайн / офлайн ⤵</button>
+    <div class="mut">★ ${p.rate} • 🏬 ${fmt(Math.min(...p.off.map(o=>o[2])))} • 🛒 ${fmt(Math.min(...p.on.map(o=>o[2])))}</div>
+    <div class="rowbtns"><button class="ic fav ${favs.has(p.id)?"on":""}">★</button><button class="ic sh">⤴ Поделиться</button></div>
+    <div class="det"><h2 class="st">🏬 Офлайн • Челны</h2>${p.off.map(o=>`<div class="shop"><b>${o[0]}</b> — ${fmt(o[2])}<br>${o[1]}</div>`).join("")}
+    <h2 class="st">🛒 Онлайн • в Челны</h2>${p.on.map(o=>`<div class="shop"><b>${o[0]}</b> — ${fmt(o[2])}<br>${o[1]}</div>`).join("")}</div>
+    <div class="rowbtns"><button class="ic more" style="width:100%">Магазины · онлайн / офлайн</button></div>
   </div>`;
-  el.querySelector(".more").onclick=()=>el.querySelector(".detail").classList.toggle("open");
-  el.querySelector(".fav").onclick=e=>{const b=e.target;if(favs.has(p.id)){favs.delete(p.id);b.classList.remove("on")}else{favs.add(p.id);b.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify([...favs]));renderFav();};
-  el.querySelector(".sh").onclick=()=>{const t=`📱 ${p.brand} ${p.model} — ${fmt(p.price)} (−${d}%)\n${p.promo}\nЧелны СмартСкан`;if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t);alert("Скопировано!")}} ;
-  el.addEventListener("mousemove",e=>{const r=el.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(700px) rotateY(${x*8}deg) rotateX(${-y*8}deg)`});
+  el.querySelector(".more").onclick=()=>el.querySelector(".det").classList.toggle("open");
+  el.querySelector(".fav").onclick=e=>{if(favs.has(p.id)){favs.delete(p.id);e.target.classList.remove("on")}else{favs.add(p.id);e.target.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify([...favs]));renderFav()};
+  el.querySelector(".sh").onclick=()=>{const t=`📱 ${p.brand} ${p.model} — ${fmt(p.price)} (−${d}%)\n${p.promo}\nЧелны СмартСкан`;if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t);alert("Скопировано!")}};
+  el.addEventListener("mousemove",e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(800px) rotateY(${x*6}deg) rotateX(${-y*6}deg)`});
   el.addEventListener("mouseleave",()=>el.style.transform="");
   return el;
 }
@@ -170,22 +163,16 @@ function list(){const q=document.getElementById("q").value.toLowerCase(),f=+docu
   grid.innerHTML="";l.forEach(p=>grid.appendChild(card(p)));return l.length}
 function renderFav(){favGrid.innerHTML="";const l=PHONES.filter(p=>favs.has(p.id));document.getElementById("favCount").textContent=l.length?"("+l.length+")":"";l.forEach(p=>favGrid.appendChild(card(p)));if(!l.length)favGrid.innerHTML='<p class="sub">Пока пусто — жми ★ в списке.</p>'}
 ["q","f","s"].forEach(id=>document.getElementById(id).oninput=list);
-// tabs
 document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#tabs button").forEach(x=>x.classList.remove("on"));b.classList.add("on");["list","fav","news","set"].forEach(t=>document.getElementById("v-"+t).style.display=t==b.dataset.t?"":"none")});
-// news
-document.getElementById("newsList").innerHTML=NEWS.map(n=>`<div class="panel reveal vis"><b>${n[0]}</b><p class="sub">${n[1]}</p><span class="muted">${n[2]}</span></div>`).join("");
-// themes + accents
-document.querySelectorAll('input[name=th]').forEach(r=>r.onchange=()=>{document.documentElement.dataset.theme=r.value=="auto"?"dark":r.value});
+document.getElementById("newsList").innerHTML=NEWS.map(n=>`<div class="panel"><b>${n[0]}</b><p class="sub">${n[1]}</p><span class="mut">${n[2]}</span></div>`).join("");
+document.querySelectorAll('input[name=th]').forEach(r=>r.onchange=()=>{document.documentElement.dataset.theme=r.value});
 const ACC=["#e11d2e","#6c4dff","#009688","#1e88e5","#43a047","#ff8f00","#ec407a"];
-const sw=document.getElementById("sw");ACC.forEach((c,i)=>{const d=document.createElement("div");d.className="sw"+(i==0?" on":"");d.style.background=c;d.onclick=()=>{document.documentElement.style.setProperty("--accent",c);document.querySelectorAll(".sw").forEach(x=>x.classList.remove("on"));d.classList.add("on")};sw.appendChild(d)});
-// scan animation
-document.getElementById("scanBtn").onclick=()=>{const bar=document.getElementById("scanbar"),fill=document.getElementById("scanfill");bar.style.display="block";let p=0;const t=setInterval(()=>{p+=8;fill.style.width=p+"%";radar(p);if(p>=100){clearInterval(t);bar.style.display="none";document.getElementById("scanLabel").textContent="Обновлено: "+new Date().toLocaleString("ru-RU")+" • Челны • "+list()+" моделей";}},90)};
-// canvas stars (замена Flash-фона)
-const sc=document.getElementById("stars"),sx=sc.getContext("2d");let pts=[];function size(){sc.width=innerWidth;sc.height=innerHeight}size();addEventListener("resize",size);for(let i=0;i<120;i++)pts.push({x:Math.random(),y:Math.random(),r:Math.random()*1.8+.4,s:Math.random()*.0006+.0002});
-(function anim(){sx.clearRect(0,0,sc.width,sc.height);sx.fillStyle="#e11d2e88";pts.forEach(p=>{p.y-=p.s;if(p.y<0)p.y=1;sx.beginPath();sx.arc(p.x*sc.width,p.y*sc.height,p.r,0,7);sx.fill()});requestAnimationFrame(anim)})();
-// radar (замена Flash-шкалы)
-function radar(p){const c=document.getElementById("radar"),x=c.getContext("2d");x.clearRect(0,0,900,120);x.strokeStyle="#e11d2e";x.beginPath();x.arc(450,110,90,Math.PI,0);x.stroke();const a=Math.PI+(p/100)*Math.PI;x.strokeStyle="#ffeb3b";x.lineWidth=3;x.beginPath();x.moveTo(450,110);x.lineTo(450+90*Math.cos(a),110+90*Math.sin(a));x.stroke();x.fillStyle="#fff";x.font="14px sans-serif";x.fillText("СКАНИРОВАНИЕ ЧЕЛНЫ "+p+"%",330,40)}
-list();renderFav();radar(100);
+const sw=document.getElementById("sw");ACC.forEach((c,i)=>{const d=document.createElement("div");d.className="sw"+(i==0?" on":"");d.style.background=c;d.onclick=()=>{document.documentElement.style.setProperty("--acc",c);document.querySelectorAll(".sw").forEach(x=>x.classList.remove("on"));d.classList.add("on")};sw.appendChild(d)});
+document.getElementById("scanBtn").onclick=()=>{const bar=document.getElementById("scanbar"),fill=document.getElementById("scanfill");bar.style.display="block";let p=0;const t=setInterval(()=>{p+=7;fill.style.width=p+"%";if(p>=100){clearInterval(t);bar.style.display="none";document.getElementById("scanLabel").textContent="Обновлено: "+new Date().toLocaleString("ru-RU")+" • Челны • "+list()+" моделей"}},80)};
+const sc=document.getElementById("stars"),sx=sc.getContext("2d");let pts=[];function size(){sc.width=innerWidth;sc.height=innerHeight}size();addEventListener("resize",size);for(let i=0;i<90;i++)pts.push({x:Math.random(),y:Math.random(),r:Math.random()*1.6+.4,s:Math.random()*.0005+.0002});
+(function anim(){sx.clearRect(0,0,sc.width,sc.height);sx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue("--acc")||"#e11d2e";pts.forEach(p=>{p.y-=p.s;if(p.y<0)p.y=1;sx.globalAlpha=.35;sx.beginPath();sx.arc(p.x*sc.width,p.y*sc.height,p.r,0,7);sx.fill()});requestAnimationFrame(anim)})();
+list();renderFav();
+document.getElementById("scanLabel").textContent="Каталог от 14.10.2026 • 10 моделей • Челны";
 </script>
 </body>
 </html>

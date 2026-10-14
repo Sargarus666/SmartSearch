@@ -46,21 +46,21 @@ class ListFragment : BaseTab() {
 
         val header = LinearLayout(ctx).apply {
             orientation = LinearLayout.VERTICAL
-            val g = GradientDrawable(GradientDrawable.Orientation.TL_BR, intArrayOf(accent, 0xFF1A1A2E.toInt()))
-            g.cornerRadius = 0f
-            background = g
-            setPadding((16 * dp).toInt(), (16 * dp).toInt(), (16 * dp).toInt(), (12 * dp).toInt())
+            setPadding((20 * dp).toInt(), (20 * dp).toInt(), (20 * dp).toInt(), (8 * dp).toInt())
         }
         header.addView(TextView(ctx).apply {
-            text = "📡 Сканер цен • Набережные Челны"; setTextColor(0xFFFFFFFF.toInt())
-            textSize = 18f; typeface = Typeface.DEFAULT_BOLD
+            text = "Сканер цен"; textSize = 26f
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
         })
         header.addView(TextView(ctx).apply {
-            text = "10–20 тыс ₽ • RAM ≥ 8 ГБ физическая • офлайн + онлайн"
-            setTextColor(0xDDFFFFFF.toInt()); textSize = 12f
+            text = "Набережные Челны • 10–20 тыс ₽ • RAM ≥ 8 ГБ"
+            setTextColor(surface(ctx, com.google.android.material.R.attr.colorOnSurfaceVariant, 0xFF44474F.toInt()))
+            textSize = 13f
         })
         scanLabel = TextView(ctx).apply {
-            text = "Обновлено: $lastScan"; setTextColor(0xFFFFEB3B.toInt()); textSize = 12f
+            text = "Обновлено: $lastScan"
+            setTextColor(surface(ctx, com.google.android.material.R.attr.colorOnSurfaceVariant, 0xFF44474F.toInt()))
+            textSize = 12f
         }
         header.addView(scanLabel)
         progress = ProgressBar(ctx, null, android.R.attr.progressBarStyleHorizontal).apply {
@@ -71,9 +71,9 @@ class ListFragment : BaseTab() {
         }
         header.addView(progress)
         val scanBtn = Button(ctx).apply {
-            text = "⟳ СКАНИРОВАТЬ ЦЕНЫ ЧЕЛНЫ"
+            text = "Сканировать цены"
             layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-                topMargin = (8 * dp).toInt()
+                topMargin = (10 * dp).toInt()
             }
             setOnClickListener { runScan() }
         }
