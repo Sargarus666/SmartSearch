@@ -1,0 +1,615 @@
+{
+ "updated": "2026-10-14",
+ "city": "Набережные Челны",
+ "currency": "RUB",
+ "minRamGb": 8,
+ "minPrice": 10000,
+ "maxPrice": 20000,
+ "source": "Пересечение топов осени-2026: МТС 10/2026, Т-Ж 09/2026, iChip 08/2026, Price.ru 06/2026, kod.ru, M.Video топ-15, Hi-Tech Mail",
+ "phones": [
+  {
+   "id": 1,
+   "brand": "Xiaomi",
+   "model": "Redmi Note 15 8/256",
+   "ramGb": 8,
+   "storageGb": 256,
+   "price": 19899,
+   "oldPrice": 21990,
+   "promo": "Проверено 14.10.2026 • −9% • камера 108 Мп, хит топов",
+   "rating": 4.9,
+   "screen": "6.77\" AMOLED 120 Гц, 2392×1080",
+   "battery": "6000 мА·ч, 45 Вт",
+   "camera": "108+2 Мп, OIS + 32 Мп фронт",
+   "cpu": "Helio G100 Ultra",
+   "colorStart": "#1A2A6C",
+   "colorEnd": "#2EBF91",
+   "accent": "Midnight Black",
+   "offline": [
+    {
+     "shop": "DNS",
+     "address": "Московский пр-т, 128А, Челны",
+     "price": 19899,
+     "note": "RU-версия, самовывоз сегодня",
+     "url": "https://www.dns-shop.ru",
+     "online": false
+    },
+    {
+     "shop": "М.Видео",
+     "address": "пр. Мира, 49А, ТРК Торговый квартал",
+     "price": 20490,
+     "note": "Рассрочка 0-0-12",
+     "url": "https://www.mvideo.ru",
+     "online": false
+    },
+    {
+     "shop": "Эльдорадо",
+     "address": "пр. Московский, 140, ТЦ Омега",
+     "price": 20690,
+     "note": "Трейд-ин −3000 ₽",
+     "url": "https://www.eldorado.ru",
+     "online": false
+    }
+   ],
+   "online": [
+    {
+     "shop": "Яндекс Маркет",
+     "address": "Доставка в Челны 1–2 дня",
+     "price": 20500,
+     "note": "С картой Пэй дешевле",
+     "url": "https://market.yandex.ru",
+     "online": true
+    },
+    {
+     "shop": "OZON",
+     "address": "Пункт выдачи: Челны, пр. Сююмбике 61",
+     "price": 19990,
+     "note": "Купон продавца",
+     "url": "https://www.ozon.ru",
+     "online": true
+    },
+    {
+     "shop": "Wildberries",
+     "address": "ПВЗ Челны, Набережночелнинский 41",
+     "price": 20290,
+     "note": "WB-кошелёк −3%",
+     "url": "https://www.wildberries.ru",
+     "online": true
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "brand": "TECNO",
+   "model": "Spark 40 Pro 8/256",
+   "ramGb": 8,
+   "storageGb": 256,
+   "price": 14999,
+   "oldPrice": 17990,
+   "promo": "Проверено 14.10.2026 • −17% • топ МТС и M.Video",
+   "rating": 4.8,
+   "screen": "6.78\" AMOLED 1.5K, 144 Гц, 4500 нит",
+   "battery": "5200 мА·ч, 45 Вт",
+   "camera": "50 Мп + 13 Мп фронт",
+   "cpu": "Helio G100 Ultimate",
+   "colorStart": "#141E30",
+   "colorEnd": "#4B6CB7",
+   "accent": "Moon Titanium",
+   "offline": [
+    {
+     "shop": "DNS",
+     "address": "Набережночелнинский пр-т, 10Б",
+     "price": 14999,
+     "note": "Хит, витрина + склад",
+     "url": "https://www.dns-shop.ru",
+     "online": false
+    },
+    {
+     "shop": "МТС",
+     "address": "пр. Хасана Туфана, 12, Челны",
+     "price": 15490,
+     "note": "Скидка при переносе номера",
+     "url": "https://shop.mts.ru",
+     "online": false
+    },
+    {
+     "shop": "Билайн",
+     "address": "пр. Сююмбике, 2/19, Челны",
+     "price": 15990,
+     "note": "Пакет + связь 3 мес.",
+     "url": "https://beeline.ru",
+     "online": false
+    }
+   ],
+   "online": [
+    {
+     "shop": "OZON",
+     "address": "Пункт выдачи Челны, Московский 140",
+     "price": 14490,
+     "note": "Минус 500 ₽ по карте",
+     "url": "https://www.ozon.ru",
+     "online": true
+    },
+    {
+     "shop": "DNS-Shop онлайн",
+     "address": "Самовывоз Сююмбике 67В",
+     "price": 14999,
+     "note": "Онлайн-бронь −2%",
+     "url": "https://www.dns-shop.ru",
+     "online": true
+    },
+    {
+     "shop": "Ситилинк",
+     "address": "Доставка в Челны",
+     "price": 15290,
+     "note": "Бонусы Ситиклаб",
+     "url": "https://www.citilink.ru",
+     "online": true
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "brand": "Infinix",
+   "model": "Note Edge 8/256",
+   "ramGb": 8,
+   "storageGb": 256,
+   "price": 19490,
+   "oldPrice": 21990,
+   "promo": "Проверено 14.10.2026 • −11% • Dimensity 7100, лучший для игр",
+   "rating": 4.8,
+   "screen": "6.78\" AMOLED 120 Гц, Gorilla 7i",
+   "battery": "6150 мА·ч, 45 Вт",
+   "camera": "50 Мп + 13 Мп фронт",
+   "cpu": "Dimensity 7100",
+   "colorStart": "#3A1C71",
+   "colorEnd": "#D76D77",
+   "accent": "Shadow Black",
+   "offline": [
+    {
+     "shop": "Эльдорадо",
+     "address": "пр. Московский, 140, ТЦ Омега",
+     "price": 19490,
+     "note": "Ростест, гарантия 12 мес.",
+     "url": "https://www.eldorado.ru",
+     "online": false
+    },
+    {
+     "shop": "DNS",
+     "address": "пр-т Сююмбике, 67В, Челны",
+     "price": 19990,
+     "note": "В наличии, 5G-версия",
+     "url": "https://www.dns-shop.ru",
+     "online": false
+    },
+    {
+     "shop": "МегаФон",
+     "address": "Набережночелнинский пр-т, 41",
+     "price": 20490,
+     "note": "Тариф в подарок",
+     "url": "https://megafon.ru",
+     "online": false
+    }
+   ],
+   "online": [
+    {
+     "shop": "Wildberries",
+     "address": "ПВЗ Челны, пр. Мира 52",
+     "price": 19690,
+     "note": "Оплата WB-кошельком −3%",
+     "url": "https://www.wildberries.ru",
+     "online": true
+    },
+    {
+     "shop": "Яндекс Маркет",
+     "address": "Доставка в Челны за день",
+     "price": 19890,
+     "note": "Промокод на первый заказ",
+     "url": "https://market.yandex.ru",
+     "online": true
+    },
+    {
+     "shop": "OZON",
+     "address": "Пункт выдачи Челны, Татарстан 25",
+     "price": 19790,
+     "note": "Рассрочка 0-0-6",
+     "url": "https://www.ozon.ru",
+     "online": true
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "brand": "TECNO",
+   "model": "Pova 7 Neo 8/256",
+   "ramGb": 8,
+   "storageGb": 256,
+   "price": 15490,
+   "oldPrice": 17490,
+   "promo": "Проверено 14.10.2026 • −11% • 7000 мА·ч, рекорд автономности",
+   "rating": 4.7,
+   "screen": "6.78\" IPS 120 Гц, 2460×1080",
+   "battery": "7000 мА·ч, 45 Вт + реверс",
+   "camera": "108+2 Мп + 13 Мп фронт",
+   "cpu": "Helio G100 Ultimate",
+   "colorStart": "#0F2027",
+   "colorEnd": "#2C5364",
+   "accent": "Neon Black",
+   "offline": [
+    {
+     "shop": "DNS",
+     "address": "Московский пр-т, 128А, Челны",
+     "price": 15490,
+     "note": "Топ iChip и Т-Ж",
+     "url": "https://www.dns-shop.ru",
+     "online": false
+    },
+    {
+     "shop": "М.Видео",
+     "address": "пр. Мира, 49А, Торговый квартал",
+     "price": 15990,
+     "note": "Бонусы М.Клуб 10%",
+     "url": "https://www.mvideo.ru",
+     "online": false
+    }
+   ],
+   "online": [
+    {
+     "shop": "OZON",
+     "address": "ПВЗ Челны, пр. Чулман 23",
+     "price": 15190,
+     "note": "Цена с Ozon-картой",
+     "url": "https://www.ozon.ru",
+     "online": true
+    },
+    {
+     "shop": "Яндекс Маркет",
+     "address": "Доставка в Челны 1–3 дня",
+     "price": 15490,
+     "note": "Кэшбэк баллами",
+     "url": "https://market.yandex.ru",
+     "online": true
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "brand": "realme",
+   "model": "C85 Pro 8/256",
+   "ramGb": 8,
+   "storageGb": 256,
+   "price": 16599,
+   "oldPrice": 18999,
+   "promo": "Проверено 14.10.2026 • −13% • IP69 + 7000 мА·ч",
+   "rating": 4.7,
+   "screen": "6.8\" AMOLED 120 Гц",
+   "battery": "7000 мА·ч, 45 Вт",
+   "camera": "108 Мп + 16 Мп фронт",
+   "cpu": "Snapdragon 685",
+   "colorStart": "#F7971E",
+   "colorEnd": "#FFD200",
+   "accent": "Peacock Green",
+   "offline": [
+    {
+     "shop": "М.Видео",
+     "address": "пр. Мира, 49А, Торговый квартал",
+     "price": 16599,
+     "note": "Официальная гарантия",
+     "url": "https://www.mvideo.ru",
+     "online": false
+    },
+    {
+     "shop": "DNS",
+     "address": "Набережночелнинский пр-т, 10Б",
+     "price": 16990,
+     "note": "Самовывоз сегодня",
+     "url": "https://www.dns-shop.ru",
+     "online": false
+    },
+    {
+     "shop": "Эльдорадо",
+     "address": "пр. Московский, 140",
+     "price": 17490,
+     "note": "Рассрочка 0-0-10",
+     "url": "https://www.eldorado.ru",
+     "online": false
+    }
+   ],
+   "online": [
+    {
+     "shop": "Яндекс Маркет",
+     "address": "Доставка в Челны",
+     "price": 16590,
+     "note": "Сплит без переплат",
+     "url": "https://market.yandex.ru",
+     "online": true
+    },
+    {
+     "shop": "OZON",
+     "address": "ПВЗ Челны",
+     "price": 16790,
+     "note": "Цена с картой Ozon",
+     "url": "https://www.ozon.ru",
+     "online": true
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "brand": "Samsung",
+   "model": "Galaxy A17 8/256",
+   "ramGb": 8,
+   "storageGb": 256,
+   "price": 19099,
+   "oldPrice": 21499,
+   "promo": "Проверено 14.10.2026 • −11% • 6 лет обновлений Samsung",
+   "rating": 4.6,
+   "screen": "6.7\" Super AMOLED 90 Гц",
+   "battery": "5000 мА·ч, 25 Вт",
+   "camera": "50+5+2 Мп, 13 Мп фронт",
+   "cpu": "Exynos 1330",
+   "colorStart": "#000428",
+   "colorEnd": "#004E92",
+   "accent": "Blue Black",
+   "offline": [
+    {
+     "shop": "МТС",
+     "address": "пр. Хасана Туфана, 12",
+     "price": 19099,
+     "note": "Шесть лет обновлений",
+     "url": "https://shop.mts.ru",
+     "online": false
+    },
+    {
+     "shop": "DNS",
+     "address": "пр-т Сююмбике, 67В",
+     "price": 19490,
+     "note": "Витрина + склад",
+     "url": "https://www.dns-shop.ru",
+     "online": false
+    },
+    {
+     "shop": "М.Видео",
+     "address": "пр. Мира, 49А",
+     "price": 19690,
+     "note": "Рассрочка 0-0-10",
+     "url": "https://www.mvideo.ru",
+     "online": false
+    }
+   ],
+   "online": [
+    {
+     "shop": "М.Видео онлайн",
+     "address": "Доставка в Челны 2 дня",
+     "price": 19099,
+     "note": "Онлайн-эксклюзив",
+     "url": "https://www.mvideo.ru",
+     "online": true
+    },
+    {
+     "shop": "Wildberries",
+     "address": "ПВЗ Челны",
+     "price": 19290,
+     "note": "Быстрая выдача",
+     "url": "https://www.wildberries.ru",
+     "online": true
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "brand": "POCO",
+   "model": "M7 8/256",
+   "ramGb": 8,
+   "storageGb": 256,
+   "price": 17990,
+   "oldPrice": 19990,
+   "promo": "Проверено 14.10.2026 • −10% • 7000 мА·ч, топ Geekchoice",
+   "rating": 4.6,
+   "screen": "6.9\" IPS 144 Гц",
+   "battery": "7000 мА·ч, 33 Вт",
+   "camera": "50 Мп + 8 Мп фронт",
+   "cpu": "Snapdragon 685",
+   "colorStart": "#CB0000",
+   "colorEnd": "#3A0000",
+   "accent": "Power Black",
+   "offline": [
+    {
+     "shop": "DNS",
+     "address": "Московский пр-т, 128А",
+     "price": 17990,
+     "note": "Фирменный стенд POCO",
+     "url": "https://www.dns-shop.ru",
+     "online": false
+    },
+    {
+     "shop": "Эльдорадо",
+     "address": "пр. Московский, 140",
+     "price": 18490,
+     "note": "Подарок: наушники",
+     "url": "https://www.eldorado.ru",
+     "online": false
+    }
+   ],
+   "online": [
+    {
+     "shop": "OZON",
+     "address": "ПВЗ Челны",
+     "price": 17590,
+     "note": "Купон продавца −400 ₽",
+     "url": "https://www.ozon.ru",
+     "online": true
+    },
+    {
+     "shop": "Яндекс Маркет",
+     "address": "Доставка в Челны",
+     "price": 17990,
+     "note": "Баллы Маркета",
+     "url": "https://market.yandex.ru",
+     "online": true
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "brand": "HONOR",
+   "model": "X8c 8/256",
+   "ramGb": 8,
+   "storageGb": 256,
+   "price": 16999,
+   "oldPrice": 19999,
+   "promo": "Проверено 14.10.2026 • −15% • AMOLED + 108 Мп OIS",
+   "rating": 4.6,
+   "screen": "6.7\" AMOLED 120 Гц",
+   "battery": "5000 мА·ч, 35 Вт",
+   "camera": "108 Мп OIS + 50 Мп фронт",
+   "cpu": "Snapdragon 685",
+   "colorStart": "#134E5E",
+   "colorEnd": "#71B280",
+   "accent": "Emerald Lake",
+   "offline": [
+    {
+     "shop": "DNS",
+     "address": "Набережночелнинский пр-т, 10Б",
+     "price": 16999,
+     "note": "Топ Hi-Tech Mail",
+     "url": "https://www.dns-shop.ru",
+     "online": false
+    },
+    {
+     "shop": "Билайн",
+     "address": "пр. Сююмбике, 2/19",
+     "price": 17490,
+     "note": "Комплект со связью",
+     "url": "https://beeline.ru",
+     "online": false
+    }
+   ],
+   "online": [
+    {
+     "shop": "Wildberries",
+     "address": "ПВЗ Челны",
+     "price": 16790,
+     "note": "Скидка WB-кошелька",
+     "url": "https://www.wildberries.ru",
+     "online": true
+    },
+    {
+     "shop": "OZON",
+     "address": "ПВЗ Челны",
+     "price": 16990,
+     "note": "Рассрочка",
+     "url": "https://www.ozon.ru",
+     "online": true
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "brand": "realme",
+   "model": "14 5G 8/256",
+   "ramGb": 8,
+   "storageGb": 256,
+   "price": 17599,
+   "oldPrice": 19999,
+   "promo": "Проверено 14.10.2026 • −12% • Snapdragon 6 Gen 4 + 6000 мА·ч",
+   "rating": 4.7,
+   "screen": "6.67\" AMOLED 120 Гц",
+   "battery": "6000 мА·ч, 45 Вт",
+   "camera": "50+2 Мп + 16 Мп фронт",
+   "cpu": "Snapdragon 6 Gen 4",
+   "colorStart": "#8E2DE2",
+   "colorEnd": "#4A00E0",
+   "accent": "Mecha Silver",
+   "offline": [
+    {
+     "shop": "М.Видео",
+     "address": "пр. Мира, 49А",
+     "price": 17599,
+     "note": "Топ Price.ru 06/2026",
+     "url": "https://www.mvideo.ru",
+     "online": false
+    },
+    {
+     "shop": "DNS",
+     "address": "пр-т Сююмбике, 67В",
+     "price": 17990,
+     "note": "Самовывоз",
+     "url": "https://www.dns-shop.ru",
+     "online": false
+    }
+   ],
+   "online": [
+    {
+     "shop": "Яндекс Маркет",
+     "address": "Доставка в Челны",
+     "price": 17599,
+     "note": "5G-версия, IP69",
+     "url": "https://market.yandex.ru",
+     "online": true
+    },
+    {
+     "shop": "OZON",
+     "address": "ПВЗ Челны",
+     "price": 17790,
+     "note": "Быстрая доставка",
+     "url": "https://www.ozon.ru",
+     "online": true
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "brand": "TECNO",
+   "model": "Camon 40 8/256",
+   "ramGb": 8,
+   "storageGb": 256,
+   "price": 17199,
+   "oldPrice": 18999,
+   "promo": "Проверено 14.10.2026 • −9% • выбор Т-Ж + ИИ Ella",
+   "rating": 4.6,
+   "screen": "6.78\" AMOLED 120 Гц",
+   "battery": "5200 мА·ч, 45 Вт",
+   "camera": "50 Мп OIS + 32 Мп фронт",
+   "cpu": "Helio G100",
+   "colorStart": "#232526",
+   "colorEnd": "#414345",
+   "accent": "Emerald Lake Green",
+   "offline": [
+    {
+     "shop": "Эльдорадо",
+     "address": "пр. Московский, 140",
+     "price": 17199,
+     "note": "Рассрочка 0-0-12",
+     "url": "https://www.eldorado.ru",
+     "online": false
+    },
+    {
+     "shop": "DNS",
+     "address": "Московский пр-т, 128А",
+     "price": 17490,
+     "note": "В наличии",
+     "url": "https://www.dns-shop.ru",
+     "online": false
+    }
+   ],
+   "online": [
+    {
+     "shop": "OZON",
+     "address": "ПВЗ Челны",
+     "price": 16890,
+     "note": "Цена с картой Ozon",
+     "url": "https://www.ozon.ru",
+     "online": true
+    },
+    {
+     "shop": "Ситилинк",
+     "address": "Доставка в Челны",
+     "price": 17190,
+     "note": "Клубные бонусы",
+     "url": "https://www.citilink.ru",
+     "online": true
+    }
+   ]
+  }
+ ]
+}
