@@ -100,9 +100,8 @@ class PhoneAdapter(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply { setMargins((16 * dp).toInt(), (7 * dp).toInt(), (16 * dp).toInt(), (7 * dp).toInt()) }
             background = GradientDrawable().apply {
-                setColor(surface(ctx, com.google.android.material.R.attr.colorSurface, 0xFFFFFFFF.toInt()))
-                cornerRadius = 28 * dp
-                setStroke((1 * dp).toInt(), 0x14000000)
+                setColor(cardColor(ctx))
+                cornerRadius = 24 * dp
             }
             setPadding((14 * dp).toInt(), (14 * dp).toInt(), (14 * dp).toInt(), (14 * dp).toInt())
             elevation = 2 * dp
@@ -117,9 +116,9 @@ class PhoneAdapter(
         val ctx = h.root.context
         val dp = ctx.resources.displayMetrics.density
         val ph = items[pos]
-        val ac = accent(ctx)
-        val onSurf = surface(ctx, com.google.android.material.R.attr.colorOnSurface, 0xFF1A1C1E.toInt())
-        val onVar = surface(ctx, com.google.android.material.R.attr.colorOnSurfaceVariant, 0xFF44474F.toInt())
+        val ac = accent2(ctx)
+        val onSurf = fgColor(ctx)
+        val onVar = subColor(ctx)
         h.root.removeAllViews()
         h.root.addView(phonePhoto(ctx, ph, 104, 128))
 
@@ -138,15 +137,8 @@ class PhoneAdapter(
             textSize = 16f; typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
             layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
         })
-        fun iconBtn(res: Int, desc: String, act: () -> Unit): ImageButton =
-            ImageButton(ctx).apply {
-                layoutParams = LinearLayout.LayoutParams((38 * dp).toInt(), (38 * dp).toInt())
-                setImageResource(res); contentDescription = desc
-                background = null; imageTintList = ColorStateList.valueOf(ac)
-                setOnClickListener { act() }
-            }
         lateinit var favB: ImageButton
-        favB = iconBtn(
+        favB = iconBtn2(ctx,
             if (Prefs.isFav(ctx, ph.id)) android.R.drawable.btn_star_big_on else android.R.drawable.btn_star_big_off,
             "В избранное") {
             val now = Prefs.toggleFav(ctx, ph.id)
@@ -156,7 +148,7 @@ class PhoneAdapter(
             onFavChanged?.invoke()
         }
         top.addView(favB)
-        top.addView(iconBtn(android.R.drawable.ic_menu_share, "Поделиться") { sharePhone(ctx, ph) })
+        top.addView(iconBtn2(ctx, android.R.drawable.ic_menu_share, "Поделиться") { sharePhone(ctx, ph) })
         info.addView(top)
 
         info.addView(TextView(ctx).apply {
@@ -201,13 +193,8 @@ class PhoneAdapter(
             setTextColor(onVar); textSize = 12f
             setPadding(0, (2 * dp).toInt(), 0, 0)
         })
-        val openBtn = Button(ctx).apply {
-            text = "Магазины"
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-                topMargin = (10 * dp).toInt()
-            }
-            setOnClickListener { onOpen(ph) }
+        val openBtn = mButton(ctx, "Магазины") { onOpen(ph) }.apply {
+            (layoutParams as LinearLayout.LayoutParams).topMargin = (10 * dp).toInt()
         }
         info.addView(openBtn)
         h.root.addView(info)

@@ -26,6 +26,7 @@ class DetailActivity : AppCompatActivity() {
         }
         DynamicColors.applyToActivityIfAvailable(this)
         super.onCreate(b)
+        applyBars(this)
         val ctx = this
         val dp = resources.displayMetrics.density
         val id = intent.getIntExtra("id", 1)
@@ -34,7 +35,7 @@ class DetailActivity : AppCompatActivity() {
         val ph = all.firstOrNull { it.id == id && seen.add(it.id) } ?: Catalog.phones[0]
         val ac = accent(ctx)
 
-        val scroll = ScrollView(ctx)
+        val scroll = ScrollView(ctx).apply { setBackgroundColor(bgColor(ctx)) }
         val col = LinearLayout(ctx).apply {
             orientation = LinearLayout.VERTICAL
             setPadding((20 * dp).toInt(), (16 * dp).toInt(), (20 * dp).toInt(), (28 * dp).toInt())
@@ -50,6 +51,7 @@ class DetailActivity : AppCompatActivity() {
         col.addView(TextView(ctx).apply {
             text = "${ph.brand} ${ph.model}"
             textSize = 22f; typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            setTextColor(fgColor(ctx))
             setPadding(0, (14 * dp).toInt(), 0, 0)
         })
         col.addView(TextView(ctx).apply {
@@ -88,21 +90,19 @@ class DetailActivity : AppCompatActivity() {
             orientation = LinearLayout.HORIZONTAL
             setPadding(0, (12 * dp).toInt(), 0, 0)
         }
-        fun mBtn(text: String, tonal: Boolean, act: (Button) -> Unit): Button =
-            Button(ctx).apply {
-                this.text = text
-                layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f).apply {
-                    if (text.startsWith("⤴")) marginStart = (8 * dp).toInt()
-                }
-                setOnClickListener { act(this) }
-            }
-        val favB = mBtn(if (Prefs.isFav(ctx, ph.id)) "★ В избранном" else "☆ В избранное", true) {
+        lateinit var favB: Button
+        favB = mButton(ctx, if (Prefs.isFav(ctx, ph.id)) "★ В избранном" else "☆ В избранное") {
             val now = Prefs.toggleFav(ctx, ph.id)
-            it.text = if (now) "★ В избранном" else "☆ В избранное"
-            Toast.makeText(ctx, if (now) "В избранном" else "Убрано", Toast.LENGTH_SHORT).show()
+            favB.text = if (now) "★ В избранном" else "☆ В избранное"
+        }.apply {
+            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
         }
-        btnRow.addView(favB)
-        btnRow.addView(mBtn("⤴ Поделиться", true) { sharePhone(ctx, ph) })
+        val shB = tonalButton(ctx, "⤴ Поделиться") { sharePhone(ctx, ph) }.apply {
+            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f).apply {
+                marginStart = (8 * dp).toInt()
+            }
+        }
+        btnRow.addView(favB); btnRow.addView(shB)
         col.addView(btnRow)
 
         col.addView(h("Характеристики"))
