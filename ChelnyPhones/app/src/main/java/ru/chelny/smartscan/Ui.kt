@@ -40,7 +40,8 @@ fun monoMode(ctx: Context): Boolean = Prefs.style(ctx) == "mono"
 
 fun accent2(ctx: Context): Int {
     return try {
-        if (monoMode(ctx)) return if (isDark(ctx)) 0xFFD8D8E0.toInt() else 0xFF333338.toInt()
+        // Монохром: чёрная пилюля + белый текст (и в тёмной, и в светлой теме)
+        if (monoMode(ctx)) return 0xFF000000.toInt()
         if (Prefs.style(ctx) == "classic") return Prefs.ACCENTS[Prefs.accent(ctx) % Prefs.ACCENTS.size]
         // Material You: системный динамический цвет, иначе выбранный
         if (Build.VERSION.SDK_INT >= 31) {
@@ -65,12 +66,12 @@ fun mButton(ctx: Context, text: String, onClick: () -> Unit): Button =
     androidx.appcompat.widget.AppCompatButton(ctx).apply {
         this.text = text
         isAllCaps = false
-        textSize = 15f
+        textSize = 14f
         typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
         setTextColor(0xFFFFFFFF.toInt())
         val ac = accent2(ctx)
         background = pillBg(ac)
-        setPadding(ctx.dp(20), ctx.dp(13), ctx.dp(20), ctx.dp(13))
+        setPadding(ctx.dp(20), ctx.dp(9), ctx.dp(20), ctx.dp(9))
         layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         try { stateListAnimator = null } catch (_: Exception) {}
         setOnClickListener { try { onClick() } catch (_: Exception) {} }
@@ -81,18 +82,47 @@ fun tonalButton(ctx: Context, text: String, onClick: () -> Unit): Button =
     androidx.appcompat.widget.AppCompatButton(ctx).apply {
         this.text = text
         isAllCaps = false
-        textSize = 14f
+        textSize = 13f
         typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
         val ac = accent2(ctx)
         setTextColor(ac)
         background = pillBg(
             if (isDark(ctx)) blend(ac, 0xFF0E0B1A.toInt(), 0.22f)
             else blend(ac, 0xFFFFFFFF.toInt(), 0.16f))
-        setPadding(ctx.dp(18), ctx.dp(11), ctx.dp(18), ctx.dp(11))
+        setPadding(ctx.dp(18), ctx.dp(8), ctx.dp(18), ctx.dp(8))
         layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         try { stateListAnimator = null } catch (_: Exception) {}
         setOnClickListener { try { onClick() } catch (_: Exception) {} }
     }
+
+/** Круглая иконка магазина: фирменная буква на фирменном фоне. */
+fun storeBadge(ctx: Context, shop: String): TextView {
+    data class B(val bg: Int, val fg: Int, val letter: String)
+    val b = when {
+        shop.contains("DNS", true) -> B(0xFFFFD500.toInt(), 0xFF000000.toInt(), "D")
+        shop.contains("М.Видео", true) -> B(0xFFE11D2E.toInt(), 0xFFFFFFFF.toInt(), "М")
+        shop.contains("Эльдорадо", true) -> B(0xFFFF6F00.toInt(), 0xFFFFFFFF.toInt(), "Э")
+        shop.contains("OZON", true) -> B(0xFF005BFF.toInt(), 0xFFFFFFFF.toInt(), "O")
+        shop.contains("Wildberries", true) || shop == "WB" -> B(0xFF7B2FF7.toInt(), 0xFFFFFFFF.toInt(), "W")
+        shop.contains("Маркет", true) -> B(0xFFFFCC00.toInt(), 0xFF000000.toInt(), "Я")
+        shop.contains("Ситилинк", true) -> B(0xFF0096DC.toInt(), 0xFFFFFFFF.toInt(), "С")
+        shop.contains("МТС", true) -> B(0xFFE30613.toInt(), 0xFFFFFFFF.toInt(), "М")
+        shop.contains("Билайн", true) -> B(0xFFFFD200.toInt(), 0xFF000000.toInt(), "Б")
+        shop.contains("МегаФон", true) -> B(0xFF00B956.toInt(), 0xFFFFFFFF.toInt(), "М")
+        else -> B(accent2(ctx), 0xFFFFFFFF.toInt(), shop.trim().take(1).uppercase())
+    }
+    return TextView(ctx).apply {
+        text = b.letter; setTextColor(b.fg); textSize = 18f
+        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+        gravity = Gravity.CENTER
+        layoutParams = LinearLayout.LayoutParams(ctx.dp(46), ctx.dp(46)).apply {
+            marginEnd = ctx.dp(12)
+        }
+        background = GradientDrawable().apply {
+            shape = GradientDrawable.OVAL; setColor(b.bg)
+        }
+    }
+}
 
 fun blend(a: Int, b: Int, t: Float): Int {
     fun c(v: Int, s: Int) = (v shr s) and 0xFF
@@ -200,7 +230,7 @@ fun sectionLabel(ctx: Context, t: String): TextView = TextView(ctx).apply {
 
 fun iconBtn2(ctx: Context, res: Int, desc: String, act: () -> Unit): ImageButton =
     ImageButton(ctx).apply {
-        layoutParams = LinearLayout.LayoutParams(ctx.dp(40), ctx.dp(40))
+        layoutParams = LinearLayout.LayoutParams(ctx.dp(34), ctx.dp(34))
         try { setImageResource(res) } catch (_: Exception) {}
         contentDescription = desc
         background = null

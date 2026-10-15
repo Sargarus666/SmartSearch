@@ -185,26 +185,39 @@ class DetailActivity : AppCompatActivity() {
     private fun storeCard(o: StoreOffer): LinearLayout {
         val dp = resources.displayMetrics.density
         val c = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
             background = GradientDrawable().apply {
                 setColor(cardColor(context))
                 cornerRadius = 20 * dp
             }
-            setPadding((16 * dp).toInt(), (12 * dp).toInt(), (16 * dp).toInt(), (12 * dp).toInt())
+            setPadding((14 * dp).toInt(), (12 * dp).toInt(), (14 * dp).toInt(), (12 * dp).toInt())
             layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
                 bottomMargin = (8 * dp).toInt()
             }
+            isClickable = true; isFocusable = true
         }
-        c.addView(TextView(this).apply {
+        c.addView(storeBadge(this, o.shop))
+        val tx = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+        }
+        tx.addView(TextView(this).apply {
             text = "${o.shop} — ${fmtPrice(o.price)}"
             typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD); textSize = 15f
+            setTextColor(fgColor(this@DetailActivity))
         })
-        c.addView(TextView(this).apply { text = o.address; textSize = 12.5f })
-        c.addView(TextView(this).apply { text = o.note; textSize = 12.5f })
-        c.addView(mButton(this, "Открыть товар") {
+        tx.addView(TextView(this).apply { text = o.address; textSize = 12.5f; setTextColor(subColor(this@DetailActivity)) })
+        tx.addView(TextView(this).apply { text = o.note; textSize = 12.5f; setTextColor(subColor(this@DetailActivity)) })
+        c.addView(tx)
+        c.addView(TextView(this).apply {
+            text = "›"; textSize = 26f; setTextColor(subColor(this@DetailActivity))
+            setPadding((8 * dp).toInt(), 0, 0, 0)
+        })
+        c.setOnClickListener {
             try { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(o.url))) }
             catch (_: Exception) { Toast.makeText(this@DetailActivity, o.url, Toast.LENGTH_LONG).show() }
-        }.also { (it.layoutParams as LinearLayout.LayoutParams).topMargin = (8 * dp).toInt() })
+        }
         return c
     }
 }

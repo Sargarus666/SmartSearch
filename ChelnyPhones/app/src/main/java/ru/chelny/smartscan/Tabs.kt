@@ -516,7 +516,7 @@ class SettingsFragment : BaseTab() {
             })
             body.addView(r)
         }
-        infoRow("Версия", "2.1")
+        infoRow("Версия", "2.2")
         infoRow("Город", "Челны")
         infoRow("Каталог", "RAM ≥ 8 ГБ • 10–20 тыс ₽")
         body.addView(TextView(ctx).apply {

@@ -1,12 +1,10 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp" android:height="108dp"
     android:viewportWidth="108" android:viewportHeight="108">
-    <!-- корпус смартфона с вырезом экрана -->
-    <path android:fillColor="#4A0E14" android:fillType="evenOdd"
-        android:pathData="M44,18 h20 a10,10 0 0 1 10,10 v44 a10,10 0 0 1 -10,10 h-20 a10,10 0 0 1 -10,-10 v-44 a10,10 0 0 1 10,-10 ZM39,32 h30 v38 h-30 ZM50,23 h8 v2.6 h-8 Z" />
-    <!-- ценник с прорезью % -->
-    <path android:fillColor="#4A0E14" android:fillType="evenOdd"
-        android:pathData="M71,57 m-15,0 a15,15 0 1 0 30,0 a15,15 0 1 0 -30,0 ZM67.9,79 L73.2,63 h3.4 L71.3,79 Z" />
-    <path android:fillColor="#4A0E14"
-        android:pathData="M66,66 m-2.8,0 a2.8,2.8 0 1 0 5.6,0 a2.8,2.8 0 1 0 -5.6,0 ZM73.2,75.2 m-2.8,0 a2.8,2.8 0 1 0 5.6,0 a2.8,2.8 0 1 0 -5.6,0 Z" />
+    <path android:fillColor="#FFFFFF" android:fillType="evenOdd"
+        android:pathData="M40,22 h28 a8,8 0 0 1 8,8 v48 a8,8 0 0 1 -8,8 h-28 a8,8 0 0 1 -8,-8 v-48 a8,8 0 0 1 8,-8 ZM38,34 h32 v38 h-32 ZM50,26 h8 v2.6 h-8 Z" />
+    <path android:fillColor="#F5C542" android:fillType="evenOdd"
+        android:pathData="M66,53 m-13,0 a13,13 0 1 0 26,0 a13,13 0 1 0 -26,0 ZM62.5,74 L69.5,58 h3.6 L66.1,74 Z" />
+    <path android:fillColor="#1A1033"
+        android:pathData="M62,62 m-3,0 a3,3 0 1 0 6,0 a3,3 0 1 0 -6,0 ZM70,71 m-3,0 a3,3 0 1 0 6,0 a3,3 0 1 0 -6,0 Z" />
 </vector>

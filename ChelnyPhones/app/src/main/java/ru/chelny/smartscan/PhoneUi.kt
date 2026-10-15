@@ -193,10 +193,6 @@ class PhoneAdapter(
             setTextColor(onVar); textSize = 12f
             setPadding(0, (2 * dp).toInt(), 0, 0)
         })
-        val openBtn = mButton(ctx, "Магазины") { onOpen(ph) }.apply {
-            (layoutParams as LinearLayout.LayoutParams).topMargin = (10 * dp).toInt()
-        }
-        info.addView(openBtn)
         h.root.addView(info)
         h.root.setOnClickListener { onOpen(ph) }
     }
