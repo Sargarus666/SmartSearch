@@ -104,6 +104,7 @@ h4.st{font-size:11px;letter-spacing:2.5px;color:var(--gold);margin:16px 0 4px;te
 .news{background:linear-gradient(180deg,#1e1830,#141021);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:14px;transition:.25s}
 .news:hover{border-color:var(--acc);transform:translateX(4px)}
 .news .tag{display:inline-block;background:var(--acc-soft);border:1px solid rgba(124,92,255,.5);color:#cfc2ff;border-radius:99px;padding:4px 14px;font-size:11px;font-weight:800;letter-spacing:1px}
+.news .nph{width:100%;height:150px;object-fit:cover;border-radius:12px;margin-bottom:12px;background:#232031;display:block}
 .news h3{margin:12px 0 6px;font-size:18px}
 .news p{color:var(--sub);font-size:14px;line-height:1.6;margin:0 0 12px}
 /* settings */
@@ -133,9 +134,9 @@ footer a{color:#cfc2ff}
 </div>
 <canvas id="fx"></canvas>
 <header class="topbar"><div class="topbar-in">
-  <div class="logo">📱</div><div class="brand">СмартСкан</div><span class="ver">1.9</span>
+  <div class="logo">📱</div><div class="brand">СмартСкан</div><span class="ver">2.0</span>
   <div class="sp"></div>
-  <a class="btn" style="padding:8px 16px;font-size:13px" id="apkTop" href="https://github.com/Sargarus666/SmartSearch/releases/download/v1.9/chelny-smartscan-1.9.apk">Скачать APK</a>
+  <a class="btn" style="padding:8px 16px;font-size:13px" id="apkTop" href="https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/chelny-smartscan-2.0.apk">Скачать APK</a>
 </div></header>
 <div class="wrap">
   <header class="hero" id="top">
@@ -144,7 +145,7 @@ footer a{color:#cfc2ff}
     <p class="sub">Цены и скидки на топовые бюджетники 10–20 тыс ₽ в Набережных Челнах.</p>
     <div class="btnrow">
       <button class="btn" id="scanBtn">Сканировать цены</button>
-      <a class="btn ghost" id="apkBtn" href="https://github.com/Sargarus666/SmartSearch/releases/download/v1.9/chelny-smartscan-1.9.apk">Скачать APK</a>
+      <a class="btn ghost" id="apkBtn" href="https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/chelny-smartscan-2.0.apk">Скачать APK</a>
     </div>
     <div class="scanbar" id="scanbar"><i id="scanfill"></i></div>
     <p class="sub" id="scanLabel" style="font-size:13px"></p>
@@ -188,7 +189,7 @@ footer a{color:#cfc2ff}
 <script>
 "use strict";
 /* ---------- данные ---------- */
-const ASSET=i=>"assets/phone_"+i+".jpg";
+const ASSET=i=>"https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_"+i+".jpg";
 const PHONES=[
 {id:1,brand:"Xiaomi",model:"Redmi Note 15 8/256",ram:8,st:256,price:19899,old:21990,promo:"−9% • 108 Мп • хит топов",rate:4.9,scr:'6.77" AMOLED 120 Гц',cpu:"Helio G100 Ultra",off:[["DNS","Московский пр-т, 128А",19899],["М.Видео","пр. Мира, 49А",20490],["Эльдорадо","Московский пр-т, 140",20690]],on:[["Маркет","доставка 1–2 дня",20500],["OZON","ПВЗ Сююмбике, 61",19990],["WB","ПВЗ Набережночелнинский, 41",20290]]},
 {id:2,brand:"TECNO",model:"Spark 40 Pro 8/256",ram:8,st:256,price:14999,old:17990,promo:"−17% • топ МТС и M.Video",rate:4.8,scr:'6.78" AMOLED 144 Гц',cpu:"Helio G100U",off:[["DNS","Набережночелнинский пр-т, 10Б",14999],["МТС","пр. Хасана Туфана, 12",15490]],on:[["OZON","ПВЗ Московский, 140",14490],["DNS онлайн","Сююмбике, 67В",14999]]},
@@ -199,13 +200,25 @@ const PHONES=[
 {id:7,brand:"POCO",model:"M7 8/256",ram:8,st:256,price:17990,old:19990,promo:"−10% • 7000 мА·ч",rate:4.6,scr:'6.9" IPS 144 Гц',cpu:"Snapdragon 685",off:[["DNS","Московский пр-т, 128А",17990],["Эльдорадо","Московский пр-т, 140",18490]],on:[["OZON","ПВЗ",17590],["Маркет","—",17990]]},
 {id:8,brand:"HONOR",model:"X8c 8/256",ram:8,st:256,price:16999,old:19999,promo:"−15% • 108 Мп OIS",rate:4.6,scr:'6.7" AMOLED 120 Гц',cpu:"Snapdragon 685",off:[["DNS","Набережночелнинский пр-т, 10Б",16999]],on:[["WB","ПВЗ",16790],["OZON","ПВЗ",16990]]},
 {id:9,brand:"realme",model:"14 5G 8/256",ram:8,st:256,price:17599,old:19999,promo:"−12% • SD 6 Gen 4 • 6000 мА·ч",rate:4.7,scr:'6.67" AMOLED 120 Гц',cpu:"Snapdragon 6 Gen 4",off:[["М.Видео","пр. Мира, 49А",17599],["DNS","пр-т Сююмбике, 67В",17990]],on:[["Маркет","—",17599],["OZON","ПВЗ",17790]]},
-{id:10,brand:"TECNO",model:"Camon 40 8/256",ram:8,st:256,price:17199,old:18999,promo:"−9% • выбор Т-Ж",rate:4.6,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100",off:[["Эльдорадо","Московский пр-т, 140",17199],["DNS","Московский пр-т, 128А",17490]],on:[["OZON","ПВЗ",16890],["Ситилинк","доставка",17190]]}
+{id:10,brand:"TECNO",model:"Camon 40 8/256",ram:8,st:256,price:17199,old:18999,promo:"−9% • выбор Т-Ж",rate:4.6,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100",off:[["Эльдорадо","Московский пр-т, 140",17199],["DNS","Московский пр-т, 128А",17490]],on:[["OZON","ПВЗ",16890],["Ситилинк","доставка",17190]]},
+{id:11,brand:"Samsung",model:"Galaxy A16 8/256",ram:8,st:256,price:14990,old:17990,promo:"−17% • 6 лет обновлений",rate:4.5,scr:'6.7" Super AMOLED',cpu:"Helio G99",off:[["DNS","Московский пр-т, 128А",14990],["М.Видео","пр. Мира, 49А",15490]],on:[["WB","ПВЗ",14990],["OZON","ПВЗ",15190],["Маркет","доставка",15290]]},
+{id:12,brand:"POCO",model:"C85 8/256",ram:8,st:256,price:15990,old:17990,promo:"−11% • топ цена/качество",rate:4.6,scr:'6.9" IPS 120 Гц',cpu:"Helio G81 Ultra",off:[["DNS","Набережночелнинский пр-т, 10Б",15990],["Эльдорадо","Московский пр-т, 140",16490]],on:[["OZON","ПВЗ",15590],["WB","ПВЗ",15790]]},
+{id:13,brand:"HONOR",model:"X7d 8/256",ram:8,st:256,price:17990,old:19990,promo:"−10% • 6500 мА·ч",rate:4.6,scr:'6.77" IPS 120 Гц',cpu:"Snapdragon 685",off:[["МТС","пр. Хасана Туфана, 12",17990],["DNS","пр-т Сююмбике, 67В",18490]],on:[["OZON","ПВЗ",18290],["Маркет","доставка",18990]]},
+{id:14,brand:"Infinix",model:"Hot 50 Pro+ 8/256",ram:8,st:256,price:17459,old:21990,promo:"−21% • 6.8 мм • JBL",rate:4.6,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100",off:[["DNS","Московский пр-т, 128А",17490],["М.Видео","пр. Мира, 49А",17990]],on:[["OZON","ПВЗ",17459],["WB","ПВЗ",17690]]},
+{id:15,brand:"realme",model:"C75 8/256",ram:8,st:256,price:13999,old:15554,promo:"−10% • IP69",rate:4.5,scr:'6.72" IPS 90 Гц',cpu:"Helio G92 Max",off:[["DNS","Набережночелнинский пр-т, 10Б",13999],["М.Видео","пр. Мира, 49А",14490]],on:[["OZON","ПВЗ",14290],["WB","ПВЗ",14190]]},
+{id:16,brand:"TECNO",model:"Camon 40 Pro 5G 8/256",ram:8,st:256,price:18910,old:21999,promo:"−14% • Dimensity 7300 • 5G",rate:4.7,scr:'6.78" AMOLED 120 Гц',cpu:"Dimensity 7300",off:[["Эльдорадо","Московский пр-т, 140",18990],["DNS","Московский пр-т, 128А",19490]],on:[["Маркет","доставка",18910],["OZON","ПВЗ",19190]]}
 ];
 const NEWS=[
-["POCO M8 Pro вылетел из бюджета","Был 18 900 ₽, стал 25–28 тыс. Замена в топе — POCO M7 за 17 990 ₽.","14.10 • Проверка цен"],
-["Redmi Note 15: реально 19 899 ₽","Официалы просят 21 990 ₽. Старые цены нейросетей устарели.","14.10 • Проверка цен"],
-["Только топ из топов","Модель попадает в каталог, если есть минимум в двух свежих рейтингах осени-2026.","14.10 • Методология"],
-["8+8 — это не 16 ГБ","Виртуальная память не считается: только физическая RAM ≥ 8 ГБ.","12.10 • Гайд"]];
+["POCO M8 Pro вылетел из бюджета","Был 18 900 ₽, стал 25–28 тыс. Замена в топе — POCO M7 за 17 990 ₽.","14.10 • Проверка цен",7,"https://hi-tech.mail.ru/news/153818-10-populyarnyh-smartfonov-do-20-000-rublej/"],
+["Redmi Note 15: реально 19 899 ₽","Официалы просят 21 990 ₽. Старые цены нейросетей устарели.","14.10 • Проверка цен",1,"https://mi-shop.com/catalog/smartphones/redmi-note-15/"],
+["Только топ из топов","Модель попадает в каталог, если есть минимум в двух свежих рейтингах осени-2026.","14.10 • Методология",2,"https://t-j.ru/best-smartphones-below-20k/"],
+["8+8 — это не 16 ГБ","Виртуальная память не считается: только физическая RAM ≥ 8 ГБ.","12.10 • Гайд",4,"https://www.mvideo.ru/blog/podborki/luchshie-smartfoni-stoimostyu-do-20-000-rublej"],
+["DNS Челны: скидки недели","Ценопады до −23% на Spark 40 Pro и Galaxy A16. Все акции — по ссылке.","15.10 • Акция",2,"https://www.dns-shop.ru/actions/"],
+["М.Видео: промо и бонусы","До 10% бонусами на realme и Samsung, рассрочка 0-0-12.","15.10 • Акция",9,"https://www.mvideo.ru/promo"],
+["Эльдорадо Омега: акции","Трейд-ин, рассрочка и подарки к POCO, Infinix и TECNO.","15.10 • Акция",3,"https://www.eldorado.ru/actions/"],
+["OZON: скидки с картой","Минус 300–500 ₽ по карте на смартфоны. Телефоны — по ссылке.","15.10 • Акция",14,"https://www.ozon.ru/category/mobilnye-telefony-15574/"],
+["В каталоге уже 16 моделей","Galaxy A16, POCO C85, X7d, Hot 50 Pro+, C75 и Camon 40 Pro 5G.","15.10 • Каталог",11,"https://geekchoice.ru/luchshie-smartfony-do-20000-rublej-2026/"],
+["Как выжать −15% сверху","Бонусы 5–10%, трейд-ин −3000 ₽, кэшбэк до 5%. Разбор — по ссылке.","15.10 • Гайд",8,"https://rev.games/blog/kak-poluchit-skidku-techniku"]];
 /* ---------- состояние ---------- */
 let favs=new Set(JSON.parse(localStorage.getItem("ss_fav")||"[]"));
 let chip=0,sortMode=0;
@@ -277,8 +290,8 @@ document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
 });
 /* ---------- новости ---------- */
 document.getElementById("newsList").innerHTML=NEWS.map(n=>
- '<div class="news"><span class="tag">'+n[2]+'</span><h3>'+n[0]+'</h3><p>'+n[1]+'</p>'+
- '<button class="ic" style="max-width:220px" onclick="(function(t){if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t)}})(\''+n[0]+'. '+n[1]+' — Челны СмартСкан\')">Поделиться</button></div>').join("");
+ '<div class="news"><a href="'+n[4]+'" target="_blank" rel="noopener"><img class="nph" loading="lazy" src="'+ASSET(n[3])+'" alt=""></a><span class="tag">'+n[2]+'</span><h3><a href="'+n[4]+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+n[0]+'</a></h3><p>'+n[1]+'</p>'+
+ '<div class="rowbtns" style="flex-direction:row"><a class="ic primary" style="text-decoration:none;text-align:center" href="'+n[4]+'" target="_blank" rel="noopener">Читать источник</a><button class="ic" onclick="(function(t){if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t)}})(\''+n[0]+'. '+n[1]+' — Челны СмартСкан\')">Поделиться</button></div></div>').join("");
 /* ---------- настройки ---------- */
 const THEMES=[["dark","Тёмная","глубокий фон приложения"],["light","Светлая","дневной режим"]];
 function paint(){const th=document.body.dataset.th||"dark";

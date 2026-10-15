@@ -256,7 +256,24 @@ class NewsFragment : BaseTab() {
                     topMargin = ctx.dp(12)
                 }
                 elevation = ctx.dp(2).toFloat()
+                isClickable = true; isFocusable = true
             }
+            // превью-картинка, клик — открыть источник
+            val thumb = ImageView(ctx).apply {
+                layoutParams = LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ctx.dp(150))
+                    .also { it.bottomMargin = ctx.dp(10) }
+                scaleType = ImageView.ScaleType.CENTER_CROP
+                background = GradientDrawable().apply {
+                    setColor(0xFFE8EAF6.toInt()); cornerRadius = ctx.dp(16).toFloat()
+                }
+                clipToOutline = true
+            }
+            try {
+                val resId = ctx.resources.getIdentifier(n.imageRes, "drawable", ctx.packageName)
+                if (resId != 0) thumb.setImageResource(resId)
+            } catch (_: Exception) {}
+            card.addView(thumb)
             card.addView(chip(ctx, "${n.tag} • ${n.date}", accent2(ctx), 0xFFFFFFFF.toInt()).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -270,11 +287,34 @@ class NewsFragment : BaseTab() {
                 text = n.text; textSize = 13.5f; setTextColor(subColor(ctx))
                 setPadding(0, ctx.dp(4), 0, 0)
             })
-            card.addView(tonalButton(ctx, "Поделиться") {
-                ctx.startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
-                    type = "text/plain"; putExtra(Intent.EXTRA_TEXT, "${n.title}\n${n.text}\n— Челны СмартСкан")
-                }, "Поделиться новостью"))
-            }.also { (it.layoutParams as LinearLayout.LayoutParams).topMargin = ctx.dp(12) })
+            fun openUrl() {
+                try {
+                    ctx.startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse(n.url)))
+                } catch (_: Exception) {
+                    Toast.makeText(ctx, n.url, Toast.LENGTH_LONG).show()
+                }
+            }
+            card.setOnClickListener { openUrl() }
+            thumb.setOnClickListener { openUrl() }
+            val btnRow = LinearLayout(ctx).apply {
+                orientation = LinearLayout.HORIZONTAL
+                setPadding(0, ctx.dp(12), 0, 0)
+            }
+            btnRow.addView(mButton(ctx, "Читать источник") { openUrl() }.apply {
+                layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+            })
+            btnRow.addView(tonalButton(ctx, "Поделиться") {
+                try {
+                    ctx.startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"; putExtra(Intent.EXTRA_TEXT, "${n.title}\n${n.text}\n— Челны СмартСкан")
+                    }, "Поделиться новостью"))
+                } catch (_: Exception) {}
+            }.also {
+                (it.layoutParams as LinearLayout.LayoutParams).apply {
+                    weight = 1f; width = 0; marginStart = ctx.dp(8)
+                }
+            })
+            card.addView(btnRow)
             col.addView(card)
         }
         scroll.addView(col)
@@ -390,7 +430,7 @@ class SettingsFragment : BaseTab() {
                 setOnClickListener { Prefs.setAccent(ctx, i); activity?.recreate() }
             }
             val circle = FrameLayout(ctx).apply {
-                layoutParams = LinearLayout.LayoutParams(ctx.dp(56), ctx.dp(56))
+                layoutParams = LinearLayout.LayoutParams(ctx.dp(44), ctx.dp(44))
                 background = GradientDrawable().apply {
                     shape = GradientDrawable.OVAL
                     setColor(Prefs.ACCENTS[i])
@@ -438,7 +478,7 @@ class SettingsFragment : BaseTab() {
             })
             body.addView(r)
         }
-        infoRow("Версия", "1.9")
+        infoRow("Версия", "2.0")
         infoRow("Город", "Челны")
         infoRow("Каталог", "RAM ≥ 8 ГБ • 10–20 тыс ₽")
         body.addView(TextView(ctx).apply {

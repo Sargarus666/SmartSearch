@@ -49,7 +49,7 @@ object Catalog {
             battery = "6000 мА·ч, 45 Вт", camera = "108+2 Мп, OIS + 32 Мп фронт",
             cpu = "Helio G100 Ultra", colorStart = 0xFF1A2A6C.toInt(), colorEnd = 0xFF2EBF91.toInt(),
             accent = "Midnight Black",
-            photoUrl = "https://www.mobiledokan.com/media/xiaomi-redmi-note-15-4g-forest-green-official-image.webp",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_1.jpg",
             photoRes = "phone_1",
             offline = listOf(
                 StoreOffer("DNS", "Московский пр-т, 128А, Челны", 19899, "RU-версия, самовывоз сегодня", "https://www.dns-shop.ru/search/?q=Redmi+Note+15+8%2F256", false),
@@ -70,7 +70,7 @@ object Catalog {
             battery = "5200 мА·ч, 45 Вт", camera = "50 Мп + 13 Мп фронт",
             cpu = "Helio G100 Ultimate", colorStart = 0xFF141E30.toInt(), colorEnd = 0xFF4B6CB7.toInt(),
             accent = "Moon Titanium",
-            photoUrl = "https://fdn2.gsmarena.com/vv/pics/tecno/techno-spark-40-pro-1.jpg",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_2.jpg",
             photoRes = "phone_2",
             offline = listOf(
                 StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 14999, "Хит, витрина + склад", "https://www.dns-shop.ru/search/?q=TECNO+Spark+40+Pro+8%2F256", false),
@@ -91,7 +91,7 @@ object Catalog {
             battery = "6500 мА·ч, 45 Вт", camera = "50 Мп + 13 Мп фронт",
             cpu = "Dimensity 7100", colorStart = 0xFF3A1C71.toInt(), colorEnd = 0xFFD76D77.toInt(),
             accent = "Shadow Black",
-            photoUrl = "https://www.mobilemaya.com/public/media/infinix-note-edge-5g-official-image.webp",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_3.jpg",
             photoRes = "phone_3",
             offline = listOf(
                 StoreOffer("Эльдорадо", "пр. Московский, 140, ТЦ Омега", 19490, "Ростест, гарантия 12 мес.", "https://www.eldorado.ru/search/catalog.php?q=Infinix+Note+Edge+8%2F256", false),
@@ -112,7 +112,7 @@ object Catalog {
             battery = "7000 мА·ч, 45 Вт + реверс", camera = "108+2 Мп + 8 Мп фронт",
             cpu = "Helio G100 Ultimate", colorStart = 0xFF0F2027.toInt(), colorEnd = 0xFF2C5364.toInt(),
             accent = "Neon Black",
-            photoUrl = "https://hamariweb.com/mobiles/LargeImages/6933_01.jpg",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_4.jpg",
             photoRes = "phone_4",
             offline = listOf(
                 StoreOffer("DNS", "Московский пр-т, 128А, Челны", 15490, "Топ iChip и Т-Ж", "https://www.dns-shop.ru/search/?q=TECNO+Pova+7+Neo+8%2F256", false),
@@ -131,7 +131,7 @@ object Catalog {
             battery = "7000 мА·ч, 45 Вт", camera = "50 Мп + 8 Мп фронт",
             cpu = "Snapdragon 685", colorStart = 0xFFF7971E.toInt(), colorEnd = 0xFFFFD200.toInt(),
             accent = "Peacock Green",
-            photoUrl = "https://mobiledevices.com.pk/images/realme/realme-c85-pro-peacock-green.webp",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_5.jpg",
             photoRes = "phone_5",
             offline = listOf(
                 StoreOffer("М.Видео", "пр. Мира, 49А, Торговый квартал", 16599, "Официальная гарантия", "https://www.mvideo.ru/search?query=realme+C85+Pro+8%2F256", false),
@@ -151,7 +151,7 @@ object Catalog {
             battery = "5000 мА·ч, 25 Вт", camera = "50+5+2 Мп, 13 Мп фронт",
             cpu = "Exynos 1330", colorStart = 0xFF000428.toInt(), colorEnd = 0xFF004E92.toInt(),
             accent = "Blue Black",
-            photoUrl = "https://clickbuy.com.vn/uploads/news/anh-render-galaxy-a17-4g-8584470723638779187.jpg",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_6.jpg",
             photoRes = "phone_6",
             offline = listOf(
                 StoreOffer("МТС", "пр. Хасана Туфана, 12", 19099, "Шесть лет обновлений", "https://shop.mts.ru", false),
@@ -171,7 +171,7 @@ object Catalog {
             battery = "7000 мА·ч, 33 Вт", camera = "50 Мп + 8 Мп фронт",
             cpu = "Snapdragon 685", colorStart = 0xFFCB0000.toInt(), colorEnd = 0xFF3A0000.toInt(),
             accent = "Power Black",
-            photoUrl = "https://cdn.movertix.com/media/catalog/product/cache/image/1200x/x/i/xiaomi-poco-m7-dual-sim-silver-256gb-and-8gb-ram_2.jpg",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_7.jpg",
             photoRes = "phone_7",
             offline = listOf(
                 StoreOffer("DNS", "Московский пр-т, 128А", 17990, "Фирменный стенд POCO", "https://www.dns-shop.ru/search/?q=POCO+M7+8%2F256", false),
@@ -190,7 +190,7 @@ object Catalog {
             battery = "5000 мА·ч, 35 Вт", camera = "108 Мп OIS + 50 Мп фронт",
             cpu = "Snapdragon 685", colorStart = 0xFF134E5E.toInt(), colorEnd = 0xFF71B280.toInt(),
             accent = "Emerald Lake",
-            photoUrl = "https://cdn.beebom.com/mobile/honor-x8c-front-and-back.png",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_8.jpg",
             photoRes = "phone_8",
             offline = listOf(
                 StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 16999, "Топ Hi-Tech Mail", "https://www.dns-shop.ru/search/?q=HONOR+X8c+8%2F256", false),
@@ -209,7 +209,7 @@ object Catalog {
             battery = "6000 мА·ч, 45 Вт", camera = "50+2 Мп + 16 Мп фронт",
             cpu = "Snapdragon 6 Gen 4", colorStart = 0xFF8E2DE2.toInt(), colorEnd = 0xFF4A00E0.toInt(),
             accent = "Mecha Silver",
-            photoUrl = "https://image01.realme.net/general/20250403/174367344340048fc865b1978495aaf45046bd9a508b3.png",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_9.jpg",
             photoRes = "phone_9",
             offline = listOf(
                 StoreOffer("М.Видео", "пр. Мира, 49А", 17599, "Топ Price.ru 06/2026", "https://www.mvideo.ru/search?query=realme+14+8%2F256", false),
@@ -228,7 +228,7 @@ object Catalog {
             battery = "5200 мА·ч, 45 Вт", camera = "50 Мп OIS + 32 Мп фронт",
             cpu = "Helio G100", colorStart = 0xFF232526.toInt(), colorEnd = 0xFF414345.toInt(),
             accent = "Emerald Lake Green",
-            photoUrl = "https://cdn.kalvo.com/uploads/img/gallery/69477-tecno-camon-40-6.jpg",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_10.jpg",
             photoRes = "phone_10",
             offline = listOf(
                 StoreOffer("Эльдорадо", "пр. Московский, 140", 17199, "Рассрочка 0-0-12", "https://www.eldorado.ru/search/catalog.php?q=TECNO+Camon+40+8%2F256", false),
@@ -237,6 +237,121 @@ object Catalog {
             online = listOf(
                 StoreOffer("OZON", "ПВЗ Челны", 16890, "Цена с картой Ozon", "https://www.ozon.ru/search/?text=TECNO+Camon+40+8%2F256", true),
                 StoreOffer("Ситилинк", "Доставка в Челны", 17190, "Клубные бонусы", "https://www.citilink.ru/search/?text=TECNO+Camon+40+8%2F256", true)
+            )
+        ),
+        Phone(
+            id = 11, brand = "Samsung", model = "Galaxy A16 8/256",
+            ramGb = 8, storageGb = 256, price = 14990, oldPrice = 17990,
+            promo = "Проверено 15.10.2026 • −17% • 6 лет обновлений",
+            rating = 4.5, screen = "6.7\" Super AMOLED 90 Гц",
+            battery = "5000 мА·ч, 25 Вт", camera = "50+5+2 Мп, 13 Мп фронт",
+            cpu = "Helio G99", colorStart = 0xFF000428.toInt(), colorEnd = 0xFF004E92.toInt(),
+            accent = "Light Green",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_11.jpg",
+            photoRes = "phone_11",
+            offline = listOf(
+                StoreOffer("DNS", "Московский пр-т, 128А", 14990, "Хит продаж Samsung", "https://www.dns-shop.ru/search/?q=Samsung+Galaxy+A16+8%2F256", false),
+                StoreOffer("М.Видео", "пр. Мира, 49А", 15490, "Рассрочка 0-0-10", "https://www.mvideo.ru/search?query=Samsung+Galaxy+A16+8%2F256", false)
+            ),
+            online = listOf(
+                StoreOffer("Wildberries", "ПВЗ Челны", 14990, "WB-кошелёк −3%", "https://www.wildberries.ru/catalog/0/search.aspx?search=Samsung+Galaxy+A16+8%2F256", true),
+                StoreOffer("OZON", "ПВЗ Челны", 15190, "Цена с картой Ozon", "https://www.ozon.ru/search/?text=Samsung+Galaxy+A16+8%2F256", true),
+                StoreOffer("Яндекс Маркет", "Доставка в Челны", 15290, "Сплит без переплат", "https://market.yandex.ru/search?text=Samsung+Galaxy+A16+8%2F256", true)
+            )
+        ),
+        Phone(
+            id = 12, brand = "POCO", model = "C85 8/256",
+            ramGb = 8, storageGb = 256, price = 15990, oldPrice = 17990,
+            promo = "Проверено 15.10.2026 • −11% • топ цена/качество vc.ru",
+            rating = 4.6, screen = "6.9\" IPS 120 Гц",
+            battery = "6000 мА·ч, 33 Вт", camera = "50 Мп + 8 Мп фронт",
+            cpu = "Helio G81 Ultra", colorStart = 0xFF232526.toInt(), colorEnd = 0xFF414345.toInt(),
+            accent = "Power Black",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_12.jpg",
+            photoRes = "phone_12",
+            offline = listOf(
+                StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 15990, "В наличии", "https://www.dns-shop.ru/search/?q=POCO+C85+8%2F256", false),
+                StoreOffer("Эльдорадо", "пр. Московский, 140", 16490, "Рассрочка 0-0-12", "https://www.eldorado.ru/search/catalog.php?q=POCO+C85+8%2F256", false)
+            ),
+            online = listOf(
+                StoreOffer("OZON", "ПВЗ Челны", 15590, "Купон продавца", "https://www.ozon.ru/search/?text=POCO+C85+8%2F256", true),
+                StoreOffer("Wildberries", "ПВЗ Челны", 15790, "Быстрая выдача", "https://www.wildberries.ru/catalog/0/search.aspx?search=POCO+C85+8%2F256", true)
+            )
+        ),
+        Phone(
+            id = 13, brand = "HONOR", model = "X7d 8/256",
+            ramGb = 8, storageGb = 256, price = 17990, oldPrice = 19990,
+            promo = "Проверено 15.10.2026 • −10% • 6500 мА·ч, броня 360°",
+            rating = 4.6, screen = "6.77\" IPS 120 Гц",
+            battery = "6500 мА·ч, 35 Вт", camera = "108 Мп + 8 Мп фронт",
+            cpu = "Snapdragon 685", colorStart = 0xFF3A2E1A.toInt(), colorEnd = 0xFF8A6D3B.toInt(),
+            accent = "Desert Gold",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_13.jpg",
+            photoRes = "phone_13",
+            offline = listOf(
+                StoreOffer("МТС", "пр. Хасана Туфана, 12", 17990, "Скидка за трейд-ин", "https://shop.mts.ru", false),
+                StoreOffer("DNS", "пр-т Сююмбике, 67В", 18490, "Самовывоз", "https://www.dns-shop.ru/search/?q=HONOR+X7d+8%2F256", false)
+            ),
+            online = listOf(
+                StoreOffer("OZON", "ПВЗ Челны", 18290, "Рассрочка 0-0-6", "https://www.ozon.ru/search/?text=HONOR+X7d+8%2F256", true),
+                StoreOffer("Яндекс Маркет", "Доставка в Челны", 18990, "Баллы Маркета", "https://market.yandex.ru/search?text=HONOR+X7d+8%2F256", true)
+            )
+        ),
+        Phone(
+            id = 14, brand = "Infinix", model = "Hot 50 Pro+ 8/256",
+            ramGb = 8, storageGb = 256, price = 17459, oldPrice = 21990,
+            promo = "Проверено 15.10.2026 • −21% • 6.8 мм, звук JBL",
+            rating = 4.6, screen = "6.78\" AMOLED 120 Гц",
+            battery = "5000 мА·ч, 33 Вт", camera = "50 Мп + 13 Мп фронт",
+            cpu = "Helio G100", colorStart = 0xFF4A2E6B.toInt(), colorEnd = 0xFF9D6BC4.toInt(),
+            accent = "Blossom Purple",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_14.jpg",
+            photoRes = "phone_14",
+            offline = listOf(
+                StoreOffer("DNS", "Московский пр-т, 128А", 17490, "Тонкий корпус", "https://www.dns-shop.ru/search/?q=Infinix+Hot+50+Pro%2B+8%2F256", false),
+                StoreOffer("М.Видео", "пр. Мира, 49А", 17990, "Бонусы М.Клуб", "https://www.mvideo.ru/search?query=Infinix+Hot+50+Pro%2B+8%2F256", false)
+            ),
+            online = listOf(
+                StoreOffer("OZON", "ПВЗ Челны", 17459, "С картой Ozon −21%", "https://www.ozon.ru/search/?text=Infinix+Hot+50+Pro%2B+8%2F256", true),
+                StoreOffer("Wildberries", "ПВЗ Челны", 17690, "WB-кошелёк −3%", "https://www.wildberries.ru/catalog/0/search.aspx?search=Infinix+Hot+50+Pro%2B+8%2F256", true)
+            )
+        ),
+        Phone(
+            id = 15, brand = "realme", model = "C75 8/256",
+            ramGb = 8, storageGb = 256, price = 13999, oldPrice = 15554,
+            promo = "Проверено 15.10.2026 • −10% • IP69, 6000 мА·ч",
+            rating = 4.5, screen = "6.72\" IPS 90 Гц",
+            battery = "6000 мА·ч, 45 Вт", camera = "50 Мп + 8 Мп фронт",
+            cpu = "Helio G92 Max", colorStart = 0xFF8A6D1B.toInt(), colorEnd = 0xFFF5C542.toInt(),
+            accent = "Lightning Gold",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_15.jpg",
+            photoRes = "phone_15",
+            offline = listOf(
+                StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 13999, "Минимум цены", "https://www.dns-shop.ru/search/?q=realme+C75+8%2F256", false),
+                StoreOffer("М.Видео", "пр. Мира, 49А", 14490, "Рассрочка", "https://www.mvideo.ru/search?query=realme+C75+8%2F256", false)
+            ),
+            online = listOf(
+                StoreOffer("OZON", "ПВЗ Челны", 14290, "Цена с картой", "https://www.ozon.ru/search/?text=realme+C75+8%2F256", true),
+                StoreOffer("Wildberries", "ПВЗ Челны", 14190, "Быстрая выдача", "https://www.wildberries.ru/catalog/0/search.aspx?search=realme+C75+8%2F256", true)
+            )
+        ),
+        Phone(
+            id = 16, brand = "TECNO", model = "Camon 40 Pro 5G 8/256",
+            ramGb = 8, storageGb = 256, price = 18910, oldPrice = 21999,
+            promo = "Проверено 15.10.2026 • −14% • Dimensity 7300, 5G",
+            rating = 4.7, screen = "6.78\" AMOLED 120 Гц",
+            battery = "5200 мА·ч, 45 Вт", camera = "50 Мп OIS + 50 Мп фронт",
+            cpu = "Dimensity 7300", colorStart = 0xFF5A6E7A.toInt(), colorEnd = 0xFFC9D6DD.toInt(),
+            accent = "Sandy Titanium",
+            photoUrl = "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_16.jpg",
+            photoRes = "phone_16",
+            offline = listOf(
+                StoreOffer("Эльдорадо", "пр. Московский, 140", 18990, "5G-версия", "https://www.eldorado.ru/search/catalog.php?q=TECNO+Camon+40+Pro+5G+8%2F256", false),
+                StoreOffer("DNS", "Московский пр-т, 128А", 19490, "В наличии", "https://www.dns-shop.ru/search/?q=TECNO+Camon+40+Pro+5G+8%2F256", false)
+            ),
+            online = listOf(
+                StoreOffer("Яндекс Маркет", "Доставка в Челны", 18910, "С картой Пэй", "https://market.yandex.ru/search?text=TECNO+Camon+40+Pro+5G+8%2F256", true),
+                StoreOffer("OZON", "ПВЗ Челны", 19190, "Рассрочка", "https://www.ozon.ru/search/?text=TECNO+Camon+40+Pro+5G+8%2F256", true)
             )
         )
     )
