@@ -5,184 +5,321 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Челны СмартСкан — топ смартфонов 10–20к • Набережные Челны</title>
 <style>
-:root{--acc:#e11d2e;--gold:#f5c542;--bg:#0e0b1a;--bg2:#151021;--card:#1b1626;--fg:#f2edff;--sub:#b9b0cc;--line:#2c2438;--r:20px}
-*{box-sizing:border-box}body{margin:0;font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden}
-#embers{position:fixed;inset:0;z-index:0;pointer-events:none}
-#splash{position:fixed;inset:0;background:#0e0b1a;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;animation:sOut .7s 1.7s forwards}
-#splash .ph{font-size:70px;animation:pulse 1s infinite alternate;filter:drop-shadow(0 0 24px var(--acc))}
-#splash b{font-size:24px;letter-spacing:4px}
-#splash small{color:var(--gold);letter-spacing:2px}
-@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.18)}}
-@keyframes sOut{to{opacity:0;visibility:hidden}}
-.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 20px 120px}
-/* HERO — кинематографично, как Lost Ark */
-.hero{position:relative;text-align:center;padding:70px 0 30px;overflow:hidden}
-.hero::before{content:"";position:absolute;left:50%;top:-180px;width:640px;height:420px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(225,29,46,.35),transparent 70%);pointer-events:none}
-.kicker{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:99px;padding:7px 20px;font-size:12px;letter-spacing:3px;animation:fadeUp .7s .3s backwards}
-h1{font-size:clamp(36px,7vw,68px);margin:18px 0 6px;line-height:1.02;letter-spacing:-1px;animation:fadeUp .7s .45s backwards}
-h1 span{background:linear-gradient(90deg,#ff4d5e,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{color:var(--sub);font-size:16px;max-width:640px;margin:0 auto;animation:fadeUp .7s .6s backwards}
-.btnrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px;animation:fadeUp .7s .75s backwards}
-.btn{background:linear-gradient(180deg,#f22b3d,#b0121f);color:#fff;border:0;border-radius:99px;padding:15px 34px;font-size:15px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 12px 34px -10px rgba(225,29,46,.7);transition:.2s}
-.btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
-.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--fg);box-shadow:none}
-.floatrow{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
-.floatrow img{width:120px;height:150px;object-fit:cover;border-radius:18px;border:1px solid var(--line);box-shadow:0 20px 50px -18px #000;animation:float 4s ease-in-out infinite}
-.floatrow img:nth-child(2){animation-delay:.6s}.floatrow img:nth-child(3){animation-delay:1.2s}.floatrow img:nth-child(4){animation-delay:1.8s}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}}
-/* бегущая строка */
-.ticker{overflow:hidden;white-space:nowrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:34px 0 6px;font-size:13px;color:var(--gold)}
-.ticker span{display:inline-block;padding:11px 0;animation:tick 32s linear infinite}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.orn{display:flex;align-items:center;gap:14px;margin:38px 0 18px}
-.orn::before,.orn::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.orn h2{margin:0;font-size:15px;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
-nav.tabs{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(27,22,38,.92);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:99px;display:flex;padding:6px;z-index:5;box-shadow:0 14px 44px #000a}
-nav.tabs button{border:0;background:transparent;color:var(--fg);padding:11px 22px;border-radius:99px;font-size:14px;font-weight:800;cursor:pointer;transition:.25s}
+:root{
+  --acc:#e11d2e; --acc-soft:rgba(225,29,46,.14);
+  --bg:#0e0b1a; --card:#1b1626; --fg:#f2edff; --sub:#b9b0cc; --line:#2c2438;
+  --gold:#f5c542; --r:24px;
+  --m3:0 8px 30px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden}
+/* ===== FLASH-STYLE PRELOADER ===== */
+#loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;gap:22px;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .ring{width:92px;height:92px}
+#loader .ring circle{fill:none;stroke-width:8;stroke-linecap:round}
+#loader .ring .bgc{stroke:var(--line)}
+#loader .ring .fgc{stroke:var(--acc);stroke-dasharray:200;stroke-dashoffset:200;animation:load 1.4s ease forwards;transform-origin:center;transform:rotate(-90deg)}
+@keyframes load{to{stroke-dashoffset:20}}
+#loader b{letter-spacing:5px;font-size:15px}
+#loader small{color:var(--sub);letter-spacing:2px;font-size:11px;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.3}}
+#fx{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 20px 140px}
+/* ===== HERO ===== */
+.hero{position:relative;text-align:center;padding:84px 0 10px}
+.hero .glow{position:absolute;left:50%;top:-140px;width:700px;height:440px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(225,29,46,.32),transparent 70%);pointer-events:none;animation:breathe 5s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.6;transform:translateX(-50%) scale(1.12)}}
+.pill{display:inline-block;background:var(--acc-soft);border:1px solid rgba(225,29,46,.5);color:#ff8a94;border-radius:99px;padding:8px 22px;font-size:12px;font-weight:800;letter-spacing:2.5px}
+h1{font-size:clamp(38px,7vw,72px);margin:20px 0 8px;line-height:1.02;letter-spacing:-1.5px}
+h1 .grad{background:linear-gradient(92deg,#ff4d5e 10%,var(--gold) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--sub);font-size:16px;max-width:620px;margin:0 auto;line-height:1.6}
+.btnrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.btn{background:linear-gradient(180deg,#f22b3d,#b0121f);color:#fff;border:0;border-radius:99px;padding:15px 36px;font-size:15px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 14px 34px -10px rgba(225,29,46,.75);transition:transform .2s,box-shadow .2s,filter .2s}
+.btn:hover{transform:translateY(-3px) scale(1.02);filter:brightness(1.12);box-shadow:0 20px 44px -10px rgba(225,29,46,.85)}
+.btn.ghost{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--fg);box-shadow:none}
+/* stats */
+.stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.stat{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:20px;padding:14px 26px;min-width:130px}
+.stat b{font-size:26px;display:block}
+.stat span{color:var(--sub);font-size:12px}
+/* marquee */
+.marquee{overflow:hidden;white-space:nowrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:40px -20px 0;font-size:13px;color:var(--gold)}
+.marquee span{display:inline-block;padding:12px 0;animation:tick 30s linear infinite}
+@keyframes tick{to{transform:translateX(-50%)}}
+/* tabs */
+nav.tabs{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(27,22,38,.94);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:99px;display:flex;padding:6px;z-index:5;box-shadow:0 14px 44px rgba(0,0,0,.6)}
+nav.tabs button{border:0;background:transparent;color:var(--fg);padding:11px 18px;border-radius:99px;font-size:13px;font-weight:800;cursor:pointer;transition:.25s;display:flex;align-items:center;gap:7px}
 nav.tabs button.on{background:linear-gradient(180deg,#f22b3d,#b0121f);color:#fff}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
-.toolbar input,.toolbar select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:99px;padding:13px 20px;font-size:14px;outline:none}
-.toolbar input{flex:2;min-width:210px}.toolbar input:focus{border-color:var(--acc)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
-.card{background:linear-gradient(180deg,var(--card),#141021);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;gap:16px;transition:.25s;animation:fadeUp .5s backwards}
-.card:hover{border-color:var(--acc);box-shadow:0 20px 50px -20px rgba(225,29,46,.6);transform:translateY(-3px)}
-.card .ph{width:106px;height:136px;object-fit:cover;border-radius:14px;flex:none;background:#222;transition:.3s}
-.card:hover .ph{transform:scale(1.04)}
-.info{flex:1;min-width:0}.info h3{margin:0;font-size:16.5px}
-.mut{color:var(--sub);font-size:12.5px;margin-top:2px}
-.pr{font-size:22px;font-weight:900;margin-top:6px;color:#fff}.pr .old{color:#8b8496;font-size:12px;text-decoration:line-through;margin-left:8px;font-weight:400}
-.off{background:linear-gradient(180deg,#f22b3d,#b0121f);border-radius:99px;padding:3px 11px;font-size:11.5px;font-weight:800;margin-left:8px}
-.promo{font-size:12.5px;color:var(--gold);margin:5px 0}
-.rowbtns{display:flex;gap:8px;margin-top:10px}
-.ic{flex:1;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:99px;padding:9px;cursor:pointer;font-size:13px;font-weight:800;transition:.2s}
-.ic:hover{border-color:var(--acc);color:#ff8a94}
+nav.tabs button .dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.6}
+nav.tabs button.on .dot{opacity:1;background:#fff}
+/* sections */
+.sect{display:none}
+.sect.on{display:block;animation:sectIn .35s}
+@keyframes sectIn{from{opacity:0;transform:translateY(16px)}}
+.orn{display:flex;align-items:center;gap:14px;margin:40px 0 18px}
+.orn::before,.orn::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(225,29,46,.7),transparent)}
+.orn h2{margin:0;font-size:14px;letter-spacing:4px;color:#ff8a94;text-transform:uppercase}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px;position:sticky;top:0;z-index:2;padding:12px 0;background:linear-gradient(var(--bg) 80%,transparent)}
+.toolbar input,.toolbar select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:99px;padding:13px 20px;font-size:14px;outline:none;transition:.2s}
+.toolbar input{flex:2;min-width:210px}
+.toolbar input:focus,.toolbar select:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:99px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s}
+.chip:hover{border-color:var(--acc)}
+.chip.on{background:linear-gradient(180deg,#f22b3d,#b0121f);border-color:transparent;color:#fff;box-shadow:0 8px 20px -8px rgba(225,29,46,.8)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+/* card — как в приложении */
+.card{background:linear-gradient(180deg,#1e1830,#141021);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;gap:16px;transition:transform .22s,box-shadow .22s,border-color .22s;transform-style:preserve-3d;opacity:0}
+.card.vis{opacity:1;transition:opacity .5s,transform .22s,box-shadow .22s,border-color .22s}
+.card:hover{border-color:var(--acc);box-shadow:0 22px 55px -20px rgba(225,29,46,.65)}
+.card .ph{width:108px;height:138px;object-fit:cover;border-radius:16px;flex:none;background:#232031}
+.info{flex:1;min-width:0}
+.info h3{margin:0;font-size:16.5px}
+.mut{color:var(--sub);font-size:12.5px;margin-top:3px}
+.pr{font-size:22px;font-weight:900;margin-top:7px}
+.pr .old{color:#8b8496;font-size:12px;text-decoration:line-through;margin-left:8px;font-weight:400}
+.off{background:linear-gradient(180deg,#f22b3d,#b0121f);border-radius:99px;padding:3px 11px;font-size:11.5px;font-weight:800;margin-left:8px;white-space:nowrap}
+.promo{font-size:12.5px;color:var(--gold);margin:6px 0}
+.stars{color:var(--gold);font-size:12.5px}
+.rowbtns{display:flex;gap:8px;margin-top:11px}
+.ic{flex:1;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--fg);border-radius:99px;padding:10px;cursor:pointer;font-size:13px;font-weight:800;transition:.2s}
+.ic:hover{border-color:var(--acc);color:#ff8a94;transform:translateY(-1px)}
 .ic.fav.on{background:var(--gold);border-color:var(--gold);color:#000}
-.det{display:none;margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;font-size:13px}
-.det.open{display:block;animation:fadeUp .3s}
-.shop{background:#ffffff08;border:1px solid var(--line);border-radius:14px;padding:9px 12px;margin:6px 0}
+.ic.primary{background:linear-gradient(180deg,#f22b3d,#b0121f);border:0;color:#fff}
+.det{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.det.open{max-height:900px}
+.det-in{border-top:1px dashed var(--line);margin-top:11px;padding-top:11px;font-size:13px}
+.shop{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:14px;padding:9px 12px;margin:6px 0;transition:.2s}
+.shop:hover{border-color:var(--acc)}
 .shop b{color:#ff8a94}
-h2.st{font-size:11px;letter-spacing:2.5px;color:var(--gold);margin:16px 0 4px;text-transform:uppercase}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;margin-top:16px}
-.swatches{display:flex;gap:10px;flex-wrap:wrap}.sw{width:42px;height:42px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.2s}
-.sw.on{border-color:#fff;transform:scale(1.15)}
-.scanbar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:16px auto 4px;display:none;max-width:520px}
+h4.st{font-size:11px;letter-spacing:2.5px;color:var(--gold);margin:16px 0 4px;text-transform:uppercase}
+/* news */
+.news{background:linear-gradient(180deg,#1e1830,#141021);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:14px;transition:.25s}
+.news:hover{border-color:var(--acc);transform:translateX(4px)}
+.news .tag{display:inline-block;background:var(--acc-soft);border:1px solid rgba(225,29,46,.5);color:#ff8a94;border-radius:99px;padding:4px 14px;font-size:11px;font-weight:800;letter-spacing:1px}
+.news h3{margin:12px 0 6px;font-size:18px}
+.news p{color:var(--sub);font-size:14px;line-height:1.6;margin:0 0 12px}
+/* settings */
+.setrow{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:.2s}
+.setrow:hover{border-color:var(--acc)}
+.setrow.sel{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft)}
+.setrow .t{flex:1}.setrow .t b{display:block;font-size:15px}.setrow .t span{color:var(--sub);font-size:12px}
+.radio{width:22px;height:22px;border-radius:50%;border:2px solid var(--sub);flex:none;position:relative;transition:.2s}
+.setrow.sel .radio{border-color:var(--acc)}
+.setrow.sel .radio::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--acc)}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.sw{width:44px;height:44px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.2s}
+.sw:hover{transform:scale(1.12)}
+.sw.on{border-color:#fff;transform:scale(1.15);box-shadow:0 0 18px currentColor}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+footer{text-align:center;color:var(--sub);font-size:12px;margin:50px 0 10px;line-height:1.8}
+footer a{color:#ff8a94}
+.scanbar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:18px auto 4px;display:none;max-width:520px}
 .scanbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--gold))}
-footer{text-align:center;color:var(--sub);font-size:12px;margin:46px 0 10px}
-.rv{opacity:0;transform:translateY(24px);transition:.6s}.rv.vis{opacity:1;transform:none}
+@media(max-width:560px){nav.tabs button{padding:10px 12px;font-size:12px}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div id="splash"><div class="ph">📱</div><b>СМАРТСКАН</b><small>НАБЕРЕЖНЫЕ ЧЕЛНЫ</small></div>
-<canvas id="embers"></canvas>
+<div id="loader">
+  <svg class="ring" viewBox="0 0 100 100"><circle class="bgc" cx="50" cy="50" r="40"/><circle class="fgc" cx="50" cy="50" r="40"/></svg>
+  <b>СМАРТСКАН</b><small>СКАНИРУЮ ЦЕНЫ ЧЕЛНОВ…</small>
+</div>
+<canvas id="fx"></canvas>
 <div class="wrap">
-  <header class="hero">
-    <div class="kicker">НАБЕРЕЖНЫЕ ЧЕЛНЫ • RAM ≥ 8 ГБ • 10–20К ₽</div>
-    <h1>Топ смартфонов<br><span>без переплат</span></h1>
-    <p class="sub">Сканер цен, скидок и акций. Только модели из свежих топов осени-2026. Фото, цены, магазины офлайн и онлайн.</p>
+  <header class="hero" id="top">
+    <div class="glow"></div>
+    <div class="pill">НАБЕРЕЖНЫЕ ЧЕЛНЫ • RAM ≥ 8 ГБ • 10–20К ₽</div>
+    <h1>Топ смартфонов<br><span class="grad">без переплат</span></h1>
+    <p class="sub">Сканер цен, скидок и акций. Только модели из свежих топов осени-2026. Настоящие фото, офлайн-магазины Челнов и онлайн с доставкой.</p>
     <div class="btnrow">
       <button class="btn" id="scanBtn">Сканировать цены</button>
-      <a class="btn ghost" href="https://github.com/Sargarus666/SmartSearch/releases/download/v1.4/chelny-smartscan-1.4.apk">Скачать APK 1.4</a>
+      <a class="btn ghost" id="apkBtn" href="https://github.com/Sargarus666/SmartSearch/releases/download/v1.5/chelny-smartscan-1.5.apk">Скачать APK</a>
     </div>
-    <div class="floatrow">
-      <img src="assets/phone_2.jpg" alt="TECNO"><img src="assets/phone_1.jpg" alt="Redmi"><img src="assets/phone_9.jpg" alt="realme"><img src="assets/phone_8.jpg" alt="HONOR">
+    <div class="stats">
+      <div class="stat"><b data-count="10">0</b><span>моделей в топе</span></div>
+      <div class="stat"><b><span data-count="8">0</span> ГБ</b><span>минимум RAM</span></div>
+      <div class="stat"><b>−<span data-count="23">0</span>%</b><span>макс. скидка</span></div>
+      <div class="stat"><b data-count="14">0</b><span>магазинов</span></div>
     </div>
     <div class="scanbar" id="scanbar"><i id="scanfill"></i></div>
     <p class="sub" id="scanLabel" style="font-size:13px"></p>
   </header>
 
-  <div class="ticker"><span id="tick"></span></div>
+  <div class="marquee"><span id="tick"></span></div>
 
   <nav class="tabs" id="tabs">
-    <button data-t="list" class="on">Список</button>
-    <button data-t="fav">Избранное <span id="favCount"></span></button>
-    <button data-t="news">Новости</button>
-    <button data-t="set">Настройки</button>
+    <button data-t="list" class="on"><span class="dot"></span>Список</button>
+    <button data-t="fav"><span class="dot"></span>Избранное&nbsp;<span id="favCount"></span></button>
+    <button data-t="news"><span class="dot"></span>Новости</button>
+    <button data-t="set"><span class="dot"></span>Настройки</button>
   </nav>
 
-  <section id="v-list">
+  <section class="sect on" id="v-list">
     <div class="orn"><h2>Каталог</h2></div>
     <div class="toolbar">
       <input id="q" placeholder="Поиск: redmi, tecno, amoled…">
-      <select id="f"><option value="0">Все</option><option value="1">До 15 000 ₽</option><option value="2">AMOLED</option><option value="3">Скидка ≥15%</option></select>
       <select id="s"><option value="0">Со скидкой</option><option value="1">Подешевле</option><option value="2">По рейтингу</option></select>
     </div>
+    <div class="chips" id="chips"></div>
     <div class="grid" id="grid"></div>
   </section>
-  <section id="v-fav" style="display:none"><div class="orn"><h2>Избранное</h2></div><div class="grid" id="favGrid"></div></section>
-  <section id="v-news" style="display:none"><div class="orn"><h2>Новости</h2></div><div id="newsList"></div></section>
-  <section id="v-set" style="display:none">
+  <section class="sect" id="v-fav">
+    <div class="orn"><h2>Избранное</h2></div>
+    <div class="grid" id="favGrid"></div>
+  </section>
+  <section class="sect" id="v-news">
+    <div class="orn"><h2>Новости</h2></div>
+    <div id="newsList"></div>
+  </section>
+  <section class="sect" id="v-set">
     <div class="orn"><h2>Настройки</h2></div>
     <div class="panel">
-      <h2 class="st">Тема</h2>
-      <div><label><input type="radio" name="th" value="dark" checked> Тёмная</label> <label><input type="radio" name="th" value="light"> Светлая</label></div>
-      <h2 class="st">Акцент</h2><div class="swatches" id="sw"></div>
-      <p class="mut" style="margin-top:16px">Сайт тёмный всегда — как положено игровому порталу.</p>
+      <h4 class="st">Тема</h4><div id="themeRows"></div>
+      <h4 class="st">Акцент</h4><div class="swatches" id="sw"></div>
+      <p class="mut" style="margin:18px 0 0">Выбор применяется мгновенно — как в приложении.</p>
     </div>
   </section>
-  <footer>Челны СмартСкан 1.4 • DNS / М.Видео / Эльдорадо / OZON / WB / Маркет • RAM только физическая</footer>
+
+  <footer>Челны СмартСкан • DNS / М.Видео / Эльдорадо / OZON / WB / Маркет, Челны<br>RAM только физическая ≥ 8 ГБ • <a id="relLink" href="https://github.com/Sargarus666/SmartSearch/releases">все версии</a></footer>
 </div>
 <script>
+"use strict";
+/* ---------- данные ---------- */
 const ASSET=i=>"assets/phone_"+i+".jpg";
 const PHONES=[
-{id:1,brand:"Xiaomi",model:"Redmi Note 15 8/256",ram:8,st:256,price:19899,old:21990,promo:"−9% • 108 Мп • хит топов",rate:4.9,scr:'6.77" AMOLED 120 Гц',cpu:"Helio G100 Ultra",off:[["DNS","Московский 128А",19899],["М.Видео","Мира 49А",20490],["Эльдорадо","Московский 140",20690]],on:[["Маркет","1–2 дня",20500],["OZON","Сююмбике 61",19990],["WB","Набережночелнинский 41",20290]]},
-{id:2,brand:"TECNO",model:"Spark 40 Pro 8/256",ram:8,st:256,price:14999,old:17990,promo:"−17% • топ МТС и M.Video",rate:4.8,scr:'6.78" AMOLED 144 Гц',cpu:"Helio G100U",off:[["DNS","Набережночелнинский 10Б",14999],["МТС","Туфана 12",15490]],on:[["OZON","Московский 140",14490],["DNS онлайн","Сююмбике 67В",14999]]},
-{id:3,brand:"Infinix",model:"Note Edge 8/256",ram:8,st:256,price:19490,old:21990,promo:"−11% • Dimensity 7100 • для игр",rate:4.8,scr:'6.78" AMOLED 120 Гц',cpu:"Dimensity 7100",off:[["Эльдорадо","Московский 140",19490],["DNS","Сююмбике 67В",19990]],on:[["WB","Мира 52",19690],["OZON","Татарстан 25",19790]]},
-{id:4,brand:"TECNO",model:"Pova 7 Neo 8/256",ram:8,st:256,price:15490,old:17490,promo:"−11% • 7000 мА·ч",rate:4.7,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100U",off:[["DNS","Московский 128А",15490],["М.Видео","Мира 49А",15990]],on:[["OZON","Чулман 23",15190],["Маркет","1–3 дня",15490]]},
-{id:5,brand:"realme",model:"C85 Pro 8/256",ram:8,st:256,price:16599,old:18999,promo:"−13% • IP69 • 7000 мА·ч",rate:4.7,scr:'6.8" AMOLED 120 Гц',cpu:"Snapdragon 685",off:[["М.Видео","Мира 49А",16599],["DNS","Набережночелнинский 10Б",16990]],on:[["Маркет","доставка",16590],["OZON","ПВЗ",16790]]},
-{id:6,brand:"Samsung",model:"Galaxy A17 8/256",ram:8,st:256,price:19099,old:21499,promo:"−11% • 6 лет обновлений",rate:4.6,scr:'6.7" Super AMOLED',cpu:"Exynos 1330",off:[["МТС","Туфана 12",19099],["DNS","Сююмбике 67В",19490]],on:[["М.Видео онлайн","2 дня",19099],["WB","ПВЗ",19290]]},
-{id:7,brand:"POCO",model:"M7 8/256",ram:8,st:256,price:17990,old:19990,promo:"−10% • 7000 мА·ч",rate:4.6,scr:'6.9" IPS 144 Гц',cpu:"Snapdragon 685",off:[["DNS","Московский 128А",17990],["Эльдорадо","Московский 140",18490]],on:[["OZON","ПВЗ",17590],["Маркет","—",17990]]},
-{id:8,brand:"HONOR",model:"X8c 8/256",ram:8,st:256,price:16999,old:19999,promo:"−15% • 108 Мп OIS",rate:4.6,scr:'6.7" AMOLED 120 Гц',cpu:"Snapdragon 685",off:[["DNS","Набережночелнинский 10Б",16999]],on:[["WB","ПВЗ",16790],["OZON","ПВЗ",16990]]},
-{id:9,brand:"realme",model:"14 5G 8/256",ram:8,st:256,price:17599,old:19999,promo:"−12% • SD 6 Gen 4 • 6000 мА·ч",rate:4.7,scr:'6.67" AMOLED 120 Гц',cpu:"Snapdragon 6 Gen 4",off:[["М.Видео","Мира 49А",17599],["DNS","Сююмбике 67В",17990]],on:[["Маркет","—",17599],["OZON","ПВЗ",17790]]},
-{id:10,brand:"TECNO",model:"Camon 40 8/256",ram:8,st:256,price:17199,old:18999,promo:"−9% • выбор Т-Ж",rate:4.6,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100",off:[["Эльдорадо","Московский 140",17199],["DNS","Московский 128А",17490]],on:[["OZON","ПВЗ",16890],["Ситилинк","доставка",17190]]}
+{id:1,brand:"Xiaomi",model:"Redmi Note 15 8/256",ram:8,st:256,price:19899,old:21990,promo:"−9% • 108 Мп • хит топов",rate:4.9,scr:'6.77" AMOLED 120 Гц',cpu:"Helio G100 Ultra",off:[["DNS","Московский пр-т, 128А",19899],["М.Видео","пр. Мира, 49А",20490],["Эльдорадо","Московский пр-т, 140",20690]],on:[["Маркет","доставка 1–2 дня",20500],["OZON","ПВЗ Сююмбике, 61",19990],["WB","ПВЗ Набережночелнинский, 41",20290]]},
+{id:2,brand:"TECNO",model:"Spark 40 Pro 8/256",ram:8,st:256,price:14999,old:17990,promo:"−17% • топ МТС и M.Video",rate:4.8,scr:'6.78" AMOLED 144 Гц',cpu:"Helio G100U",off:[["DNS","Набережночелнинский пр-т, 10Б",14999],["МТС","пр. Хасана Туфана, 12",15490]],on:[["OZON","ПВЗ Московский, 140",14490],["DNS онлайн","Сююмбике, 67В",14999]]},
+{id:3,brand:"Infinix",model:"Note Edge 8/256",ram:8,st:256,price:19490,old:21990,promo:"−11% • Dimensity 7100 • для игр",rate:4.8,scr:'6.78" AMOLED 120 Гц',cpu:"Dimensity 7100",off:[["Эльдорадо","Московский пр-т, 140",19490],["DNS","пр-т Сююмбике, 67В",19990]],on:[["WB","ПВЗ пр. Мира, 52",19690],["OZON","ПВЗ Татарстан, 25",19790]]},
+{id:4,brand:"TECNO",model:"Pova 7 Neo 8/256",ram:8,st:256,price:15490,old:17490,promo:"−11% • 7000 мА·ч",rate:4.7,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100U",off:[["DNS","Московский пр-т, 128А",15490],["М.Видео","пр. Мира, 49А",15990]],on:[["OZON","ПВЗ пр. Чулман, 23",15190],["Маркет","доставка 1–3 дня",15490]]},
+{id:5,brand:"realme",model:"C85 Pro 8/256",ram:8,st:256,price:16599,old:18999,promo:"−13% • IP69 • 7000 мА·ч",rate:4.7,scr:'6.8" AMOLED 120 Гц',cpu:"Snapdragon 685",off:[["М.Видео","пр. Мира, 49А",16599],["DNS","Набережночелнинский пр-т, 10Б",16990]],on:[["Маркет","доставка",16590],["OZON","ПВЗ",16790]]},
+{id:6,brand:"Samsung",model:"Galaxy A17 8/256",ram:8,st:256,price:19099,old:21499,promo:"−11% • 6 лет обновлений",rate:4.6,scr:'6.7" Super AMOLED',cpu:"Exynos 1330",off:[["МТС","пр. Хасана Туфана, 12",19099],["DNS","пр-т Сююмбике, 67В",19490]],on:[["М.Видео онлайн","доставка 2 дня",19099],["WB","ПВЗ",19290]]},
+{id:7,brand:"POCO",model:"M7 8/256",ram:8,st:256,price:17990,old:19990,promo:"−10% • 7000 мА·ч",rate:4.6,scr:'6.9" IPS 144 Гц',cpu:"Snapdragon 685",off:[["DNS","Московский пр-т, 128А",17990],["Эльдорадо","Московский пр-т, 140",18490]],on:[["OZON","ПВЗ",17590],["Маркет","—",17990]]},
+{id:8,brand:"HONOR",model:"X8c 8/256",ram:8,st:256,price:16999,old:19999,promo:"−15% • 108 Мп OIS",rate:4.6,scr:'6.7" AMOLED 120 Гц',cpu:"Snapdragon 685",off:[["DNS","Набережночелнинский пр-т, 10Б",16999]],on:[["WB","ПВЗ",16790],["OZON","ПВЗ",16990]]},
+{id:9,brand:"realme",model:"14 5G 8/256",ram:8,st:256,price:17599,old:19999,promo:"−12% • SD 6 Gen 4 • 6000 мА·ч",rate:4.7,scr:'6.67" AMOLED 120 Гц',cpu:"Snapdragon 6 Gen 4",off:[["М.Видео","пр. Мира, 49А",17599],["DNS","пр-т Сююмбике, 67В",17990]],on:[["Маркет","—",17599],["OZON","ПВЗ",17790]]},
+{id:10,brand:"TECNO",model:"Camon 40 8/256",ram:8,st:256,price:17199,old:18999,promo:"−9% • выбор Т-Ж",rate:4.6,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100",off:[["Эльдорадо","Московский пр-т, 140",17199],["DNS","Московский пр-т, 128А",17490]],on:[["OZON","ПВЗ",16890],["Ситилинк","доставка",17190]]}
 ];
 const NEWS=[
-["POCO M8 Pro вылетел из бюджета","Был 18 900 ₽, стал 25–28 тыс. Замена — POCO M7 за 17 990 ₽.","14.10 • Проверка цен"],
-["Redmi Note 15: реально 19 899 ₽","Официалы — 21 990 ₽. Старые цены нейросетей устарели.","14.10 • Проверка цен"],
-["Только топ из топов","Модель в каталоге, если есть в 2+ свежих рейтингах осени-2026.","14.10 • Методология"],
-["8+8 — это не 16 ГБ","Считается только физическая RAM.","12.10 • Гайд"]];
+["POCO M8 Pro вылетел из бюджета","Был 18 900 ₽, стал 25–28 тыс. Замена в топе — POCO M7 за 17 990 ₽.","14.10 • Проверка цен"],
+["Redmi Note 15: реально 19 899 ₽","Официалы просят 21 990 ₽. Старые цены нейросетей устарели.","14.10 • Проверка цен"],
+["Только топ из топов","Модель попадает в каталог, если есть минимум в двух свежих рейтингах осени-2026.","14.10 • Методология"],
+["8+8 — это не 16 ГБ","Виртуальная память не считается: только физическая RAM ≥ 8 ГБ.","12.10 • Гайд"]];
+/* ---------- состояние ---------- */
 let favs=new Set(JSON.parse(localStorage.getItem("ss_fav")||"[]"));
+let chip=0,sortMode=0;
 const fmt=n=>n.toLocaleString("ru-RU")+" ₽";
 const grid=document.getElementById("grid"),favGrid=document.getElementById("favGrid");
-document.getElementById("tick").textContent=(PHONES.map(p=>`◆ ${p.brand} ${p.model} — ${fmt(p.price)}`).join("   ")+"   ").repeat(2);
+/* ---------- прелоадер ---------- */
+window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loader").classList.add("done"),1500));
+setTimeout(()=>document.getElementById("loader").classList.add("done"),3500);
+/* ---------- бегущая строка ---------- */
+document.getElementById("tick").textContent=(PHONES.map(p=>"◆ "+p.brand+" "+p.model+" — "+fmt(p.price)).join("   ")+"   ").repeat(2);
+/* ---------- счётчики ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
+  const end=+e.target.dataset.count,t0=performance.now();
+  (function step(t){const k=Math.min(1,(t-t0)/1200);e.target.textContent=Math.round(end*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step)})(t0);
+}),{threshold:.4});
+document.querySelectorAll("[data-count]").forEach(el=>io.observe(el));
+/* ---------- карточки ---------- */
 function card(p){
   const d=Math.round((p.old-p.price)/p.old*100);
   const el=document.createElement("div");el.className="card";
-  el.innerHTML=`<img class="ph" loading="lazy" src="${ASSET(p.id)}" alt="${p.brand} ${p.model}">
-  <div class="info"><h3>${p.brand} ${p.model}</h3>
-    <div class="mut">${p.ram} ГБ физ. • ${p.st} ГБ • ${p.cpu}</div>
-    <div class="pr">${fmt(p.price)}<span class="old">${fmt(p.old)}</span><span class="off">−${d}%</span></div>
-    <div class="promo">⚡ ${p.promo}</div>
-    <div class="mut">★ ${p.rate} • 🏬 ${fmt(Math.min(...p.off.map(o=>o[2])))} • 🛒 ${fmt(Math.min(...p.on.map(o=>o[2])))}</div>
-    <div class="rowbtns"><button class="ic fav ${favs.has(p.id)?"on":""}">★</button><button class="ic sh">⤴ Поделиться</button></div>
-    <div class="det"><h2 class="st">🏬 Офлайн • Челны</h2>${p.off.map(o=>`<div class="shop"><b>${o[0]}</b> — ${fmt(o[2])}<br>${o[1]}</div>`).join("")}
-    <h2 class="st">🛒 Онлайн • в Челны</h2>${p.on.map(o=>`<div class="shop"><b>${o[0]}</b> — ${fmt(o[2])}<br>${o[1]}</div>`).join("")}</div>
-    <div class="rowbtns"><button class="ic more" style="width:100%">Магазины · онлайн / офлайн</button></div>
-  </div>`;
+  el.innerHTML=
+   '<img class="ph" loading="lazy" src="'+ASSET(p.id)+'" alt="'+p.brand+" "+p.model+'">'+
+   '<div class="info"><h3>'+p.brand+" "+p.model+'</h3>'+
+   '<div class="mut">'+p.ram+' ГБ физ. • '+p.st+' ГБ • '+p.cpu+'</div>'+
+   '<div class="pr">'+fmt(p.price)+'<span class="old">'+fmt(p.old)+'</span><span class="off">−'+d+'%</span></div>'+
+   '<div class="promo">⚡ '+p.promo+'</div>'+
+   '<div class="stars">★ '+p.rate+' &nbsp;•&nbsp; 🏬 '+fmt(Math.min.apply(null,p.off.map(o=>o[2])))+' &nbsp;•&nbsp; 🛒 '+fmt(Math.min.apply(null,p.on.map(o=>o[2])))+'</div>'+
+   '<div class="rowbtns"><button class="ic fav'+(favs.has(p.id)?" on":"")+'">★</button><button class="ic sh">⤴ Поделиться</button></div>'+
+   '<div class="det"><div class="det-in"><h4 class="st">🏬 Офлайн • Челны</h4>'+
+     p.off.map(o=>'<div class="shop"><b>'+o[0]+'</b> — '+fmt(o[2])+'<br>'+o[1]+'</div>').join("")+
+     '<h4 class="st">🛒 Онлайн • в Челны</h4>'+
+     p.on.map(o=>'<div class="shop"><b>'+o[0]+'</b> — '+fmt(o[2])+'<br>'+o[1]+'</div>').join("")+
+   '</div></div>'+
+   '<div class="rowbtns"><button class="ic primary more" style="width:100%">Магазины · онлайн / офлайн</button></div></div>';
   el.querySelector(".more").onclick=()=>el.querySelector(".det").classList.toggle("open");
-  el.querySelector(".fav").onclick=e=>{if(favs.has(p.id)){favs.delete(p.id);e.target.classList.remove("on")}else{favs.add(p.id);e.target.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify([...favs]));renderFav()};
-  el.querySelector(".sh").onclick=()=>{const t=`📱 ${p.brand} ${p.model} — ${fmt(p.price)} (−${d}%)\n${p.promo}\nЧелны СмартСкан`;if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t);alert("Скопировано!")}};
-  el.addEventListener("mousemove",e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(800px) rotateY(${x*5}deg) rotateX(${-y*5}deg) translateY(-3px)`});
-  el.addEventListener("mouseleave",()=>el.style.transform="");
+  el.querySelector(".fav").onclick=e=>{if(favs.has(p.id)){favs.delete(p.id);e.target.classList.remove("on")}else{favs.add(p.id);e.target.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify(Array.from(favs)));renderFav()};
+  el.querySelector(".sh").onclick=()=>{const t="📱 "+p.brand+" "+p.model+" — "+fmt(p.price)+" (−"+d+"%)\n"+p.promo+"\nЧелны СмартСкан";if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t);alert("Скопировано!")}};
+  el.addEventListener("mousemove",e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform="perspective(900px) rotateY("+(x*6)+"deg) rotateX("+(-y*6)+"deg)"});
+  el.addEventListener("mouseleave",()=>{el.style.transform=""});
   return el;
 }
-function list(){const q=document.getElementById("q").value.toLowerCase(),f=+document.getElementById("f").value,s=+document.getElementById("s").value;
+/* ---------- список + чипы ---------- */
+const CHIPS=["Все","До 15 000 ₽","AMOLED","Скидка ≥15%"];
+function buildChips(){const w=document.getElementById("chips");w.innerHTML="";
+  CHIPS.forEach((n,i)=>{const b=document.createElement("button");b.className="chip"+(chip===i?" on":"");b.textContent=n;
+    b.onclick=()=>{chip=i;buildChips();list()};w.appendChild(b)});
+  [["Цена ↓",1],["Рейтинг ★",2]].forEach(pair=>{const b=document.createElement("button");b.className="chip"+(sortMode===pair[1]?" on":"");b.textContent=pair[0];
+    b.onclick=()=>{sortMode=pair[1];buildChips();list()};w.appendChild(b)});
+}
+function list(){
+  const q=document.getElementById("q").value.toLowerCase(),s=+document.getElementById("s").value;
   let l=PHONES.filter(p=>p.ram>=8&&p.price>=10000&&p.price<=20000);
-  if(q)l=l.filter(p=>(p.brand+" "+p.model+" "+p.cpu).toLowerCase().includes(q));
-  if(f==1)l=l.filter(p=>p.price<=15000);if(f==2)l=l.filter(p=>p.scr.includes("AMOLED"));if(f==3)l=l.filter(p=>(p.old-p.price)/p.old>=.15);
-  l=l.sort((a,b)=>s==1?a.price-b.price:s==2?b.rate-a.rate:(b.old-b.price)/b.old-(a.old-a.price)/a.old);
-  grid.innerHTML="";l.forEach(p=>grid.appendChild(card(p)));return l.length}
-function renderFav(){favGrid.innerHTML="";const l=PHONES.filter(p=>favs.has(p.id));document.getElementById("favCount").textContent=l.length?"("+l.length+")":"";l.forEach(p=>favGrid.appendChild(card(p)));if(!l.length)favGrid.innerHTML='<p class="sub">Пока пусто — жми ★ в списке.</p>'}
-["q","f","s"].forEach(id=>document.getElementById(id).oninput=list);
-document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#tabs button").forEach(x=>x.classList.remove("on"));b.classList.add("on");["list","fav","news","set"].forEach(t=>{const s=document.getElementById("v-"+t);s.style.display=t==b.dataset.t?"":"none";if(t==b.dataset.t){s.animate([{opacity:0,transform:"translateY(14px)"},{opacity:1,transform:"none"}],{duration:280})}})});
-document.getElementById("newsList").innerHTML=NEWS.map(n=>`<div class="panel"><b>${n[0]}</b><p class="sub">${n[1]}</p><span class="mut">${n[2]}</span></div>`).join("");
-document.querySelectorAll('input[name=th]').forEach(r=>r.onchange=()=>{document.documentElement.style.filter=r.value=="light"?"invert(0)":"none";if(r.value=="light"){document.documentElement.style.setProperty("--bg","#f4f1fa");document.documentElement.style.setProperty("--card","#fff");document.documentElement.style.setProperty("--fg","#1a1c1e");document.documentElement.style.setProperty("--sub","#5a5b6b");document.documentElement.style.setProperty("--line","#e5e0e3")}else{document.documentElement.style.setProperty("--bg","#0e0b1a");document.documentElement.style.setProperty("--card","#1b1626");document.documentElement.style.setProperty("--fg","#f2edff");document.documentElement.style.setProperty("--sub","#b9b0cc");document.documentElement.style.setProperty("--line","#2c2438")}});
+  if(q)l=l.filter(p=>(p.brand+" "+p.model+" "+p.cpu).toLowerCase().indexOf(q)>=0);
+  if(chip===1)l=l.filter(p=>p.price<=15000);
+  if(chip===2)l=l.filter(p=>p.scr.indexOf("AMOLED")>=0);
+  if(chip===3)l=l.filter(p=>(p.old-p.price)/p.old>=.15);
+  l=l.sort((a,b)=>s===1?a.price-b.price:s===2?b.rate-a.rate:(b.old-b.price)/b.old-(a.old-a.price)/a.old);
+  grid.innerHTML="";l.forEach(p=>grid.appendChild(card(p)));
+  reveal();return l.length;
+}
+function renderFav(){favGrid.innerHTML="";const l=PHONES.filter(p=>favs.has(p.id));
+  document.getElementById("favCount").textContent=l.length?"("+l.length+")":"";
+  l.forEach(p=>favGrid.appendChild(card(p)));
+  if(!l.length)favGrid.innerHTML='<p class="sub">Пока пусто — жми ★ в списке.</p>';reveal()}
+/* появление карточек */
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");rio.unobserve(e.target)}}),{threshold:.08});
+function reveal(){document.querySelectorAll(".card:not(.vis)").forEach(el=>rio.observe(el))}
+document.getElementById("q").oninput=list;document.getElementById("s").onchange=list;
+/* ---------- вкладки ---------- */
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("#tabs button").forEach(x=>x.classList.remove("on"));b.classList.add("on");
+  ["list","fav","news","set"].forEach(t=>{document.getElementById("v-"+t).classList.toggle("on",t===b.dataset.t)});
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+/* ---------- новости ---------- */
+document.getElementById("newsList").innerHTML=NEWS.map(n=>
+ '<div class="news"><span class="tag">'+n[2]+'</span><h3>'+n[0]+'</h3><p>'+n[1]+'</p>'+
+ '<button class="ic" style="max-width:220px" onclick="(function(t){if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t)}})(\''+n[0]+'. '+n[1]+' — Челны СмартСкан\')">⤴ Поделиться</button></div>').join("");
+/* ---------- настройки ---------- */
+const THEMES=[["dark","Тёмная","глубокий фон приложения"],["light","Светлая","дневной режим"]];
+function paint(){const th=document.body.dataset.th||"dark";
+  const R=document.documentElement.style;
+  if(th==="light"){R.setProperty("--bg","#faf7ff");R.setProperty("--card","#ffffff");R.setProperty("--fg","#1a1c1e");R.setProperty("--sub","#5a5b6b");R.setProperty("--line","#e5e0e3")}
+  else{R.setProperty("--bg","#0e0b1a");R.setProperty("--card","#1b1626");R.setProperty("--fg","#f2edff");R.setProperty("--sub","#b9b0cc");R.setProperty("--line","#2c2438")}
+}
+function buildThemes(){const w=document.getElementById("themeRows");w.innerHTML="";const cur=document.body.dataset.th||"dark";
+  THEMES.forEach(t=>{const d=document.createElement("div");d.className="setrow"+(cur===t[0]?" sel":"");
+    d.innerHTML='<div class="radio"></div><div class="t"><b>'+t[1]+'</b><span>'+t[2]+'</span></div>';
+    d.onclick=()=>{document.body.dataset.th=t[0];localStorage.setItem("ss_th",t[0]);paint();buildThemes()};w.appendChild(d)});
+}
+document.body.dataset.th=localStorage.getItem("ss_th")||"dark";paint();buildThemes();
 const ACC=["#e11d2e","#f5c542","#009688","#1e88e5","#43a047","#ff8f00","#ec407a"];
-const sw=document.getElementById("sw");ACC.forEach((c,i)=>{const d=document.createElement("div");d.className="sw"+(i==0?" on":"");d.style.background=c;d.onclick=()=>{document.documentElement.style.setProperty("--acc",c);document.querySelectorAll(".sw").forEach(x=>x.classList.remove("on"));d.classList.add("on")};sw.appendChild(d)});
-document.getElementById("scanBtn").onclick=()=>{const bar=document.getElementById("scanbar"),fill=document.getElementById("scanfill");bar.style.display="block";let p=0;const t=setInterval(()=>{p+=7;fill.style.width=p+"%";if(p>=100){clearInterval(t);bar.style.display="none";document.getElementById("scanLabel").textContent="Обновлено: "+new Date().toLocaleString("ru-RU")+" • Челны • "+list()+" моделей"}},80)};
-const cv=document.getElementById("embers"),cx=cv.getContext("2d");let ps=[];function size(){cv.width=innerWidth;cv.height=innerHeight}size();addEventListener("resize",size);for(let i=0;i<70;i++)ps.push({x:Math.random(),y:Math.random(),r:Math.random()*2+.5,s:Math.random()*.0009+.0003,o:Math.random()*.6+.2});
-(function anim(){cx.clearRect(0,0,cv.width,cv.height);ps.forEach(p=>{p.y-=p.s;if(p.y<0){p.y=1;p.x=Math.random()}const g=cx.createRadialGradient(p.x*cv.width,p.y*cv.height,0,p.x*cv.width,p.y*cv.height,p.r*4);g.addColorStop(0,"rgba(245,197,66,"+p.o+")");g.addColorStop(1,"transparent");cx.fillStyle=g;cx.beginPath();cx.arc(p.x*cv.width,p.y*cv.height,p.r*4,0,7);cx.fill()});requestAnimationFrame(anim)})();
-list();renderFav();
+const sw=document.getElementById("sw");ACC.forEach((c,i)=>{const d=document.createElement("div");d.className="sw"+(i===0?" on":"");d.style.background=c;d.style.color=c;
+  d.onclick=()=>{document.documentElement.style.setProperty("--acc",c);document.querySelectorAll(".sw").forEach(x=>x.classList.remove("on"));d.classList.add("on")};sw.appendChild(d)});
+/* ---------- скан ---------- */
+document.getElementById("scanBtn").onclick=()=>{
+  const bar=document.getElementById("scanbar"),fill=document.getElementById("scanfill");
+  bar.style.display="block";let p=0;
+  const t=setInterval(()=>{p+=6;fill.style.width=p+"%";
+    if(p>=100){clearInterval(t);bar.style.display="none";
+      document.getElementById("scanLabel").textContent="Обновлено: "+new Date().toLocaleString("ru-RU")+" • Челны • "+list()+" моделей"}},70);
+};
+/* ---------- фон-угли ---------- */
+const cv=document.getElementById("fx"),cx=cv.getContext("2d");let ps=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight}size();addEventListener("resize",size);
+for(let i=0;i<70;i++)ps.push({x:Math.random(),y:Math.random(),r:Math.random()*2+.6,s:Math.random()*.0009+.0003,o:Math.random()*.55+.2,hue:Math.random()<.7});
+(function anim(){cx.clearRect(0,0,cv.width,cv.height);
+  ps.forEach(p=>{p.y-=p.s;if(p.y<0){p.y=1;p.x=Math.random()}
+    const c=p.hue?"225,29,46":"245,197,66";
+    const g=cx.createRadialGradient(p.x*cv.width,p.y*cv.height,0,p.x*cv.width,p.y*cv.height,p.r*4);
+    g.addColorStop(0,"rgba("+c+","+p.o+")");g.addColorStop(1,"rgba("+c+",0)");
+    cx.fillStyle=g;cx.beginPath();cx.arc(p.x*cv.width,p.y*cv.height,p.r*4,0,7);cx.fill()});
+  requestAnimationFrame(anim)})();
+/* ---------- старт ---------- */
+buildChips();list();renderFav();
 document.getElementById("scanLabel").textContent="Каталог от 14.10.2026 • 10 моделей • Челны";
 </script>
 </body>
