@@ -81,31 +81,35 @@ class MainActivity : AppCompatActivity() {
         val row = LinearLayout(ctx).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(0, ctx.dp(8), 0, ctx.dp(10))
+            setPadding(ctx.dp(12), ctx.dp(10), ctx.dp(12), ctx.dp(14))
             layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         }
         tabNames.forEachIndexed { i, name ->
             val cell = LinearLayout(ctx).apply {
                 orientation = LinearLayout.VERTICAL
-                gravity = Gravity.CENTER
+                gravity = Gravity.CENTER_HORIZONTAL
                 layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
                 isClickable = true; isFocusable = true
                 setOnClickListener { tab = i; refreshNav(); showTab() }
             }
             val pill = LinearLayout(ctx).apply {
                 gravity = Gravity.CENTER
-                layoutParams = LinearLayout.LayoutParams(ctx.dp(56), ctx.dp(32))
+                layoutParams = LinearLayout.LayoutParams(ctx.dp(64), ctx.dp(32))
             }
             val icon = ImageView(ctx).apply {
                 layoutParams = LinearLayout.LayoutParams(ctx.dp(24), ctx.dp(24))
-                setImageResource(tabIcons[i])
+                try { setImageResource(tabIcons[i]) } catch (_: Exception) {}
             }
             pill.addView(icon)
             val label = TextView(ctx).apply {
                 text = name; textSize = 12f
                 typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-                setPadding(0, ctx.dp(3), 0, 0)
+                gravity = Gravity.CENTER
+                isSingleLine = true
+                setPadding(0, ctx.dp(4), 0, 0)
+                layoutParams = LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             }
             cell.addView(pill); cell.addView(label)
             cell.tag = Pair(pill, label to icon)
@@ -133,10 +137,12 @@ class MainActivity : AppCompatActivity() {
                 try {
                     icon.imageTintList = ColorStateList.valueOf(
                         if (sel) 0xFFFFFFFF.toInt() else subColor(this))
-                } catch (_: Exception) {}
-                label.setTextColor(if (sel) fgColor(this) else subColor(this))
+                } catch (_: Exception) {
+                }
+                label.setTextColor(if (sel) ac else subColor(this))
             }
-        } catch (_: Exception) {}
+        } catch (_: Exception) {
+        }
     }
 
     private var containerId = 0
