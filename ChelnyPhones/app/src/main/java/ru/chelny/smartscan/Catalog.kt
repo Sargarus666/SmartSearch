@@ -29,7 +29,8 @@ data class Phone(
     val photoRes: String,
     val accent: String,      // цвет корпуса текстом
     val offline: List<StoreOffer>,
-    val online: List<StoreOffer>
+    val online: List<StoreOffer>,
+    val gallery: List<String> = emptyList() // 3 фото для галереи, грузятся из сети
 ) {
     val discountPct: Int get() =
         if (oldPrice > price) ((oldPrice - price) * 100 / oldPrice) else 0

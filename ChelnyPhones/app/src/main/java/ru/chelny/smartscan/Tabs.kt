@@ -108,7 +108,8 @@ class ListFragment : BaseTab() {
                 if (!isAdded) return@load
                 if (ok && res != null && res.isNotEmpty()) {
                     remote = res
-                    scanLabel.text = "Онлайн-каталог • ${res.size} моделей • из сети"
+                    val upd = RemoteCatalog.updated.takeIf { it.isNotBlank() }?.let { " • $it" } ?: ""
+                    scanLabel.text = "Челны • онлайн-каталог • ${res.size} моделей$upd"
                     refresh()
                 } else {
                     scanLabel.text = "Встроенный каталог • без сети • ${Catalog.phones.size} моделей"
@@ -233,92 +234,129 @@ class FavFragment : BaseTab() {
     }
 }
 
-/** Вкладка 3 — новости */
+/** Вкладка 3 — новости: квадрат слева, свайп вниз обновляет из сети */
 class NewsFragment : BaseTab() {
+    private lateinit var refresher: SwipeRefreshLayout
+    private lateinit var col: LinearLayout
+    private var items: List<NewsItem> = NewsRepo.news
+
     override fun onCreateView(inf: LayoutInflater, c: ViewGroup?, b: Bundle?): View {
         val ctx = requireContext()
+        refresher = SwipeRefreshLayout(ctx).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            setOnRefreshListener { reload() }
+        }
         val scroll = ScrollView(ctx).apply { setBackgroundColor(bgColor(ctx)) }
-        val col = LinearLayout(ctx).apply {
+        col = LinearLayout(ctx).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(ctx.dp(20), ctx.dp(20), ctx.dp(20), ctx.dp(20))
         }
+        scroll.addView(col)
+        refresher.addView(scroll)
+        render()
+        reload()
+        return refresher
+    }
+
+    private fun reload() {
+        if (!::refresher.isInitialized) return
+        refresher.isRefreshing = true
+        RemoteNews.load { res, ok ->
+            try {
+                if (!isAdded) return@load
+                refresher.isRefreshing = false
+                if (ok && res != null && res.isNotEmpty()) {
+                    items = res
+                    render()
+                    Toast.makeText(ctx(), "Новости обновлены из сети", Toast.LENGTH_SHORT).show()
+                } else if (items === NewsRepo.news) {
+                    render()
+                }
+            } catch (_: Exception) {
+                try { refresher.isRefreshing = false } catch (_: Exception) {}
+            }
+        }
+    }
+
+    private fun ctx() = requireContext()
+
+    private fun render() {
+        if (!::col.isInitialized) return
+        val ctx = requireContext()
+        col.removeAllViews()
         col.addView(TextView(ctx).apply {
             text = "Новости"; textSize = 24f
             typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
             setTextColor(fgColor(ctx))
         })
-        NewsRepo.news.forEach { n ->
-            val card = LinearLayout(ctx).apply {
-                orientation = LinearLayout.VERTICAL
-                background = GradientDrawable().apply { setColor(cardColor(ctx)); cornerRadius = ctx.dp(24).toFloat() }
-                setPadding(ctx.dp(18), ctx.dp(16), ctx.dp(18), ctx.dp(16))
-                layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-                    topMargin = ctx.dp(12)
-                }
-                elevation = ctx.dp(2).toFloat()
-                isClickable = true; isFocusable = true
+        if (RemoteNews.updated.isNotBlank()) col.addView(TextView(ctx).apply {
+            text = "Обновлено из сети: ${RemoteNews.updated}"
+            textSize = 12f; setTextColor(subColor(ctx))
+            setPadding(0, ctx.dp(2), 0, 0)
+        })
+        items.forEach { n -> col.addView(newsCard(n)) }
+    }
+
+    /** Горизонтальная карточка: квадрат 96dp слева, текст справа */
+    private fun newsCard(n: NewsItem): LinearLayout {
+        val ctx = requireContext()
+        val card = LinearLayout(ctx).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            background = GradientDrawable().apply { setColor(cardColor(ctx)); cornerRadius = ctx.dp(24).toFloat() }
+            setPadding(ctx.dp(14), ctx.dp(14), ctx.dp(14), ctx.dp(14))
+            layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+                topMargin = ctx.dp(12)
             }
-            // превью-картинка, клик — открыть источник
-            val thumb = ImageView(ctx).apply {
-                layoutParams = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ctx.dp(150))
-                    .also { it.bottomMargin = ctx.dp(10) }
-                scaleType = ImageView.ScaleType.CENTER_CROP
-                background = GradientDrawable().apply {
-                    setColor(0xFFE8EAF6.toInt()); cornerRadius = ctx.dp(16).toFloat()
-                }
-                clipToOutline = true
-            }
-            try {
-                val resId = ctx.resources.getIdentifier(n.imageRes, "drawable", ctx.packageName)
-                if (resId != 0) thumb.setImageResource(resId)
-            } catch (_: Exception) {}
-            card.addView(thumb)
-            card.addView(chip(ctx, "${n.tag} • ${n.date}", accent2(ctx), 0xFFFFFFFF.toInt()).apply {
-                layoutParams = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            })
-            card.addView(TextView(ctx).apply {
-                text = n.title; textSize = 16f
-                typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-                setTextColor(fgColor(ctx)); setPadding(0, ctx.dp(10), 0, 0)
-            })
-            card.addView(TextView(ctx).apply {
-                text = n.text; textSize = 13.5f; setTextColor(subColor(ctx))
-                setPadding(0, ctx.dp(4), 0, 0)
-            })
-            fun openUrl() {
-                try {
-                    ctx.startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse(n.url)))
-                } catch (_: Exception) {
-                    Toast.makeText(ctx, n.url, Toast.LENGTH_LONG).show()
-                }
-            }
-            card.setOnClickListener { openUrl() }
-            thumb.setOnClickListener { openUrl() }
-            val btnRow = LinearLayout(ctx).apply {
-                orientation = LinearLayout.HORIZONTAL
-                setPadding(0, ctx.dp(12), 0, 0)
-            }
-            btnRow.addView(mButton(ctx, "Читать источник") { openUrl() }.apply {
-                layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
-            })
-            btnRow.addView(tonalButton(ctx, "Поделиться") {
-                try {
-                    ctx.startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
-                        type = "text/plain"; putExtra(Intent.EXTRA_TEXT, "${n.title}\n${n.text}\n— Челны СмартСкан")
-                    }, "Поделиться новостью"))
-                } catch (_: Exception) {}
-            }.also {
-                (it.layoutParams as LinearLayout.LayoutParams).apply {
-                    weight = 1f; width = 0; marginStart = ctx.dp(8)
-                }
-            })
-            card.addView(btnRow)
-            col.addView(card)
+            elevation = ctx.dp(2).toFloat()
+            isClickable = true; isFocusable = true
         }
-        scroll.addView(col)
-        return scroll
+        // квадратное превью слева — целиком, без обрезки по бокам
+        val thumb = ImageView(ctx).apply {
+            val s = ctx.dp(96)
+            layoutParams = LinearLayout.LayoutParams(s, s).apply { marginEnd = ctx.dp(14) }
+            scaleType = ImageView.ScaleType.CENTER_CROP
+            background = GradientDrawable().apply {
+                setColor(0xFFE8EAF6.toInt()); cornerRadius = ctx.dp(16).toFloat()
+            }
+            clipToOutline = true
+        }
+        try {
+            val resId = ctx.resources.getIdentifier(n.imageRes, "drawable", ctx.packageName)
+            if (resId != 0) thumb.setImageResource(resId)
+        } catch (_: Exception) {}
+        card.addView(thumb)
+
+        val tx = LinearLayout(ctx).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+        }
+        tx.addView(chip(ctx, "${n.tag} • ${n.date}", accent2(ctx), 0xFFFFFFFF.toInt()).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        })
+        tx.addView(TextView(ctx).apply {
+            text = n.title; textSize = 15f
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            setTextColor(fgColor(ctx)); setPadding(0, ctx.dp(6), 0, 0)
+            maxLines = 3
+        })
+        tx.addView(TextView(ctx).apply {
+            text = "Читать источник →"; textSize = 13f
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            setTextColor(accent2(ctx)); setPadding(0, ctx.dp(6), 0, 0)
+        })
+        card.addView(tx)
+        fun openUrl() {
+            try {
+                ctx.startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse(n.url)))
+            } catch (_: Exception) {
+                Toast.makeText(ctx, n.url, Toast.LENGTH_LONG).show()
+            }
+        }
+        card.setOnClickListener { openUrl() }
+        return card
     }
 }
 
@@ -478,7 +516,7 @@ class SettingsFragment : BaseTab() {
             })
             body.addView(r)
         }
-        infoRow("Версия", "2.0")
+        infoRow("Версия", "2.1")
         infoRow("Город", "Челны")
         infoRow("Каталог", "RAM ≥ 8 ГБ • 10–20 тыс ₽")
         body.addView(TextView(ctx).apply {

@@ -104,7 +104,16 @@ h4.st{font-size:11px;letter-spacing:2.5px;color:var(--gold);margin:16px 0 4px;te
 .news{background:linear-gradient(180deg,#1e1830,#141021);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:14px;transition:.25s}
 .news:hover{border-color:var(--acc);transform:translateX(4px)}
 .news .tag{display:inline-block;background:var(--acc-soft);border:1px solid rgba(124,92,255,.5);color:#cfc2ff;border-radius:99px;padding:4px 14px;font-size:11px;font-weight:800;letter-spacing:1px}
-.news .nph{width:100%;height:150px;object-fit:cover;border-radius:12px;margin-bottom:12px;background:#232031;display:block}
+.news .nph{width:112px;height:112px;object-fit:cover;border-radius:12px;background:#232031;display:block;flex:none}
+.news .nrow{display:flex;gap:16px;align-items:center}
+.news .ntx{flex:1;min-width:0}
+/* лайтбокс */
+#lb{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+#lb.on{display:flex}
+#lb img{max-width:92vw;max-height:76vh;border-radius:14px;object-fit:contain}
+#lb .bar{display:flex;gap:14px;align-items:center;color:#fff;font-weight:800}
+#lb button{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:99px;padding:10px 20px;font-size:15px;font-weight:800;cursor:pointer}
+#lb button:hover{background:var(--acc)}
 .news h3{margin:12px 0 6px;font-size:18px}
 .news p{color:var(--sub);font-size:14px;line-height:1.6;margin:0 0 12px}
 /* settings */
@@ -186,7 +195,18 @@ footer a{color:#cfc2ff}
 
   <footer>Челны СмартСкан • DNS / М.Видео / Эльдорадо / OZON / WB / Маркет, Челны<br>RAM только физическая ≥ 8 ГБ • <a id="relLink" href="https://github.com/Sargarus666/SmartSearch/releases">все версии</a></footer>
 </div>
+<div id="lb"><img id="lbImg" src="" alt=""><div class="bar"><button onclick="lbGo(-1)">←</button><span id="lbCount"></span><button onclick="lbGo(1)">→</button><button onclick="closeLB()">✕</button></div></div>
 <script>
+/* лайтбокс: полный размер + листание */
+let LB={id:0,list:[]};
+function lbList(){return PHONES.map(p=>p.id)}
+function openLB(id){LB.id=id;LB.list=lbList();LB.pos=LB.list.indexOf(id);paintLB();document.getElementById("lb").classList.add("on")}
+function paintLB(){const id=LB.list[LB.pos];document.getElementById("lbImg").src=ASSET(id);document.getElementById("lbCount").textContent=(LB.pos+1)+" / "+LB.list.length}
+function lbGo(d){LB.pos=(LB.pos+d+LB.list.length)%LB.list.length;paintLB()}
+function closeLB(){document.getElementById("lb").classList.remove("on")}
+document.getElementById("lb").onclick=e=>{if(e.target.id==="lb"||e.target.id==="lbImg")closeLB()};
+document.addEventListener("keydown",e=>{if(!document.getElementById("lb").classList.contains("on"))return;if(e.key==="Escape")closeLB();if(e.key==="ArrowRight")lbGo(1);if(e.key==="ArrowLeft")lbGo(-1)});
+(function(){let x0=null;const lb=document.getElementById("lb");lb.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});lb.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)lbGo(dx<0?1:-1);x0=null},{passive:true})})();
 "use strict";
 /* ---------- данные ---------- */
 const ASSET=i=>"https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_"+i+".jpg";
@@ -235,7 +255,7 @@ function card(p){
   const d=Math.round((p.old-p.price)/p.old*100);
   const el=document.createElement("div");el.className="card";
   el.innerHTML=
-   '<img class="ph" loading="lazy" src="'+ASSET(p.id)+'" alt="'+p.brand+" "+p.model+'">'+
+   '<img class="ph" loading="lazy" src="'+ASSET(p.id)+'" alt="'+p.brand+" "+p.model+'" style="cursor:zoom-in" onclick="openLB('+p.id+',0)">'+
    '<div class="info"><h3>'+p.brand+" "+p.model+'</h3>'+
    '<div class="mut">'+p.ram+' ГБ физ. • '+p.st+' ГБ • '+p.cpu+'</div>'+
    '<div class="pr">'+fmt(p.price)+'<span class="old">'+fmt(p.old)+'</span><span class="off">−'+d+'%</span></div>'+
@@ -290,7 +310,7 @@ document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
 });
 /* ---------- новости ---------- */
 document.getElementById("newsList").innerHTML=NEWS.map(n=>
- '<div class="news"><a href="'+n[4]+'" target="_blank" rel="noopener"><img class="nph" loading="lazy" src="'+ASSET(n[3])+'" alt=""></a><span class="tag">'+n[2]+'</span><h3><a href="'+n[4]+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+n[0]+'</a></h3><p>'+n[1]+'</p>'+
+ '<div class="news"><div class="nrow"><img class="nph" loading="lazy" src="'+ASSET(n[3])+'" alt="" onclick="openLB('+n[3]+',0)"><div class="ntx"><span class="tag">'+n[2]+'</span><h3><a href="'+n[4]+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+n[0]+'</a></h3><p>'+n[1]+'</p></div></div>'+
  '<div class="rowbtns" style="flex-direction:row"><a class="ic primary" style="text-decoration:none;text-align:center" href="'+n[4]+'" target="_blank" rel="noopener">Читать источник</a><button class="ic" onclick="(function(t){if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t)}})(\''+n[0]+'. '+n[1]+' — Челны СмартСкан\')">Поделиться</button></div></div>').join("");
 /* ---------- настройки ---------- */
 const THEMES=[["dark","Тёмная","глубокий фон приложения"],["light","Светлая","дневной режим"]];

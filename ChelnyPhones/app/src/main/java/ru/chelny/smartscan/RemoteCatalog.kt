@@ -9,7 +9,11 @@ import java.net.URL
 /** Онлайн-каталог: новые смартфоны подтягиваются из сети, встроенный — запасной вариант. */
 object RemoteCatalog {
     const val URL_JSON =
-        "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phones.json"
+        "https://github.com/Sargarus666/SmartSearch/releases/download/v2.1/phones.json"
+
+    /** Дата обновления каталога на сервере (показываем в шапке). */
+    var updated: String = ""
+        private set
 
     /** Последний загруженный онлайн-список (видят все вкладки). */
     var live: List<Phone>? = null
@@ -37,6 +41,7 @@ object RemoteCatalog {
 
     fun parse(body: String): List<Phone> {
         val root = JSONObject(body)
+        updated = root.optString("updated", "")
         val arr = root.getJSONArray("phones")
         val list = ArrayList<Phone>()
         for (i in 0 until arr.length()) {
@@ -58,6 +63,12 @@ object RemoteCatalog {
                 val s = o.optString(key, "#000000")
                 return try { android.graphics.Color.parseColor(s) } catch (_: Exception) { 0xFF000000.toInt() }
             }
+            val gal = ArrayList<String>()
+            try {
+                val ga = o.optJSONArray("gallery")
+                if (ga != null) for (j in 0 until ga.length()) gal.add(ga.optString(j))
+            } catch (_: Exception) {}
+            if (gal.isEmpty() && o.optString("photoUrl", "").isNotBlank()) gal.add(o.optString("photoUrl", ""))
             list.add(Phone(
                 o.optInt("id"), o.optString("brand"), o.optString("model"),
                 o.optInt("ramGb", 8), o.optInt("storageGb", 256),
@@ -68,7 +79,8 @@ object RemoteCatalog {
                 hex("colorStart"), hex("colorEnd"),
                 o.optString("photoUrl", ""), o.optString("photoRes", ""),
                 o.optString("accent"),
-                stores("offline", false), stores("online", true)
+                stores("offline", false), stores("online", true),
+                gal
             ))
         }
         // жёсткий фильтр как в ТЗ: только физическая RAM>=8 и цена 10-20к

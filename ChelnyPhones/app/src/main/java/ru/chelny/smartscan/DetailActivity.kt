@@ -11,6 +11,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import coil.load
 import com.google.android.material.color.DynamicColors
 
 class DetailActivity : AppCompatActivity() {
@@ -56,12 +57,47 @@ class DetailActivity : AppCompatActivity() {
             setPadding((20 * dp).toInt(), (16 * dp).toInt(), (20 * dp).toInt(), (28 * dp).toInt())
         }
 
-        // большое фото
-        val photo = phonePhoto(ctx, ph, 320, 240).apply {
+        // галерея: 3 квадратных превью, тап — полный размер с листанием
+        val galleryUrls = if (ph.gallery.isNotEmpty()) ph.gallery.take(3)
+            else listOf(ph.photoUrl).filter { it.isNotBlank() }
+        val galRow = LinearLayout(ctx).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER
             layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, (240 * dp).toInt())
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         }
-        col.addView(photo)
+        galleryUrls.forEachIndexed { gi, url ->
+            val th = ImageView(ctx).apply {
+                val s = (104 * dp).toInt()
+                layoutParams = LinearLayout.LayoutParams(s, s).apply {
+                    if (gi > 0) marginStart = (10 * dp).toInt()
+                }
+                scaleType = ImageView.ScaleType.CENTER_CROP
+                background = GradientDrawable().apply {
+                    setColor(0xFFE8EAF6.toInt()); cornerRadius = 18 * dp
+                }
+                clipToOutline = true
+                isClickable = true; isFocusable = true
+                contentDescription = "Фото ${gi + 1}"
+            }
+            try {
+                th.load(url) {
+                    crossfade(true)
+                    fallback(photoResId(ctx, ph))
+                    error(photoResId(ctx, ph))
+                    placeholder(photoResId(ctx, ph))
+                }
+            } catch (_: Exception) {
+                try { th.setImageResource(photoResId(ctx, ph)) } catch (_: Exception) {}
+            }
+            th.setOnClickListener {
+                try {
+                    startActivity(GalleryActivity.intent(ctx, galleryUrls, gi, "${ph.brand} ${ph.model}"))
+                } catch (_: Exception) {}
+            }
+            galRow.addView(th)
+        }
+        col.addView(galRow)
 
         col.addView(TextView(ctx).apply {
             text = "${ph.brand} ${ph.model}"

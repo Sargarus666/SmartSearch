@@ -1,0 +1,116 @@
+{
+ "updated": "2026-10-15",
+ "source": "Топ-источники: МТС Редспот, Т-Ж, iChip, Price.ru, kod.ru, M.Video, Hi-Tech Mail, Geekchoice",
+ "news": [
+  {
+   "id": 1,
+   "title": "POCO M8 Pro вылетел из бюджета: 25–28 тыс. в октябре",
+   "text": "Ещё летом стоил 18 900 ₽, в октябре 2026 — от 25 990 ₽. Из подборки исключён, вместо него — POCO M7 8/256 за 17 990 ₽.",
+   "date": "15.10.2026",
+   "tag": "Проверка цен",
+   "colorStart": 4292943150,
+   "colorEnd": 4286259106,
+   "imageRes": "phone_7",
+   "url": "https://hi-tech.mail.ru/news/153818-10-populyarnyh-smartfonov-do-20-000-rublej/"
+  },
+  {
+   "id": 2,
+   "title": "Redmi Note 15 8/256: реально 19 899 ₽, а не 17 900",
+   "text": "Официальный магазин просит 21 990 ₽, RU-версия у розницы — 19 899 ₽. Старые цены из нейросетей устарели.",
+   "date": "15.10.2026",
+   "tag": "Проверка цен",
+   "colorStart": 4280191205,
+   "colorEnd": 4278234305,
+   "imageRes": "phone_1",
+   "url": "https://mi-shop.com/catalog/smartphones/redmi-note-15/"
+  },
+  {
+   "id": 3,
+   "title": "Что значит «физические 8 ГБ»? Не ведитесь на 8+8",
+   "text": "Маркетплейсы пишут «16 ГБ (8+8)», но это 8 ГБ физической + 8 виртуальной из накопителя. В подборку попадают только модели с реальной RAM ≥ 8 ГБ.",
+   "date": "15.10.2026",
+   "tag": "Гайд",
+   "colorStart": 4282622023,
+   "colorEnd": 4278228616,
+   "imageRes": "phone_4",
+   "url": "https://www.mvideo.ru/blog/podborki/luchshie-smartfoni-stoimostyu-do-20-000-rublej"
+  },
+  {
+   "id": 4,
+   "title": "OZON vs Wildberries: где дешевле забирать в Челнах?",
+   "text": "OZON с картой дешевле в 6 случаях из 10 (минус 300–500 ₽), WB-кошелёк даёт −3% почти везде. Пункты выдачи на Сююмбике 61 и Набережночелнинском 41.",
+   "date": "15.10.2026",
+   "tag": "Сравнение",
+   "colorStart": 4294938368,
+   "colorEnd": 4292943150,
+   "imageRes": "phone_14",
+   "url": "https://www.ozon.ru/category/mobilnye-telefony-15574/"
+  },
+  {
+   "id": 5,
+   "title": "Эльдорадо: акции и рассрочка 0-0-12 в Челнах",
+   "text": "ТЦ Омега, пр. Московский 140: трейд-ин, рассрочка и подарки к POCO, Infinix и TECNO. Все текущие акции — по ссылке.",
+   "date": "15.10.2026",
+   "tag": "Акция",
+   "colorStart": 4285287935,
+   "colorEnd": 4293673082,
+   "imageRes": "phone_3",
+   "url": "https://www.eldorado.ru/actions/"
+  },
+  {
+   "id": 6,
+   "title": "DNS Челны: скидки недели на TECNO и Samsung",
+   "text": "Московский 128А, Набережночелнинский 10Б, Сююмбике 67В: ценопады до −23% на Spark 40 Pro и Galaxy A16. Все акции — по ссылке.",
+   "date": "15.10.2026",
+   "tag": "Акция",
+   "colorStart": 4278225275,
+   "colorEnd": 4280191205,
+   "imageRes": "phone_2",
+   "url": "https://www.dns-shop.ru/actions/"
+  },
+  {
+   "id": 7,
+   "title": "М.Видео: промо и бонусы М.Клуб в Торговом квартале",
+   "text": "пр. Мира 49А: до 10% бонусами на realme и Samsung, рассрочка 0-0-12. Все промо — по ссылке.",
+   "date": "15.10.2026",
+   "tag": "Акция",
+   "colorStart": 4292943150,
+   "colorEnd": 4293673082,
+   "imageRes": "phone_9",
+   "url": "https://www.mvideo.ru/promo"
+  },
+  {
+   "id": 8,
+   "title": "В каталоге уже 16 моделей: что добавилось",
+   "text": "Galaxy A16, POCO C85, HONOR X7d, Hot 50 Pro+, realme C75 и Camon 40 Pro 5G — все с физической RAM 8 ГБ и ценами 14–19 тыс ₽.",
+   "date": "15.10.2026",
+   "tag": "Каталог",
+   "colorStart": 4280191205,
+   "colorEnd": 4286259106,
+   "imageRes": "phone_11",
+   "url": "https://t-j.ru/best-smartphones-below-20k/"
+  },
+  {
+   "id": 9,
+   "title": "Батареи-гиганты до 20к: 7000 мА·ч — норма",
+   "text": "Pova 7 Neo, realme C85 Pro и POCO M7 — по 7000 мА·ч, два дня без розетки. Зарядка 33–45 Вт возвращает 50% за ~25 минут.",
+   "date": "15.10.2026",
+   "tag": "Железо",
+   "colorStart": 4282622023,
+   "colorEnd": 4278228616,
+   "imageRes": "phone_5",
+   "url": "https://ichip.ru/podborki/smartfony-planshety/smartfony-do-20000-rublej-shest-luchshih-modelej-774632"
+  },
+  {
+   "id": 10,
+   "title": "Как выжать −15% сверху: бонусы, трейд-ин, кэшбэк",
+   "text": "Бонусы магазинов 5–10%, трейд-ин −3000 ₽, кэшбэк картой до 5%. Пошаговый разбор — по ссылке.",
+   "date": "15.10.2026",
+   "tag": "Гайд",
+   "colorStart": 4294938368,
+   "colorEnd": 4285287935,
+   "imageRes": "phone_8",
+   "url": "https://rev.games/blog/kak-poluchit-skidku-techniku"
+  }
+ ]
+}
