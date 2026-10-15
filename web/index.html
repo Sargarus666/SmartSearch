@@ -68,7 +68,7 @@ nav.tabs button.on .dot{opacity:1;background:#fff}
 .orn{display:flex;align-items:center;gap:14px;margin:40px 0 18px}
 .orn::before,.orn::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(124,92,255,.7),transparent)}
 .orn h2{margin:0;font-size:14px;letter-spacing:4px;color:#cfc2ff;text-transform:uppercase}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px;position:sticky;top:0;z-index:2;padding:12px 0;background:linear-gradient(var(--bg) 80%,transparent)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px;padding:12px 0}
 .toolbar input,.toolbar select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:99px;padding:13px 20px;font-size:14px;outline:none;transition:.2s}
 .toolbar input{flex:2;min-width:210px}
 .toolbar input:focus,.toolbar select:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft)}
@@ -85,13 +85,13 @@ nav.tabs button.on .dot{opacity:1;background:#fff}
 .info{flex:1;min-width:0}
 .info h3{margin:0;font-size:16.5px}
 .mut{color:var(--sub);font-size:12.5px;margin-top:3px}
-.pr{font-size:22px;font-weight:900;margin-top:7px}
-.pr .old{color:#8b8496;font-size:12px;text-decoration:line-through;margin-left:8px;font-weight:400}
-.off{background:var(--acc);border-radius:99px;padding:3px 11px;font-size:11.5px;font-weight:800;margin-left:8px;white-space:nowrap}
+.pr{font-size:20px;font-weight:900;margin-top:7px;display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px}
+.pr .old{color:#8b8496;font-size:12px;text-decoration:line-through;font-weight:400}
+.off{background:var(--acc);border-radius:99px;padding:3px 11px;font-size:11.5px;font-weight:800;white-space:nowrap}
 .promo{font-size:12.5px;color:var(--gold);margin:6px 0}
 .stars{color:var(--gold);font-size:12.5px}
-.rowbtns{display:flex;gap:8px;margin-top:11px}
-.ic{flex:1;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--fg);border-radius:99px;padding:10px;cursor:pointer;font-size:13px;font-weight:800;transition:.2s}
+.rowbtns{display:flex;flex-direction:column;gap:8px;margin-top:11px}
+.ic{flex:1;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--fg);border-radius:99px;padding:10px 6px;cursor:pointer;font-size:12px;font-weight:800;transition:.2s;white-space:nowrap;min-width:0}
 .ic:hover{border-color:var(--acc);color:#cfc2ff;transform:translateY(-1px)}
 .ic.fav.on{background:var(--gold);border-color:var(--gold);color:#000}
 .ic.primary{background:var(--acc);border:0;color:#fff}
@@ -242,12 +242,12 @@ function card(p){
    '<div class="info"><h3>'+p.brand+" "+p.model+'</h3>'+
    '<div class="mut">'+p.ram+' ГБ физ. • '+p.st+' ГБ • '+p.cpu+'</div>'+
    '<div class="pr">'+fmt(p.price)+'<span class="old">'+fmt(p.old)+'</span><span class="off">−'+d+'%</span></div>'+
-   '<div class="promo">⚡ '+p.promo+'</div>'+
-   '<div class="stars">★ '+p.rate+' &nbsp;•&nbsp; 🏬 '+fmt(Math.min.apply(null,p.off.map(o=>o[2])))+' &nbsp;•&nbsp; 🛒 '+fmt(Math.min.apply(null,p.on.map(o=>o[2])))+'</div>'+
-   '<div class="rowbtns"><button class="ic fav'+(favs.has(p.id)?" on":"")+'">★</button><button class="ic sh">⤴ Поделиться</button></div>'+
-   '<div class="det"><div class="det-in"><h4 class="st">🏬 Офлайн • Челны</h4>'+
+   '<div class="promo">⚡ '+p.promo.replace(/^−\d+% • /,'')+'</div>'+
+   '<div class="stars">★ '+p.rate+' &nbsp;•&nbsp; '+fmt(Math.min.apply(null,p.off.map(o=>o[2])))+' &nbsp;•&nbsp; онлайн '+fmt(Math.min.apply(null,p.on.map(o=>o[2])))+'</div>'+
+   '<div class="rowbtns"><button class="ic fav'+(favs.has(p.id)?" on":"")+'">★ В избранное</button><button class="ic sh">Поделиться</button></div>'+
+   '<div class="det"><div class="det-in"><h4 class="st">Офлайн • Челны</h4>'+
      p.off.map(o=>'<div class="shop"><b>'+o[0]+'</b> — '+fmt(o[2])+'<br>'+o[1]+'</div>').join("")+
-     '<h4 class="st">🛒 Онлайн • в Челны</h4>'+
+     '<h4 class="st">Онлайн • в Челны</h4>'+
      p.on.map(o=>'<div class="shop"><b>'+o[0]+'</b> — '+fmt(o[2])+'<br>'+o[1]+'</div>').join("")+
    '</div></div>'+
    '<div class="rowbtns"><button class="ic primary more" style="width:100%">Магазины · онлайн / офлайн</button></div></div>';
@@ -263,7 +263,7 @@ const CHIPS=["Все","До 15 000 ₽","AMOLED","Скидка ≥15%"];
 function buildChips(){const w=document.getElementById("chips");w.innerHTML="";
   CHIPS.forEach((n,i)=>{const b=document.createElement("button");b.className="chip"+(chip===i?" on":"");b.textContent=n;
     b.onclick=()=>{chip=i;buildChips();list()};w.appendChild(b)});
-  [["Цена ↓",1],["Рейтинг ★",2]].forEach(pair=>{const b=document.createElement("button");b.className="chip"+(sortMode===pair[1]?" on":"");b.textContent=pair[0];
+  [["Дешевле",1],["Рейтинг ★",2]].forEach(pair=>{const b=document.createElement("button");b.className="chip"+(sortMode===pair[1]?" on":"");b.textContent=pair[0];
     b.onclick=()=>{sortMode=pair[1];buildChips();list()};w.appendChild(b)});
 }
 function list(){
@@ -294,7 +294,7 @@ document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
 /* ---------- новости ---------- */
 document.getElementById("newsList").innerHTML=NEWS.map(n=>
  '<div class="news"><span class="tag">'+n[2]+'</span><h3>'+n[0]+'</h3><p>'+n[1]+'</p>'+
- '<button class="ic" style="max-width:220px" onclick="(function(t){if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t)}})(\''+n[0]+'. '+n[1]+' — Челны СмартСкан\')">⤴ Поделиться</button></div>').join("");
+ '<button class="ic" style="max-width:220px" onclick="(function(t){if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t)}})(\''+n[0]+'. '+n[1]+' — Челны СмартСкан\')">Поделиться</button></div>').join("");
 /* ---------- настройки ---------- */
 const THEMES=[["dark","Тёмная","глубокий фон приложения"],["light","Светлая","дневной режим"]];
 function paint(){const th=document.body.dataset.th||"dark";
