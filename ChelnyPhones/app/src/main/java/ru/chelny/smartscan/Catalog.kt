@@ -52,14 +52,14 @@ object Catalog {
             photoUrl = "https://www.mobiledokan.com/media/xiaomi-redmi-note-15-4g-forest-green-official-image.webp",
             photoRes = "phone_1",
             offline = listOf(
-                StoreOffer("DNS", "Московский пр-т, 128А, Челны", 19899, "RU-версия, самовывоз сегодня", "https://www.dns-shop.ru", false),
-                StoreOffer("М.Видео", "пр. Мира, 49А, ТРК Торговый квартал", 20490, "Рассрочка 0-0-12", "https://www.mvideo.ru", false),
-                StoreOffer("Эльдорадо", "пр. Московский, 140, ТЦ Омега", 20690, "Трейд-ин −3000 ₽", "https://www.eldorado.ru", false)
+                StoreOffer("DNS", "Московский пр-т, 128А, Челны", 19899, "RU-версия, самовывоз сегодня", "https://www.dns-shop.ru/search/?q=Redmi+Note+15+8%2F256", false),
+                StoreOffer("М.Видео", "пр. Мира, 49А, ТРК Торговый квартал", 20490, "Рассрочка 0-0-12", "https://www.mvideo.ru/search?query=Redmi+Note+15+8%2F256", false),
+                StoreOffer("Эльдорадо", "пр. Московский, 140, ТЦ Омега", 20690, "Трейд-ин −3000 ₽", "https://www.eldorado.ru/search/catalog.php?q=Redmi+Note+15+8%2F256", false)
             ),
             online = listOf(
-                StoreOffer("Яндекс Маркет", "Доставка в Челны 1–2 дня", 20500, "С картой Пэй дешевле", "https://market.yandex.ru", true),
-                StoreOffer("OZON", "Пункт выдачи: Челны, пр. Сююмбике 61", 19990, "Купон продавца", "https://www.ozon.ru", true),
-                StoreOffer("Wildberries", "ПВЗ Челны, Набережночелнинский 41", 20290, "WB-кошелёк −3%", "https://www.wildberries.ru", true)
+                StoreOffer("Яндекс Маркет", "Доставка в Челны 1–2 дня", 20500, "С картой Пэй дешевле", "https://market.yandex.ru/search?text=Redmi+Note+15+8%2F256", true),
+                StoreOffer("OZON", "Пункт выдачи: Челны, пр. Сююмбике 61", 19990, "Купон продавца", "https://www.ozon.ru/search/?text=Redmi+Note+15+8%2F256", true),
+                StoreOffer("Wildberries", "ПВЗ Челны, Набережночелнинский 41", 20290, "WB-кошелёк −3%", "https://www.wildberries.ru/catalog/0/search.aspx?search=Redmi+Note+15+8%2F256", true)
             )
         ),
         Phone(
@@ -73,14 +73,14 @@ object Catalog {
             photoUrl = "https://fdn2.gsmarena.com/vv/pics/tecno/techno-spark-40-pro-1.jpg",
             photoRes = "phone_2",
             offline = listOf(
-                StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 14999, "Хит, витрина + склад", "https://www.dns-shop.ru", false),
+                StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 14999, "Хит, витрина + склад", "https://www.dns-shop.ru/search/?q=TECNO+Spark+40+Pro+8%2F256", false),
                 StoreOffer("МТС", "пр. Хасана Туфана, 12, Челны", 15490, "Скидка при переносе номера", "https://shop.mts.ru", false),
                 StoreOffer("Билайн", "пр. Сююмбике, 2/19, Челны", 15990, "Пакет + связь 3 мес.", "https://beeline.ru", false)
             ),
             online = listOf(
-                StoreOffer("OZON", "Пункт выдачи Челны, Московский 140", 14490, "Минус 500 ₽ по карте", "https://www.ozon.ru", true),
-                StoreOffer("DNS-Shop онлайн", "Самовывоз Сююмбике 67В", 14999, "Онлайн-бронь −2%", "https://www.dns-shop.ru", true),
-                StoreOffer("Ситилинк", "Доставка в Челны", 15290, "Бонусы Ситиклаб", "https://www.citilink.ru", true)
+                StoreOffer("OZON", "Пункт выдачи Челны, Московский 140", 14490, "Минус 500 ₽ по карте", "https://www.ozon.ru/search/?text=TECNO+Spark+40+Pro+8%2F256", true),
+                StoreOffer("DNS-Shop онлайн", "Самовывоз Сююмбике 67В", 14999, "Онлайн-бронь −2%", "https://www.dns-shop.ru/search/?q=TECNO+Spark+40+Pro+8%2F256", true),
+                StoreOffer("Ситилинк", "Доставка в Челны", 15290, "Бонусы Ситиклаб", "https://www.citilink.ru/search/?text=TECNO+Spark+40+Pro+8%2F256", true)
             )
         ),
         Phone(
@@ -94,14 +94,14 @@ object Catalog {
             photoUrl = "https://www.mobilemaya.com/public/media/infinix-note-edge-5g-official-image.webp",
             photoRes = "phone_3",
             offline = listOf(
-                StoreOffer("Эльдорадо", "пр. Московский, 140, ТЦ Омега", 19490, "Ростест, гарантия 12 мес.", "https://www.eldorado.ru", false),
-                StoreOffer("DNS", "пр-т Сююмбике, 67В, Челны", 19990, "В наличии, 5G-версия", "https://www.dns-shop.ru", false),
+                StoreOffer("Эльдорадо", "пр. Московский, 140, ТЦ Омега", 19490, "Ростест, гарантия 12 мес.", "https://www.eldorado.ru/search/catalog.php?q=Infinix+Note+Edge+8%2F256", false),
+                StoreOffer("DNS", "пр-т Сююмбике, 67В, Челны", 19990, "В наличии, 5G-версия", "https://www.dns-shop.ru/search/?q=Infinix+Note+Edge+8%2F256", false),
                 StoreOffer("МегаФон", "Набережночелнинский пр-т, 41", 20490, "Тариф в подарок", "https://megafon.ru", false)
             ),
             online = listOf(
-                StoreOffer("Wildberries", "ПВЗ Челны, пр. Мира 52", 19690, "Оплата WB-кошельком −3%", "https://www.wildberries.ru", true),
-                StoreOffer("Яндекс Маркет", "Доставка в Челны за день", 19890, "Промокод на первый заказ", "https://market.yandex.ru", true),
-                StoreOffer("OZON", "Пункт выдачи Челны, Татарстан 25", 19790, "Рассрочка 0-0-6", "https://www.ozon.ru", true)
+                StoreOffer("Wildberries", "ПВЗ Челны, пр. Мира 52", 19690, "Оплата WB-кошельком −3%", "https://www.wildberries.ru/catalog/0/search.aspx?search=Infinix+Note+Edge+8%2F256", true),
+                StoreOffer("Яндекс Маркет", "Доставка в Челны за день", 19890, "Промокод на первый заказ", "https://market.yandex.ru/search?text=Infinix+Note+Edge+8%2F256", true),
+                StoreOffer("OZON", "Пункт выдачи Челны, Татарстан 25", 19790, "Рассрочка 0-0-6", "https://www.ozon.ru/search/?text=Infinix+Note+Edge+8%2F256", true)
             )
         ),
         Phone(
@@ -115,12 +115,12 @@ object Catalog {
             photoUrl = "https://hamariweb.com/mobiles/LargeImages/6933_01.jpg",
             photoRes = "phone_4",
             offline = listOf(
-                StoreOffer("DNS", "Московский пр-т, 128А, Челны", 15490, "Топ iChip и Т-Ж", "https://www.dns-shop.ru", false),
-                StoreOffer("М.Видео", "пр. Мира, 49А, Торговый квартал", 15990, "Бонусы М.Клуб 10%", "https://www.mvideo.ru", false)
+                StoreOffer("DNS", "Московский пр-т, 128А, Челны", 15490, "Топ iChip и Т-Ж", "https://www.dns-shop.ru/search/?q=TECNO+Pova+7+Neo+8%2F256", false),
+                StoreOffer("М.Видео", "пр. Мира, 49А, Торговый квартал", 15990, "Бонусы М.Клуб 10%", "https://www.mvideo.ru/search?query=TECNO+Pova+7+Neo+8%2F256", false)
             ),
             online = listOf(
-                StoreOffer("OZON", "ПВЗ Челны, пр. Чулман 23", 15190, "Цена с Ozon-картой", "https://www.ozon.ru", true),
-                StoreOffer("Яндекс Маркет", "Доставка в Челны 1–3 дня", 15490, "Кэшбэк баллами", "https://market.yandex.ru", true)
+                StoreOffer("OZON", "ПВЗ Челны, пр. Чулман 23", 15190, "Цена с Ozon-картой", "https://www.ozon.ru/search/?text=TECNO+Pova+7+Neo+8%2F256", true),
+                StoreOffer("Яндекс Маркет", "Доставка в Челны 1–3 дня", 15490, "Кэшбэк баллами", "https://market.yandex.ru/search?text=TECNO+Pova+7+Neo+8%2F256", true)
             )
         ),
         Phone(
@@ -134,13 +134,13 @@ object Catalog {
             photoUrl = "https://mobiledevices.com.pk/images/realme/realme-c85-pro-peacock-green.webp",
             photoRes = "phone_5",
             offline = listOf(
-                StoreOffer("М.Видео", "пр. Мира, 49А, Торговый квартал", 16599, "Официальная гарантия", "https://www.mvideo.ru", false),
-                StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 16990, "Самовывоз сегодня", "https://www.dns-shop.ru", false),
-                StoreOffer("Эльдорадо", "пр. Московский, 140", 17490, "Рассрочка 0-0-10", "https://www.eldorado.ru", false)
+                StoreOffer("М.Видео", "пр. Мира, 49А, Торговый квартал", 16599, "Официальная гарантия", "https://www.mvideo.ru/search?query=realme+C85+Pro+8%2F256", false),
+                StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 16990, "Самовывоз сегодня", "https://www.dns-shop.ru/search/?q=realme+C85+Pro+8%2F256", false),
+                StoreOffer("Эльдорадо", "пр. Московский, 140", 17490, "Рассрочка 0-0-10", "https://www.eldorado.ru/search/catalog.php?q=realme+C85+Pro+8%2F256", false)
             ),
             online = listOf(
-                StoreOffer("Яндекс Маркет", "Доставка в Челны", 16590, "Сплит без переплат", "https://market.yandex.ru", true),
-                StoreOffer("OZON", "ПВЗ Челны", 16790, "Цена с картой Ozon", "https://www.ozon.ru", true)
+                StoreOffer("Яндекс Маркет", "Доставка в Челны", 16590, "Сплит без переплат", "https://market.yandex.ru/search?text=realme+C85+Pro+8%2F256", true),
+                StoreOffer("OZON", "ПВЗ Челны", 16790, "Цена с картой Ozon", "https://www.ozon.ru/search/?text=realme+C85+Pro+8%2F256", true)
             )
         ),
         Phone(
@@ -155,12 +155,12 @@ object Catalog {
             photoRes = "phone_6",
             offline = listOf(
                 StoreOffer("МТС", "пр. Хасана Туфана, 12", 19099, "Шесть лет обновлений", "https://shop.mts.ru", false),
-                StoreOffer("DNS", "пр-т Сююмбике, 67В", 19490, "Витрина + склад", "https://www.dns-shop.ru", false),
-                StoreOffer("М.Видео", "пр. Мира, 49А", 19690, "Рассрочка 0-0-10", "https://www.mvideo.ru", false)
+                StoreOffer("DNS", "пр-т Сююмбике, 67В", 19490, "Витрина + склад", "https://www.dns-shop.ru/search/?q=Samsung+Galaxy+A17+8%2F256", false),
+                StoreOffer("М.Видео", "пр. Мира, 49А", 19690, "Рассрочка 0-0-10", "https://www.mvideo.ru/search?query=Samsung+Galaxy+A17+8%2F256", false)
             ),
             online = listOf(
-                StoreOffer("М.Видео онлайн", "Доставка в Челны 2 дня", 19099, "Онлайн-эксклюзив", "https://www.mvideo.ru", true),
-                StoreOffer("Wildberries", "ПВЗ Челны", 19290, "Быстрая выдача", "https://www.wildberries.ru", true)
+                StoreOffer("М.Видео онлайн", "Доставка в Челны 2 дня", 19099, "Онлайн-эксклюзив", "https://www.mvideo.ru/search?query=Samsung+Galaxy+A17+8%2F256", true),
+                StoreOffer("Wildberries", "ПВЗ Челны", 19290, "Быстрая выдача", "https://www.wildberries.ru/catalog/0/search.aspx?search=Samsung+Galaxy+A17+8%2F256", true)
             )
         ),
         Phone(
@@ -174,12 +174,12 @@ object Catalog {
             photoUrl = "https://cdn.movertix.com/media/catalog/product/cache/image/1200x/x/i/xiaomi-poco-m7-dual-sim-silver-256gb-and-8gb-ram_2.jpg",
             photoRes = "phone_7",
             offline = listOf(
-                StoreOffer("DNS", "Московский пр-т, 128А", 17990, "Фирменный стенд POCO", "https://www.dns-shop.ru", false),
-                StoreOffer("Эльдорадо", "пр. Московский, 140", 18490, "Подарок: наушники", "https://www.eldorado.ru", false)
+                StoreOffer("DNS", "Московский пр-т, 128А", 17990, "Фирменный стенд POCO", "https://www.dns-shop.ru/search/?q=POCO+M7+8%2F256", false),
+                StoreOffer("Эльдорадо", "пр. Московский, 140", 18490, "Подарок: наушники", "https://www.eldorado.ru/search/catalog.php?q=POCO+M7+8%2F256", false)
             ),
             online = listOf(
-                StoreOffer("OZON", "ПВЗ Челны", 17590, "Купон продавца −400 ₽", "https://www.ozon.ru", true),
-                StoreOffer("Яндекс Маркет", "Доставка в Челны", 17990, "Баллы Маркета", "https://market.yandex.ru", true)
+                StoreOffer("OZON", "ПВЗ Челны", 17590, "Купон продавца −400 ₽", "https://www.ozon.ru/search/?text=POCO+M7+8%2F256", true),
+                StoreOffer("Яндекс Маркет", "Доставка в Челны", 17990, "Баллы Маркета", "https://market.yandex.ru/search?text=POCO+M7+8%2F256", true)
             )
         ),
         Phone(
@@ -193,12 +193,12 @@ object Catalog {
             photoUrl = "https://cdn.beebom.com/mobile/honor-x8c-front-and-back.png",
             photoRes = "phone_8",
             offline = listOf(
-                StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 16999, "Топ Hi-Tech Mail", "https://www.dns-shop.ru", false),
+                StoreOffer("DNS", "Набережночелнинский пр-т, 10Б", 16999, "Топ Hi-Tech Mail", "https://www.dns-shop.ru/search/?q=HONOR+X8c+8%2F256", false),
                 StoreOffer("Билайн", "пр. Сююмбике, 2/19", 17490, "Комплект со связью", "https://beeline.ru", false)
             ),
             online = listOf(
-                StoreOffer("Wildberries", "ПВЗ Челны", 16790, "Скидка WB-кошелька", "https://www.wildberries.ru", true),
-                StoreOffer("OZON", "ПВЗ Челны", 16990, "Рассрочка", "https://www.ozon.ru", true)
+                StoreOffer("Wildberries", "ПВЗ Челны", 16790, "Скидка WB-кошелька", "https://www.wildberries.ru/catalog/0/search.aspx?search=HONOR+X8c+8%2F256", true),
+                StoreOffer("OZON", "ПВЗ Челны", 16990, "Рассрочка", "https://www.ozon.ru/search/?text=HONOR+X8c+8%2F256", true)
             )
         ),
         Phone(
@@ -212,12 +212,12 @@ object Catalog {
             photoUrl = "https://image01.realme.net/general/20250403/174367344340048fc865b1978495aaf45046bd9a508b3.png",
             photoRes = "phone_9",
             offline = listOf(
-                StoreOffer("М.Видео", "пр. Мира, 49А", 17599, "Топ Price.ru 06/2026", "https://www.mvideo.ru", false),
-                StoreOffer("DNS", "пр-т Сююмбике, 67В", 17990, "Самовывоз", "https://www.dns-shop.ru", false)
+                StoreOffer("М.Видео", "пр. Мира, 49А", 17599, "Топ Price.ru 06/2026", "https://www.mvideo.ru/search?query=realme+14+8%2F256", false),
+                StoreOffer("DNS", "пр-т Сююмбике, 67В", 17990, "Самовывоз", "https://www.dns-shop.ru/search/?q=realme+14+8%2F256", false)
             ),
             online = listOf(
-                StoreOffer("Яндекс Маркет", "Доставка в Челны", 17599, "5G-версия, IP69", "https://market.yandex.ru", true),
-                StoreOffer("OZON", "ПВЗ Челны", 17790, "Быстрая доставка", "https://www.ozon.ru", true)
+                StoreOffer("Яндекс Маркет", "Доставка в Челны", 17599, "5G-версия, IP69", "https://market.yandex.ru/search?text=realme+14+8%2F256", true),
+                StoreOffer("OZON", "ПВЗ Челны", 17790, "Быстрая доставка", "https://www.ozon.ru/search/?text=realme+14+8%2F256", true)
             )
         ),
         Phone(
@@ -231,12 +231,12 @@ object Catalog {
             photoUrl = "https://cdn.kalvo.com/uploads/img/gallery/69477-tecno-camon-40-6.jpg",
             photoRes = "phone_10",
             offline = listOf(
-                StoreOffer("Эльдорадо", "пр. Московский, 140", 17199, "Рассрочка 0-0-12", "https://www.eldorado.ru", false),
-                StoreOffer("DNS", "Московский пр-т, 128А", 17490, "В наличии", "https://www.dns-shop.ru", false)
+                StoreOffer("Эльдорадо", "пр. Московский, 140", 17199, "Рассрочка 0-0-12", "https://www.eldorado.ru/search/catalog.php?q=TECNO+Camon+40+8%2F256", false),
+                StoreOffer("DNS", "Московский пр-т, 128А", 17490, "В наличии", "https://www.dns-shop.ru/search/?q=TECNO+Camon+40+8%2F256", false)
             ),
             online = listOf(
-                StoreOffer("OZON", "ПВЗ Челны", 16890, "Цена с картой Ozon", "https://www.ozon.ru", true),
-                StoreOffer("Ситилинк", "Доставка в Челны", 17190, "Клубные бонусы", "https://www.citilink.ru", true)
+                StoreOffer("OZON", "ПВЗ Челны", 16890, "Цена с картой Ozon", "https://www.ozon.ru/search/?text=TECNO+Camon+40+8%2F256", true),
+                StoreOffer("Ситилинк", "Доставка в Челны", 17190, "Клубные бонусы", "https://www.citilink.ru/search/?text=TECNO+Camon+40+8%2F256", true)
             )
         )
     )

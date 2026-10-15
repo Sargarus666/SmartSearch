@@ -132,12 +132,8 @@ class DetailActivity : AppCompatActivity() {
         col.addView(h("🛒 Онлайн • доставка в Челны"))
         ph.online.forEach { col.addView(storeCard(it)) }
 
-        col.addView(Button(ctx).apply {
-            text = "Назад"; setOnClickListener { finish() }
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-                topMargin = (16 * dp).toInt()
-            }
+        col.addView(tonalButton(ctx, "Назад к списку") { finish() }.also {
+            (it.layoutParams as LinearLayout.LayoutParams).topMargin = (16 * dp).toInt()
         })
         scroll.addView(col)
         setContentView(scroll)
@@ -169,13 +165,10 @@ class DetailActivity : AppCompatActivity() {
         })
         c.addView(TextView(this).apply { text = o.address; textSize = 12.5f })
         c.addView(TextView(this).apply { text = o.note; textSize = 12.5f })
-        c.addView(Button(this, null, android.R.attr.buttonStyleSmall).apply {
-            text = "Открыть сайт"
-            setOnClickListener {
-                try { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(o.url))) }
-                catch (_: Exception) { Toast.makeText(context, o.url, Toast.LENGTH_LONG).show() }
-            }
-        })
+        c.addView(mButton(this, "Открыть товар") {
+            try { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(o.url))) }
+            catch (_: Exception) { Toast.makeText(this@DetailActivity, o.url, Toast.LENGTH_LONG).show() }
+        }.also { (it.layoutParams as LinearLayout.LayoutParams).topMargin = (8 * dp).toInt() })
         return c
     }
 }

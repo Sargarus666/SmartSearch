@@ -282,139 +282,170 @@ class NewsFragment : BaseTab() {
     }
 }
 
-/** Вкладка 4 — настройки: всё применяется мгновенно, как в MMO Calendar. */
+/** Вкладка 4 — настройки как в MMO Calendar: сегменты, круги цветов, «О приложении». Всё применяется мгновенно. */
 class SettingsFragment : BaseTab() {
     override fun onCreateView(inf: LayoutInflater, c: ViewGroup?, b: Bundle?): View {
         val ctx = requireContext()
         val scroll = ScrollView(ctx).apply { setBackgroundColor(bgColor(ctx)) }
         val col = LinearLayout(ctx).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(ctx.dp(20), ctx.dp(20), ctx.dp(20), ctx.dp(28))
+            setPadding(ctx.dp(16), ctx.dp(20), ctx.dp(16), ctx.dp(28))
         }
-        col.addView(TextView(ctx).apply {
-            text = "Настройки"; textSize = 24f
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-            setTextColor(fgColor(ctx))
-        })
+        col.addView(groupCard(ctx, "Тема", segmented(ctx,
+            listOf("system" to "Система", "light" to "Светлая", "dark" to "Тёмная"),
+            Prefs.theme(ctx)) { Prefs.setTheme(ctx, it); activity?.recreate() }))
 
-        col.addView(sectionLabel(ctx, "ТЕМА"))
-        col.addView(themeCards())
+        col.addView(groupCard(ctx, "Стиль", segmented(ctx,
+            listOf("material" to "Material You", "classic" to "Классика", "mono" to "Монохром"),
+            Prefs.style(ctx)) { Prefs.setStyle(ctx, it); activity?.recreate() }))
 
-        col.addView(sectionLabel(ctx, "СТИЛЬ"))
-        col.addView(styleCards())
-
-        col.addView(sectionLabel(ctx, "ОСНОВНОЙ ЦВЕТ"))
-        Prefs.ACCENT_NAMES.forEachIndexed { i, name ->
-            val sel = Prefs.accent(ctx) == i
-            val row = LinearLayout(ctx).apply {
-                orientation = LinearLayout.HORIZONTAL
-                gravity = android.view.Gravity.CENTER_VERTICAL
-                background = GradientDrawable().apply {
-                    setColor(cardColor(ctx)); cornerRadius = ctx.dp(20).toFloat()
-                    if (sel) setStroke(ctx.dp(2), Prefs.ACCENTS[i])
-                }
-                setPadding(ctx.dp(16), ctx.dp(12), ctx.dp(16), ctx.dp(12))
-                layoutParams = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-                    topMargin = ctx.dp(8)
-                }
-                isClickable = true; isFocusable = true
-                setOnClickListener { Prefs.setAccent(ctx, i); activity?.recreate() }
-            }
-            row.addView(View(ctx).apply {
-                layoutParams = LinearLayout.LayoutParams(ctx.dp(22), ctx.dp(22)).apply {
-                    marginEnd = ctx.dp(12)
-                }
-                background = GradientDrawable().apply {
-                    shape = GradientDrawable.OVAL; setColor(Prefs.ACCENTS[i])
-                }
-            })
-            row.addView(TextView(ctx).apply {
-                text = name; textSize = 15f
-                typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-                setTextColor(fgColor(ctx))
-                layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
-            })
-            if (sel) row.addView(TextView(ctx).apply {
-                text = "●"; textSize = 16f; setTextColor(Prefs.ACCENTS[i])
-            })
-            col.addView(row)
-        }
-
-        col.addView(TextView(ctx).apply {
-            text = "Набережные Челны • цены DNS / М.Видео / Эльдорадо / OZON / WB / Маркет\nВерсия 1.2 • RAM только физическая ≥ 8 ГБ"
-            setTextColor(subColor(ctx)); textSize = 12.5f
-            setPadding(0, ctx.dp(20), 0, 0)
-        })
+        col.addView(colorGroup(ctx))
+        col.addView(aboutGroup(ctx))
         scroll.addView(col)
         return scroll
     }
 
-    private fun optionCard(title: String, desc: String, selected: Boolean, onClick: () -> Unit): LinearLayout {
-        val ctx = requireContext()
+    /** Карточка группы с фиолетовым заголовком — как в MMO. */
+    private fun groupCard(ctx: android.content.Context, title: String, body: View): LinearLayout =
+        LinearLayout(ctx).apply {
+            orientation = LinearLayout.VERTICAL
+            background = GradientDrawable().apply {
+                setColor(cardColor(ctx)); cornerRadius = ctx.dp(22).toFloat()
+            }
+            setPadding(ctx.dp(18), ctx.dp(16), ctx.dp(18), ctx.dp(18))
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+                topMargin = ctx.dp(12)
+            }
+            elevation = ctx.dp(2).toFloat()
+            addView(TextView(ctx).apply {
+                text = title; textSize = 17f
+                typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+                setTextColor(accent2(ctx))
+                setPadding(0, 0, 0, ctx.dp(12))
+            })
+            addView(body)
+        }
+
+    /** Сегмент-переключатель: тёмная капсула, выбранное — фиолетовая пилюля. */
+    private fun segmented(
+        ctx: android.content.Context,
+        items: List<Pair<String, String>>,
+        current: String,
+        onPick: (String) -> Unit
+    ): LinearLayout {
         val ac = accent2(ctx)
         return LinearLayout(ctx).apply {
             orientation = LinearLayout.HORIZONTAL
-            gravity = android.view.Gravity.CENTER_VERTICAL
             background = GradientDrawable().apply {
-                setColor(cardColor(ctx)); cornerRadius = ctx.dp(20).toFloat()
-                if (selected) setStroke(ctx.dp(2), ac)
+                setColor(if (isDark(ctx)) 0xFF0B0812.toInt() else 0xFFF0EDF5.toInt())
+                cornerRadius = ctx.dp(99).toFloat() * 100
             }
-            setPadding(ctx.dp(16), ctx.dp(13), ctx.dp(16), ctx.dp(13))
-            layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-                topMargin = ctx.dp(8)
+            setPadding(ctx.dp(5), ctx.dp(5), ctx.dp(5), ctx.dp(5))
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            items.forEach { (v, name) ->
+                val sel = v == current
+                addView(TextView(ctx).apply {
+                    text = name; textSize = 13.5f; gravity = Gravity.CENTER
+                    typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+                    setTextColor(if (sel) 0xFFFFFFFF.toInt() else subColor(ctx))
+                    background = GradientDrawable().apply {
+                        setColor(if (sel) ac else 0x00000000)
+                        cornerRadius = ctx.dp(99).toFloat() * 100
+                    }
+                    setPadding(0, ctx.dp(11), 0, ctx.dp(11))
+                    layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+                    isClickable = true; isFocusable = true
+                    setOnClickListener { onPick(v) }
+                })
             }
-            isClickable = true; isFocusable = true
-            val tx = LinearLayout(ctx).apply {
+        }
+    }
+
+    /** Ряд кругов цветов с галочкой + подпись — как в MMO. */
+    private fun colorGroup(ctx: android.content.Context): LinearLayout {
+        val ac = accent2(ctx)
+        val cur = Prefs.accent(ctx)
+        val row = LinearLayout(ctx).apply {
+            orientation = LinearLayout.HORIZONTAL
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        }
+        val scroll = HorizontalScrollView(ctx).apply {
+            isHorizontalScrollBarEnabled = false
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        }
+        Prefs.ACCENT_NAMES.forEachIndexed { i, _ ->
+            val sel = i == cur
+            val cell = LinearLayout(ctx).apply {
                 orientation = LinearLayout.VERTICAL
-                layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+                gravity = Gravity.CENTER
+                layoutParams = LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+                    marginEnd = ctx.dp(12)
+                }
+                isClickable = true; isFocusable = true
+                setOnClickListener { Prefs.setAccent(ctx, i); activity?.recreate() }
             }
-            tx.addView(TextView(ctx).apply {
-                text = title; textSize = 15f
+            val circle = FrameLayout(ctx).apply {
+                layoutParams = LinearLayout.LayoutParams(ctx.dp(56), ctx.dp(56))
+                background = GradientDrawable().apply {
+                    shape = GradientDrawable.OVAL
+                    setColor(Prefs.ACCENTS[i])
+                    if (sel) setStroke(ctx.dp(3), 0xFFFFFFFF.toInt())
+                }
+            }
+            if (sel) circle.addView(TextView(ctx).apply {
+                text = "✓"; textSize = 22f
+                typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+                setTextColor(0xFFFFFFFF.toInt()); gravity = Gravity.CENTER
+                layoutParams = FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            })
+            cell.addView(circle)
+            row.addView(cell)
+        }
+        scroll.addView(row)
+        val body = LinearLayout(ctx).apply { orientation = LinearLayout.VERTICAL }
+        body.addView(scroll)
+        body.addView(TextView(ctx).apply {
+            text = Prefs.ACCENT_NAMES[cur % Prefs.ACCENT_NAMES.size]
+            textSize = 14f; typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            setTextColor(fgColor(ctx)); setPadding(0, ctx.dp(10), 0, 0)
+        })
+        return groupCard(ctx, "Основной цвет", body)
+    }
+
+    /** «О приложении»: строки + описание — как в MMO. */
+    private fun aboutGroup(ctx: android.content.Context): LinearLayout {
+        val body = LinearLayout(ctx).apply { orientation = LinearLayout.VERTICAL }
+        fun infoRow(k: String, v: String) {
+            val r = LinearLayout(ctx).apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = Gravity.CENTER_VERTICAL
+                setPadding(0, ctx.dp(7), 0, ctx.dp(7))
+            }
+            r.addView(TextView(ctx).apply {
+                text = k; textSize = 15f; setTextColor(subColor(ctx))
+                layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+            })
+            r.addView(TextView(ctx).apply {
+                text = v; textSize = 15f
                 typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
                 setTextColor(fgColor(ctx))
             })
-            tx.addView(TextView(ctx).apply {
-                text = desc; textSize = 12.5f; setTextColor(subColor(ctx))
-            })
-            addView(tx)
-            addView(View(ctx).apply {
-                layoutParams = LinearLayout.LayoutParams(ctx.dp(22), ctx.dp(22))
-                background = GradientDrawable().apply {
-                    shape = GradientDrawable.OVAL
-                    if (selected) setColor(ac)
-                    else setStroke(ctx.dp(2), subColor(ctx))
-                }
-            })
-            setOnClickListener { onClick() }
+            body.addView(r)
         }
-    }
-
-    private fun themeCards(): LinearLayout {
-        val col = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL }
-        val cur = Prefs.theme(requireContext())
-        listOf(
-            "system" to ("Системная" to "Как в телефоне"),
-            "light" to ("Светлая" to "Дневной режим"),
-            "dark" to ("Тёмная" to "Ночной режим")).forEach { (v, t) ->
-            col.addView(optionCard(t.first, t.second, cur == v) {
-                Prefs.setTheme(requireContext(), v); activity?.recreate()
-            })
-        }
-        return col
-    }
-
-    private fun styleCards(): LinearLayout {
-        val col = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL }
-        val cur = Prefs.style(requireContext())
-        listOf(
-            "material" to ("Material You" to "Системный акцент Android 12+"),
-            "classic" to ("Классический" to "Фирменный красный"),
-            "mono" to ("Монохром" to "Чёрно-белый")).forEach { (v, t) ->
-            col.addView(optionCard(t.first, t.second, cur == v) {
-                Prefs.setStyle(requireContext(), v); activity?.recreate()
-            })
-        }
-        return col
+        infoRow("Версия", "1.8")
+        infoRow("Город", "Челны")
+        infoRow("Каталог", "RAM ≥ 8 ГБ • 10–20 тыс ₽")
+        body.addView(TextView(ctx).apply {
+            text = "Сканер цен и акций на бюджетные смартфоны в Набережных Челнах. Цены-ориентиры DNS, М.Видео, Эльдорадо, OZON, WB и Маркета."
+            textSize = 13.5f; setTextColor(subColor(ctx))
+            setPadding(0, ctx.dp(8), 0, 0)
+        })
+        return groupCard(ctx, "О приложении", body)
     }
 }

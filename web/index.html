@@ -34,11 +34,11 @@ body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-s
 .ver{font-size:11px;color:var(--acc);border:1px solid var(--acc);border-radius:99px;padding:2px 10px;font-weight:700;white-space:nowrap}
 .sp{flex:1}
 /* ===== HERO ===== */
-.hero{position:relative;text-align:center;padding:64px 0 10px;overflow:hidden}
+.hero{position:relative;text-align:center;padding:44px 0 6px;overflow:hidden}
 .hero .glow{position:absolute;left:50%;top:-140px;width:min(700px,100vw);height:440px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(124,92,255,.32),transparent 70%);pointer-events:none;animation:breathe 5s ease-in-out infinite}
 @keyframes breathe{50%{opacity:.6;transform:translateX(-50%) scale(1.12)}}
 .pill{display:inline-block;background:var(--acc-soft);border:1px solid rgba(124,92,255,.55);color:#cfc2ff;border-radius:99px;padding:8px 22px;font-size:12px;font-weight:800;letter-spacing:2.5px;max-width:100%}
-h1{font-size:clamp(32px,7vw,52px);margin:20px 0 8px;line-height:1.08;letter-spacing:-1px;overflow-wrap:break-word}
+h1{font-size:clamp(30px,7vw,44px);margin:0 0 8px;line-height:1.1;letter-spacing:-1px;overflow-wrap:break-word}
 h1 .grad{background:linear-gradient(92deg,#a98fff 10%,var(--acc) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sub{color:var(--sub);font-size:16px;max-width:620px;margin:0 auto;line-height:1.6}
 .btnrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
@@ -51,9 +51,6 @@ h1 .grad{background:linear-gradient(92deg,#a98fff 10%,var(--acc) 90%);-webkit-ba
 .stat b{font-size:26px;display:block}
 .stat span{color:var(--sub);font-size:12px}
 /* marquee */
-.marquee{overflow:hidden;white-space:nowrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:40px 0 0;font-size:13px;color:var(--gold);max-width:100%}
-.marquee span{display:inline-block;padding:12px 0;animation:tick 30s linear infinite}
-@keyframes tick{to{transform:translateX(-50%)}}
 /* tabs */
 nav.tabs{position:fixed;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:rgba(14,14,20,.96);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:99px;display:flex;padding:6px;z-index:50;box-shadow:0 14px 44px rgba(0,0,0,.6);max-width:calc(100vw - 16px);overflow-x:auto;scrollbar-width:none}
 nav.tabs::-webkit-scrollbar{display:none}
@@ -101,6 +98,7 @@ nav.tabs button.on .dot{opacity:1;background:#fff}
 .shop{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:14px;padding:9px 12px;margin:6px 0;transition:.2s}
 .shop:hover{border-color:var(--acc)}
 .shop b{color:#cfc2ff}
+.shop a{color:#b7a6ff;font-weight:700}
 h4.st{font-size:11px;letter-spacing:2.5px;color:var(--gold);margin:16px 0 4px;text-transform:uppercase}
 /* news */
 .news{background:linear-gradient(180deg,#1e1830,#141021);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:14px;transition:.25s}
@@ -135,31 +133,22 @@ footer a{color:#cfc2ff}
 </div>
 <canvas id="fx"></canvas>
 <header class="topbar"><div class="topbar-in">
-  <div class="logo">📱</div><div class="brand">СмартСкан</div><span class="ver">1.7</span>
+  <div class="logo">📱</div><div class="brand">СмартСкан</div><span class="ver">1.8</span>
   <div class="sp"></div>
-  <a class="btn" style="padding:8px 16px;font-size:13px" id="apkTop" href="https://github.com/Sargarus666/SmartSearch/releases/download/v1.7/chelny-smartscan-1.7.apk">Скачать APK</a>
+  <a class="btn" style="padding:8px 16px;font-size:13px" id="apkTop" href="https://github.com/Sargarus666/SmartSearch/releases/download/v1.8/chelny-smartscan-1.8.apk">Скачать APK</a>
 </div></header>
 <div class="wrap">
   <header class="hero" id="top">
     <div class="glow"></div>
-    <div class="pill">НАБЕРЕЖНЫЕ ЧЕЛНЫ • RAM ≥ 8 ГБ • 10–20К ₽</div>
-    <h1>Топ смартфонов<br><span class="grad">без переплат</span></h1>
-    <p class="sub">Сканер цен, скидок и акций. Только модели из свежих топов осени-2026. Настоящие фото, офлайн-магазины Челнов и онлайн с доставкой.</p>
+    <h1>Сканер смартфонов</h1>
+    <p class="sub">Цены и скидки на топовые бюджетники 10–20 тыс ₽ в Набережных Челнах.</p>
     <div class="btnrow">
       <button class="btn" id="scanBtn">Сканировать цены</button>
-      <a class="btn ghost" id="apkBtn" href="https://github.com/Sargarus666/SmartSearch/releases/download/v1.7/chelny-smartscan-1.7.apk">Скачать APK</a>
-    </div>
-    <div class="stats">
-      <div class="stat"><b data-count="10">0</b><span>моделей в топе</span></div>
-      <div class="stat"><b><span data-count="8">0</span> ГБ</b><span>минимум RAM</span></div>
-      <div class="stat"><b>−<span data-count="23">0</span>%</b><span>макс. скидка</span></div>
-      <div class="stat"><b data-count="14">0</b><span>магазинов</span></div>
+      <a class="btn ghost" id="apkBtn" href="https://github.com/Sargarus666/SmartSearch/releases/download/v1.8/chelny-smartscan-1.8.apk">Скачать APK</a>
     </div>
     <div class="scanbar" id="scanbar"><i id="scanfill"></i></div>
     <p class="sub" id="scanLabel" style="font-size:13px"></p>
   </header>
-
-  <div class="marquee"><span id="tick"></span></div>
 
   <nav class="tabs" id="tabs">
     <button data-t="list" class="on"><span class="dot"></span>Список</button>
@@ -225,15 +214,10 @@ const grid=document.getElementById("grid"),favGrid=document.getElementById("favG
 /* ---------- прелоадер ---------- */
 window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loader").classList.add("done"),1500));
 setTimeout(()=>document.getElementById("loader").classList.add("done"),3500);
-/* ---------- бегущая строка ---------- */
-document.getElementById("tick").textContent=(PHONES.map(p=>"◆ "+p.brand+" "+p.model+" — "+fmt(p.price)).join("   ")+"   ").repeat(2);
-/* ---------- счётчики ---------- */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
-  const end=+e.target.dataset.count,t0=performance.now();
-  (function step(t){const k=Math.min(1,(t-t0)/1200);e.target.textContent=Math.round(end*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step)})(t0);
-}),{threshold:.4});
-document.querySelectorAll("[data-count]").forEach(el=>io.observe(el));
 /* ---------- карточки ---------- */
+const SHOP_SEARCH={"DNS":q=>"https://www.dns-shop.ru/search/?q="+q,"М.Видео":q=>"https://www.mvideo.ru/search?query="+q,"Эльдорадо":q=>"https://www.eldorado.ru/search/catalog.php?q="+q,"OZON":q=>"https://www.ozon.ru/search/?text="+q,"Wildberries":q=>"https://www.wildberries.ru/catalog/0/search.aspx?search="+q,"Яндекс Маркет":q=>"https://market.yandex.ru/search?text="+q,"Ситилинк":q=>"https://www.citilink.ru/search/?text="+q,"DNS онлайн":q=>"https://www.dns-shop.ru/search/?q="+q,"DNS-Shop онлайн":q=>"https://www.dns-shop.ru/search/?q="+q,"М.Видео онлайн":q=>"https://www.mvideo.ru/search?query="+q};
+function shopUrl(shop,p){const f=SHOP_SEARCH[shop];if(!f)return null;return f(encodeURIComponent(p.brand+" "+p.model))}
+function shopBox(o,p){const u=shopUrl(o[0],p);return '<div class="shop"><b>'+o[0]+'</b> — '+fmt(o[2])+'<br>'+o[1]+(u?'<br><a href="'+u+'" target="_blank" rel="noopener">Открыть товар →</a>':'')+'</div>'}
 function card(p){
   const d=Math.round((p.old-p.price)/p.old*100);
   const el=document.createElement("div");el.className="card";
@@ -246,9 +230,9 @@ function card(p){
    '<div class="stars">★ '+p.rate+' &nbsp;•&nbsp; '+fmt(Math.min.apply(null,p.off.map(o=>o[2])))+' &nbsp;•&nbsp; онлайн '+fmt(Math.min.apply(null,p.on.map(o=>o[2])))+'</div>'+
    '<div class="rowbtns"><button class="ic fav'+(favs.has(p.id)?" on":"")+'">★ В избранное</button><button class="ic sh">Поделиться</button></div>'+
    '<div class="det"><div class="det-in"><h4 class="st">Офлайн • Челны</h4>'+
-     p.off.map(o=>'<div class="shop"><b>'+o[0]+'</b> — '+fmt(o[2])+'<br>'+o[1]+'</div>').join("")+
+     p.off.map(o=>shopBox(o,p)).join("")+
      '<h4 class="st">Онлайн • в Челны</h4>'+
-     p.on.map(o=>'<div class="shop"><b>'+o[0]+'</b> — '+fmt(o[2])+'<br>'+o[1]+'</div>').join("")+
+     p.on.map(o=>shopBox(o,p)).join("")+
    '</div></div>'+
    '<div class="rowbtns"><button class="ic primary more" style="width:100%">Магазины · онлайн / офлайн</button></div></div>';
   el.querySelector(".more").onclick=()=>el.querySelector(".det").classList.toggle("open");
