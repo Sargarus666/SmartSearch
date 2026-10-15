@@ -39,10 +39,11 @@ class MainActivity : AppCompatActivity() {
             setBackgroundColor(bgColor(this@MainActivity))
         }
         val container = FrameLayout(this).apply {
-            id = 1001
+            id = View.generateViewId()
             layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f)
         }
+        containerId = container.id
         root.addView(container)
         root.addView(buildNav())
         setContentView(root)
@@ -123,6 +124,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private var containerId = 0
+
     private fun showTab() {
         val f: Fragment = when (tab) {
             1 -> FavFragment()
@@ -130,7 +133,7 @@ class MainActivity : AppCompatActivity() {
             3 -> SettingsFragment()
             else -> ListFragment()
         }
-        supportFragmentManager.beginTransaction().replace(1001, f).commit()
+        supportFragmentManager.beginTransaction().replace(containerId, f).commit()
     }
 
     override fun onSaveInstanceState(o: Bundle) {
