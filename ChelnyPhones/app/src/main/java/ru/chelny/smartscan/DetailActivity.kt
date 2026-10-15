@@ -33,7 +33,7 @@ class DetailActivity : AppCompatActivity() {
         val all = (RemoteCatalog.live ?: emptyList()) + Catalog.phones
         val seen = HashSet<Int>()
         val ph = all.firstOrNull { it.id == id && seen.add(it.id) } ?: Catalog.phones[0]
-        val ac = accent(ctx)
+        val ac = accent2(ctx)
 
         val scroll = ScrollView(ctx).apply { setBackgroundColor(bgColor(ctx)) }
         val col = LinearLayout(ctx).apply {
@@ -57,7 +57,7 @@ class DetailActivity : AppCompatActivity() {
         col.addView(TextView(ctx).apply {
             text = "RAM ${ph.ramGb} ГБ физическая • ${ph.storageGb} ГБ • ${ph.cpu}"
             textSize = 13.5f
-            setTextColor(surface(ctx, com.google.android.material.R.attr.colorOnSurfaceVariant, 0xFF44474F.toInt()))
+            setTextColor(subColor(ctx))
         })
         val priceRow = LinearLayout(ctx).apply {
             orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL
@@ -140,7 +140,7 @@ class DetailActivity : AppCompatActivity() {
         val c = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             background = GradientDrawable().apply {
-                setColor(surface(context, com.google.android.material.R.attr.colorSurfaceVariant, 0xFFF3F4F9.toInt()))
+                setColor(cardColor(context))
                 cornerRadius = 20 * dp
             }
             setPadding((16 * dp).toInt(), (12 * dp).toInt(), (16 * dp).toInt(), (12 * dp).toInt())

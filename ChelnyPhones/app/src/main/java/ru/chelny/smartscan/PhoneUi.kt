@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -29,11 +28,6 @@ fun accent(ctx: Context): Int {
 fun surface(ctx: Context, attr: Int, fallback: Int): Int {
     val tv = TypedValue()
     return if (ctx.theme.resolveAttribute(attr, tv, true)) tv.data else fallback
-}
-
-fun photoResId(ctx: Context, ph: Phone): Int {
-    val id = ctx.resources.getIdentifier(ph.photoRes, "drawable", ctx.packageName)
-    return if (id != 0) id else android.R.drawable.ic_menu_camera
 }
 
 fun sharePhone(ctx: Context, ph: Phone) {
@@ -59,25 +53,6 @@ fun chip(ctx: Context, text: String, bg: Int, fg: Int): TextView {
         gravity = Gravity.CENTER
         background = GradientDrawable().apply { setColor(bg); cornerRadius = 20 * dp }
         setPadding((10 * dp).toInt(), (5 * dp).toInt(), (10 * dp).toInt(), (5 * dp).toInt())
-    }
-}
-
-/** Реальное фото: сначала сеть (Coil), без сети — встроенный официальный рендер. */
-fun phonePhoto(ctx: Context, ph: Phone, wDp: Int, hDp: Int): ImageView {
-    val dp = ctx.resources.displayMetrics.density
-    return ImageView(ctx).apply {
-        layoutParams = ViewGroup.LayoutParams((wDp * dp).toInt(), (hDp * dp).toInt())
-        scaleType = ImageView.ScaleType.CENTER_CROP
-        background = GradientDrawable().apply {
-            setColor(0xFFE8EAF6.toInt()); cornerRadius = 20 * dp
-        }
-        clipToOutline = true
-        load(ph.photoUrl) {
-            crossfade(true)
-            fallback(photoResId(ctx, ph))
-            error(photoResId(ctx, ph))
-            placeholder(photoResId(ctx, ph))
-        }
     }
 }
 

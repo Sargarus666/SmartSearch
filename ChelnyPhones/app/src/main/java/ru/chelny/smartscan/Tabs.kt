@@ -69,10 +69,9 @@ class ListFragment : BaseTab() {
             progressTintList = android.content.res.ColorStateList.valueOf(accent2(ctx))
         }
         header.addView(progress)
-        header.addView(mButton(ctx, "Сканировать цены") { runScan() }.apply {
-            (layoutParams as ViewGroup.LayoutParams)
-            setPadding(0, 0, 0, 0)
-        }.also { (it.layoutParams as LinearLayout.LayoutParams).topMargin = ctx.dp(10) })
+        header.addView(mButton(ctx, "Сканировать цены") { runScan() }.also {
+            (it.layoutParams as LinearLayout.LayoutParams).topMargin = ctx.dp(10)
+        })
         root.addView(header)
 
         root.addView(searchField(ctx, "Поиск: redmi, tecno, amoled…") { query = it; refresh() }.apply {

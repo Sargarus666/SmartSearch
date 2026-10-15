@@ -11,6 +11,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import coil.load
 
 /** Кастомный UI-кит в духе MMO Calendar: всё рисуется кодом, детерминировано. */
 
@@ -66,7 +67,7 @@ fun mButton(ctx: Context, text: String, onClick: () -> Unit): Button =
         val ac = accent2(ctx)
         background = pillBg(ac)
         setPadding(ctx.dp(20), ctx.dp(13), ctx.dp(20), ctx.dp(13))
-        layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         stateListAnimator = null
         setOnClickListener { onClick() }
     }
@@ -84,7 +85,7 @@ fun tonalButton(ctx: Context, text: String, onClick: () -> Unit): Button =
             if (isDark(ctx)) blend(ac, 0xFF0E0B1A.toInt(), 0.22f)
             else blend(ac, 0xFFFFFFFF.toInt(), 0.16f))
         setPadding(ctx.dp(18), ctx.dp(11), ctx.dp(18), ctx.dp(11))
-        layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         stateListAnimator = null
         setOnClickListener { onClick() }
     }
@@ -97,9 +98,32 @@ fun blend(a: Int, b: Int, t: Float): Int {
     return (0xFF shl 24) or (r shl 16) or (g shl 8) or bl
 }
 
+fun photoResId(ctx: Context, ph: Phone): Int {
+    val id = ctx.resources.getIdentifier(ph.photoRes, "drawable", ctx.packageName)
+    return if (id != 0) id else android.R.drawable.ic_menu_camera
+}
+
+/** Реальное фото: сначала сеть (Coil), без сети — встроенный официальный рендер. */
+fun phonePhoto(ctx: Context, ph: Phone, wDp: Int, hDp: Int): ImageView {
+    val dp = ctx.resources.displayMetrics.density
+    return ImageView(ctx).apply {
+        layoutParams = LinearLayout.LayoutParams((wDp * dp).toInt(), (hDp * dp).toInt())
+        scaleType = ImageView.ScaleType.CENTER_CROP
+        background = GradientDrawable().apply {
+            setColor(0xFFE8EAF6.toInt()); cornerRadius = 20 * dp
+        }
+        clipToOutline = true
+        load(ph.photoUrl) {
+            crossfade(true)
+            fallback(photoResId(ctx, ph))
+            error(photoResId(ctx, ph))
+            placeholder(photoResId(ctx, ph))
+        }
+    }
+}
+
 /** Фильтр-чип пилюлей: выбран = акцент, нет = поверхность. */
-fun chipView(ctx: Context, text: String, selected: Boolean, onClick: () -> Unit): TextView {
-    val ac = accent2(ctx)
+fun chipView(ctx: Context, text: String, selected: Boolean, onClick: () -> Unit): TextView {    val ac = accent2(ctx)
     return TextView(ctx).apply {
         this.text = text
         textSize = 13f
