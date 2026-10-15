@@ -104,13 +104,16 @@ class ListFragment : BaseTab() {
         root.addView(refresher)
         refresh()
         RemoteCatalog.load { res, ok ->
-            if (ok && res != null && res.isNotEmpty()) {
-                remote = res
-                scanLabel.text = "Онлайн-каталог • ${res.size} моделей • из сети"
-                refresh()
-            } else {
-                scanLabel.text = "Встроенный каталог • без сети • ${Catalog.phones.size} моделей"
-            }
+            try {
+                if (!isAdded) return@load
+                if (ok && res != null && res.isNotEmpty()) {
+                    remote = res
+                    scanLabel.text = "Онлайн-каталог • ${res.size} моделей • из сети"
+                    refresh()
+                } else {
+                    scanLabel.text = "Встроенный каталог • без сети • ${Catalog.phones.size} моделей"
+                }
+            } catch (_: Exception) {}
         }
         return root
     }
@@ -174,12 +177,15 @@ class ListFragment : BaseTab() {
                     lastScan = SimpleDateFormat("HH:mm, dd.MM", Locale("ru")).format(Date())
                     scanLabel.text = "Обновлено: $lastScan • Челны • ${filtered().size} моделей"
                     RemoteCatalog.load { res, ok ->
-                        if (ok && res != null && res.isNotEmpty()) remote = res
-                        scanLabel.text = "Обновлено: $lastScan • Челны • ${filtered().size} моделей"
-                        refresh()
+                        try {
+                            if (!isAdded) return@load
+                            if (ok && res != null && res.isNotEmpty()) remote = res
+                            scanLabel.text = "Обновлено: $lastScan • Челны • ${filtered().size} моделей"
+                            refresh()
+                        } catch (_: Exception) {}
                     }
                     refresh()
-                    Toast.makeText(requireContext(), "Готово: цены Челнов актуальны", Toast.LENGTH_SHORT).show()
+                    try { Toast.makeText(requireContext(), "Готово: цены Челнов актуальны", Toast.LENGTH_SHORT).show() } catch (_: Exception) {}
                 }
             }
         }

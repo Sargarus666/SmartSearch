@@ -42,7 +42,16 @@ fun sharePhone(ctx: Context, ph: Phone) {
     val i = Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"; putExtra(Intent.EXTRA_TEXT, text)
     }
-    ctx.startActivity(Intent.createChooser(i, "Поделиться смартфоном"))
+    try {
+        ctx.startActivity(Intent.createChooser(i, "Поделиться смартфоном"))
+    } catch (_: Exception) {
+        try {
+            android.content.ClipboardManager::class.java
+            val cm = ctx.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+            cm.setPrimaryClip(android.content.ClipData.newPlainText("phone", text))
+            Toast.makeText(ctx, "Скопировано в буфер", Toast.LENGTH_SHORT).show()
+        } catch (_: Exception) {}
+    }
 }
 
 fun chip(ctx: Context, text: String, bg: Int, fg: Int): TextView {
@@ -88,6 +97,21 @@ class PhoneAdapter(
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(h: VH, pos: Int) {
+        try {
+            bindItem(h, pos)
+        } catch (_: Exception) {
+            try {
+                h.root.removeAllViews()
+                h.root.addView(TextView(h.root.context).apply {
+                    text = "Не удалось показать карточку"
+                    textSize = 14f
+                    setPadding(28, 28, 28, 28)
+                })
+            } catch (_: Exception) {}
+        }
+    }
+
+    private fun bindItem(h: VH, pos: Int) {
         val ctx = h.root.context
         val dp = ctx.resources.displayMetrics.density
         val ph = items[pos]
@@ -163,7 +187,8 @@ class PhoneAdapter(
             setPadding(0, (4 * dp).toInt(), 0, 0)
         })
         info.addView(TextView(ctx).apply {
-            val minOff = ph.offline.minOf { it.price }; val minOn = ph.online.minOf { it.price }
+            val minOff = ph.offline.minOfOrNull { it.price } ?: ph.price
+            val minOn = ph.online.minOfOrNull { it.price } ?: ph.price
             text = "★ ${ph.rating} · 🏬 ${fmtPrice(minOff)} · 🛒 ${fmtPrice(minOn)}"
             setTextColor(onVar); textSize = 12f
             setPadding(0, (2 * dp).toInt(), 0, 0)

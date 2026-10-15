@@ -19,13 +19,28 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onCreate(b: Bundle?) {
-        when (Prefs.theme(this)) {
-            "light" -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO)
-            "dark" -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES)
-            else -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        }
-        DynamicColors.applyToActivityIfAvailable(this)
+        try {
+            when (Prefs.theme(this)) {
+                "light" -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO)
+                "dark" -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES)
+                else -> androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+        } catch (_: Exception) {}
         super.onCreate(b)
+        try { DynamicColors.applyToActivityIfAvailable(this) } catch (_: Exception) {}
+        try {
+            buildContent()
+        } catch (e: Exception) {
+            try {
+                setContentView(TextView(this).apply {
+                    text = "Не удалось открыть карточку.\n${e.message}"
+                    textSize = 15f; setPadding(48, 48, 48, 48)
+                })
+            } catch (_: Exception) { finish() }
+        }
+    }
+
+    private fun buildContent() {
         applyBars(this)
         val ctx = this
         val dp = resources.displayMetrics.density

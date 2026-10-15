@@ -22,33 +22,44 @@ class MainActivity : AppCompatActivity() {
     private var tabViews = ArrayList<LinearLayout>()
 
     override fun onCreate(b: Bundle?) {
-        when (Prefs.theme(this)) {
-            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        }
-        DynamicColors.applyToActivityIfAvailable(this)
+        try {
+            when (Prefs.theme(this)) {
+                "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+        } catch (_: Exception) {}
         super.onCreate(b)
-        if (b != null) tab = b.getInt("tab", 0)
-        applyBars(this)
-        window.setBackgroundDrawableResource(android.R.color.transparent)
+        try { DynamicColors.applyToActivityIfAvailable(this) } catch (_: Exception) {}
+        try {
+            if (b != null) tab = b.getInt("tab", 0)
+            applyBars(this)
+            try { window.setBackgroundDrawableResource(android.R.color.transparent) } catch (_: Exception) {}
 
-        val root = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-            setBackgroundColor(bgColor(this@MainActivity))
+            val root = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+                setBackgroundColor(bgColor(this@MainActivity))
+            }
+            val container = FrameLayout(this).apply {
+                id = View.generateViewId()
+                layoutParams = LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f)
+            }
+            containerId = container.id
+            root.addView(container)
+            root.addView(buildNav())
+            setContentView(root)
+            refreshNav()
+            showTab()
+        } catch (e: Exception) {
+            val err = TextView(this).apply {
+                text = "Не удалось открыть экран.\n${e.message}\nПопробуй: Настройки → очистить данные."
+                textSize = 15f
+                setPadding(48, 48, 48, 48)
+            }
+            try { setContentView(err) } catch (_: Exception) {}
         }
-        val container = FrameLayout(this).apply {
-            id = View.generateViewId()
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f)
-        }
-        containerId = container.id
-        root.addView(container)
-        root.addView(buildNav())
-        setContentView(root)
-        refreshNav()
-        showTab()
     }
 
     /** Кастомный таб-бар как в MMO Calendar: пилюля + подпись всегда видна. */
@@ -106,34 +117,40 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshNav() {
-        val ac = accent2(this)
-        tabViews.forEachIndexed { i, cell ->
-            @Suppress("UNCHECKED_CAST")
-            val tagPair = cell.tag as Pair<LinearLayout, Pair<TextView, ImageView>>
-            val pill = tagPair.first
-            val label = tagPair.second.first
-            val icon = tagPair.second.second
-            val sel = i == tab
-            pill.background = GradientDrawable().apply {
-                setColor(if (sel) ac else 0x00000000)
-                cornerRadius = dp(99).toFloat() * 100
+        try {
+            val ac = accent2(this)
+            tabViews.forEachIndexed { i, cell ->
+                @Suppress("UNCHECKED_CAST")
+                val tagPair = cell.tag as Pair<LinearLayout, Pair<TextView, ImageView>>
+                val pill = tagPair.first
+                val label = tagPair.second.first
+                val icon = tagPair.second.second
+                val sel = i == tab
+                pill.background = GradientDrawable().apply {
+                    setColor(if (sel) ac else 0x00000000)
+                    cornerRadius = dp(99).toFloat() * 100
+                }
+                try {
+                    icon.imageTintList = ColorStateList.valueOf(
+                        if (sel) 0xFFFFFFFF.toInt() else subColor(this))
+                } catch (_: Exception) {}
+                label.setTextColor(if (sel) fgColor(this) else subColor(this))
             }
-            icon.imageTintList = ColorStateList.valueOf(
-                if (sel) 0xFFFFFFFF.toInt() else subColor(this))
-            label.setTextColor(if (sel) fgColor(this) else subColor(this))
-        }
+        } catch (_: Exception) {}
     }
 
     private var containerId = 0
 
     private fun showTab() {
-        val f: Fragment = when (tab) {
-            1 -> FavFragment()
-            2 -> NewsFragment()
-            3 -> SettingsFragment()
-            else -> ListFragment()
-        }
-        supportFragmentManager.beginTransaction().replace(containerId, f).commit()
+        try {
+            val f: Fragment = when (tab) {
+                1 -> FavFragment()
+                2 -> NewsFragment()
+                3 -> SettingsFragment()
+                else -> ListFragment()
+            }
+            supportFragmentManager.beginTransaction().replace(containerId, f).commit()
+        } catch (_: Exception) {}
     }
 
     override fun onSaveInstanceState(o: Bundle) {

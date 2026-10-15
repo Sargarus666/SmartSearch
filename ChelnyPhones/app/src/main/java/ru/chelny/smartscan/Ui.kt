@@ -39,15 +39,19 @@ fun subColor(ctx: Context): Int =
 fun monoMode(ctx: Context): Boolean = Prefs.style(ctx) == "mono"
 
 fun accent2(ctx: Context): Int {
-    if (monoMode(ctx)) return if (isDark(ctx)) 0xFFD8D8E0.toInt() else 0xFF333338.toInt()
-    if (Prefs.style(ctx) == "classic") return Prefs.ACCENTS[Prefs.accent(ctx) % Prefs.ACCENTS.size]
-    // Material You: системный динамический цвет, иначе выбранный
-    if (Build.VERSION.SDK_INT >= 31) {
-        val tv = android.util.TypedValue()
-        if (ctx.theme.resolveAttribute(
-                com.google.android.material.R.attr.colorPrimary, tv, true) && tv.data != 0) return tv.data
+    return try {
+        if (monoMode(ctx)) return if (isDark(ctx)) 0xFFD8D8E0.toInt() else 0xFF333338.toInt()
+        if (Prefs.style(ctx) == "classic") return Prefs.ACCENTS[Prefs.accent(ctx) % Prefs.ACCENTS.size]
+        // Material You: системный динамический цвет, иначе выбранный
+        if (Build.VERSION.SDK_INT >= 31) {
+            val tv = android.util.TypedValue()
+            if (ctx.theme.resolveAttribute(
+                    com.google.android.material.R.attr.colorPrimary, tv, true) && tv.data != 0) return tv.data
+        }
+        Prefs.ACCENTS[Prefs.accent(ctx) % Prefs.ACCENTS.size]
+    } catch (_: Exception) {
+        Prefs.ACCENTS[0]
     }
-    return Prefs.ACCENTS[Prefs.accent(ctx) % Prefs.ACCENTS.size]
 }
 
 fun pillBg(color: Int, radiusDp: Float = 99f, stroke: Int = 0, strokeColor: Int = 0): GradientDrawable =
@@ -58,7 +62,7 @@ fun pillBg(color: Int, radiusDp: Float = 99f, stroke: Int = 0, strokeColor: Int 
 
 /** Главная кнопка-пилюля: акцентный фон, белый текст. */
 fun mButton(ctx: Context, text: String, onClick: () -> Unit): Button =
-    Button(ctx, null, android.R.attr.borderlessButtonStyle).apply {
+    androidx.appcompat.widget.AppCompatButton(ctx).apply {
         this.text = text
         isAllCaps = false
         textSize = 15f
@@ -68,13 +72,13 @@ fun mButton(ctx: Context, text: String, onClick: () -> Unit): Button =
         background = pillBg(ac)
         setPadding(ctx.dp(20), ctx.dp(13), ctx.dp(20), ctx.dp(13))
         layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        stateListAnimator = null
-        setOnClickListener { onClick() }
+        try { stateListAnimator = null } catch (_: Exception) {}
+        setOnClickListener { try { onClick() } catch (_: Exception) {} }
     }
 
 /** Тональная кнопка-пилюля. */
 fun tonalButton(ctx: Context, text: String, onClick: () -> Unit): Button =
-    Button(ctx, null, android.R.attr.borderlessButtonStyle).apply {
+    androidx.appcompat.widget.AppCompatButton(ctx).apply {
         this.text = text
         isAllCaps = false
         textSize = 14f
@@ -86,8 +90,8 @@ fun tonalButton(ctx: Context, text: String, onClick: () -> Unit): Button =
             else blend(ac, 0xFFFFFFFF.toInt(), 0.16f))
         setPadding(ctx.dp(18), ctx.dp(11), ctx.dp(18), ctx.dp(11))
         layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        stateListAnimator = null
-        setOnClickListener { onClick() }
+        try { stateListAnimator = null } catch (_: Exception) {}
+        setOnClickListener { try { onClick() } catch (_: Exception) {} }
     }
 
 fun blend(a: Int, b: Int, t: Float): Int {
@@ -112,12 +116,16 @@ fun phonePhoto(ctx: Context, ph: Phone, wDp: Int, hDp: Int): ImageView {
         background = GradientDrawable().apply {
             setColor(0xFFE8EAF6.toInt()); cornerRadius = 20 * dp
         }
-        clipToOutline = true
-        load(ph.photoUrl) {
-            crossfade(true)
-            fallback(photoResId(ctx, ph))
-            error(photoResId(ctx, ph))
-            placeholder(photoResId(ctx, ph))
+        try { clipToOutline = true } catch (_: Exception) {}
+        try {
+            load(ph.photoUrl) {
+                crossfade(true)
+                fallback(photoResId(ctx, ph))
+                error(photoResId(ctx, ph))
+                placeholder(photoResId(ctx, ph))
+            }
+        } catch (_: Exception) {
+            try { setImageResource(photoResId(ctx, ph)) } catch (_: Exception) {}
         }
     }
 }
@@ -162,22 +170,24 @@ fun searchField(ctx: Context, hint: String, onText: (String) -> Unit): EditText 
 
 /** Статус-бар и навигация в цвет фона (как в MMO). */
 fun applyBars(act: Activity) {
-    val bg = bgColor(act)
-    act.window.statusBarColor = bg
-    act.window.navigationBarColor = bg
-    if (Build.VERSION.SDK_INT >= 30) {
-        act.window.insetsController?.setSystemBarsAppearance(
-            if (isDark(act)) 0 else
+    try {
+        val bg = bgColor(act)
+        act.window.statusBarColor = bg
+        act.window.navigationBarColor = bg
+        if (Build.VERSION.SDK_INT >= 30) {
+            act.window.insetsController?.setSystemBarsAppearance(
+                if (isDark(act)) 0 else
+                    android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS or
+                        android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                 android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS or
-                    android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
-            android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS or
-                android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS)
-    } else {
-        @Suppress("DEPRECATION")
-        act.window.decorView.systemUiVisibility =
-            if (isDark(act)) 0 else
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-    }
+                    android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS)
+        } else {
+            @Suppress("DEPRECATION")
+            act.window.decorView.systemUiVisibility =
+                if (isDark(act)) 0 else
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        }
+    } catch (_: Exception) {}
 }
 
 fun sectionLabel(ctx: Context, t: String): TextView = TextView(ctx).apply {
@@ -191,8 +201,9 @@ fun sectionLabel(ctx: Context, t: String): TextView = TextView(ctx).apply {
 fun iconBtn2(ctx: Context, res: Int, desc: String, act: () -> Unit): ImageButton =
     ImageButton(ctx).apply {
         layoutParams = LinearLayout.LayoutParams(ctx.dp(40), ctx.dp(40))
-        setImageResource(res); contentDescription = desc
+        try { setImageResource(res) } catch (_: Exception) {}
+        contentDescription = desc
         background = null
-        imageTintList = ColorStateList.valueOf(accent2(ctx))
-        setOnClickListener { act() }
+        try { imageTintList = ColorStateList.valueOf(accent2(ctx)) } catch (_: Exception) {}
+        setOnClickListener { try { act() } catch (_: Exception) {} }
     }
