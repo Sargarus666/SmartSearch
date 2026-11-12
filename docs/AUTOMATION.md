@@ -5,7 +5,7 @@
 - `.github/workflows/quality.yml`: validates catalog invariants, **15,000–20,000 RUB** budget, minimum **8 GB physical RAM**, new-device and fresh-offer rules, HTML IDs and Python syntax.
 - `.github/workflows/codeql.yml`: scheduled CodeQL static security analysis for JavaScript, Python and Kotlin/Java.
 - `.github/dependabot.yml`: weekly update PRs for GitHub Actions.
-- `.github/workflows/refresh-prices.yml`: scheduled merchant-feed refresh. Only new, in-stock offers in Naberezhnye Chelny with at least 8 GB physical RAM, price 15,000–20,000 RUB, warranty and HTTPS product links are accepted.
+- `.github/workflows/price-scan.yml` on `main`: scheduled Firecrawl and merchant-feed refresh; it checks out `feature/live-chelny-prices` and commits only catalog data back to that branch. Only new, in-stock offers in Naberezhnye Chelny with at least 8 GB physical RAM, price 15,000–20,000 RUB, warranty and HTTPS product links are accepted.
 - `.github/workflows/ai-audit.yml`: weekly deterministic catalog audit. Despite the historical filename, it no longer calls an AI service and requires no API key.
 
 ## AI configuration
