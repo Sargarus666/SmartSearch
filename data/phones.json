@@ -353,13 +353,15 @@
       "shop": "МегаФон",
       "url": "https://shop.megafon.ru/mobile/208122",
       "localProofUrl": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/huawei-nova-y74-8-256gb-black/",
-      "checkedAt": "2026-11-12T22:10:00+03:00",
-      "sourceType": "retailer_plus_local_comparison",
+      "checkedAt": "2026-11-12T20:17:00.025Z",
+      "sourceType": "firecrawl_price_ru_observation",
       "condition": "new",
       "stock": "delivery_available",
       "city": "Набережные Челны",
       "warrantyMonths": 12,
-      "note": "Price.ru для Набережных Челнов показывает новый товар, бесплатную доставку на завтра, оплату наличными, самовывоза нет. Страница МегаФона подтверждает цену 19 999 ₽ и гарантию 12 мес.; наличие в салонах — 0."
+      "note": "Firecrawl прочитал городскую карточку Price.ru: МегаФон, новый товар, 19 999 ₽, доставка завтра бесплатно, оплата наличными, самовывоза нет. Гарантия 12 мес. указана на карточке МегаФона. Наличие в салонах не подтверждено.",
+      "payment": "cash",
+      "pickup": "no"
     },
     {
       "brand": "TECNO",
@@ -370,13 +372,16 @@
       "shop": "МегаФон",
       "url": "https://shop.megafon.ru/mobile/207319",
       "localProofUrl": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/tecno-spark-50-8-128gb-halo-blue/",
-      "checkedAt": "2026-11-12T22:20:00+03:00",
-      "sourceType": "retailer_plus_local_comparison",
+      "checkedAt": "2026-11-12T20:17:00.025Z",
+      "sourceType": "firecrawl_price_ru_observation",
       "condition": "new",
       "stock": "delivery_available",
       "city": "Набережные Челны",
       "warrantyMonths": 12,
-      "note": "Price.ru обновлял предложение 10 ноября: новый товар, бесплатная доставка завтра, оплата наличными, самовывоза нет. Карточка МегаФона: 19 999 ₽ и гарантия 12 мес.; в салонах — 0."
+      "note": "Firecrawl прочитал городскую карточку Price.ru: МегаФон, новый товар, 19 999 ₽, доставка завтра бесплатно, оплата наличными, самовывоза нет. Гарантия 12 мес. указана в ранее проверенной карточке МегаФона; наличие в салонах не подтверждено.",
+      "payment": "cash",
+      "pickup": "no"
     }
-  ]
+  ],
+  "observedOffersUpdated": "2026-11-12T20:17:00.025Z"
 }
