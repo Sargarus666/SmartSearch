@@ -1,4 +1,4 @@
-name: AI catalog quality audit
+name: SmartScan catalog audit
 
 on:
   workflow_dispatch:
@@ -13,18 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Run read-only AI audit
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+      - name: Run deterministic catalog audit (no API key required)
         run: python scripts/ai_catalog_auditor.py
       - name: Upload audit report
-        if: hashFiles('ai-catalog-audit.md') != ''
         uses: actions/upload-artifact@v4
         with:
-          name: smartscan-ai-catalog-audit
-          path: ai-catalog-audit.md
+          name: smartscan-catalog-audit
+          path: catalog-audit.md
           retention-days: 30
