@@ -6,13 +6,11 @@
 - `.github/workflows/codeql.yml`: scheduled CodeQL static security analysis for JavaScript, Python and Kotlin/Java.
 - `.github/dependabot.yml`: weekly update PRs for GitHub Actions.
 - `.github/workflows/refresh-prices.yml`: scheduled merchant-feed refresh. Only explicit local stock, physical RAM, warranty and HTTPS product links are accepted.
-- `.github/workflows/ai-audit.yml`: optional weekly read-only Gemini audit. It creates a downloadable report and never changes catalog data.
+- `.github/workflows/ai-audit.yml`: weekly deterministic catalog audit. Despite the historical filename, it no longer calls an AI service and requires no API key.
 
-## Optional AI configuration
+## AI configuration
 
-Add repository secret `GEMINI_API_KEY` to enable the AI audit. Optionally set repository variable `GEMINI_MODEL` to a model available to that API key. Without the secret the job exits safely without calling an AI service.
-
-The AI report is advisory, not a source of truth. The model cannot independently confirm a merchant's real-world price, stock, warranty, or product authenticity. It has no write permission and cannot update catalog files.
+No Gemini, OpenRouter, Groq or other AI API key is required. The audit uses Python rules, produces a downloadable report and has read-only permissions. This is more reliable for checking known catalog rules and avoids external API quotas. It cannot independently confirm real-world prices, stock, warranty or product authenticity.
 
 ## Live merchant feeds
 
@@ -20,4 +18,4 @@ Set repository variable `SMARTSCAN_FEED_URLS` to comma-separated HTTPS JSON feed
 
 ## Permissions and safety
 
-All quality and AI audit workflows are read-only. Only the dedicated price-refresh workflow has `contents: write`, and it can commit only `data/phones.json`. Do not grant the AI audit workflow write permissions.
+All quality and audit workflows are read-only. Only the dedicated price-refresh workflow has `contents: write`, and it can commit only `data/phones.json`. Do not grant the audit workflow write permissions.
