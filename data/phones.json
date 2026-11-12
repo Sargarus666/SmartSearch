@@ -336,13 +336,13 @@
       "price": 18990,
       "shop": "Ситилинк",
       "url": "https://www.citilink.ru/product/smartfon-huawei-nova-14i-stg-lx2-256gb-8gb-chernyi-3g-4g-6-7-1084x2412-2146655/",
-      "checkedAt": "2026-11-12T22:00:00+03:00",
-      "sourceType": "retailer_product_page",
+      "checkedAt": "2026-11-12T20:17:11.713Z",
+      "sourceType": "firecrawl_retailer_observation",
       "condition": "new",
       "stock": "unknown",
       "city": "not_confirmed",
       "warrantyMonths": null,
-      "note": "Цена со страницы товара; наличие и доставка в Набережные Челны не подтверждены."
+      "note": "Firecrawl прочитал карточку Ситилинка: Huawei nova 14i 8/256, 18 990 ₽, на странице указано 50 шт.; доставка отображается с 21 ноября. Регион доставки для Набережных Челнов и гарантийный срок этим извлечением отдельно не подтверждены."
     },
     {
       "brand": "HUAWEI",
@@ -383,5 +383,5 @@
       "pickup": "no"
     }
   ],
-  "observedOffersUpdated": "2026-11-12T20:17:00.025Z"
+  "observedOffersUpdated": "2026-11-12T20:17:11.713Z"
 }
