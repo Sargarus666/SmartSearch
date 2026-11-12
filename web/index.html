@@ -48,7 +48,7 @@ footer{padding:40px 0 15px;color:#78849b;font-size:12px;text-align:center}
 <aside class="hero-card"><div class="eyebrow">Фильтр качества</div><div class="big">8 ГБ RAM</div><p>Минимум 8 ГБ физической RAM, без виртуальной подмены</p><div class="rule"><i>✓</i> Только новые смартфоны с гарантией</div><div class="rule"><i>✓</i> Ориентиры по ценам, не прайс-лист магазинов</div><div class="rule"><i>✓</i> Сравнение характеристик и ориентировочных цен</div></aside></section>
 <section class="metrics"><div class="metric"><b id="countModels">—</b><span>моделей в каталоге</span></div><div class="metric"><b>6</b><span>магазинов для проверки</span></div><div class="metric"><b>₽</b><span>примерные цены по России</span></div></section>
 <section id="catalog"><div class="section-head"><div><div class="eyebrow">Подбор и сравнение</div><h2>Каталог смартфонов</h2><p>Найди модель по своим критериям</p></div></div>
-<div class="filters"><input class="field" id="search" type="search" placeholder="Поиск модели, бренда или процессора…"><select class="field" id="brand"><option value="">Все бренды</option></select><select class="field" id="sort"><option value="name">По названию</option><option value="battery">По автономности (ёмкость батареи)</option><option value="ram">По RAM</option><option value="price">По примерной цене</option></select><select class="field" id="price"><option value="all">Любая цена</option><option value="low">До 17 500 ₽</option><option value="high">От 17 500 ₽</option></select></div>
+<div class="filters"><input class="field" id="search" type="search" placeholder="Поиск модели, бренда или процессора…"><select class="field" id="brand"><option value="">Все бренды</option></select><select class="field" id="sort"><option value="name">По названию</option><option value="battery">По автономности (ёмкость батареи)</option><option value="ram">По RAM</option><option value="price">По примерной цене</option></select><select class="field" id="price"><option value="budget">15 000–20 000 ₽</option><option value="all">Любая цена</option><option value="low">До 17 500 ₽</option><option value="high">От 17 500 ₽</option></select></div>
 <div class="chips"><button class="chip active" data-filter="all">Все модели</button><button class="chip" data-filter="amoled">AMOLED</button><button class="chip" data-filter="bigbattery">Батарея от 6000 мА·ч</button><button class="chip" data-filter="verified">До 20 000 ₽</button><button class="chip" data-filter="favorites">Избранное ★</button></div>
 <div class="resultline"><span id="resultCount">Загружаю каталог…</span><span>Нажми на карточку — откроется страница смартфона</span></div><div class="cards" id="cards"><div class="empty">Загружаю каталог…</div></div>
 <div class="notice"><strong>Ориентировочная цена.</strong> Это примерный диапазон по российскому рынку, а не актуальное предложение конкретного магазина. Нажми на карточку, чтобы посмотреть характеристики и перейти к поиску модели в DNS, Ситилинке, Ozon, МегаФоне, Билайне или МТС.</div>
@@ -69,8 +69,9 @@ function render(){
  let rows=state.data.phones.filter(p=>{
   const text=[p.brand,p.model,p.cpu,p.screen,p.battery].join(" ").toLowerCase();
   if(q&&!text.includes(q))return false;if(brand&&p.brand!==brand)return false;
-  const v=priceValue(p);
-  if(price==="low"&&v>=17500)return false;if(price==="high"&&v<17500)return false;
+  const v=priceValue(p),lo=Number(p.priceFrom||p.priceApprox||0),hi=Number(p.priceTo||p.priceApprox||lo);
+  if(price==="budget"&&(hi<15000||lo>20000))return false;
+  if(price==="low"&&lo>=17500)return false;if(price==="high"&&hi<17500)return false;
   if(state.filter==="amoled"&&!/amoled/i.test(p.screen||""))return false;
   if(state.filter==="bigbattery"&&batteryNumber(p.battery)<6000)return false;
   if(state.filter==="verified"&&Number(p.priceTo||p.priceApprox||999999)>20000)return false;
