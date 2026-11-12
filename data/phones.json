@@ -439,7 +439,26 @@
       "payment": "Оплата наличными",
       "pickup": "available",
       "note": "Цена 16 990 ₽ и наличие/доставка/самовывоз/оплата наличными показаны в городской карточке Price.ru для Набережных Челнов; Big Geek на своей карточке товара подтверждает цену и гарантию 1 год. Это наблюдение агрегатора, не подтверждение остатка у продавца."
+    },
+    {
+      "brand": "HUAWEI",
+      "model": "nova Y74 8/128",
+      "ramGb": 8,
+      "storageGb": 128,
+      "price": 14990,
+      "shop": "Big Geek",
+      "url": "https://biggeek.ru/products/smartfon-huawei-nova-y74-8gb-128gb-black-global",
+      "localProofUrl": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/huawei-nova-y74-8-128gb-black/",
+      "checkedAt": "2026-11-12T23:10:00+03:00",
+      "sourceType": "firecrawl_retailer_and_city_aggregator",
+      "condition": "new",
+      "stock": "delivery_available",
+      "city": "Набережные Челны",
+      "warrantyMonths": 12,
+      "payment": "Оплата наличными",
+      "pickup": "available",
+      "note": "14 990 ₽ — на 10 ₽ ниже нижней границы выбранного бюджета. Price.ru для Набережных Челнов показывает новый товар, бесплатную доставку завтра, самовывоз и оплату наличными; Big Geek подтверждает цену и гарантию 1 год. Остаток напрямую у продавца не подтверждён."
     }
   ],
-  "observedOffersUpdated": "2026-11-12T23:09:00+03:00"
+  "observedOffersUpdated": "2026-11-12T23:10:00+03:00"
 }
