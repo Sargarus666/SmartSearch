@@ -2,7 +2,7 @@ name: CodeQL security analysis
 
 on:
   push:
-    branches: ["main", "opencode-resume/f0e1f0cc4533ef13c3ab"]
+    branches: ["main", "opencode-resume/f0e1f0cc4533ef13c3ab", "feature/live-chelny-prices"]
   pull_request:
     branches: ["main", "opencode-resume/f0e1f0cc4533ef13c3ab"]
   schedule:
@@ -24,7 +24,34 @@ jobs:
         language: ["javascript-typescript", "python", "java-kotlin"]
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Java for Android build
+        if: matrix.language == 'java-kotlin'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        if: matrix.language == 'java-kotlin'
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android platform
+        if: matrix.language == 'java-kotlin'
+        run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
+
+      - name: Set up Gradle
+        if: matrix.language == 'java-kotlin'
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.7"
+
       - uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
+
+      - name: Build Android app for CodeQL extraction
+        if: matrix.language == 'java-kotlin'
+        run: gradle -p ChelnyPhones :app:assembleDebug
+
       - uses: github/codeql-action/analyze@v3
