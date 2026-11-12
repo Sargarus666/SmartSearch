@@ -16,7 +16,10 @@
       ],
       "seller": "МегаФон",
       "retailerUrl": "https://shop.megafon.ru/mobile/208122",
-      "warrantyMonths": 12
+      "warrantyMonths": 12,
+      "sellerAliases": [
+        "Megafon"
+      ]
     }
   },
   {
@@ -36,7 +39,10 @@
       ],
       "seller": "МегаФон",
       "retailerUrl": "https://shop.megafon.ru/mobile/207319",
-      "warrantyMonths": 12
+      "warrantyMonths": 12,
+      "sellerAliases": [
+        "Megafon"
+      ]
     }
   }
 ]
