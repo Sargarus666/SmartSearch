@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-15",
+  "updated": "2026-11-12",
   "city": "Набережные Челны",
   "currency": "RUB",
   "minRamGb": 8,
   "minPrice": 15000,
   "maxPrice": 20000,
-  "source": "Пересечение топов осени-2026: МТС 10/2026, Т-Ж 09/2026, iChip 08/2026, Price.ru 06/2026, kod.ru, M.Video топ-15, Hi-Tech Mail. Фото: производители + GSMArena",
+  "source": "Цены из страниц магазинов; старые ручные цены удалены.",
   "phones": [
     {
       "id": 1,
@@ -13,9 +13,6 @@
       "model": "Redmi Note 15 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 19899,
-      "oldPrice": 21990,
-      "promo": "Проверено 14.10.2026 • −9% • камера 108 Мп, хит топов",
       "rating": 4.9,
       "screen": "6.77\" AMOLED 120 Гц, 2392×1080",
       "battery": "6000 мА·ч, 45 Вт",
@@ -25,59 +22,7 @@
       "colorEnd": "#2EBF91",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_1.jpg",
       "photoRes": "phone_1",
-      "accent": "Midnight Black",
-      "offline": [
-        {
-          "shop": "DNS",
-          "address": "Московский пр-т, 128А, Челны",
-          "price": 19899,
-          "note": "RU-версия, самовывоз сегодня",
-          "url": "https://www.dns-shop.ru/search/?q=Xiaomi+Redmi+Note+15+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "М.Видео",
-          "address": "пр. Мира, 49А, ТРК Торговый квартал",
-          "price": 20490,
-          "note": "Рассрочка 0-0-12",
-          "url": "https://www.mvideo.ru/search?query=Xiaomi+Redmi+Note+15+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "Эльдорадо",
-          "address": "пр. Московский, 140, ТЦ Омега",
-          "price": 20690,
-          "note": "Трейд-ин −3000 ₽",
-          "url": "https://www.eldorado.ru/search/catalog.php?q=Xiaomi+Redmi+Note+15+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "Яндекс Маркет",
-          "address": "Доставка в Челны 1–2 дня",
-          "price": 20500,
-          "note": "С картой Пэй дешевле",
-          "url": "https://market.yandex.ru/search?text=Xiaomi+Redmi+Note+15+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "OZON",
-          "address": "Пункт выдачи: Челны, пр. Сююмбике 61",
-          "price": 19990,
-          "note": "Купон продавца",
-          "url": "https://www.ozon.ru/search/?text=Xiaomi+Redmi+Note+15+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Wildberries",
-          "address": "ПВЗ Челны, Набережночелнинский 41",
-          "price": 20290,
-          "note": "WB-кошелёк −3%",
-          "url": "https://www.wildberries.ru/catalog/0/search.aspx?search=Xiaomi+Redmi+Note+15+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Midnight Black"
     },
     {
       "id": 2,
@@ -85,9 +30,6 @@
       "model": "Spark 40 Pro 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 14999,
-      "oldPrice": 17990,
-      "promo": "Проверено 14.10.2026 • −17% • топ МТС и M.Video",
       "rating": 4.8,
       "screen": "6.78\" AMOLED 1.5K, 144 Гц, 4500 нит",
       "battery": "5200 мА·ч, 45 Вт",
@@ -97,59 +39,7 @@
       "colorEnd": "#4B6CB7",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_2.jpg",
       "photoRes": "phone_2",
-      "accent": "Moon Titanium",
-      "offline": [
-        {
-          "shop": "DNS",
-          "address": "Набережночелнинский пр-т, 10Б",
-          "price": 14999,
-          "note": "Хит, витрина + склад",
-          "url": "https://www.dns-shop.ru/search/?q=TECNO+Spark+40+Pro+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "МТС",
-          "address": "пр. Хасана Туфана, 12, Челны",
-          "price": 15490,
-          "note": "Скидка при переносе номера",
-          "url": "https://shop.mts.ru",
-          "online": false
-        },
-        {
-          "shop": "Билайн",
-          "address": "пр. Сююмбике, 2/19, Челны",
-          "price": 15990,
-          "note": "Пакет + связь 3 мес.",
-          "url": "https://beeline.ru",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "OZON",
-          "address": "Пункт выдачи Челны, Московский 140",
-          "price": 14490,
-          "note": "Минус 500 ₽ по карте",
-          "url": "https://www.ozon.ru/search/?text=TECNO+Spark+40+Pro+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "DNS-Shop онлайн",
-          "address": "Самовывоз Сююмбике 67В",
-          "price": 14999,
-          "note": "Онлайн-бронь −2%",
-          "url": "https://www.dns-shop.ru/search/?q=TECNO+Spark+40+Pro+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Ситилинк",
-          "address": "Доставка в Челны",
-          "price": 15290,
-          "note": "Бонусы Ситиклаб",
-          "url": "https://www.citilink.ru/search/?text=TECNO+Spark+40+Pro+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Moon Titanium"
     },
     {
       "id": 3,
@@ -157,9 +47,6 @@
       "model": "Note Edge 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 19490,
-      "oldPrice": 21990,
-      "promo": "Проверено 14.10.2026 • −11% • Dimensity 7100, лучший для игр",
       "rating": 4.8,
       "screen": "6.78\" AMOLED 120 Гц, Gorilla 7i",
       "battery": "6500 мА·ч, 45 Вт",
@@ -169,59 +56,7 @@
       "colorEnd": "#D76D77",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_3.jpg",
       "photoRes": "phone_3",
-      "accent": "Shadow Black",
-      "offline": [
-        {
-          "shop": "Эльдорадо",
-          "address": "пр. Московский, 140, ТЦ Омега",
-          "price": 19490,
-          "note": "Ростест, гарантия 12 мес.",
-          "url": "https://www.eldorado.ru/search/catalog.php?q=Infinix+Note+Edge+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "DNS",
-          "address": "пр-т Сююмбике, 67В, Челны",
-          "price": 19990,
-          "note": "В наличии, 5G-версия",
-          "url": "https://www.dns-shop.ru/search/?q=Infinix+Note+Edge+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "МегаФон",
-          "address": "Набережночелнинский пр-т, 41",
-          "price": 20490,
-          "note": "Тариф в подарок",
-          "url": "https://megafon.ru",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "Wildberries",
-          "address": "ПВЗ Челны, пр. Мира 52",
-          "price": 19690,
-          "note": "Оплата WB-кошельком −3%",
-          "url": "https://www.wildberries.ru/catalog/0/search.aspx?search=Infinix+Note+Edge+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Яндекс Маркет",
-          "address": "Доставка в Челны за день",
-          "price": 19890,
-          "note": "Промокод на первый заказ",
-          "url": "https://market.yandex.ru/search?text=Infinix+Note+Edge+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "OZON",
-          "address": "Пункт выдачи Челны, Татарстан 25",
-          "price": 19790,
-          "note": "Рассрочка 0-0-6",
-          "url": "https://www.ozon.ru/search/?text=Infinix+Note+Edge+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Shadow Black"
     },
     {
       "id": 4,
@@ -229,9 +64,6 @@
       "model": "Pova 7 Neo 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 15490,
-      "oldPrice": 17490,
-      "promo": "Проверено 14.10.2026 • −11% • 7000 мА·ч, рекорд автономности",
       "rating": 4.7,
       "screen": "6.78\" AMOLED 120 Гц, 2460×1080",
       "battery": "7000 мА·ч, 45 Вт + реверс",
@@ -241,43 +73,7 @@
       "colorEnd": "#2C5364",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_4.jpg",
       "photoRes": "phone_4",
-      "accent": "Neon Black",
-      "offline": [
-        {
-          "shop": "DNS",
-          "address": "Московский пр-т, 128А, Челны",
-          "price": 15490,
-          "note": "Топ iChip и Т-Ж",
-          "url": "https://www.dns-shop.ru/search/?q=TECNO+Pova+7+Neo+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "М.Видео",
-          "address": "пр. Мира, 49А, Торговый квартал",
-          "price": 15990,
-          "note": "Бонусы М.Клуб 10%",
-          "url": "https://www.mvideo.ru/search?query=TECNO+Pova+7+Neo+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны, пр. Чулман 23",
-          "price": 15190,
-          "note": "Цена с Ozon-картой",
-          "url": "https://www.ozon.ru/search/?text=TECNO+Pova+7+Neo+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Яндекс Маркет",
-          "address": "Доставка в Челны 1–3 дня",
-          "price": 15490,
-          "note": "Кэшбэк баллами",
-          "url": "https://market.yandex.ru/search?text=TECNO+Pova+7+Neo+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Neon Black"
     },
     {
       "id": 5,
@@ -285,9 +81,6 @@
       "model": "C85 Pro 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 16599,
-      "oldPrice": 18999,
-      "promo": "Проверено 14.10.2026 • −13% • IP69 + 7000 мА·ч",
       "rating": 4.7,
       "screen": "6.8\" AMOLED 120 Гц",
       "battery": "7000 мА·ч, 45 Вт",
@@ -297,51 +90,7 @@
       "colorEnd": "#FFD200",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_5.jpg",
       "photoRes": "phone_5",
-      "accent": "Peacock Green",
-      "offline": [
-        {
-          "shop": "М.Видео",
-          "address": "пр. Мира, 49А, Торговый квартал",
-          "price": 16599,
-          "note": "Официальная гарантия",
-          "url": "https://www.mvideo.ru/search?query=realme+C85+Pro+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "DNS",
-          "address": "Набережночелнинский пр-т, 10Б",
-          "price": 16990,
-          "note": "Самовывоз сегодня",
-          "url": "https://www.dns-shop.ru/search/?q=realme+C85+Pro+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "Эльдорадо",
-          "address": "пр. Московский, 140",
-          "price": 17490,
-          "note": "Рассрочка 0-0-10",
-          "url": "https://www.eldorado.ru/search/catalog.php?q=realme+C85+Pro+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "Яндекс Маркет",
-          "address": "Доставка в Челны",
-          "price": 16590,
-          "note": "Сплит без переплат",
-          "url": "https://market.yandex.ru/search?text=realme+C85+Pro+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 16790,
-          "note": "Цена с картой Ozon",
-          "url": "https://www.ozon.ru/search/?text=realme+C85+Pro+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Peacock Green"
     },
     {
       "id": 6,
@@ -349,9 +98,6 @@
       "model": "Galaxy A17 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 19099,
-      "oldPrice": 21499,
-      "promo": "Проверено 14.10.2026 • −11% • 6 лет обновлений Samsung",
       "rating": 4.6,
       "screen": "6.7\" Super AMOLED 90 Гц",
       "battery": "5000 мА·ч, 25 Вт",
@@ -361,51 +107,7 @@
       "colorEnd": "#004E92",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_6.jpg",
       "photoRes": "phone_6",
-      "accent": "Blue Black",
-      "offline": [
-        {
-          "shop": "МТС",
-          "address": "пр. Хасана Туфана, 12",
-          "price": 19099,
-          "note": "Шесть лет обновлений",
-          "url": "https://shop.mts.ru",
-          "online": false
-        },
-        {
-          "shop": "DNS",
-          "address": "пр-т Сююмбике, 67В",
-          "price": 19490,
-          "note": "Витрина + склад",
-          "url": "https://www.dns-shop.ru/search/?q=Samsung+Galaxy+A17+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "М.Видео",
-          "address": "пр. Мира, 49А",
-          "price": 19690,
-          "note": "Рассрочка 0-0-10",
-          "url": "https://www.mvideo.ru/search?query=Samsung+Galaxy+A17+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "М.Видео онлайн",
-          "address": "Доставка в Челны 2 дня",
-          "price": 19099,
-          "note": "Онлайн-эксклюзив",
-          "url": "https://www.mvideo.ru/search?query=Samsung+Galaxy+A17+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Wildberries",
-          "address": "ПВЗ Челны",
-          "price": 19290,
-          "note": "Быстрая выдача",
-          "url": "https://www.wildberries.ru/catalog/0/search.aspx?search=Samsung+Galaxy+A17+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Blue Black"
     },
     {
       "id": 7,
@@ -413,9 +115,6 @@
       "model": "M7 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 17990,
-      "oldPrice": 19990,
-      "promo": "Проверено 14.10.2026 • −10% • 7000 мА·ч, топ Geekchoice",
       "rating": 4.6,
       "screen": "6.9\" IPS 144 Гц",
       "battery": "7000 мА·ч, 33 Вт",
@@ -425,43 +124,7 @@
       "colorEnd": "#3A0000",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_7.jpg",
       "photoRes": "phone_7",
-      "accent": "Power Black",
-      "offline": [
-        {
-          "shop": "DNS",
-          "address": "Московский пр-т, 128А",
-          "price": 17990,
-          "note": "Фирменный стенд POCO",
-          "url": "https://www.dns-shop.ru/search/?q=POCO+M7+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "Эльдорадо",
-          "address": "пр. Московский, 140",
-          "price": 18490,
-          "note": "Подарок: наушники",
-          "url": "https://www.eldorado.ru/search/catalog.php?q=POCO+M7+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 17590,
-          "note": "Купон продавца −400 ₽",
-          "url": "https://www.ozon.ru/search/?text=POCO+M7+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Яндекс Маркет",
-          "address": "Доставка в Челны",
-          "price": 17990,
-          "note": "Баллы Маркета",
-          "url": "https://market.yandex.ru/search?text=POCO+M7+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Power Black"
     },
     {
       "id": 8,
@@ -469,9 +132,6 @@
       "model": "X8c 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 16999,
-      "oldPrice": 19999,
-      "promo": "Проверено 14.10.2026 • −15% • AMOLED + 108 Мп OIS",
       "rating": 4.6,
       "screen": "6.7\" AMOLED 120 Гц",
       "battery": "5000 мА·ч, 35 Вт",
@@ -481,43 +141,7 @@
       "colorEnd": "#71B280",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_8.jpg",
       "photoRes": "phone_8",
-      "accent": "Emerald Lake",
-      "offline": [
-        {
-          "shop": "DNS",
-          "address": "Набережночелнинский пр-т, 10Б",
-          "price": 16999,
-          "note": "Топ Hi-Tech Mail",
-          "url": "https://www.dns-shop.ru/search/?q=HONOR+X8c+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "Билайн",
-          "address": "пр. Сююмбике, 2/19",
-          "price": 17490,
-          "note": "Комплект со связью",
-          "url": "https://beeline.ru",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "Wildberries",
-          "address": "ПВЗ Челны",
-          "price": 16790,
-          "note": "Скидка WB-кошелька",
-          "url": "https://www.wildberries.ru/catalog/0/search.aspx?search=HONOR+X8c+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 16990,
-          "note": "Рассрочка",
-          "url": "https://www.ozon.ru/search/?text=HONOR+X8c+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Emerald Lake"
     },
     {
       "id": 9,
@@ -525,9 +149,6 @@
       "model": "14 5G 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 17599,
-      "oldPrice": 19999,
-      "promo": "Проверено 14.10.2026 • −12% • Snapdragon 6 Gen 4 + 6000 мА·ч",
       "rating": 4.7,
       "screen": "6.67\" AMOLED 120 Гц",
       "battery": "6000 мА·ч, 45 Вт",
@@ -537,43 +158,7 @@
       "colorEnd": "#4A00E0",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_9.jpg",
       "photoRes": "phone_9",
-      "accent": "Mecha Silver",
-      "offline": [
-        {
-          "shop": "М.Видео",
-          "address": "пр. Мира, 49А",
-          "price": 17599,
-          "note": "Топ Price.ru 06/2026",
-          "url": "https://www.mvideo.ru/search?query=realme+14+5G+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "DNS",
-          "address": "пр-т Сююмбике, 67В",
-          "price": 17990,
-          "note": "Самовывоз",
-          "url": "https://www.dns-shop.ru/search/?q=realme+14+5G+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "Яндекс Маркет",
-          "address": "Доставка в Челны",
-          "price": 17599,
-          "note": "5G-версия, IP69",
-          "url": "https://market.yandex.ru/search?text=realme+14+5G+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 17790,
-          "note": "Быстрая доставка",
-          "url": "https://www.ozon.ru/search/?text=realme+14+5G+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Mecha Silver"
     },
     {
       "id": 10,
@@ -581,9 +166,6 @@
       "model": "Camon 40 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 17199,
-      "oldPrice": 18999,
-      "promo": "Проверено 14.10.2026 • −9% • выбор Т-Ж + ИИ Ella",
       "rating": 4.6,
       "screen": "6.78\" AMOLED 120 Гц",
       "battery": "5200 мА·ч, 45 Вт",
@@ -593,43 +175,7 @@
       "colorEnd": "#414345",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_10.jpg",
       "photoRes": "phone_10",
-      "accent": "Emerald Lake Green",
-      "offline": [
-        {
-          "shop": "Эльдорадо",
-          "address": "пр. Московский, 140",
-          "price": 17199,
-          "note": "Рассрочка 0-0-12",
-          "url": "https://www.eldorado.ru/search/catalog.php?q=TECNO+Camon+40+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "DNS",
-          "address": "Московский пр-т, 128А",
-          "price": 17490,
-          "note": "В наличии",
-          "url": "https://www.dns-shop.ru/search/?q=TECNO+Camon+40+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 16890,
-          "note": "Цена с картой Ozon",
-          "url": "https://www.ozon.ru/search/?text=TECNO+Camon+40+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Ситилинк",
-          "address": "Доставка в Челны",
-          "price": 17190,
-          "note": "Клубные бонусы",
-          "url": "https://www.citilink.ru/search/?text=TECNO+Camon+40+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Emerald Lake Green"
     },
     {
       "id": 11,
@@ -637,9 +183,6 @@
       "model": "Galaxy A16 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 14990,
-      "oldPrice": 17990,
-      "promo": "Проверено 15.10.2026 • −17% • 6 лет обновлений",
       "rating": 4.5,
       "screen": "6.7\" Super AMOLED 90 Гц",
       "battery": "5000 мА·ч, 25 Вт",
@@ -649,51 +192,7 @@
       "colorEnd": "#004E92",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_11.jpg",
       "photoRes": "phone_11",
-      "accent": "Light Green",
-      "offline": [
-        {
-          "shop": "DNS",
-          "address": "Московский пр-т, 128А, Челны",
-          "price": 14990,
-          "note": "Хит продаж Samsung",
-          "url": "https://www.dns-shop.ru/search/?q=Samsung+Galaxy+A16+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "М.Видео",
-          "address": "пр. Мира, 49А",
-          "price": 15490,
-          "note": "Рассрочка 0-0-10",
-          "url": "https://www.mvideo.ru/search?query=Samsung+Galaxy+A16+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "Wildberries",
-          "address": "ПВЗ Челны",
-          "price": 14990,
-          "note": "WB-кошелёк −3%",
-          "url": "https://www.wildberries.ru/catalog/0/search.aspx?search=Samsung+Galaxy+A16+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 15190,
-          "note": "Цена с картой Ozon",
-          "url": "https://www.ozon.ru/search/?text=Samsung+Galaxy+A16+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Яндекс Маркет",
-          "address": "Доставка в Челны",
-          "price": 15290,
-          "note": "Сплит без переплат",
-          "url": "https://market.yandex.ru/search?text=Samsung+Galaxy+A16+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Light Green"
     },
     {
       "id": 12,
@@ -701,9 +200,6 @@
       "model": "C85 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 15990,
-      "oldPrice": 17990,
-      "promo": "Проверено 15.10.2026 • −11% • топ цена/качество vc.ru",
       "rating": 4.6,
       "screen": "6.9\" IPS 120 Гц",
       "battery": "6000 мА·ч, 33 Вт",
@@ -713,43 +209,7 @@
       "colorEnd": "#414345",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_12.jpg",
       "photoRes": "phone_12",
-      "accent": "Power Black",
-      "offline": [
-        {
-          "shop": "DNS",
-          "address": "Набережночелнинский пр-т, 10Б",
-          "price": 15990,
-          "note": "В наличии",
-          "url": "https://www.dns-shop.ru/search/?q=POCO+C85+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "Эльдорадо",
-          "address": "пр. Московский, 140",
-          "price": 16490,
-          "note": "Рассрочка 0-0-12",
-          "url": "https://www.eldorado.ru/search/catalog.php?q=POCO+C85+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 15590,
-          "note": "Купон продавца",
-          "url": "https://www.ozon.ru/search/?text=POCO+C85+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Wildberries",
-          "address": "ПВЗ Челны",
-          "price": 15790,
-          "note": "Быстрая выдача",
-          "url": "https://www.wildberries.ru/catalog/0/search.aspx?search=POCO+C85+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Power Black"
     },
     {
       "id": 13,
@@ -757,9 +217,6 @@
       "model": "X7d 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 17990,
-      "oldPrice": 19990,
-      "promo": "Проверено 15.10.2026 • −10% • 6500 мА·ч, броня 360°",
       "rating": 4.6,
       "screen": "6.77\" IPS 120 Гц",
       "battery": "6500 мА·ч, 35 Вт",
@@ -769,43 +226,7 @@
       "colorEnd": "#8A6D3B",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_13.jpg",
       "photoRes": "phone_13",
-      "accent": "Desert Gold",
-      "offline": [
-        {
-          "shop": "МТС",
-          "address": "пр. Хасана Туфана, 12",
-          "price": 17990,
-          "note": "Скидка за трейд-ин",
-          "url": "https://shop.mts.ru",
-          "online": false
-        },
-        {
-          "shop": "DNS",
-          "address": "пр-т Сююмбике, 67В",
-          "price": 18490,
-          "note": "Самовывоз",
-          "url": "https://www.dns-shop.ru/search/?q=HONOR+X7d+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 18290,
-          "note": "Рассрочка 0-0-6",
-          "url": "https://www.ozon.ru/search/?text=HONOR+X7d+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Яндекс Маркет",
-          "address": "Доставка в Челны",
-          "price": 18990,
-          "note": "Баллы Маркета",
-          "url": "https://market.yandex.ru/search?text=HONOR+X7d+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Desert Gold"
     },
     {
       "id": 14,
@@ -813,9 +234,6 @@
       "model": "Hot 50 Pro+ 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 17459,
-      "oldPrice": 21990,
-      "promo": "Проверено 15.10.2026 • −21% • 6.8 мм, звук JBL",
       "rating": 4.6,
       "screen": "6.78\" AMOLED 120 Гц",
       "battery": "5000 мА·ч, 33 Вт",
@@ -825,43 +243,7 @@
       "colorEnd": "#9D6BC4",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_14.jpg",
       "photoRes": "phone_14",
-      "accent": "Blossom Purple",
-      "offline": [
-        {
-          "shop": "DNS",
-          "address": "Московский пр-т, 128А",
-          "price": 17490,
-          "note": "Тонкий корпус",
-          "url": "https://www.dns-shop.ru/search/?q=Infinix+Hot+50+Pro%2B+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "М.Видео",
-          "address": "пр. Мира, 49А",
-          "price": 17990,
-          "note": "Бонусы М.Клуб",
-          "url": "https://www.mvideo.ru/search?query=Infinix+Hot+50+Pro%2B+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 17459,
-          "note": "С картой Ozon −21%",
-          "url": "https://www.ozon.ru/search/?text=Infinix+Hot+50+Pro%2B+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Wildberries",
-          "address": "ПВЗ Челны",
-          "price": 17690,
-          "note": "WB-кошелёк −3%",
-          "url": "https://www.wildberries.ru/catalog/0/search.aspx?search=Infinix+Hot+50+Pro%2B+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Blossom Purple"
     },
     {
       "id": 15,
@@ -869,9 +251,6 @@
       "model": "C75 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 13999,
-      "oldPrice": 15554,
-      "promo": "Проверено 15.10.2026 • −10% • IP69, 6000 мА·ч",
       "rating": 4.5,
       "screen": "6.72\" IPS 90 Гц",
       "battery": "6000 мА·ч, 45 Вт",
@@ -881,43 +260,7 @@
       "colorEnd": "#F5C542",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_15.jpg",
       "photoRes": "phone_15",
-      "accent": "Lightning Gold",
-      "offline": [
-        {
-          "shop": "DNS",
-          "address": "Набережночелнинский пр-т, 10Б",
-          "price": 13999,
-          "note": "Минимум цены",
-          "url": "https://www.dns-shop.ru/search/?q=realme+C75+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "М.Видео",
-          "address": "пр. Мира, 49А",
-          "price": 14490,
-          "note": "Рассрочка",
-          "url": "https://www.mvideo.ru/search?query=realme+C75+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 14290,
-          "note": "Цена с картой",
-          "url": "https://www.ozon.ru/search/?text=realme+C75+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "Wildberries",
-          "address": "ПВЗ Челны",
-          "price": 14190,
-          "note": "Быстрая выдача",
-          "url": "https://www.wildberries.ru/catalog/0/search.aspx?search=realme+C75+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Lightning Gold"
     },
     {
       "id": 16,
@@ -925,9 +268,6 @@
       "model": "Camon 40 Pro 5G 8/256",
       "ramGb": 8,
       "storageGb": 256,
-      "price": 18910,
-      "oldPrice": 21999,
-      "promo": "Проверено 15.10.2026 • −14% • Dimensity 7300, 5G",
       "rating": 4.7,
       "screen": "6.78\" AMOLED 120 Гц",
       "battery": "5200 мА·ч, 45 Вт",
@@ -937,44 +277,42 @@
       "colorEnd": "#C9D6DD",
       "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_16.jpg",
       "photoRes": "phone_16",
-      "accent": "Sandy Titanium",
-      "offline": [
-        {
-          "shop": "Эльдорадо",
-          "address": "пр. Московский, 140",
-          "price": 18990,
-          "note": "5G-версия",
-          "url": "https://www.eldorado.ru/search/catalog.php?q=TECNO+Camon+40+Pro+5G+8%2F256",
-          "online": false
-        },
-        {
-          "shop": "DNS",
-          "address": "Московский пр-т, 128А",
-          "price": 19490,
-          "note": "В наличии",
-          "url": "https://www.dns-shop.ru/search/?q=TECNO+Camon+40+Pro+5G+8%2F256",
-          "online": false
-        }
-      ],
-      "online": [
-        {
-          "shop": "Яндекс Маркет",
-          "address": "Доставка в Челны",
-          "price": 18910,
-          "note": "С картой Пэй",
-          "url": "https://market.yandex.ru/search?text=TECNO+Camon+40+Pro+5G+8%2F256",
-          "online": true
-        },
-        {
-          "shop": "OZON",
-          "address": "ПВЗ Челны",
-          "price": 19190,
-          "note": "Рассрочка",
-          "url": "https://www.ozon.ru/search/?text=TECNO+Camon+40+Pro+5G+8%2F256",
-          "online": true
-        }
-      ]
+      "accent": "Sandy Titanium"
+    },
+    {
+      "id": 17,
+      "brand": "HUAWEI",
+      "model": "nova 14i 8/256",
+      "ramGb": 8,
+      "storageGb": 256,
+      "screen": "6.95\" IPS FHD+ 90 Гц",
+      "battery": "7000 мА·ч",
+      "camera": "50+2 Мп",
+      "cpu": "Snapdragon 680",
+      "colorStart": "#1f2937",
+      "colorEnd": "#64748b",
+      "accent": "Black",
+      "sourceNote": "Добавлено по карточке Ситилинк; цену парсит обновлятор."
     }
   ],
-  "pricePolicy": "Показываются только новые смартфоны за 15 000–20 000 ₽ с физической RAM не менее 8 ГБ; виртуальная RAM не учитывается."
+  "pricePolicy": "Найденные цены (observedOffers) отделены от подтверждённых локальных предложений (verifiedOffers).",
+  "verifiedOffers": [],
+  "observedOffers": [
+    {
+      "brand": "HUAWEI",
+      "model": "nova 14i 8/256",
+      "ramGb": 8,
+      "storageGb": 256,
+      "price": 18990,
+      "shop": "Ситилинк",
+      "url": "https://www.citilink.ru/product/smartfon-huawei-nova-14i-stg-lx2-256gb-8gb-chernyi-3g-4g-6-7-1084x2412-2146655/",
+      "checkedAt": "2026-11-12T22:00:00+03:00",
+      "sourceType": "retailer_product_page",
+      "condition": "new",
+      "stock": "unknown",
+      "city": "not_confirmed",
+      "warrantyMonths": null,
+      "note": "Цена со страницы товара; наличие и доставка в Набережные Челны не подтверждены."
+    }
+  ]
 }
