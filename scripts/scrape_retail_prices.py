@@ -102,7 +102,22 @@ def main():
             print("FOUND", item["shop"], item["model"], item["price"])
         except Exception as exc: print("SKIP", source.get("shop"), str(exc))
     if found:
-        data["observedOffers"] = found
+        # Merge observations instead of deleting locally enriched Price.ru delivery/warranty evidence
+        # when a retailer blocks automated requests or omits local availability metadata.
+        existing = data.get("observedOffers", [])
+        for item in found:
+            match = next((old for old in existing if
+                str(old.get("brand","")).casefold() == item["brand"].casefold() and
+                str(old.get("model","")).casefold() == item["model"].casefold() and
+                str(old.get("shop","")).casefold() == item["shop"].casefold() and
+                old.get("url") == item["url"]), None)
+            if match:
+                match["price"] = item["price"]
+                match["checkedAt"] = item["checkedAt"]
+                match["sourceType"] = item["sourceType"]
+            else:
+                existing.append(item)
+        data["observedOffers"] = existing
         data["observedOffersUpdated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
         CATALOG.write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("Retailer observations:",len(found))
