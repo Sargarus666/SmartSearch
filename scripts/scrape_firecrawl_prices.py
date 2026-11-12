@@ -115,7 +115,8 @@ def validate_offer(item, source):
     price = item.get("price_rub")
     if not isinstance(price, int) or not MIN_PRICE <= price <= MAX_PRICE:
         raise ValueError(f"seller price missing or outside 15,000–20,000 RUB: {price!r}")
-    if (item.get("seller") or "").casefold() != expected["seller"].casefold():
+    allowed_sellers = [expected["seller"], *expected.get("sellerAliases", [])]
+    if (item.get("seller") or "").casefold() not in {name.casefold() for name in allowed_sellers}:
         raise ValueError(f"seller mismatch: {item.get('seller')!r}")
     if (item.get("condition") or "").casefold() not in ("new", "новый", "новое"):
         raise ValueError(f"new condition not confirmed: {item.get('condition')!r}")
