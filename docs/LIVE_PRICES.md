@@ -15,7 +15,7 @@ Old manually entered prices and store addresses are historical catalog fields. S
 
 ## Public retailer-page scraper
 
-The refresh workflow also runs `scripts/scrape_retail_prices.py` every six hours and on updates to `feature/live-chelny-prices`. It fetches configured public product pages, reads Product JSON-LD / price metadata, checks the exact model and physical RAM/storage variant, and stores results in `observedOffers`. The initial source is a direct Citilink product page for Huawei nova 14i 8/256.
+The refresh workflow runs `scripts/scrape_firecrawl_prices.py` every six hours and on updates to `feature/live-chelny-prices`. It calls the Firecrawl v2 Scrape API using the `FIRECRAWL_API_KEY` GitHub Actions secret, extracts structured fields from city-specific Price.ru product pages, validates the exact seller, physical RAM, storage, condition and price range, and stores results only in `observedOffers`. If the secret is absent, the scraper safely skips without writing fabricated prices.
 
 `observedOffers` are deliberately **not** treated as confirmed local stock: the product page can show a price without exposing delivery availability for Naberezhnye Chelny or warranty. The UI labels these as prices read from a retailer page. Only `verifiedOffers` may claim local stock and warranty.
 
@@ -47,11 +47,11 @@ GitHub Actions runs every 6 hours and on manual dispatch. It reads repository va
 Only records meeting every selection criterion above are written to `verifiedOffers`. Invalid, stale, out-of-range, used, low-RAM, mismatched, or unverified offers are rejected.
 
 ## Enable
-1. In GitHub repository Settings → Secrets and variables → Actions → Variables, add `SMARTSCAN_FEED_URLS`.
-2. Set it to one or more authorized retailer feed endpoints separated by commas.
+1. In GitHub repository Settings → Secrets and variables → Actions → Secrets, add `FIRECRAWL_API_KEY` using the API key from your Firecrawl account. Keep it as a secret; never put it in site JavaScript or repository files.
+2. Optionally, add `SMARTSCAN_FEED_URLS` under Actions → Variables for authorized merchant JSON feeds.
 3. Run Actions → Refresh Chelny smartphone prices → Run workflow.
 
-Do not point this variable at search pages or scrape pages without permission. Retailer feeds/API access must be authorized and must provide local delivery/stock data. Without configured feeds, the workflow still scrapes public product pages into `observedOffers`; it does not invent local stock, delivery, or warranty claims.
+Do not point this variable at search pages or scrape pages without permission. Retailer feeds/API access must be authorized and must provide local delivery/stock data. Without the Firecrawl secret, the hosted scrape step is skipped. Firecrawl observations are never promoted to `verifiedOffers`; the scraper records delivery/pickup text separately and leaves warranty unconfirmed unless a future source explicitly verifies it.
 
 ## Current limitation
 The ingestion pipeline enforces the requirements but does not itself grant access to retailer stock systems. Until authorized merchant feeds are configured, there are no verified live prices.
