@@ -1,0 +1,30 @@
+name: SmartScan quality gate
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Validate catalog and web shell
+        run: python scripts/validate_catalog.py
+      - name: Check Python syntax
+        run: python -m compileall -q scripts
+      - name: Check whitespace errors
+        run: git diff --check
