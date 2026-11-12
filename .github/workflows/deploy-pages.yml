@@ -25,6 +25,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Ensure the Pages site exists and is configured for Actions deployments.
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Prepare static site
         run: |
           mkdir -p public/data
