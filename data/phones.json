@@ -323,6 +323,21 @@
       "colorEnd": "#64748b",
       "accent": "Black",
       "sourceNote": "Характеристики и локальная цена сверены по Price.ru и карточке МегаФона."
+    },
+    {
+      "id": 20,
+      "brand": "TECNO",
+      "model": "Spark 50 8/128",
+      "ramGb": 8,
+      "storageGb": 128,
+      "screen": "6.78\" IPS 120 Гц",
+      "battery": "7000 мА·ч, 18 Вт",
+      "camera": "50+8 Мп",
+      "cpu": "Helio G81",
+      "colorStart": "#334155",
+      "colorEnd": "#0f766e",
+      "accent": "Black",
+      "sourceNote": "Проверено по карточке МегаФона и локальному предложению Price.ru."
     }
   ],
   "pricePolicy": "Найденные цены (observedOffers) отделены от подтверждённых локальных предложений (verifiedOffers).",
@@ -377,6 +392,23 @@
       "city": "Набережные Челны",
       "warrantyMonths": 12,
       "note": "Price.ru для Набережных Челнов показывает новый товар, бесплатную доставку на завтра, оплату наличными, самовывоза нет. Карточка МегаФона подтверждает цену 16 999 ₽ и гарантию 12 мес.; наличие в салонах — 0."
+    },
+    {
+      "brand": "TECNO",
+      "model": "Spark 50 8/128",
+      "ramGb": 8,
+      "storageGb": 128,
+      "price": 19999,
+      "shop": "МегаФон",
+      "url": "https://shop.megafon.ru/mobile/207319",
+      "localProofUrl": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/tecno-spark-50-8-128gb-halo-blue/",
+      "checkedAt": "2026-11-12T22:20:00+03:00",
+      "sourceType": "retailer_plus_local_comparison",
+      "condition": "new",
+      "stock": "delivery_available",
+      "city": "Набережные Челны",
+      "warrantyMonths": 12,
+      "note": "Price.ru обновлял предложение 10 ноября: новый товар, бесплатная доставка завтра, оплата наличными, самовывоза нет. Карточка МегаФона: 19 999 ₽ и гарантия 12 мес.; в салонах — 0."
     }
   ]
 }
