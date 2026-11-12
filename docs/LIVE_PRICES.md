@@ -22,7 +22,7 @@ The refresh workflow runs `scripts/scrape_firecrawl_prices.py` every 12 hours an
 To add a source, edit `scripts/retailer_sources.json` with a direct HTTPS product URL, exact model terms, and expected physical RAM/storage. Do not add search pages or URLs that do not identify a specific product variant.
 
 ## Automated refresh
-GitHub Actions runs every 6 hours and on manual dispatch. It reads repository variable `SMARTSCAN_FEED_URLS`, a comma-separated list of HTTPS JSON feed URLs. Each feed must return:
+GitHub Actions runs every 12 hours and on manual dispatch. It reads repository variable `SMARTSCAN_FEED_URLS`, a comma-separated list of HTTPS JSON feed URLs. Each feed must return:
 
 ```json
 {
