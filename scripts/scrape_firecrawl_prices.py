@@ -71,7 +71,8 @@ def firecrawl_extract(api_key, source):
         }],
         "onlyMainContent": True,
         "maxAge": 0,
-        "waitFor": 1500
+        "proxy": "stealth",
+        "waitFor": 2500
     }
     req = Request(
         API_URL,
@@ -157,6 +158,15 @@ def main():
             pickup = "no" if any(x in pickup_text for x in ("нет", "недоступ", "отсутств")) else (
                 "available" if any(x in pickup_text for x in ("есть", "доступ", "забрать")) else "unknown"
             )
+            warranty_text = (extracted.get("warranty") or "").casefold()
+            warranty_months = None
+            import re
+            warranty_match = re.search(r"(\\d+)\\s*(?:мес|месяц)", warranty_text)
+            if warranty_match:
+                warranty_months = int(warranty_match.group(1))
+            elif "год" in warranty_text:
+                year_match = re.search(r"(\\d+)\\s*год", warranty_text)
+                warranty_months = int(year_match.group(1)) * 12 if year_match else 12
             offer = {
                 "brand": expected["brand"],
                 "model": expected["model"],
@@ -171,7 +181,7 @@ def main():
                 "condition": "new",
                 "stock": "delivery_available" if delivery else "unknown",
                 "city": "Набережные Челны",
-                "warrantyMonths": None,
+                "warrantyMonths": warranty_months,
                 "payment": extracted.get("payment") or "unknown",
                 "pickup": pickup,
                 "note": (
