@@ -308,6 +308,21 @@
       "colorEnd": "#64748b",
       "accent": "Black",
       "sourceNote": "Характеристики и цена сверены по карточке МегаФона и локальной выдаче Price.ru."
+    },
+    {
+      "id": 19,
+      "brand": "HUAWEI",
+      "model": "nova Y74 8/128",
+      "ramGb": 8,
+      "storageGb": 128,
+      "screen": "6.67\" IPS 1604×720",
+      "battery": "6620 мА·ч",
+      "camera": "50+8 Мп",
+      "cpu": "Kirin 710A",
+      "colorStart": "#172554",
+      "colorEnd": "#64748b",
+      "accent": "Black",
+      "sourceNote": "Характеристики и локальная цена сверены по Price.ru и карточке МегаФона."
     }
   ],
   "pricePolicy": "Найденные цены (observedOffers) отделены от подтверждённых локальных предложений (verifiedOffers).",
@@ -345,6 +360,23 @@
       "city": "Набережные Челны",
       "warrantyMonths": 12,
       "note": "Price.ru для Набережных Челнов показывает новый товар, бесплатную доставку на завтра, оплату наличными, самовывоза нет. Страница МегаФона подтверждает цену 19 999 ₽ и гарантию 12 мес.; наличие в салонах — 0."
+    },
+    {
+      "brand": "HUAWEI",
+      "model": "nova Y74 8/128",
+      "ramGb": 8,
+      "storageGb": 128,
+      "price": 16999,
+      "shop": "МегаФон",
+      "url": "https://shop.megafon.ru/mobile/208118",
+      "localProofUrl": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/huawei-nova-y74-8-128gb-black/",
+      "checkedAt": "2026-11-12T22:14:00+03:00",
+      "sourceType": "retailer_plus_local_comparison",
+      "condition": "new",
+      "stock": "delivery_available",
+      "city": "Набережные Челны",
+      "warrantyMonths": 12,
+      "note": "Price.ru для Набережных Челнов показывает новый товар, бесплатную доставку на завтра, оплату наличными, самовывоза нет. Карточка МегаФона подтверждает цену 16 999 ₽ и гарантию 12 мес.; наличие в салонах — 0."
     }
   ]
 }
