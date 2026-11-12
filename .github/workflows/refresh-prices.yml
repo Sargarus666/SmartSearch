@@ -22,8 +22,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Scrape public retailer product pages
-        run: python scripts/scrape_retail_prices.py
+      - name: Scrape city offers through Firecrawl
+        env:
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        run: python scripts/scrape_firecrawl_prices.py
       - name: Merge authorized merchant feeds when configured
         env:
           SMARTSCAN_FEED_URLS: ${{ vars.SMARTSCAN_FEED_URLS }}
