@@ -23,11 +23,11 @@ footer{padding:40px 0 15px;color:#78849b;font-size:12px;text-align:center}
 <div class="shell">
 <header class="top"><div class="logo">⌕</div><div class="brand">Челны СмартСкан<small>УМНЫЙ ВЫБОР СМАРТФОНА</small></div><div class="topright"><span class="status">● Набережные Челны</span></div></header>
 <main>
-<section class="hero"><div><div class="eyebrow">Технологии без переплаты</div><h1>Найди свой<br><span>идеальный смартфон.</span></h1><p class="lead">Сравнивай характеристики, отбирай модели с настоящими 8 ГБ RAM и проверяй предложения магазинов Челнов — без нарисованных скидок.</p><div class="hero-actions"><a class="btn" href="#catalog">Открыть каталог <span>↘</span></a><button class="btn secondary" id="resetTop">Сбросить фильтры</button></div></div>
-<aside class="hero-card"><div class="eyebrow">Фильтр качества</div><div class="big">8 ГБ+</div><p>Только физическая оперативная память</p><div class="rule"><i>✓</i> Новые смартфоны с гарантией в приоритете</div><div class="rule"><i>✓</i> Цена и наличие — только из подтверждённых источников</div><div class="rule"><i>✓</i> Сортировка по цене, батарее и бренду</div></aside></section>
+<section class="hero"><div><div class="eyebrow">Технологии без переплаты</div><h1>Найди свой<br><span>идеальный смартфон.</span></h1><p class="lead">Новые смартфоны за 15 000–20 000 ₽. Только модели с минимум 8 ГБ физической оперативной памяти — варианты на 4 или 6 ГБ исключены.</p><div class="hero-actions"><a class="btn" href="#catalog">Открыть каталог <span>↘</span></a><button class="btn secondary" id="resetTop">Сбросить фильтры</button></div></div>
+<aside class="hero-card"><div class="eyebrow">Фильтр качества</div><div class="big">8 ГБ RAM</div><p>Минимум 8 ГБ физической RAM, без виртуальной подмены</p><div class="rule"><i>✓</i> Только новые смартфоны с гарантией</div><div class="rule"><i>✓</i> Цена и наличие — только из подтверждённых источников</div><div class="rule"><i>✓</i> Сортировка по цене, батарее и бренду</div></aside></section>
 <section class="metrics"><div class="metric"><b id="countModels">—</b><span>моделей в каталоге</span></div><div class="metric"><b id="countOffers">—</b><span>подтверждённых предложений</span></div><div class="metric"><b id="updatedAt">Проверка…</b><span>последнее обновление цен</span></div></section>
 <section id="catalog"><div class="section-head"><div><div class="eyebrow">Подбор и сравнение</div><h2>Каталог смартфонов</h2><p>Найди модель по своим критериям</p></div></div>
-<div class="filters"><input class="field" id="search" type="search" placeholder="Поиск модели, бренда или процессора…"><select class="field" id="brand"><option value="">Все бренды</option></select><select class="field" id="sort"><option value="name">По названию</option><option value="battery">По ёмкости батареи</option><option value="ram">По RAM</option></select><select class="field" id="price"><option value="all">Любая цена</option><option value="15000">До 15 000 ₽</option><option value="20000">До 20 000 ₽</option></select></div>
+<div class="filters"><input class="field" id="search" type="search" placeholder="Поиск модели, бренда или процессора…"><select class="field" id="brand"><option value="">Все бренды</option></select><select class="field" id="sort"><option value="name">По названию</option><option value="battery">По автономности (ёмкость батареи)</option><option value="ram">По RAM</option></select><select class="field" id="price"><option value="all">15 000–20 000 ₽</option><option value="low">15 000–17 499 ₽</option><option value="high">17 500–20 000 ₽</option></select></div>
 <div class="chips"><button class="chip active" data-filter="all">Все модели</button><button class="chip" data-filter="amoled">AMOLED</button><button class="chip" data-filter="bigbattery">Батарея от 6000 мА·ч</button><button class="chip" data-filter="verified">Есть проверенная цена</button><button class="chip" data-filter="favorites">Избранное ★</button></div>
 <div class="resultline"><span id="resultCount">Загружаю каталог…</span><span>Нажми на магазин, чтобы проверить предложение</span></div><div class="cards" id="cards"><div class="empty">Загружаю каталог…</div></div>
 <div class="notice"><strong>Прозрачность цен.</strong> Исторические цены из старого каталога не выдаются за актуальные. В карточках показываются только предложения, для которых есть источник, подтверждённое наличие в Челнах, физическая RAM и гарантия.</div>
@@ -48,10 +48,10 @@ function render(){
  let rows=state.data.phones.filter(p=>{
   const text=[p.brand,p.model,p.cpu,p.screen,p.battery].join(" ").toLowerCase();
   if(q&&!text.includes(q))return false;if(brand&&p.brand!==brand)return false;
-  if(price!=="all"&&(!offersFor(p).some(o=>o.price<=+price)))return false;
+  if(price!=="all"&&(!offersFor(p).some(o=>price==="low"?o.price>=15000&&o.price<17500:o.price>=17500&&o.price<=20000)))return false;
   if(state.filter==="amoled"&&!/amoled/i.test(p.screen||""))return false;
   if(state.filter==="bigbattery"&&batteryNumber(p.battery)<6000)return false;
-  if(state.filter==="verified"&&!offersFor(p).length)return false;
+  if(state.filter==="verified"&&!offersFor(p).some(o=>o.price>=15000&&o.price<=20000))return false;
   if(state.filter==="favorites"&&!state.favorites.has(p.id))return false;
   return true;
  });
@@ -65,7 +65,7 @@ function render(){
 function cardHTML(p){
  const offers=offersFor(p).sort((a,b)=>a.price-b.price),fav=state.favorites.has(p.id);
  const photo=p.photoUrl||("https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_"+p.id+".jpg");
- const spec=[p.ramGb+" ГБ физ. RAM",p.storageGb+" ГБ",p.screen,p.cpu,p.battery].filter(Boolean);
+ const spec=[p.ramGb+" ГБ физ. RAM",p.storageGb+" ГБ",p.screen,p.cpu,p.battery,"Новый · гарантия"].filter(Boolean);
  const offerHTML=offers.length?offers.map(o=>'<div class="offer ok"><b>'+money(o.price)+' · '+esc(o.shop)+'</b><small>'+esc(o.city)+' · гарантия '+esc(o.warrantyMonths)+' мес. · наличие подтверждено</small><small>Проверено: '+esc(o.checkedAt||"дата не указана")+'</small><a href="'+safeURL(o.url)+'" target="_blank" rel="noopener noreferrer">Перейти к предложению ↗</a></div>').join(""):'<div class="offer"><b>Нет подтверждённой цены</b><small>В каталоге есть модель, но актуальное наличие и цена в Челнах пока не подтверждены. Старая цена скрыта.</small></div>';
  return '<article class="phone"><div class="phone-top"><img class="photo" loading="lazy" src="'+safeURL(photo)+'" alt="'+esc(p.brand+" "+p.model)+'" onerror="this.style.visibility=\'hidden\'"><div class="phone-main"><div class="maker">'+esc(p.brand)+'</div><h3>'+esc(p.model)+'</h3><div class="spec">'+esc(p.cpu||"Характеристики уточняются")+'</div><div class="specs">'+spec.map(s=>'<span>'+esc(s)+'</span>').join("")+'</div></div></div>'+offerHTML+'<div class="actions"><button class="mini" data-fav="'+p.id+'">'+(fav?"★ В избранном":"☆ В избранное")+'</button><button class="mini" data-share="'+p.id+'">Поделиться ↗</button></div></article>';
 }
