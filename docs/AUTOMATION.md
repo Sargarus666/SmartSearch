@@ -1,21 +1,17 @@
 # SmartScan automation
 
-## Automated checks
+## What runs automatically
+- `.github/workflows/quality.yml`: validates catalog structure, the 15,000–20,000 RUB selection range, minimum 8 GB physical RAM, HTML and JavaScript syntax.
+- `.github/workflows/deploy-pages.yml`: publishes the static catalog to GitHub Pages when the website or catalog changes.
+- `.github/workflows/codeql.yml`: static security analysis.
+- `.github/dependabot.yml`: weekly dependency update checks.
+- `.github/workflows/ai-audit.yml`: weekly read-only catalog audit. It does not call an AI service and requires no API key.
 
-- `.github/workflows/quality.yml`: validates catalog invariants, **15,000–20,000 RUB** budget, minimum **8 GB physical RAM**, new-device and fresh-offer rules, HTML IDs and Python syntax.
-- `.github/workflows/codeql.yml`: scheduled CodeQL static security analysis for JavaScript, Python and Kotlin/Java.
-- `.github/dependabot.yml`: weekly update PRs for GitHub Actions.
-- `.github/workflows/price-scan.yml` on `main`: scheduled Firecrawl and merchant-feed refresh; it checks out `feature/live-chelny-prices` and commits only catalog data back to that branch. Only new, in-stock offers in Naberezhnye Chelny with at least 8 GB physical RAM, price 15,000–20,000 RUB, warranty and HTTPS product links are accepted.
-- `.github/workflows/ai-audit.yml`: weekly deterministic catalog audit. Despite the historical filename, it no longer calls an AI service and requires no API key.
+## Prices
+The site does not scrape prices, call Firecrawl, read merchant feeds, or claim live stock. It displays approximate Russian-market price ranges stored in `data/phones.json`. These are comparison estimates only, not current store offers.
 
-## AI configuration
+## Product details
+Selecting a phone card opens its own detail view inside the site, with the product photo, specifications, estimated price and search links for DNS, Ситилинк, Ozon, МегаФон, Билайн and МТС.
 
-No Gemini, OpenRouter, Groq or other AI API key is required. The audit uses Python rules, produces a downloadable report and has read-only permissions. It cannot independently confirm real-world prices, stock, warranty or product authenticity.
-
-## Live merchant feeds
-
-Set repository variable `SMARTSCAN_FEED_URLS` to comma-separated HTTPS JSON feed URLs from merchants or authorized data providers. Feed format and strict acceptance policy are documented in [LIVE_PRICES.md](LIVE_PRICES.md). Do not put API keys in this variable or in the repository; use GitHub Actions secrets for credentials and extend the importer to consume them securely.
-
-## Permissions and safety
-
-All quality and audit workflows are read-only. Only the dedicated price-refresh workflow has `contents: write`, and it can commit only `data/phones.json`. Do not grant the audit workflow write permissions.
+## Secrets and permissions
+No Firecrawl, Gemini, Google or merchant API key is needed. Do not add credentials to the repository or the website. Quality and audit workflows remain read-only; the Pages workflow only publishes the static site.
