@@ -1,0 +1,18 @@
+[
+  {
+    "shop": "Ситилинк",
+    "url": "https://www.citilink.ru/product/smartfon-huawei-nova-14i-stg-lx2-256gb-8gb-chernyi-3g-4g-6-7-1084x2412-2146655/",
+    "expected": {
+      "brand": "HUAWEI",
+      "model": "nova 14i 8/256",
+      "ramGb": 8,
+      "storageGb": 256,
+      "matchTerms": [
+        "huawei",
+        "nova",
+        "14i",
+        "8/256"
+      ]
+    }
+  }
+]
