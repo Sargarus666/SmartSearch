@@ -13,6 +13,14 @@ The catalog currently contains 16 candidate models and all entries declare at le
 ## Important truth about prices
 Old manually entered prices and store addresses are historical catalog fields. Search-result URLs are not proof of stock or price. The website does not show these legacy values as current offers.
 
+## Public retailer-page scraper
+
+The refresh workflow also runs `scripts/scrape_retail_prices.py` every six hours and on updates to `feature/live-chelny-prices`. It fetches configured public product pages, reads Product JSON-LD / price metadata, checks the exact model and physical RAM/storage variant, and stores results in `observedOffers`. The initial source is a direct Citilink product page for Huawei nova 14i 8/256.
+
+`observedOffers` are deliberately **not** treated as confirmed local stock: the product page can show a price without exposing delivery availability for Naberezhnye Chelny or warranty. The UI labels these as prices read from a retailer page. Only `verifiedOffers` may claim local stock and warranty.
+
+To add a source, edit `scripts/retailer_sources.json` with a direct HTTPS product URL, exact model terms, and expected physical RAM/storage. Do not add search pages or URLs that do not identify a specific product variant.
+
 ## Automated refresh
 GitHub Actions runs every 6 hours and on manual dispatch. It reads repository variable `SMARTSCAN_FEED_URLS`, a comma-separated list of HTTPS JSON feed URLs. Each feed must return:
 
@@ -43,7 +51,7 @@ Only records meeting every selection criterion above are written to `verifiedOff
 2. Set it to one or more authorized retailer feed endpoints separated by commas.
 3. Run Actions → Refresh Chelny smartphone prices → Run workflow.
 
-Do not point this variable at search pages or scrape pages without permission. Retailer feeds/API access must be authorized and must provide local delivery/stock data. Without configured feeds, the workflow deliberately leaves the catalog unchanged and does not invent prices.
+Do not point this variable at search pages or scrape pages without permission. Retailer feeds/API access must be authorized and must provide local delivery/stock data. Without configured feeds, the workflow still scrapes public product pages into `observedOffers`; it does not invent local stock, delivery, or warranty claims.
 
 ## Current limitation
 The ingestion pipeline enforces the requirements but does not itself grant access to retailer stock systems. Until authorized merchant feeds are configured, there are no verified live prices.
