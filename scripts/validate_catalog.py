@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Fail-fast validation for SmartScan's catalog and static site."""
 import json
-import re
-import sys
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
@@ -10,16 +8,14 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 CITY = "Набережные Челны"
-MIN_PRICE, MAX_PRICE, MIN_RAM = 10000, 15000, 8
+MIN_PRICE, MAX_PRICE, MIN_RAM = 15000, 20000, 8
 
 
 class SiteParser(HTMLParser):
     def __init__(self):
         super().__init__()
-        self.ids = set()
-        self.duplicates = []
-        self.has_viewport = False
-        self.has_catalog_root = False
+        self.ids, self.duplicates = set(), []
+        self.has_viewport = self.has_catalog_root = False
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -42,10 +38,9 @@ def main():
     if data.get("city") != CITY:
         raise SystemExit("Catalog city must be Naberezhnye Chelny")
     if int(data.get("minPrice", 0)) != MIN_PRICE or int(data.get("maxPrice", 0)) != MAX_PRICE:
-        raise SystemExit("Catalog budget must be 10,000–15,000 RUB")
+        raise SystemExit("Catalog budget must be 15,000–20,000 RUB")
     if int(data.get("minRamGb", 0)) != MIN_RAM:
         raise SystemExit("Catalog must require at least 8 GB physical RAM")
-
     ids = [p.get("id") for p in phones]
     if len(ids) != len(set(ids)):
         raise SystemExit("Phone IDs must be unique")
@@ -61,7 +56,6 @@ def main():
         if key in known:
             raise SystemExit(f"Duplicate brand/model: {phone['brand']} {phone['model']}")
         known[key] = phone
-
     offers = data.get("verifiedOffers", [])
     if not isinstance(offers, list):
         raise SystemExit("verifiedOffers must be an array")
@@ -76,14 +70,12 @@ def main():
         phone = known.get(key)
         if not phone:
             raise SystemExit("Verified offer must match an exact catalog model")
-        if int(offer.get("ramGb", 0)) != int(phone["ramGb"]):
-            raise SystemExit("Verified offer RAM must match the catalog variant")
-        if int(offer.get("storageGb", 0)) != int(phone["storageGb"]):
-            raise SystemExit("Verified offer storage must match the catalog variant")
+        if int(offer.get("ramGb", 0)) != int(phone["ramGb"]) or int(offer.get("storageGb", 0)) != int(phone["storageGb"]):
+            raise SystemExit("Verified offer RAM/storage must match the exact catalog variant")
         if int(offer.get("ramGb", 0)) < MIN_RAM:
             raise SystemExit("Verified offer has less than 8 GB physical RAM")
         if not MIN_PRICE <= int(offer.get("price", 0)) <= MAX_PRICE:
-            raise SystemExit("Verified offer is outside 10,000–15,000 RUB")
+            raise SystemExit("Verified offer is outside 15,000–20,000 RUB")
         parsed = urlsplit(str(offer.get("url", "")))
         if parsed.scheme != "https" or not parsed.hostname:
             raise SystemExit("Verified offer must use a valid HTTPS product URL")
@@ -92,11 +84,11 @@ def main():
         checked = datetime.fromisoformat(str(offer.get("checkedAt", "")).replace("Z", "+00:00"))
         if checked.tzinfo is None:
             raise SystemExit("Verified offer checkedAt must include a timezone")
-        if checked.astimezone(timezone.utc) > datetime.now(timezone.utc).replace(microsecond=0):
-            raise SystemExit("Verified offer checkedAt cannot be in the future")
+        age = datetime.now(timezone.utc) - checked.astimezone(timezone.utc)
+        if age.total_seconds() > 24 * 60 * 60 or age.total_seconds() < -300:
+            raise SystemExit("Verified offer must have been checked within the last 24 hours")
         if "paymentOnDelivery" in offer and not isinstance(offer["paymentOnDelivery"], bool):
             raise SystemExit("paymentOnDelivery must be boolean when supplied")
-
     page = SiteParser()
     page.feed((ROOT / "web/index.html").read_text(encoding="utf-8"))
     if not page.has_viewport or not page.has_catalog_root:
