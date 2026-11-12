@@ -62,7 +62,7 @@ function render(){
  $("countModels").textContent=state.data.phones.length;
  $("countOffers").textContent=(state.data.verifiedOffers||[]).length+(state.data.observedOffers||[]).filter(o=>Date.now()-new Date(o.checkedAt).getTime()<24*60*60*1000).length;
  const latest=state.data.observedOffersUpdated||state.data.updated;
- const stamp=latest?new Date(/^\\d{4}-\\d{2}-\\d{2}$/.test(latest)?latest+"T12:00:00":latest):null;
+ const stamp=latest?new Date(/^\d{4}-\d{2}-\d{2}$/.test(latest)?latest+"T12:00:00":latest):null;
  $("updatedAt").textContent=stamp&&!Number.isNaN(stamp.getTime())?(state.data.observedOffersUpdated?stamp.toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"}):stamp.toLocaleDateString("ru-RU")):"Нет данных";
 }
 function cardHTML(p){
