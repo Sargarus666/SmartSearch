@@ -15,7 +15,7 @@ Old manually entered prices and store addresses are historical catalog fields. S
 
 ## Public retailer-page scraper
 
-The refresh workflow runs `scripts/scrape_firecrawl_prices.py` every 12 hours and on updates to `feature/live-chelny-prices`. It calls the Firecrawl v2 Scrape API using the `FIRECRAWL_API_KEY` GitHub Actions secret, extracts structured fields from city-specific Price.ru product pages, validates the exact seller, physical RAM, storage, condition and price range, and stores results only in `observedOffers`. If the secret is absent, the scraper safely skips without writing fabricated prices.
+The default-branch workflow `.github/workflows/price-scan.yml` runs every 12 hours and on manual dispatch. It checks out `feature/live-chelny-prices`, calls the Firecrawl v2 Scrape API using the `FIRECRAWL_API_KEY` GitHub Actions secret, extracts structured fields from city-specific Price.ru product pages, validates the exact seller, physical RAM, storage, condition and price range, and stores results only in `observedOffers`. It commits updated observations back to `feature/live-chelny-prices`. The workflow fails clearly if the secret is missing; it never writes fabricated prices.
 
 `observedOffers` are deliberately **not** treated as confirmed local stock: the product page can show a price without exposing delivery availability for Naberezhnye Chelny or warranty. The UI labels these as prices read from a retailer page. Only `verifiedOffers` may claim local stock and warranty.
 
