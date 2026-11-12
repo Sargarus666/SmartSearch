@@ -55,10 +55,29 @@ def scrape(source):
         "Accept-Language": "ru-RU,ru;q=0.9,en;q=0.7",
         "Accept": "text/html,application/xhtml+xml"
     })
-    with urlopen(req, timeout=30) as response:
-        raw = response.read(8*1024*1024+1)
+    try:
+        with urlopen(req, timeout=30) as response:
+            raw = response.read(8*1024*1024+1)
+        fetched_via = "direct"
+    except Exception as direct_error:
+        # Public reader proxy can retrieve pages when CDNs block GitHub runner IPs.
+        reader_url = "https://r.jina.ai/" + url
+        reader_req = Request(reader_url, headers={
+            "User-Agent": "Mozilla/5.0",
+            "Accept": "text/plain",
+            "X-Return-Format": "markdown"
+        })
+        try:
+            with urlopen(reader_req, timeout=45) as response:
+                raw = response.read(8*1024*1024+1)
+            fetched_via = "jina_reader"
+        except Exception as reader_error:
+            raise ValueError(f"direct fetch failed ({direct_error}); reader fallback failed ({reader_error})")
     if len(raw) > 8*1024*1024: raise ValueError("page too large")
-    page = Page(); page.feed(raw.decode("utf-8", errors="replace"))
+    decoded = raw.decode("utf-8", errors="replace")
+    page = Page(); page.feed(decoded)
+    if not page.title:
+        page.title = next((line.strip("# ").strip() for line in decoded.splitlines() if line.strip()), "")
     title = normalize(page.title)
     text = normalize(" ".join(page.text))
     expected = source["expected"]
@@ -93,6 +112,7 @@ def scrape(source):
     delivery = "delivery_available" if "доставка завтра" in text.casefold() or "доставка есть" in text.casefold() else "unknown"
     payment = "cash" if "оплата наличными" in text.casefold() else "unknown"
     pickup = "no" if "самовывоз нет" in text.casefold() else "unknown"
+    print("FETCH", expected["model"], fetched_via)
     return {
         "brand": expected["brand"], "model": expected["model"],
         "ramGb": ram, "storageGb": storage, "price": price,
