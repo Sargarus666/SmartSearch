@@ -55,24 +55,25 @@ def scrape(source):
         "Accept-Language": "ru-RU,ru;q=0.9,en;q=0.7",
         "Accept": "text/html,application/xhtml+xml"
     })
+    # Prefer Jina Reader: Price.ru serves a JS shell to headless CI clients,
+    # while the reader extracts its server-rendered product content.
+    reader_url = "https://r.jina.ai/http://" + urlsplit(url).netloc + urlsplit(url).path
+    reader_req = Request(reader_url, headers={
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "text/plain",
+        "X-Return-Format": "markdown"
+    })
     try:
-        with urlopen(req, timeout=30) as response:
+        with urlopen(reader_req, timeout=45) as response:
             raw = response.read(8*1024*1024+1)
-        fetched_via = "direct"
-    except Exception as direct_error:
-        # Public reader proxy can retrieve pages when CDNs block GitHub runner IPs.
-        reader_url = "https://r.jina.ai/" + url
-        reader_req = Request(reader_url, headers={
-            "User-Agent": "Mozilla/5.0",
-            "Accept": "text/plain",
-            "X-Return-Format": "markdown"
-        })
+        fetched_via = "jina_reader"
+    except Exception as reader_error:
         try:
-            with urlopen(reader_req, timeout=45) as response:
+            with urlopen(req, timeout=30) as response:
                 raw = response.read(8*1024*1024+1)
-            fetched_via = "jina_reader"
-        except Exception as reader_error:
-            raise ValueError(f"direct fetch failed ({direct_error}); reader fallback failed ({reader_error})")
+            fetched_via = "direct_fallback"
+        except Exception as direct_error:
+            raise ValueError(f"reader fetch failed ({reader_error}); direct fallback failed ({direct_error})")
     if len(raw) > 8*1024*1024: raise ValueError("page too large")
     decoded = raw.decode("utf-8", errors="replace")
     page = Page(); page.feed(decoded)
@@ -91,10 +92,6 @@ def scrape(source):
     ram_match = re.search(r"Оперативная память\s*:?\s*(8|12|16)\s*Гб", text, re.I)
     storage_match = re.search(r"Встроенная память\s*:?\s*(128|256|512)\s*Гб", text, re.I)
     if not ram_match or not storage_match:
-        for label in ("оперативная память", "встроенная память"):
-            pos = text.casefold().find(label)
-            print("DEBUG", label, repr(text[max(0,pos-40):pos+180] if pos >= 0 else text[:900]))
-        print("DEBUG title", repr(title), "reader", fetched_via)
         raise ValueError("physical RAM/storage not found on Price.ru page")
     ram, storage = int(ram_match.group(1)), int(storage_match.group(1))
     if ram != expected["ramGb"] or storage != expected["storageGb"]:
