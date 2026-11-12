@@ -120,9 +120,19 @@ def validate_offer(item, source):
         raise ValueError(f"seller mismatch: {item.get('seller')!r}")
     if (item.get("condition") or "").casefold() not in ("new", "новый", "новое"):
         raise ValueError(f"new condition not confirmed: {item.get('condition')!r}")
+    brand = (item.get("brand") or "").strip().casefold()
+    if brand != str(expected["brand"]).strip().casefold():
+        raise ValueError(f"brand mismatch: {item.get('brand')!r}")
     model = (item.get("model") or "").casefold()
-    if not all(term.casefold() in model for term in expected["matchTerms"]):
-        raise ValueError(f"model/variant mismatch: {item.get('model')!r}")
+    # matchTerms also records the expected brand and RAM/storage variant.
+    # Brand is checked above; memory is validated by the exact numeric fields.
+    # Compare only distinctive model tokens with the model field itself.
+    model_terms = [
+        term.casefold() for term in expected["matchTerms"]
+        if term.casefold() != str(expected["brand"]).casefold() and "/" not in term
+    ]
+    if not model_terms or not all(term in model for term in model_terms):
+        raise ValueError(f"model mismatch: {item.get('model')!r}")
 
 
 def main():
