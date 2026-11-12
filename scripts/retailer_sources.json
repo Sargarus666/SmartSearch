@@ -46,5 +46,21 @@
         "8/128"
       ]
     }
+  },
+  {
+    "shop": "МегаФон",
+    "url": "https://shop.megafon.ru/mobile/207319",
+    "expected": {
+      "brand": "TECNO",
+      "model": "Spark 50 8/128",
+      "ramGb": 8,
+      "storageGb": 128,
+      "matchTerms": [
+        "tecno",
+        "spark",
+        "50",
+        "8/128"
+      ]
+    }
   }
 ]
