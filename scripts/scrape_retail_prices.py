@@ -91,6 +91,10 @@ def scrape(source):
     ram_match = re.search(r"Оперативная память\s*:?\s*(8|12|16)\s*Гб", text, re.I)
     storage_match = re.search(r"Встроенная память\s*:?\s*(128|256|512)\s*Гб", text, re.I)
     if not ram_match or not storage_match:
+        for label in ("оперативная память", "встроенная память"):
+            pos = text.casefold().find(label)
+            print("DEBUG", label, repr(text[max(0,pos-40):pos+180] if pos >= 0 else text[:900]))
+        print("DEBUG title", repr(title), "reader", fetched_via)
         raise ValueError("physical RAM/storage not found on Price.ru page")
     ram, storage = int(ram_match.group(1)), int(storage_match.group(1))
     if ram != expected["ramGb"] or storage != expected["storageGb"]:
