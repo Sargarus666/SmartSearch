@@ -71,8 +71,8 @@ def firecrawl_extract(api_key, source):
         }],
         "onlyMainContent": True,
         "maxAge": 0,
-        "proxy": "stealth",
-        "waitFor": 2500
+        "proxy": "basic",
+        "waitFor": 1200
     }
     req = Request(
         API_URL,
