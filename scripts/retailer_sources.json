@@ -14,5 +14,21 @@
         "8/256"
       ]
     }
+  },
+  {
+    "shop": "МегаФон",
+    "url": "https://shop.megafon.ru/mobile/208122",
+    "expected": {
+      "brand": "HUAWEI",
+      "model": "nova Y74 8/256",
+      "ramGb": 8,
+      "storageGb": 256,
+      "matchTerms": [
+        "huawei",
+        "nova",
+        "y74",
+        "8/256"
+      ]
+    }
   }
 ]
