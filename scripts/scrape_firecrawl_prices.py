@@ -72,6 +72,7 @@ def firecrawl_extract(api_key, source):
         "onlyMainContent": True,
         "maxAge": 0,
         "proxy": "basic",
+        "location": {"country": "RU", "languages": ["ru-RU"]},
         "waitFor": 1200
     }
     req = Request(
