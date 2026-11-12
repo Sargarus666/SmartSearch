@@ -20,10 +20,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Fetch and validate merchant feeds
+      - name: Scrape public retailer product pages
+        run: python scripts/scrape_retail_prices.py
+      - name: Merge authorized merchant feeds when configured
         env:
           SMARTSCAN_FEED_URLS: ${{ vars.SMARTSCAN_FEED_URLS }}
         run: python scripts/update_catalog.py
+      - name: Validate catalog
+        run: python scripts/validate_catalog.py
       - name: Commit changed catalog
         run: |
           if git diff --quiet -- data/phones.json; then
@@ -33,5 +37,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/phones.json
-          git commit -m "chore: refresh verified Chelny smartphone offers"
+          git commit -m "chore: scrape retailer prices for Chelny SmartScan"
           git push
