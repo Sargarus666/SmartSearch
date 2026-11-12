@@ -1,6 +1,9 @@
 name: Refresh smartphone prices
 
 on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/price-scan.yml"]
   schedule:
     - cron: "17 5 * * *"
   workflow_dispatch:
