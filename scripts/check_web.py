@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 html = (ROOT / "web/index.html").read_text(encoding="utf-8")
-scripts = re.findall(r"<script(?:\\s[^>]*)?>(.*?)</script\\s*>", html, flags=re.I | re.S)
+scripts = re.findall(r"<script(?:\s[^>]*)?>(.*?)</script\s*>", html, flags=re.I | re.S)
 if not scripts:
     raise SystemExit("No inline JavaScript found in web/index.html")
 source = "\n".join(scripts)
