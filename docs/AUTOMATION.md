@@ -2,15 +2,15 @@
 
 ## Automated checks
 
-- `.github/workflows/quality.yml`: validates catalog invariants, verified-offer rules, HTML IDs and Python syntax on pushes and pull requests.
+- `.github/workflows/quality.yml`: validates catalog invariants, **15,000–20,000 RUB** budget, minimum **8 GB physical RAM**, new-device and fresh-offer rules, HTML IDs and Python syntax.
 - `.github/workflows/codeql.yml`: scheduled CodeQL static security analysis for JavaScript, Python and Kotlin/Java.
 - `.github/dependabot.yml`: weekly update PRs for GitHub Actions.
-- `.github/workflows/refresh-prices.yml`: scheduled merchant-feed refresh. Only explicit local stock, physical RAM, warranty and HTTPS product links are accepted.
+- `.github/workflows/refresh-prices.yml`: scheduled merchant-feed refresh. Only new, in-stock offers in Naberezhnye Chelny with at least 8 GB physical RAM, price 15,000–20,000 RUB, warranty and HTTPS product links are accepted.
 - `.github/workflows/ai-audit.yml`: weekly deterministic catalog audit. Despite the historical filename, it no longer calls an AI service and requires no API key.
 
 ## AI configuration
 
-No Gemini, OpenRouter, Groq or other AI API key is required. The audit uses Python rules, produces a downloadable report and has read-only permissions. This is more reliable for checking known catalog rules and avoids external API quotas. It cannot independently confirm real-world prices, stock, warranty or product authenticity.
+No Gemini, OpenRouter, Groq or other AI API key is required. The audit uses Python rules, produces a downloadable report and has read-only permissions. It cannot independently confirm real-world prices, stock, warranty or product authenticity.
 
 ## Live merchant feeds
 
