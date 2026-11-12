@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090b12"><meta name="description" content="Челны СмартСкан — каталог смартфонов с 8 ГБ физической RAM, фильтрами и проверенными предложениями магазинов Набережных Челнов.">
-<title>Челны СмартСкан — умный выбор смартфона</title>
+<meta name="theme-color" content="#090b12"><meta name="description" content="СмартСкан — каталог смартфонов с 8 ГБ физической RAM и ориентировочными ценами по России.">
+<title>СмартСкан — каталог смартфонов</title>
 <style>
 :root{color-scheme:dark;--bg:#090b12;--panel:#111522;--panel2:#171d2c;--line:#252d40;--text:#f4f6fb;--muted:#929db2;--accent:#9b8cff;--accent2:#70e0c0;--warn:#f4c978;--radius:22px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#28234c 0,transparent 44%),var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -17,84 +17,118 @@ a{color:inherit}.shell{max-width:1180px;margin:auto;padding:0 24px 90px}.top{hei
 footer{padding:40px 0 15px;color:#78849b;font-size:12px;text-align:center}
 @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:46px}.hero-card{max-width:500px}.filters{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}.method{grid-template-columns:1fr}.metrics{gap:8px}.metric{padding:13px}.metric b{font-size:16px}}
 @media(max-width:480px){.shell{padding:0 14px 70px}.top{height:65px}.status{font-size:10px;padding:6px 8px}.hero h1{letter-spacing:-1.8px}.hero{padding-top:38px}.filters{grid-template-columns:1fr}.phone{padding:13px}.photo{width:88px;height:120px}.phone h3{font-size:16px}.metrics{grid-template-columns:1fr 1fr}.metric:last-child{grid-column:1/-1}}
+
+/* Internal smartphone detail page */
+#phonePage{display:none;padding:28px 0 50px}
+.detail-back{border:1px solid var(--line);background:#ffffff08;color:var(--text);padding:10px 14px;border-radius:12px;font:inherit;cursor:pointer;margin-bottom:20px}
+.detail-hero{display:grid;grid-template-columns:minmax(220px,.8fr) 1.2fr;gap:28px;align-items:start;background:linear-gradient(145deg,#171e30,#101522);border:1px solid var(--line);border-radius:24px;padding:24px}
+.detail-image{width:100%;height:360px;object-fit:contain;border-radius:18px;background:linear-gradient(145deg,#222b40,#121827);padding:18px}
+.detail-copy h1{font-size:clamp(27px,4vw,42px);line-height:1.1;margin:8px 0 12px}
+.estimate{display:inline-block;margin:8px 0 16px;padding:12px 16px;border-radius:14px;background:#70e0c00d;border:1px solid #70e0c044}
+.estimate b{display:block;font-size:25px;color:var(--accent2)}
+.estimate small{color:var(--muted)}
+.detail-section{margin-top:24px}
+.detail-section h2{font-size:22px;margin:0 0 12px}
+.full-specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.full-specs div{padding:13px;background:var(--panel);border:1px solid var(--line);border-radius:13px;color:#d3d9e5}
+.full-specs b{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}
+.store-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.store-link{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:15px;background:var(--panel);border:1px solid var(--line);border-radius:13px;text-decoration:none;font-weight:750}
+.store-link:hover{border-color:var(--accent)}
+.detail-note{font-size:12px;color:var(--muted);margin-top:12px}
+.phone{cursor:pointer}
+@media(max-width:700px){.detail-hero{grid-template-columns:1fr;padding:15px}.detail-image{height:290px}.store-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.full-specs{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="shell">
-<header class="top"><div class="logo">⌕</div><div class="brand">Челны СмартСкан<small>УМНЫЙ ВЫБОР СМАРТФОНА</small></div><div class="topright"><span class="status">● Набережные Челны</span></div></header>
+<header class="top"><div class="logo">⌕</div><div class="brand">СмартСкан<small>КАТАЛОГ СМАРТФОНОВ ПО РОССИИ</small></div><div class="topright"><span class="status">● Россия</span></div></header>
 <main>
-<section class="hero"><div><div class="eyebrow">Технологии без переплаты</div><h1>Найди свой<br><span>идеальный смартфон.</span></h1><p class="lead">Новые смартфоны за 15 000–20 000 ₽. Только модели с минимум 8 ГБ физической оперативной памяти — варианты на 4 или 6 ГБ исключены.</p><div class="hero-actions"><a class="btn" href="#catalog">Открыть каталог <span>↘</span></a><button class="btn secondary" id="resetTop">Сбросить фильтры</button></div></div>
-<aside class="hero-card"><div class="eyebrow">Фильтр качества</div><div class="big">8 ГБ RAM</div><p>Минимум 8 ГБ физической RAM, без виртуальной подмены</p><div class="rule"><i>✓</i> Только новые смартфоны с гарантией</div><div class="rule"><i>✓</i> Найденные цены отделены от подтверждённого наличия</div><div class="rule"><i>✓</i> Сортировка по цене, батарее и бренду</div></aside></section>
-<section class="metrics"><div class="metric"><b id="countModels">—</b><span>моделей в каталоге</span></div><div class="metric"><b id="countOffers">—</b><span>найденных ценовых наблюдений</span></div><div class="metric"><b id="updatedAt">Проверка…</b><span>последнее обновление цен</span></div></section>
+<section class="hero"><div><div class="eyebrow">Технологии без переплаты</div><h1>Найди свой<br><span>идеальный смартфон.</span></h1><p class="lead">Подборка новых смартфонов с 8 ГБ физической оперативной памяти. Цены ориентировочные — для понимания уровня стоимости по российскому рынку.</p><div class="hero-actions"><a class="btn" href="#catalog">Открыть каталог <span>↘</span></a><button class="btn secondary" id="resetTop">Сбросить фильтры</button></div></div>
+<aside class="hero-card"><div class="eyebrow">Фильтр качества</div><div class="big">8 ГБ RAM</div><p>Минимум 8 ГБ физической RAM, без виртуальной подмены</p><div class="rule"><i>✓</i> Только новые смартфоны с гарантией</div><div class="rule"><i>✓</i> Ориентиры по ценам, не прайс-лист магазинов</div><div class="rule"><i>✓</i> Сравнение характеристик и ориентировочных цен</div></aside></section>
+<section class="metrics"><div class="metric"><b id="countModels">—</b><span>моделей в каталоге</span></div><div class="metric"><b>6</b><span>магазинов для проверки</span></div><div class="metric"><b>₽</b><span>примерные цены по России</span></div></section>
 <section id="catalog"><div class="section-head"><div><div class="eyebrow">Подбор и сравнение</div><h2>Каталог смартфонов</h2><p>Найди модель по своим критериям</p></div></div>
-<div class="filters"><input class="field" id="search" type="search" placeholder="Поиск модели, бренда или процессора…"><select class="field" id="brand"><option value="">Все бренды</option></select><select class="field" id="sort"><option value="name">По названию</option><option value="battery">По автономности (ёмкость батареи)</option><option value="ram">По RAM</option></select><select class="field" id="price"><option value="all">15 000–20 000 ₽</option><option value="low">15 000–17 499 ₽</option><option value="high">17 500–20 000 ₽</option></select></div>
-<div class="chips"><button class="chip active" data-filter="all">Все модели</button><button class="chip" data-filter="amoled">AMOLED</button><button class="chip" data-filter="bigbattery">Батарея от 6000 мА·ч</button><button class="chip" data-filter="verified">Есть найденная цена</button><button class="chip" data-filter="favorites">Избранное ★</button></div>
-<div class="resultline"><span id="resultCount">Загружаю каталог…</span><span>Нажми на магазин, чтобы проверить предложение</span></div><div class="cards" id="cards"><div class="empty">Загружаю каталог…</div></div>
-<div class="notice"><strong>Прозрачность цен.</strong> Исторические цены из старого каталога не выдаются за актуальные. В карточках отдельно показаны найденные цены со страниц магазинов и полностью подтверждённые предложения. Цена со страницы не означает, что товар есть в наличии именно в Челнах.</div>
+<div class="filters"><input class="field" id="search" type="search" placeholder="Поиск модели, бренда или процессора…"><select class="field" id="brand"><option value="">Все бренды</option></select><select class="field" id="sort"><option value="name">По названию</option><option value="battery">По автономности (ёмкость батареи)</option><option value="ram">По RAM</option></select><select class="field" id="price"><option value="all">Любая цена</option><option value="low">До 17 500 ₽</option><option value="high">От 17 500 ₽</option></select></div>
+<div class="chips"><button class="chip active" data-filter="all">Все модели</button><button class="chip" data-filter="amoled">AMOLED</button><button class="chip" data-filter="bigbattery">Батарея от 6000 мА·ч</button><button class="chip" data-filter="verified">До 20 000 ₽</button><button class="chip" data-filter="favorites">Избранное ★</button></div>
+<div class="resultline"><span id="resultCount">Загружаю каталог…</span><span>Нажми на карточку — откроется страница смартфона</span></div><div class="cards" id="cards"><div class="empty">Загружаю каталог…</div></div>
+<div class="notice"><strong>Ориентировочная цена.</strong> Это примерный диапазон по российскому рынку, а не актуальное предложение конкретного магазина. Нажми на карточку, чтобы посмотреть характеристики и перейти к поиску модели в DNS, Ситилинке, Ozon, МегаФоне, Билайне или МТС.</div>
 </section>
-<section><div class="section-head"><div><div class="eyebrow">Как мы отбираем</div><h2>Никаких фокусов с цифрами</h2></div></div><div class="method"><article><b>01 · Реальная память</b><p>Виртуальное расширение RAM не учитывается. Смотрим только физические 8 ГБ и выше.</p></article><article><b>02 · Честная цена</b><p>Старая цена не считается действующей. Нужны дата проверки и ссылка на конкретное предложение.</p></article><article><b>03 · Наличие и гарантия</b><p>В выдачу с ценой попадают предложения с явным наличием, городом и сроком гарантии.</p></article></div></section>
-</main><footer>Челны СмартСкан · Независимый каталог для выбора смартфона<br>Цены и наличие могут меняться у продавцов. Перед покупкой проверь условия на сайте магазина.</footer>
+<section><div class="section-head"><div><div class="eyebrow">Как мы отбираем</div><h2>Никаких фокусов с цифрами</h2></div></div><div class="method"><article><b>01 · Реальная память</b><p>Виртуальное расширение RAM не учитывается. Смотрим только физические 8 ГБ и выше.</p></article><article><b>02 · Ориентир по рынку</b><p>Показываем примерный диапазон цен в России, без имитации проверки остатков.</p></article><article><b>03 · Магазины</b><p>Ссылки ведут к поиску модели в крупных российских сетях и маркетплейсах.</p></article></div></section>
+</main><section id="phonePage" aria-live="polite"></section><footer>СмартСкан · Независимый каталог для выбора смартфона<br>Цены и наличие могут меняться у продавцов. Перед покупкой проверь условия на сайте магазина.</footer>
 </div>
 <script>
 "use strict";
 const DATA_URL="../data/phones.json";
 const $=id=>document.getElementById(id);
-const money=n=>Number(n).toLocaleString("ru-RU")+" ₽";
 const state={data:null,filter:"all",favorites:new Set(JSON.parse(localStorage.getItem("smartscan-favs")||"[]"))};
-function offersFor(phone){return (state.data.verifiedOffers||[]).filter(o=>String(o.brand).toLowerCase()===String(phone.brand).toLowerCase()&&String(o.model).toLowerCase()===String(phone.model).toLowerCase())}
-function observedFor(phone){return (state.data.observedOffers||[]).filter(o=>String(o.brand).toLowerCase()===String(phone.brand).toLowerCase()&&String(o.model).toLowerCase()===String(phone.model).toLowerCase()&&Date.now()-new Date(o.checkedAt).getTime()<24*60*60*1000)}
+const money=n=>Number(n).toLocaleString("ru-RU")+" ₽";
 function batteryNumber(s){const m=String(s||"").match(/(\d{4,5})\s*мА/iu);return m?+m[1]:0}
+function priceValue(p){return Number(p.priceFrom||p.priceApprox||0)}
 function render(){
  const q=$("search").value.trim().toLowerCase(),brand=$("brand").value,price=$("price").value,sort=$("sort").value;
  let rows=state.data.phones.filter(p=>{
   const text=[p.brand,p.model,p.cpu,p.screen,p.battery].join(" ").toLowerCase();
   if(q&&!text.includes(q))return false;if(brand&&p.brand!==brand)return false;
-  if(price!=="all"&&(![...offersFor(p),...observedFor(p)].some(o=>price==="low"?o.price>=15000&&o.price<17500:o.price>=17500&&o.price<=20000)))return false;
+  const v=priceValue(p);
+  if(price==="low"&&v>=17500)return false;if(price==="high"&&v<17500)return false;
   if(state.filter==="amoled"&&!/amoled/i.test(p.screen||""))return false;
   if(state.filter==="bigbattery"&&batteryNumber(p.battery)<6000)return false;
-  if(state.filter==="verified"&&![...offersFor(p),...observedFor(p)].some(o=>o.price>=15000&&o.price<=20000))return false;
+  if(state.filter==="verified"&&Number(p.priceTo||p.priceApprox||999999)>20000)return false;
   if(state.filter==="favorites"&&!state.favorites.has(p.id))return false;
   return true;
  });
- rows.sort((a,b)=>sort==="battery"?batteryNumber(b.battery)-batteryNumber(a.battery):sort==="ram"?b.ramGb-a.ramGb:(a.brand+" "+a.model).localeCompare(b.brand+" "+b.model,"ru"));
+ rows.sort((a,b)=>sort==="battery"?batteryNumber(b.battery)-batteryNumber(a.battery):sort==="ram"?b.ramGb-a.ramGb:sort==="price"?priceValue(a)-priceValue(b):(a.brand+" "+a.model).localeCompare(b.brand+" "+b.model,"ru"));
  $("resultCount").textContent="Показано "+rows.length+" из "+state.data.phones.length+" моделей";
  $("cards").innerHTML=rows.length?rows.map(cardHTML).join(""):'<div class="empty"><b>Ничего не нашлось</b>Попробуй изменить фильтры или поисковый запрос.</div>';
  $("countModels").textContent=state.data.phones.length;
- $("countOffers").textContent=(state.data.verifiedOffers||[]).length+(state.data.observedOffers||[]).filter(o=>Date.now()-new Date(o.checkedAt).getTime()<24*60*60*1000).length;
- const latest=state.data.observedOffersUpdated||state.data.updated;
- const stamp=latest?new Date(/^\d{4}-\d{2}-\d{2}$/.test(latest)?latest+"T12:00:00":latest):null;
- $("updatedAt").textContent=stamp&&!Number.isNaN(stamp.getTime())?(state.data.observedOffersUpdated?stamp.toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"}):stamp.toLocaleDateString("ru-RU")):"Нет данных";
 }
 function cardHTML(p){
- const offers=offersFor(p).sort((a,b)=>a.price-b.price),observed=observedFor(p).sort((a,b)=>a.price-b.price),all=[...offers,...observed].sort((a,b)=>a.price-b.price),fav=state.favorites.has(p.id);
- const best=all[0],photo=p.photoUrl||"";
- const spec=[p.ramGb+" ГБ физ. RAM",p.storageGb+" ГБ",p.screen,p.cpu,p.battery].filter(Boolean);
- const photoHTML=photo?'<img class="photo" loading="lazy" src="'+safeURL(photo)+'" alt="'+esc(p.brand+" "+p.model)+'" onerror="this.outerHTML=\'<div class=\\\"photo-fallback\\\">'+esc(p.brand)+'<br>'+esc(p.model)+'</div>\'">':'<div class="photo-fallback">'+esc(p.brand)+'<br>'+esc(p.model)+'</div>';
- const verifiedHTML=offers.map(o=>'<div class="offer ok"><b>'+money(o.price)+' · '+esc(o.shop)+'</b><small>'+esc(o.city)+' · гарантия '+esc(o.warrantyMonths)+' мес. · наличие подтверждено</small><small>Проверено: '+esc(o.checkedAt||"дата не указана")+'</small><a href="'+safeURL(o.url)+'" target="_blank" rel="noopener noreferrer">Перейти к предложению ↗</a></div>').join("");
- const observedHTML=observed.map(o=>'<div class="offer"><b>'+money(o.price)+' · '+esc(o.shop)+' <span style="color:#f4c978;font-size:10px">ЦЕНА СО СТРАНИЦЫ</span></b><small>'+esc(o.note||"Наличие и доставка в Челны не подтверждены")+'</small><small>Проверено: '+esc(o.checkedAt||"дата не указана")+'</small><a href="'+safeURL(o.url)+'" target="_blank" rel="noopener noreferrer">Открыть товар в магазине ↗</a>'+(o.localProofUrl?'<br><a href="'+safeURL(o.localProofUrl)+'" target="_blank" rel="noopener noreferrer">Проверить доставку в Челны ↗</a>':"")+'</div>').join("");
- const offerHTML=verifiedHTML+observedHTML||'<div class="offer"><b>Цена пока не найдена</b><small>Старая цена не показывается. Ожидается результат проверки магазина.</small></div>';
- const priceHTML=best?'<div class="price-preview"><div><span class="price-label">МИНИМАЛЬНАЯ НАЙДЕННАЯ ЦЕНА</span><b>'+money(best.price)+'</b><small>'+esc(best.shop)+' · '+(offers.includes(best)?"подтверждённое предложение":"ценовое наблюдение")+'</small></div><span>↓ Открыть магазины</span></div>':'<div class="price-preview"><div><span class="price-label">ЦЕНА</span><b>Пока нет данных</b><small>Проверяем магазины</small></div><span>↓ Подробнее</span></div>';
- return '<article class="phone" data-phone="'+p.id+'"><div class="phone-top">'+photoHTML+'<div class="phone-main"><div class="maker">'+esc(p.brand)+'</div><h3>'+esc(p.model)+'</h3><div class="spec">'+esc(p.cpu||"Характеристики уточняются")+'</div><div class="specs">'+spec.slice(0,3).map(x=>'<span>'+esc(x)+'</span>').join("")+'</div></div></div>'+priceHTML+'<div class="phone-detail"><div class="detail-title">Характеристики смартфона</div><div class="detail-specs">'+[['Память',p.ramGb+' ГБ RAM / '+p.storageGb+' ГБ'],['Экран',p.screen],['Процессор',p.cpu],['Батарея',p.battery],['Камеры',p.camera],['Рейтинг',p.rating?('★ '+p.rating):'—']].filter(x=>x[1]).map(x=>'<div><b>'+esc(x[0])+'</b>'+esc(x[1])+'</div>').join("")+'</div><div class="detail-title">Магазины и цены</div>'+offerHTML+'<div class="actions"><button class="mini" data-fav="'+p.id+'">'+(fav?"★ В избранном":"☆ В избранное")+'</button><button class="mini" data-share="'+p.id+'">Поделиться ↗</button></div></div></article>';
+ const fav=state.favorites.has(p.id),photo=p.photoUrl||"";
+ const spec=[p.ramGb+" ГБ физ. RAM",p.storageGb+" ГБ",p.screen,p.battery].filter(Boolean);
+ const image=photo?'<img class="photo" loading="lazy" src="'+safeURL(photo)+'" alt="'+esc(p.brand+" "+p.model)+'" onerror="this.outerHTML=\'<div class=\\\"photo-fallback\\\">'+esc(p.brand)+'<br>'+esc(p.model)+'</div>\'">':'<div class="photo-fallback">'+esc(p.brand)+'<br>'+esc(p.model)+'</div>';
+ return '<article class="phone" data-phone="'+p.id+'"><div class="phone-top">'+image+'<div class="phone-main"><div class="maker">'+esc(p.brand)+'</div><h3>'+esc(p.model)+'</h3><div class="spec">'+esc(p.cpu||"Характеристики уточняются")+'</div><div class="specs">'+spec.slice(0,3).map(x=>'<span>'+esc(x)+'</span>').join("")+'</div></div></div><div class="price-preview"><div><span class="price-label">ПРИМЕРНАЯ ЦЕНА ПО РОССИИ</span><b>'+priceLabel(p)+'</b><small>Ориентир, не цена магазина</small></div><span>Подробнее ↗</span></div><div class="actions"><button class="mini" data-fav="'+p.id+'">'+(fav?"★ В избранном":"☆ В избранное")+'</button></div></article>';
 }
+function priceLabel(p){const lo=Number(p.priceFrom||p.priceApprox||0),hi=Number(p.priceTo||p.priceApprox||lo);if(!lo)return "Уточняется";return lo===hi?money(lo):money(lo)+" – "+money(hi)}
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function safeURL(v){try{const u=new URL(v,location.href);return ["https:","http:"].includes(u.protocol)?esc(u.href):"#"}catch{return "#"}}
+function storeLinks(p){
+ const q=encodeURIComponent(p.brand+" "+p.model);
+ const stores=[
+  ["DNS","https://www.dns-shop.ru/search/?q="+q],
+  ["Ситилинк","https://www.citilink.ru/search/?text="+q],
+  ["Ozon","https://www.ozon.ru/search/?text="+q],
+  ["МегаФон","https://shop.megafon.ru/search/?q="+q],
+  ["Билайн","https://beeline.ru/shop/"],
+  ["МТС","https://shop.mts.ru/search/?q="+q]
+ ];
+ return stores.map(([name,url])=>'<a class="store-link" href="'+safeURL(url)+'" target="_blank" rel="noopener noreferrer">'+name+' <span>↗</span></a>').join("");
+}
+function openPhone(id,push=true){
+ const p=state.data.phones.find(x=>Number(x.id)===Number(id));if(!p)return;
+ if(push)history.pushState({phoneId:p.id},"","#phone-"+p.id);
+ $("main").style.display="none";$("phonePage").style.display="block";
+ const image=p.photoUrl?'<img class="detail-image" src="'+safeURL(p.photoUrl)+'" alt="'+esc(p.brand+" "+p.model)+'">':'<div class="photo-fallback">'+esc(p.brand+" "+p.model)+'</div>';
+ const specs=[["Оперативная память",p.ramGb+" ГБ физической RAM"],["Встроенная память",p.storageGb+" ГБ"],["Экран",p.screen],["Процессор",p.cpu],["Аккумулятор",p.battery],["Камеры",p.camera],["Рейтинг в подборке",p.rating?"★ "+p.rating:"—"],["Цвет / исполнение",p.accent||"—"]];
+ $("phonePage").innerHTML='<button class="detail-back" id="backCatalog">← Назад в каталог</button><div class="detail-hero">'+image+'<div class="detail-copy"><div class="maker">'+esc(p.brand)+'</div><h1>'+esc(p.model)+'</h1><p class="spec">'+esc(p.cpu||"")+'</p><div class="estimate"><small>ПРИМЕРНАЯ ЦЕНА ПО РОССИИ</small><b>'+priceLabel(p)+'</b><small>Ориентировочно. Стоимость и наличие уточняй у магазина.</small></div><div class="specs"><span>'+p.ramGb+' ГБ физ. RAM</span><span>'+p.storageGb+' ГБ</span><span>'+esc(p.battery||"")+'</span></div></div></div><section class="detail-section"><h2>Характеристики</h2><div class="full-specs">'+specs.filter(x=>x[1]).map(x=>'<div><b>'+esc(x[0])+'</b>'+esc(x[1])+'</div>').join("")+'</div></section><section class="detail-section"><h2>Где посмотреть в магазинах</h2><div class="store-grid">'+storeLinks(p)+'</div><p class="detail-note">Ссылки открывают поиск модели в магазинах. Они не означают, что конкретная конфигурация есть в наличии или продаётся по указанной ориентировочной цене.</p></section>';
+ $("backCatalog").addEventListener("click",()=>{history.pushState({},"",location.pathname+location.search);showCatalog()});
+ window.scrollTo(0,0);
+}
+function showCatalog(){ $("phonePage").style.display="none";$("main").style.display="block";window.scrollTo(0,0) }
 function reset(){["search","brand","price"].forEach(id=>$(id).value="");$("sort").value="name";state.filter="all";document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x.dataset.filter==="all"));render()}
 async function start(){
- try{const res=await fetch(DATA_URL,{cache:"no-store"});if(!res.ok)throw new Error("HTTP "+res.status);state.data=await res.json();
-  if(!Array.isArray(state.data.phones))throw new Error("Некорректный каталог");
-  [...new Set(state.data.phones.map(p=>p.brand).filter(Boolean))].sort().forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;$("brand").append(o)});
-  render();
- }catch(e){$("cards").innerHTML='<div class="empty"><b>Не удалось загрузить каталог</b>Открой сайт через GitHub Pages или локальный сервер, чтобы загрузить файл данных.</div>';$("resultCount").textContent="Ошибка загрузки"}
+ try{const res=await fetch(DATA_URL,{cache:"no-store"});if(!res.ok)throw new Error("HTTP "+res.status);state.data=await res.json();if(!Array.isArray(state.data.phones))throw new Error("Некорректный каталог");
+ [...new Set(state.data.phones.map(p=>p.brand).filter(Boolean))].sort().forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;$("brand").append(o)});
+ render();const m=location.hash.match(/^#phone-(\d+)$/);if(m)openPhone(Number(m[1]),false);
+ }catch(e){$("cards").innerHTML='<div class="empty"><b>Не удалось загрузить каталог</b>Попробуй обновить страницу.</div>';$("resultCount").textContent="Ошибка загрузки"}
 }
 ["search","brand","sort","price"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",render));
 document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{state.filter=b.dataset.filter;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x===b));render()}));
 $("resetTop").addEventListener("click",reset);
-$("cards").addEventListener("click",async e=>{
+$("cards").addEventListener("click",e=>{
  const fav=e.target.closest("[data-fav]");if(fav){e.stopPropagation();const id=Number(fav.dataset.fav);state.favorites.has(id)?state.favorites.delete(id):state.favorites.add(id);localStorage.setItem("smartscan-favs",JSON.stringify([...state.favorites]));render();return}
- const share=e.target.closest("[data-share]");if(share){e.stopPropagation();const p=state.data.phones.find(x=>x.id===Number(share.dataset.share));const msg=p.brand+" "+p.model+" — Челны СмартСкан";if(navigator.share)navigator.share({title:"Челны СмартСкан",text:msg}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(msg);return}
- if(e.target.closest("a"))return;
- const card=e.target.closest("[data-phone]");if(card){const was=card.classList.contains("expanded");document.querySelectorAll(".phone.expanded").forEach(x=>x.classList.remove("expanded"));if(!was)card.classList.add("expanded")}
+ const card=e.target.closest("[data-phone]");if(card)openPhone(Number(card.dataset.phone));
 });
+window.addEventListener("popstate",()=>{const m=location.hash.match(/^#phone-(\d+)$/);if(m&&state.data)openPhone(Number(m[1]),false);else showCatalog()});
 start();
 </script>
 </body></html>
