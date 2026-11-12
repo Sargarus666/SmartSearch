@@ -2,14 +2,23 @@ name: Refresh Chelny smartphone prices
 
 on:
   push:
-    branches: [main]
-    paths: [".github/workflows/price-scan.yml"]
+    branches:
+      - main
+      - feature/live-chelny-prices
+    paths:
+      - ".github/workflows/price-scan.yml"
+      - "scripts/scrape_firecrawl_prices.py"
+      - "scripts/retailer_sources.json"
+      - "scripts/update_catalog.py"
+      - "scripts/validate_catalog.py"
   schedule:
     - cron: "17 */12 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: smartscan-price-refresh
@@ -19,6 +28,8 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      catalog_changed: ${{ steps.commit.outputs.changed }}
     steps:
       - name: Check out the live-price project branch
         uses: actions/checkout@v4
@@ -53,9 +64,11 @@ jobs:
         run: python scripts/validate_catalog.py
 
       - name: Commit changed catalog to the live-price branch
+        id: commit
         run: |
           if git diff --quiet -- data/phones.json; then
             echo "No catalog changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "github-actions[bot]"
@@ -63,3 +76,39 @@ jobs:
           git add data/phones.json
           git commit -m "chore: refresh Chelny smartphone price observations"
           git push origin HEAD:refs/heads/feature/live-chelny-prices
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: refresh
+    if: needs.refresh.outputs.catalog_changed == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out updated catalog
+        uses: actions/checkout@v4
+        with:
+          ref: feature/live-chelny-prices
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Prepare static site
+        run: |
+          mkdir -p public/data
+          cp web/index.html public/index.html
+          sed -i 's#../data/phones.json#./data/phones.json#' public/index.html
+          cp data/phones.json public/data/phones.json
+          touch public/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
