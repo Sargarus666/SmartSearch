@@ -1,6 +1,8 @@
 name: Refresh Chelny smartphone prices
 
 on:
+  push:
+    branches: [feature/live-chelny-prices]
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:
