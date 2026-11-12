@@ -326,6 +326,23 @@
       "accent": "Black",
       "sourceNote": "Проверено по карточке МегаФона и локальному предложению Price.ru.",
       "photoUrl": "https://media.gadgetbytenepal.com/2026/05/Tecno-Spark-50-4G-Halo-Blue.png"
+    },
+    {
+      "id": 21,
+      "brand": "HUAWEI",
+      "model": "nova Y74 8/128",
+      "ramGb": 8,
+      "storageGb": 128,
+      "rating": 4.5,
+      "screen": "6.67\" IPS 1604×720, 90 Гц",
+      "battery": "6620 мА·ч, 40 Вт",
+      "camera": "50+8 Мп",
+      "cpu": "Kirin 710A",
+      "colorStart": "#172554",
+      "colorEnd": "#64748b",
+      "accent": "Black",
+      "photoUrl": "https://static.price.ru/images/models/401x401/mobilniy-telefon/huawei-nova-y74-8-128gb-black/ec0efcb02351efcaf96ca734b9565ccc.JPEG",
+      "sourceNote": "Вариант 8/128 ГБ добавлен по городской карточке Price.ru и официальной карточке МегаФона."
     }
   ],
   "pricePolicy": "Найденные цены (observedOffers) отделены от подтверждённых локальных предложений (verifiedOffers).",
@@ -384,7 +401,26 @@
       "note": "Извлечено Firecrawl из городской карточки Price.ru. Доставка: Доставка завтра - бесплатно. Самовывоз: Самовывоз нет. Гарантия: не подтверждена. Это наблюдение агрегатора, а не подтверждение остатка у продавца.",
       "payment": "Оплата наличными",
       "pickup": "no"
+    },
+    {
+      "brand": "HUAWEI",
+      "model": "nova Y74 8/128",
+      "ramGb": 8,
+      "storageGb": 128,
+      "price": 16999,
+      "shop": "МегаФон",
+      "url": "https://shop.megafon.ru/mobile/208118",
+      "localProofUrl": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/huawei-nova-y74-8-128gb-black/",
+      "checkedAt": "2026-11-12T23:59:00+03:00",
+      "sourceType": "firecrawl_price_ru_observation",
+      "condition": "new",
+      "stock": "delivery_available",
+      "city": "Набережные Челны",
+      "warrantyMonths": 12,
+      "note": "Price.ru для Набережных Челнов показывает активное предложение МегаФона за 16 999 ₽: новый товар, доставка завтра бесплатно, самовывоза нет, оплата наличными. Официальная карточка МегаФона указывает гарантию 12 месяцев и ту же конфигурацию 8/128 ГБ. Доставка подтверждена агрегатором; остаток в салоне не подтверждён.",
+      "payment": "Оплата наличными",
+      "pickup": "no"
     }
   ],
-  "observedOffersUpdated": "2026-11-12T23:40:35+03:00"
+  "observedOffersUpdated": "2026-11-12T23:59:00+03:00"
 }
