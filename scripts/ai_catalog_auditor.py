@@ -13,7 +13,7 @@ def main():
     if not api_key:
         print("GEMINI_API_KEY is not configured; AI audit skipped safely.")
         return 0
-    model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    model = os.getenv("GEMINI_MODEL") or "gemini-2.5-flash"
     catalog = json.loads((ROOT / "data/phones.json").read_text(encoding="utf-8"))
     payload = {
         "contents": [{
