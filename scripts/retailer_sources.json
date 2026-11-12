@@ -44,5 +44,28 @@
         "Megafon"
       ]
     }
+  },
+  {
+    "type": "price_ru_product",
+    "shop": "МегаФон",
+    "url": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/huawei-nova-y74-8-128gb-black/",
+    "expected": {
+      "brand": "HUAWEI",
+      "model": "nova Y74 8/128",
+      "ramGb": 8,
+      "storageGb": 128,
+      "matchTerms": [
+        "huawei",
+        "nova",
+        "y74",
+        "8/128"
+      ],
+      "seller": "МегаФон",
+      "retailerUrl": "https://shop.megafon.ru/mobile/208118",
+      "warrantyMonths": 12,
+      "sellerAliases": [
+        "Megafon"
+      ]
+    }
   }
 ]
