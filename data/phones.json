@@ -373,13 +373,13 @@
       "shop": "МегаФон",
       "url": "https://shop.megafon.ru/mobile/208122",
       "localProofUrl": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/huawei-nova-y74-8-256gb-black/",
-      "checkedAt": "2026-11-13T00:07:18+03:00",
+      "checkedAt": "2026-11-13T00:12:46+03:00",
       "sourceType": "firecrawl_price_ru_observation",
       "condition": "new",
       "stock": "delivery_available",
       "city": "Набережные Челны",
       "warrantyMonths": null,
-      "note": "Извлечено Firecrawl из городской карточки Price.ru. Доставка: Доставка завтра - бесплатно. Самовывоз: Самовывоз нет. Гарантия: не подтверждена. Это наблюдение агрегатора, а не подтверждение остатка у продавца.",
+      "note": "Извлечено Firecrawl из городской карточки Price.ru. Доставка: Доставка завтра - бесплатно. Самовывоз: нет. Гарантия: не подтверждена. Это наблюдение агрегатора, а не подтверждение остатка у продавца.",
       "payment": "Оплата наличными",
       "pickup": "no"
     },
@@ -392,15 +392,15 @@
       "shop": "МегаФон",
       "url": "https://shop.megafon.ru/mobile/207319",
       "localProofUrl": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/tecno-spark-50-8-128gb-halo-blue/",
-      "checkedAt": "2026-11-12T23:40:35+03:00",
+      "checkedAt": "2026-11-13T00:12:56+03:00",
       "sourceType": "firecrawl_price_ru_observation",
       "condition": "new",
       "stock": "delivery_available",
       "city": "Набережные Челны",
       "warrantyMonths": null,
-      "note": "Извлечено Firecrawl из городской карточки Price.ru. Доставка: Доставка завтра - бесплатно. Самовывоз: Самовывоз нет. Гарантия: не подтверждена. Это наблюдение агрегатора, а не подтверждение остатка у продавца.",
-      "payment": "Оплата наличными",
-      "pickup": "no"
+      "note": "Извлечено Firecrawl из городской карточки Price.ru. Доставка: бесплатно. Самовывоз: не подтверждён. Гарантия: не подтверждена. Это наблюдение агрегатора, а не подтверждение остатка у продавца.",
+      "payment": "наличными",
+      "pickup": "unknown"
     },
     {
       "brand": "HUAWEI",
@@ -411,15 +411,15 @@
       "shop": "МегаФон",
       "url": "https://shop.megafon.ru/mobile/208118",
       "localProofUrl": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/huawei-nova-y74-8-128gb-black/",
-      "checkedAt": "2026-11-12T23:59:00+03:00",
+      "checkedAt": "2026-11-13T00:13:05+03:00",
       "sourceType": "firecrawl_price_ru_observation",
       "condition": "new",
       "stock": "delivery_available",
       "city": "Набережные Челны",
-      "warrantyMonths": 12,
-      "note": "Price.ru для Набережных Челнов показывает активное предложение МегаФона за 16 999 ₽: новый товар, доставка завтра бесплатно, самовывоза нет, оплата наличными. Официальная карточка МегаФона указывает гарантию 12 месяцев и ту же конфигурацию 8/128 ГБ. Доставка подтверждена агрегатором; остаток в салоне не подтверждён.",
-      "payment": "Оплата наличными",
-      "pickup": "no"
+      "warrantyMonths": null,
+      "note": "Извлечено Firecrawl из городской карточки Price.ru. Доставка: бесплатно. Самовывоз: не подтверждён. Гарантия: не подтверждена. Это наблюдение агрегатора, а не подтверждение остатка у продавца.",
+      "payment": "наличными",
+      "pickup": "unknown"
     },
     {
       "brand": "HUAWEI",
@@ -460,5 +460,5 @@
       "note": "14 990 ₽ — на 10 ₽ ниже нижней границы выбранного бюджета. Price.ru для Набережных Челнов показывает новый товар, бесплатную доставку завтра, самовывоз и оплату наличными; Big Geek подтверждает цену и гарантию 1 год. Остаток напрямую у продавца не подтверждён."
     }
   ],
-  "observedOffersUpdated": "2026-11-12T23:10:00+03:00"
+  "observedOffersUpdated": "2026-11-13T00:13:05+03:00"
 }
