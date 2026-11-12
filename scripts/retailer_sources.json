@@ -1,23 +1,8 @@
 [
   {
-    "shop": "Ситилинк",
-    "url": "https://www.citilink.ru/product/smartfon-huawei-nova-14i-stg-lx2-256gb-8gb-chernyi-3g-4g-6-7-1084x2412-2146655/",
-    "expected": {
-      "brand": "HUAWEI",
-      "model": "nova 14i 8/256",
-      "ramGb": 8,
-      "storageGb": 256,
-      "matchTerms": [
-        "huawei",
-        "nova",
-        "14i",
-        "8/256"
-      ]
-    }
-  },
-  {
+    "type": "price_ru_product",
     "shop": "МегаФон",
-    "url": "https://shop.megafon.ru/mobile/208122",
+    "url": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/huawei-nova-y74-8-256gb-black/",
     "expected": {
       "brand": "HUAWEI",
       "model": "nova Y74 8/256",
@@ -28,12 +13,16 @@
         "nova",
         "y74",
         "8/256"
-      ]
+      ],
+      "seller": "МегаФон",
+      "retailerUrl": "https://shop.megafon.ru/mobile/208122",
+      "warrantyMonths": 12
     }
   },
   {
+    "type": "price_ru_product",
     "shop": "МегаФон",
-    "url": "https://shop.megafon.ru/mobile/207319",
+    "url": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/tecno-spark-50-8-128gb-halo-blue/",
     "expected": {
       "brand": "TECNO",
       "model": "Spark 50 8/128",
@@ -44,7 +33,10 @@
         "spark",
         "50",
         "8/128"
-      ]
+      ],
+      "seller": "МегаФон",
+      "retailerUrl": "https://shop.megafon.ru/mobile/207319",
+      "warrantyMonths": 12
     }
   }
 ]
