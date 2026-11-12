@@ -372,16 +372,16 @@
       "shop": "МегаФон",
       "url": "https://shop.megafon.ru/mobile/207319",
       "localProofUrl": "https://naberezhnye-chelny.price.ru/mobilnye-telefony/tecno-spark-50-8-128gb-halo-blue/",
-      "checkedAt": "2026-11-12T20:17:00.025Z",
+      "checkedAt": "2026-11-12T23:38:31+03:00",
       "sourceType": "firecrawl_price_ru_observation",
       "condition": "new",
       "stock": "delivery_available",
       "city": "Набережные Челны",
-      "warrantyMonths": 12,
-      "note": "Firecrawl прочитал городскую карточку Price.ru: МегаФон, новый товар, 19 999 ₽, доставка завтра бесплатно, оплата наличными, самовывоза нет. Гарантия 12 мес. указана в ранее проверенной карточке МегаФона; наличие в салонах не подтверждено.",
-      "payment": "cash",
+      "warrantyMonths": null,
+      "note": "Извлечено Firecrawl из городской карточки Price.ru. Доставка: Доставка завтра - бесплатно. Самовывоз: Самовывоз нет. Гарантия: не подтверждена. Это наблюдение агрегатора, а не подтверждение остатка у продавца.",
+      "payment": "Оплата наличными",
       "pickup": "no"
     }
   ],
-  "observedOffersUpdated": "2026-11-12T20:17:11.713Z"
+  "observedOffersUpdated": "2026-11-12T23:38:31+03:00"
 }
