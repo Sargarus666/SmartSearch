@@ -177,6 +177,7 @@ footer a{color:#cfc2ff}
 .gallery-thumb img{width:100%;height:100%;display:block;object-fit:contain;mix-blend-mode:var(--photo-blend)}
 .gallery-thumb.crop-left img{object-fit:cover;object-position:28% center;transform:scale(1.2)}
 .gallery-thumb.crop-right img{object-fit:cover;object-position:72% center;transform:scale(1.2)}
+.card-media:has(.ph.image-error)::after,.gallery-stage:has(.gallery-main-image.image-error)::after{content:"Фото временно недоступно";position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--text-muted);font-size:13px;font-weight:700;background:linear-gradient(145deg,var(--surface-2),var(--photo-bg))}.card .ph.image-error,.gallery-main-image.image-error,.gallery-thumb img.image-error{visibility:hidden}.gallery-thumb:has(img.image-error)::after{content:"Нет фото";display:grid;place-items:center;height:100%;font-size:11px;color:var(--text-muted)}
 .gallery-caption{font-size:12px;color:var(--text-muted);margin:9px 2px 0}
 .detail-info{min-width:0}
 .detail-brand{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);font-weight:800}
@@ -423,6 +424,8 @@ function openPhone(id){
   window.scrollTo({top:0,behavior:"smooth"});
   document.getElementById("detailBack").onclick=closePhone;
   const main=document.getElementById("galleryMainImage"),stage=document.getElementById("galleryStage"),counter=document.getElementById("galleryCounter");
+  main.addEventListener("error",()=>main.classList.add("image-error"));main.addEventListener("load",()=>main.classList.remove("image-error"));
+  view.querySelectorAll(".gallery-thumb img").forEach(img=>img.addEventListener("error",()=>img.classList.add("image-error"),{once:true}));
   const showPhoto=(i)=>{activePhoto=(i+images.length)%images.length;main.src=images[activePhoto]||src;counter.textContent=(activePhoto+1)+" / "+images.length;view.querySelectorAll(".gallery-thumb").forEach(t=>t.classList.toggle("active",Number(t.dataset.photoIndex)===activePhoto));};
   document.getElementById("galleryPrev").onclick=e=>{e.stopPropagation();showPhoto(activePhoto-1)};
   document.getElementById("galleryNext").onclick=e=>{e.stopPropagation();showPhoto(activePhoto+1)};
@@ -450,6 +453,7 @@ function card(p){
    '<div class="card-cpu">'+esc(cpu||"Процессор уточняется")+'</div>'+
    '<div class="card-price-row"><div><div class="pr">'+fmtRange(p)+'</div><div class="promo">Ориентир по России · не цена магазина</div></div></div>'+
    '<div class="rowbtns"><button class="ic primary card-open" type="button">Характеристики и магазины <span aria-hidden="true">→</span></button><div class="card-secondary-actions"><button class="ic fav'+(favs.has(p.id)?" on":"")+'" type="button" aria-label="Добавить в избранное">★</button><button class="ic sh" type="button" aria-label="Поделиться смартфоном">Поделиться</button><button class="ic compare-toggle'+(compareIds.has(p.id)?" selected":"")+'" type="button">'+(compareIds.has(p.id)?"✓ В сравнении":"⇄ Сравнить")+'</button></div></div></div>';
+  const cardImage=el.querySelector(".ph");cardImage.addEventListener("error",()=>cardImage.classList.add("image-error"),{once:true});
   const open=()=>openPhone(p.id);
   el.querySelector(".ph").onclick=e=>{e.stopPropagation();open()};
   el.querySelector(".card-open").onclick=e=>{e.stopPropagation();open()};
