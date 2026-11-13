@@ -234,6 +234,42 @@ footer a{color:#cfc2ff}
  .card .ph{width:100px;height:136px}
 }
 
+
+/* SmartScan catalogue card refresh */
+.card{display:grid;grid-template-columns:148px minmax(0,1fr);gap:18px;padding:15px;border-radius:20px;align-items:stretch;background:var(--card);border:1px solid var(--line);box-shadow:0 8px 26px rgba(0,0,0,.07);transform:none!important}
+.card:hover{border-color:var(--acc);box-shadow:0 14px 34px rgba(0,0,0,.13);transform:translateY(-2px)!important}
+.card-media{position:relative;min-height:190px;border-radius:15px;overflow:hidden;background:var(--photo-bg,#f2f3f7);display:grid;place-items:center}
+.card .ph{width:100%;height:100%;min-height:190px;max-height:240px;object-fit:contain;padding:9px;background:transparent;border-radius:0}
+.card-photo-tag{position:absolute;left:9px;top:9px;padding:4px 7px;border-radius:7px;background:rgba(18,20,29,.78);color:#fff;font-size:9px;font-weight:900;letter-spacing:.12em}
+.card .info{display:flex;flex-direction:column;min-width:0}
+.card-topline{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card-brand{font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;color:var(--sub)}
+.card-rating{font-size:12px;font-weight:850;color:var(--gold);white-space:nowrap}
+.card .info h3{font-size:17px;line-height:1.28;margin:5px 0 9px}
+.card-specs{display:flex;flex-wrap:wrap;gap:5px}
+.card-specs span{font-size:10.5px;font-weight:750;padding:5px 8px;border-radius:7px;background:var(--soft,rgba(127,127,127,.12));color:var(--fg)}
+.card-cpu{font-size:11px;color:var(--sub);margin-top:8px;min-height:15px}
+.card-price-row{margin-top:auto;padding-top:11px}
+.card .pr{font-size:clamp(17px,2vw,21px);line-height:1.15;font-weight:900;letter-spacing:-.035em;margin:0}
+.card .promo{font-size:10px;line-height:1.35;color:var(--sub);margin:5px 0 0}
+.card .rowbtns{margin-top:12px;gap:7px}
+.card .card-open{width:100%;display:flex;justify-content:space-between;align-items:center;padding:11px 13px;border-radius:11px;font-size:12px}
+.card-secondary-actions{display:flex;gap:7px}
+.card-secondary-actions .ic{padding:7px 10px;border-radius:9px;font-size:11px}
+@media(max-width:560px){
+ .card{grid-template-columns:104px minmax(0,1fr);gap:12px;padding:11px;border-radius:16px}
+ .card-media{min-height:164px}
+ .card .ph{min-height:164px;max-height:190px;padding:4px}
+ .card .info h3{font-size:14px;margin:4px 0 7px}
+ .card-specs{gap:4px}
+ .card-specs span{font-size:9px;padding:4px 6px}
+ .card-cpu{font-size:10px;margin-top:6px}
+ .card .pr{font-size:16px}
+ .card .promo{font-size:9px}
+ .card .rowbtns{margin-top:9px}
+ .card .card-open{font-size:10px;padding:9px 9px}
+}
+@media(max-width:360px){.card{grid-template-columns:88px minmax(0,1fr);gap:9px}.card-media,.card .ph{min-height:150px}}
 </style>
 </head>
 <body>
@@ -392,20 +428,22 @@ function closePhone(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function card(p){
-  const el=document.createElement("div");el.className="card";
-  el.innerHTML='<img class="ph" loading="lazy" src="'+(p.photoUrl||ASSET(p.id))+'" alt="'+p.brand+" "+p.model+'" style="cursor:pointer;object-fit:contain">'+
-   '<div class="info"><h3>'+p.brand+" "+p.model+'</h3>'+
-   '<div class="mut">'+p.ramGb+' ГБ физ. RAM • '+p.storageGb+' ГБ • '+(p.cpu||"характеристики уточняются")+'</div>'+
-   '<div class="pr">'+fmtRange(p)+'</div>'+
-   '<div class="promo">Ориентировочная цена по России</div>'+
-   '<div class="stars">'+(p.screen||"")+'</div>'+
-   '<div class="rowbtns"><button class="ic fav'+(favs.has(p.id)?" on":"")+'">★ В избранное</button><button class="ic sh">Поделиться</button></div></div>';
-  el.querySelector(".ph").onclick=e=>{e.stopPropagation();openPhone(p.id)};
-  el.querySelector(".fav").onclick=e=>{e.stopPropagation();if(favs.has(p.id)){favs.delete(p.id);e.target.classList.remove("on")}else{favs.add(p.id);e.target.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify(Array.from(favs)));renderFav()};
-  el.querySelector(".sh").onclick=e=>{e.stopPropagation();const t="📱 "+p.brand+" "+p.model+" — "+fmtRange(p)+"\nОриентировочная цена по России • Челны СмартСкан";if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t);alert("Скопировано!")}};
-  el.addEventListener("click",()=>openPhone(p.id));
-  el.addEventListener("mousemove",e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform="perspective(900px) rotateY("+(x*6)+"deg) rotateX("+(-y*6)+"deg)"});
-  el.addEventListener("mouseleave",()=>{el.style.transform=""});
+  const el=document.createElement("article");el.className="card";
+  const battery=String(p.battery||"").match(/\d{4,5}\s*мА/i)?.[0]||"";
+  const cpu=String(p.cpu||"").replace(/^MediaTek\s+/i,"");
+  el.innerHTML='<div class="card-media"><img class="ph" loading="lazy" src="'+esc(p.photoUrl||ASSET(p.id))+'" alt="'+esc(p.brand+" "+p.model)+'"><span class="card-photo-tag">SMARTSCAN</span></div>'+
+   '<div class="info"><div class="card-topline"><span class="card-brand">'+esc(p.brand)+'</span><span class="card-rating">★ '+(Number(p.rating)||"—")+'</span></div>'+
+   '<h3>'+esc(p.model)+'</h3>'+
+   '<div class="card-specs"><span>'+p.ramGb+' ГБ RAM</span><span>'+p.storageGb+' ГБ</span>'+(battery?'<span>'+esc(battery)+'</span>':'')+'</div>'+
+   '<div class="card-cpu">'+esc(cpu||"Процессор уточняется")+'</div>'+
+   '<div class="card-price-row"><div><div class="pr">'+fmtRange(p)+'</div><div class="promo">Ориентир по России · не цена магазина</div></div></div>'+
+   '<div class="rowbtns"><button class="ic primary card-open" type="button">Характеристики и магазины <span aria-hidden="true">→</span></button><div class="card-secondary-actions"><button class="ic fav'+(favs.has(p.id)?" on":"")+'" type="button" aria-label="Добавить в избранное">★</button><button class="ic sh" type="button" aria-label="Поделиться смартфоном">Поделиться</button></div></div></div>';
+  const open=()=>openPhone(p.id);
+  el.querySelector(".ph").onclick=e=>{e.stopPropagation();open()};
+  el.querySelector(".card-open").onclick=e=>{e.stopPropagation();open()};
+  el.querySelector(".fav").onclick=e=>{e.stopPropagation();if(favs.has(p.id)){favs.delete(p.id);e.currentTarget.classList.remove("on")}else{favs.add(p.id);e.currentTarget.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify(Array.from(favs)));renderFav()};
+  el.querySelector(".sh").onclick=e=>{e.stopPropagation();const t="📱 "+p.brand+" "+p.model+" — "+fmtRange(p)+"\nОриентировочная цена по России · SmartScan";if(navigator.share)navigator.share({text:t}).catch(()=>{});else if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>alert("Скопировано!")).catch(()=>{});};
+  el.addEventListener("click",e=>{if(!e.target.closest("button"))open()});
   return el;
 }
 /* ---------- список + чипы ---------- */
