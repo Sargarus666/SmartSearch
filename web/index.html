@@ -134,6 +134,79 @@ footer a{color:#cfc2ff}
 .scanbar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:18px auto 4px;display:none;max-width:520px}
 .scanbar i{display:block;height:100%;width:0;background:var(--acc)}
 @media(max-width:560px){nav.tabs{padding:5px}nav.tabs button{padding:9px 11px;font-size:12px}.grid{grid-template-columns:1fr}.topbar-in{padding:10px 14px}.brand{font-size:14px}}
+/* ===== Premium product page / Ozon-inspired gallery ===== */
+.phone-detail{background:#fff;color:#202124;border:1px solid #e8e9ee;border-radius:24px;padding:clamp(16px,3vw,30px);margin:10px 0 28px;box-shadow:0 18px 55px rgba(0,0,0,.12)}
+.detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.detail-back{border:1px solid #e3e5eb;background:#fff;color:#333;border-radius:12px;padding:10px 15px;font-weight:700;cursor:pointer}
+.detail-back:hover{border-color:#8b6cff;color:#6846d6}
+.detail-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:clamp(22px,4vw,48px);align-items:start}
+.product-gallery{min-width:0}
+.gallery-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:360px;height:clamp(340px,42vw,510px);padding:24px;background:#f5f6f8;border:1px solid #eceef2;border-radius:20px;overflow:hidden;cursor:zoom-in}
+.gallery-main-image{display:block;width:100%;height:100%;object-fit:contain;object-position:center;mix-blend-mode:multiply;transition:opacity .18s ease}
+.gallery-zoom-hint{position:absolute;right:14px;bottom:14px;background:rgba(255,255,255,.92);border:1px solid #e8e9ee;border-radius:99px;padding:7px 11px;color:#555;font-size:12px;pointer-events:none}
+.gallery-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.gallery-thumb{height:104px;min-width:0;border:2px solid #e8e9ee;border-radius:14px;background:#f5f6f8;padding:5px;overflow:hidden;cursor:pointer;transition:border-color .18s,box-shadow .18s}
+.gallery-thumb.active{border-color:#7655e8;box-shadow:0 0 0 3px rgba(118,85,232,.12)}
+.gallery-thumb:hover{border-color:#a18be9}
+.gallery-thumb img{width:100%;height:100%;display:block;object-fit:contain;mix-blend-mode:multiply}
+.gallery-thumb.crop-left img{object-fit:cover;object-position:28% center;transform:scale(1.2)}
+.gallery-thumb.crop-right img{object-fit:cover;object-position:72% center;transform:scale(1.2)}
+.gallery-caption{font-size:12px;color:#858995;margin:9px 2px 0}
+.detail-info{min-width:0}
+.detail-brand{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#777d89;font-weight:800}
+.detail-title{font-size:clamp(24px,3vw,34px);line-height:1.15;letter-spacing:-.035em;margin:7px 0 12px;color:#17191e}
+.detail-subline{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.detail-pill{background:#f3f1ff;color:#6244c5;border-radius:99px;padding:6px 10px;font-size:12px;font-weight:700}
+.detail-pricebox{border:1px solid #e9e7f3;background:#faf9ff;border-radius:18px;padding:18px;margin:18px 0}
+.detail-price-label{font-size:12px;color:#777d89;margin-bottom:4px}
+.detail-price{font-size:clamp(25px,3vw,32px);font-weight:850;letter-spacing:-.04em;color:#211a38;margin:0}
+.detail-price-note{font-size:12px;color:#7b7e88;line-height:1.5;margin-top:7px}
+.detail-spec-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:18px 0}
+.detail-highlight{border:1px solid #eceef2;border-radius:14px;padding:12px;min-width:0}
+.detail-highlight span{display:block;font-size:11px;color:#858995;margin-bottom:4px}
+.detail-highlight b{font-size:13px;line-height:1.35;color:#292c33;overflow-wrap:anywhere}
+.detail-section-title{font-size:17px;font-weight:800;letter-spacing:-.02em;color:#22252c;margin:28px 0 12px}
+.detail-specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;border-top:1px solid #eceef2}
+.detail-spec-row{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #eceef2;font-size:13px}
+.detail-spec-row span{color:#7c818c;flex:0 0 42%}
+.detail-spec-row b{color:#292c33;text-align:right;font-weight:650}
+.store-intro{font-size:13px;color:#777d89;margin:-4px 0 12px}
+.shop-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:12px}
+.shop-link{display:flex;align-items:center;justify-content:center;min-height:46px;text-align:center;text-decoration:none;background:#fff;border:1px solid #e5e7ed;border-radius:12px;padding:9px;color:#343740;font-size:13px;font-weight:750;transition:.18s}
+.shop-link:hover{border-color:#8a6be9;color:#6846d6;background:#faf9ff}
+.detail-photo-full{width:100%;height:auto}
+#lb{padding:18px}
+#lb img{max-width:min(94vw,1100px);max-height:82vh;object-fit:contain;background:#fff;border-radius:18px}
+#lb .bar{gap:10px}
+#lb .bar button{min-width:44px;min-height:44px}
+.card{background:#fff;color:#202124;border:1px solid #e8e9ee;border-radius:18px;padding:13px;box-shadow:0 5px 18px rgba(0,0,0,.07);transform:none!important}
+.card:hover{border-color:#c8b9f7;box-shadow:0 12px 28px rgba(0,0,0,.12)}
+.card .ph{width:116px;height:150px;object-fit:contain;background:#f5f6f8;border-radius:13px;padding:7px;mix-blend-mode:multiply}
+.info h3{color:#202124;font-size:16px;line-height:1.35}
+.info .mut{color:#777d89}
+.info .pr{color:#221d32;font-size:19px}
+.info .promo{color:#7256d2}
+.info .stars{color:#7b8190}
+.ic{color:#343740;background:#fff;border-color:#e5e7ed}
+.ic.fav.on{background:#f0eaff;color:#6545cb;border-color:#d8cbff}
+@media(max-width:760px){
+ .detail-layout{grid-template-columns:1fr;gap:22px}
+ .gallery-stage{height:min(92vw,430px);min-height:290px;padding:18px}
+ .gallery-thumb{height:88px}
+ .shop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .detail-specs{grid-template-columns:1fr}
+}
+@media(max-width:430px){
+ .phone-detail{padding:12px;border-radius:18px}
+ .gallery-stage{height:330px;min-height:0}
+ .gallery-thumb{height:78px}
+ .detail-spec-highlights{gap:7px}
+ .detail-highlight{padding:10px}
+ .detail-title{font-size:25px}
+ .card{gap:11px;padding:10px}
+ .card .ph{width:100px;height:136px}
+}
+
 </style>
 </head>
 <body>
@@ -195,14 +268,27 @@ footer a{color:#cfc2ff}
 
   <footer>Челны СмартСкан • DNS / М.Видео / Эльдорадо / OZON / WB / Маркет, Челны<br>Только физическая RAM ≥ 8 ГБ • <a id="relLink" href="https://github.com/Sargarus666/SmartSearch/releases">все версии</a></footer>
 </div>
-<div id="lb"><img id="lbImg" src="" alt=""><div class="bar"><button onclick="lbGo(-1)">←</button><span id="lbCount"></span><button onclick="lbGo(1)">→</button><button onclick="closeLB()">✕</button></div></div>
+<div id="lb"><img id="lbImg" src="" alt=""><div class="bar"><button id="lbPrev" onclick="lbGo(-1)" aria-label="Предыдущее фото">←</button><span id="lbCount"></span><button id="lbNext" onclick="lbGo(1)" aria-label="Следующее фото">→</button><button onclick="closeLB()" aria-label="Закрыть фото">✕</button></div></div>
 <script>
-/* лайтбокс: полный размер + листание */
-let LB={id:0,list:[]};
-function lbList(){return PHONES.map(p=>p.id)}
-function openLB(id){LB.id=id;LB.list=lbList();LB.pos=LB.list.indexOf(id);paintLB();document.getElementById("lb").classList.add("on")}
-function paintLB(){const id=LB.list[LB.pos];document.getElementById("lbImg").src=ASSET(id);document.getElementById("lbCount").textContent=(LB.pos+1)+" / "+LB.list.length}
-function lbGo(d){LB.pos=(LB.pos+d+LB.list.length)%LB.list.length;paintLB()}
+/* Лайтбокс: открывает реальные изображения выбранного смартфона */
+let LB={phone:null,list:[],pos:0};
+function phoneImages(p){
+  const gallery=Array.isArray(p.galleryUrls)?p.galleryUrls.filter(Boolean):[];
+  return gallery.length?gallery.slice(0,12):[p.photoUrl||ASSET(p.id)];
+}
+function openLB(id,index=0){
+  const p=PHONES.find(x=>x.id===id);if(!p)return;
+  LB.phone=p;LB.list=phoneImages(p);LB.pos=Math.max(0,Math.min(index,LB.list.length-1));
+  paintLB();document.getElementById("lb").classList.add("on");
+}
+function paintLB(){
+  if(!LB.list.length)return;
+  document.getElementById("lbImg").src=LB.list[LB.pos];
+  document.getElementById("lbCount").textContent=LB.list.length>1?(LB.pos+1)+" / "+LB.list.length:"Фото смартфона";
+  document.getElementById("lbPrev").hidden=LB.list.length<2;
+  document.getElementById("lbNext").hidden=LB.list.length<2;
+}
+function lbGo(d){if(LB.list.length<2)return;LB.pos=(LB.pos+d+LB.list.length)%LB.list.length;paintLB()}
 function closeLB(){document.getElementById("lb").classList.remove("on")}
 document.getElementById("lb").onclick=e=>{if(e.target.id==="lb"||e.target.id==="lbImg")closeLB()};
 document.addEventListener("keydown",e=>{if(!document.getElementById("lb").classList.contains("on"))return;if(e.key==="Escape")closeLB();if(e.key==="ArrowRight")lbGo(1);if(e.key==="ArrowLeft")lbGo(-1)});
@@ -244,25 +330,38 @@ setTimeout(()=>document.getElementById("loader").classList.add("done"),3500);
 /* ---------- карточки ---------- */
 const SHOP_SEARCH={"DNS":q=>"https://www.dns-shop.ru/search/?q="+q,"М.Видео":q=>"https://www.mvideo.ru/search?query="+q,"Эльдорадо":q=>"https://www.eldorado.ru/search/catalog.php?q="+q,"OZON":q=>"https://www.ozon.ru/search/?text="+q,"Wildberries":q=>"https://www.wildberries.ru/catalog/0/search.aspx?search="+q,"Яндекс Маркет":q=>"https://market.yandex.ru/search?text="+q,"Ситилинк":q=>"https://www.citilink.ru/search/?text="+q,"DNS онлайн":q=>"https://www.dns-shop.ru/search/?q="+q,"DNS-Shop онлайн":q=>"https://www.dns-shop.ru/search/?q="+q,"М.Видео онлайн":q=>"https://www.mvideo.ru/search?query="+q};
 function storeUrl(make,p){return make(encodeURIComponent(p.brand+" "+p.model))}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function openPhone(id){
   const p=PHONES.find(x=>x.id===id);if(!p)return;
-  const view=document.getElementById("phoneDetail");
-  view.innerHTML='<div class="detail-head"><button class="detail-back" id="detailBack">← Назад в каталог</button><span class="ver">SMARTSCAN</span></div>'+
-  '<article class="phone-detail"><div class="detail-hero"><img class="detail-photo" src="'+(p.photoUrl||ASSET(p.id))+'" alt="'+p.brand+' '+p.model+'" onclick="openLB('+p.id+',0)">'+
-  '<div><div class="mut">'+p.brand+'</div><h2 style="margin:4px 0;font-size:25px;line-height:1.2">'+p.model+'</h2>'+
-  '<div class="detail-price">'+fmtRange(p)+'</div><div class="detail-note">Ориентировочная цена по российскому рынку. Не является предложением магазина и не подтверждает наличие.</div>'+
-  '<div class="mut" style="margin-top:12px">Физическая RAM: <b>'+p.ramGb+' ГБ</b> · Память: <b>'+p.storageGb+' ГБ</b></div>'+
-  '<div class="stars" style="margin-top:8px">★ '+(p.rating||"—")+'</div></div></div>'+
-  '<div class="orn"><h2>Характеристики</h2></div><div class="spec-grid">'+
-  [['Процессор',p.cpu],['Экран',p.screen],['Аккумулятор',p.battery],['Камеры',p.camera],['Память',p.ramGb+' ГБ RAM / '+p.storageGb+' ГБ'],['Цвет',p.accent]].filter(x=>x[1]).map(x=>'<div class="spec"><span>'+x[0]+'</span><b>'+x[1]+'</b></div>').join('')+
-  '</div><div class="orn"><h2>Магазины</h2></div><p class="mut">Открой поиск модели в магазине. Цена и наличие уточняются на стороне продавца.</p><div class="shop-grid">'+
-  STORE_SEARCH.map(s=>'<a class="shop-link" href="'+storeUrl(s[1],p)+'" target="_blank" rel="noopener">'+s[0]+' ↗</a>').join('')+
-  '</div></article>';
+  const view=document.getElementById("phoneDetail"),src=p.photoUrl||ASSET(p.id);
+  const images=phoneImages(p),hasGallery=images.length>1;
+  const previewSources=hasGallery?images.slice(0,3):[src,src,src];
+  const thumbs=previewSources.map((url,i)=>'<button class="gallery-thumb '+(i===0?"active":"")+' '+(!hasGallery&&i===1?"crop-left":!hasGallery&&i===2?"crop-right":"")+'" data-photo-index="'+i+'" aria-label="Открыть фото '+(i+1)+'"><img src="'+esc(url)+'" alt=""></button>').join("");
+  const specs=[["Процессор",p.cpu],["Экран",p.screen],["Аккумулятор",p.battery],["Камеры",p.camera],["Память",p.ramGb+" ГБ RAM / "+p.storageGb+" ГБ"],["Цвет",p.accent]].filter(x=>x[1]);
+  const highlights=[["Физическая RAM",p.ramGb+" ГБ"],["Накопитель",p.storageGb+" ГБ"],["Экран",p.screen],["Аккумулятор",p.battery]].filter(x=>x[1]).slice(0,4);
+  view.innerHTML='<div class="detail-head"><button class="detail-back" id="detailBack">← Каталог</button><span class="ver">SMARTSCAN · '+esc(p.brand)+'</span></div>'+
+  '<article class="phone-detail"><div class="detail-layout">'+
+  '<section class="product-gallery"><button class="gallery-stage" id="galleryStage" aria-label="Открыть фото смартфона"><img class="gallery-main-image" id="galleryMainImage" src="'+esc(src)+'" alt="'+esc(p.brand+" "+p.model)+'"><span class="gallery-zoom-hint">⌕ Увеличить фото</span></button>'+
+  '<div class="gallery-thumbs">'+thumbs+'</div><p class="gallery-caption">Нажмите на миниатюру или главное фото, чтобы рассмотреть смартфон</p></section>'+
+  '<section class="detail-info"><div class="detail-brand">'+esc(p.brand)+'</div><h1 class="detail-title">'+esc(p.model)+'</h1>'+
+  '<div class="detail-subline"><span class="detail-pill">'+esc(p.ramGb)+' ГБ физической RAM</span><span class="detail-pill">'+esc(p.storageGb)+' ГБ памяти</span></div>'+
+  '<div class="detail-pricebox"><div class="detail-price-label">Ориентировочная цена в России</div><div class="detail-price">'+fmtRange(p)+'</div><div class="detail-price-note">Это рыночный ориентир, а не подтверждённая цена конкретного магазина. Наличие и итоговую стоимость проверяйте у продавца.</div></div>'+
+  '<div class="detail-spec-highlights">'+highlights.map(x=>'<div class="detail-highlight"><span>'+esc(x[0])+'</span><b>'+esc(x[1])+'</b></div>').join("")+'</div>'+
+  '<div class="detail-section-title">Где посмотреть цену</div><p class="store-intro">Откройте поиск этой модели в выбранном магазине.</p>'+
+  '<div class="shop-grid">'+STORE_SEARCH.map(s=>'<a class="shop-link" href="'+storeUrl(s[1],p)+'" target="_blank" rel="noopener">'+esc(s[0])+' ↗</a>').join("")+'</div></section></div>'+
+  '<div class="detail-section-title">Все характеристики</div><div class="detail-specs">'+specs.map(x=>'<div class="detail-spec-row"><span>'+esc(x[0])+'</span><b>'+esc(x[1])+'</b></div>').join("")+'</div></article>';
   document.querySelectorAll(".sect").forEach(s=>s.classList.remove("on"));
   document.getElementById("v-detail").classList.add("on");
   document.getElementById("tabs").style.display="none";
   window.scrollTo({top:0,behavior:"smooth"});
   document.getElementById("detailBack").onclick=closePhone;
+  const main=document.getElementById("galleryMainImage");
+  document.getElementById("galleryStage").onclick=()=>openLB(p.id,hasGallery?Math.max(0,images.indexOf(main.src)):0);
+  view.querySelectorAll(".gallery-thumb").forEach(btn=>btn.addEventListener("click",()=>{
+    const i=Number(btn.dataset.photoIndex);
+    if(hasGallery){main.src=images[i];view.querySelectorAll(".gallery-thumb").forEach(t=>t.classList.toggle("active",t===btn))}
+    openLB(p.id,hasGallery?i:0);
+  }));
 }
 function closePhone(){
   document.getElementById("v-detail").classList.remove("on");
@@ -273,14 +372,14 @@ function closePhone(){
 }
 function card(p){
   const el=document.createElement("div");el.className="card";
-  el.innerHTML='<img class="ph" loading="lazy" src="'+(p.photoUrl||ASSET(p.id))+'" alt="'+p.brand+" "+p.model+'" style="cursor:zoom-in">'+
+  el.innerHTML='<img class="ph" loading="lazy" src="'+(p.photoUrl||ASSET(p.id))+'" alt="'+p.brand+" "+p.model+'" style="cursor:pointer;object-fit:contain">'+
    '<div class="info"><h3>'+p.brand+" "+p.model+'</h3>'+
    '<div class="mut">'+p.ramGb+' ГБ физ. RAM • '+p.storageGb+' ГБ • '+(p.cpu||"характеристики уточняются")+'</div>'+
    '<div class="pr">'+fmtRange(p)+'</div>'+
    '<div class="promo">Ориентировочная цена по России</div>'+
    '<div class="stars">'+(p.screen||"")+'</div>'+
    '<div class="rowbtns"><button class="ic fav'+(favs.has(p.id)?" on":"")+'">★ В избранное</button><button class="ic sh">Поделиться</button></div></div>';
-  el.querySelector(".ph").onclick=e=>{e.stopPropagation();openLB(p.id,0)};
+  el.querySelector(".ph").onclick=e=>{e.stopPropagation();openPhone(p.id)};
   el.querySelector(".fav").onclick=e=>{e.stopPropagation();if(favs.has(p.id)){favs.delete(p.id);e.target.classList.remove("on")}else{favs.add(p.id);e.target.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify(Array.from(favs)));renderFav()};
   el.querySelector(".sh").onclick=e=>{e.stopPropagation();const t="📱 "+p.brand+" "+p.model+" — "+fmtRange(p)+"\nОриентировочная цена по России • Челны СмартСкан";if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t);alert("Скопировано!")}};
   el.addEventListener("click",()=>openPhone(p.id));
