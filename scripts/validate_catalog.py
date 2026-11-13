@@ -26,7 +26,7 @@ class SiteParser(HTMLParser):
             self.ids.add(value)
         if tag == "meta" and attrs.get("name") == "viewport":
             self.has_viewport = True
-        if attrs.get("id") == "cards":
+        if attrs.get("id") in {"cards", "grid"}:
             self.has_catalog_root = True
 
 
@@ -92,7 +92,7 @@ def main():
     page = SiteParser()
     page.feed((ROOT / "web/index.html").read_text(encoding="utf-8"))
     if not page.has_viewport or not page.has_catalog_root:
-        raise SystemExit("Web shell is missing viewport metadata or #cards catalog root")
+        raise SystemExit("Web shell is missing viewport metadata or catalog root (#grid/#cards)")
     if page.duplicates:
         raise SystemExit("Duplicate HTML IDs: " + ", ".join(page.duplicates))
     print(f"OK: {len(phones)} catalog models, {len(offers)} verified offers, web shell valid")
