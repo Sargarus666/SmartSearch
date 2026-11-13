@@ -585,7 +585,7 @@ async function loadNews(){
   const response=await fetch("./data/news.json?updated="+Date.now(),{cache:"no-store"});
   if(!response.ok)throw new Error("HTTP "+response.status);
   const data=await response.json();
-  NEWS=Array.isArray(data.items)?data.items.filter(n=>n&&n.title&&/^https?:\/\//i.test(n.url||"")):[];
+  NEWS=Array.isArray(data.items)?data.items.filter(n=>n&&n.title&&typeof n.url==="string"&&(n.url.startsWith("https://")||n.url.startsWith("http://"))):[];
   NEWS_META={generatedAt:data.generatedAt||"",warnings:Array.isArray(data.warnings)?data.warnings:[]};
   renderNews();
  }catch(error){
