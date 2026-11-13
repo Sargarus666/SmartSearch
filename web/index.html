@@ -423,7 +423,7 @@ function list(){
   if(q)l=l.filter(p=>(p.brand+" "+p.model+" "+p.cpu).toLowerCase().indexOf(q)>=0);
   if(chip===1)l=l.filter(p=>p.priceTo<=15000);
   if(chip===2)l=l.filter(p=>/snapdragon/i.test(p.cpu||""));
-  if(chip===3)l=l.filter(p=>{const m=String(p.battery||"").match(/(\\d{4,5})\\s*мА/i);return m&&Number(m[1])>=6000});
+  if(chip===3)l=l.filter(p=>{const m=String(p.battery||"").match(/(\d{4,5})\s*мА/i);return m&&Number(m[1])>=6000});
   l=l.sort((a,b)=>s===1?a.priceFrom-b.priceFrom:s===2?(b.rating||0)-(a.rating||0):((b.rating||0)-(a.rating||0))||(a.priceFrom-b.priceFrom));
   grid.innerHTML="";
   if(l.length)l.forEach(p=>grid.appendChild(card(p)));
