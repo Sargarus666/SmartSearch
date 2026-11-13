@@ -271,7 +271,7 @@ footer a{color:#cfc2ff}
     <div class="orn"><h2>Каталог</h2></div>
     <div class="toolbar">
       <input id="q" placeholder="Поиск модели или процессора…">
-      <select id="s"><option value="0">Со скидкой</option><option value="1">Подешевле</option><option value="2">По рейтингу</option></select>
+      <select id="s"><option value="0">Рекомендуемые</option><option value="1">Сначала дешевле</option><option value="2">По рейтингу</option></select>
     </div>
     <div class="chips" id="chips"></div>
     <div class="grid" id="grid"></div>
@@ -409,7 +409,7 @@ function card(p){
   return el;
 }
 /* ---------- список + чипы ---------- */
-const CHIPS=["Все","До 15 000 ₽","Snapdragon","Скидка ≥15%"];
+const CHIPS=["Все","До 15 000 ₽","Snapdragon","Батарея от 6000 мА·ч"];
 function buildChips(){const w=document.getElementById("chips");w.innerHTML="";
   CHIPS.forEach((n,i)=>{const b=document.createElement("button");b.className="chip"+(chip===i?" on":"");b.textContent=n;
     b.onclick=()=>{chip=i;buildChips();list()};w.appendChild(b)});
@@ -423,8 +423,8 @@ function list(){
   if(q)l=l.filter(p=>(p.brand+" "+p.model+" "+p.cpu).toLowerCase().indexOf(q)>=0);
   if(chip===1)l=l.filter(p=>p.priceTo<=15000);
   if(chip===2)l=l.filter(p=>/snapdragon/i.test(p.cpu||""));
-  if(chip===3)l=l.filter(p=>p.priceTo>0&&(p.priceTo-p.priceFrom)/p.priceTo>=.15);
-  l=l.sort((a,b)=>s===1?a.priceFrom-b.priceFrom:s===2?(b.rating||0)-(a.rating||0):a.priceFrom-b.priceFrom);
+  if(chip===3)l=l.filter(p=>{const m=String(p.battery||"").match(/(\\d{4,5})\\s*мА/i);return m&&Number(m[1])>=6000});
+  l=l.sort((a,b)=>s===1?a.priceFrom-b.priceFrom:s===2?(b.rating||0)-(a.rating||0):((b.rating||0)-(a.rating||0))||(a.priceFrom-b.priceFrom));
   grid.innerHTML="";
   if(l.length)l.forEach(p=>grid.appendChild(card(p)));
   else grid.innerHTML='<div class="panel" style="grid-column:1/-1;text-align:center;padding:28px"><b>Ничего не найдено</b><p class="mut">Измени запрос или сбрось фильтр, чтобы увидеть подходящие смартфоны.</p><button class="btn" type="button" id="resetPhoneFilters">Сбросить фильтры</button></div>';
