@@ -25,7 +25,12 @@
       "accent": "Midnight Black",
       "priceFrom": 17990,
       "priceTo": 19990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15/pc/1b209e1a1d20c47dbb0f9ff807ab0382.jpg",
+        "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15/pc/097093ae79de51a3662199df7cc2e5f2.jpg",
+        "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-note-15/pc/513e07895c820139953cb387666232b2.jpg"
+      ]
     },
     {
       "id": 2,
