@@ -50,7 +50,13 @@
       "accent": "Moon Titanium",
       "priceFrom": 15990,
       "priceTo": 17990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/spark-40-pro/assets/images-color-6-l-0-pc-1.jpg.webp",
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/spark-40-pro/assets/images-color-6-r-2-pc-1.jpg",
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/spark-40-pro/assets/images-color-6-r-3-pc-1.jpg"
+      ],
+      "gallerySource": "TECNO official product page"
     },
     {
       "id": 3,
@@ -110,7 +116,13 @@
       "accent": "Peacock Green",
       "priceFrom": 17990,
       "priceTo": 19990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://static2.realme.net/images/realme-c85-pro/176127026590754d93aaa144747488c66c606a1e5d150.webp",
+        "https://static2.realme.net/images/realme-c85-pro/17612705043843ba580ae1181415cbd1adaf8113bf219.webp",
+        "https://static2.realme.net/images/realme-c85-pro/17612703562633743216505ab4ed794cf51ce0dcccffa.webp"
+      ],
+      "gallerySource": "realme official product page"
     },
     {
       "id": 6,
@@ -150,7 +162,13 @@
       "accent": "Power Black",
       "priceFrom": 13990,
       "priceTo": 15990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-m7/PC/m7-kv-product.jpg",
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-m7/PC/a88f5f72f6057adb943d0f03f912f5cc.png",
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-m7/PC/1b30060b339590b4f9810d4a110481d8.jpg"
+      ],
+      "gallerySource": "POCO official product page"
     },
     {
       "id": 8,
@@ -190,7 +208,13 @@
       "accent": "Mecha Silver",
       "priceFrom": 19990,
       "priceTo": 22990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://static2.realme.net/images/realme-14-5g/1741856767368886f85ea94f248e99847fcf82f7cf6c0.webp",
+        "https://static2.realme.net/images/realme-14-5g/17418567908635aee7264192440249f517892fa87821e.webp",
+        "https://static2.realme.net/images/realme-14-5g/17418568831810f6ba5847f254b6d83f848c90f8e862f.webp"
+      ],
+      "gallerySource": "realme official product page"
     },
     {
       "id": 10,
@@ -210,7 +234,12 @@
       "accent": "Emerald Lake Green",
       "priceFrom": 16990,
       "priceTo": 18990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/camon40/ru/camon-40/assets/images-color-5-r-0-pc-1.jpg.avif",
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/camon40/ru/camon-40/assets/images-color-5-l-0-pc-1.jpg.avif"
+      ],
+      "gallerySource": "TECNO official product page"
     },
     {
       "id": 11,
@@ -250,7 +279,13 @@
       "accent": "Power Black",
       "priceFrom": 10990,
       "priceTo": 12990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-c85/pc/503352915e8f49115ed19a2d98476d44.jpg",
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-c85/pc/4a0df758220b757035e171d44e666b40.jpg",
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-c85/pc/c56d15724d428fc517685ea6640d2878.jpg"
+      ],
+      "gallerySource": "POCO official product page"
     },
     {
       "id": 13,
@@ -310,7 +345,13 @@
       "accent": "Lightning Gold",
       "priceFrom": 13990,
       "priceTo": 15990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://static2.realme.net/images/realme-c75-mea/17319182823438e6f2f10352a4bb292df2a0f0b261bd4.webp",
+        "https://static2.realme.net/images/realme-c75-mea/17319183398026b329bc0757a45f59adf3bf3be17c84b_new.jpg",
+        "https://static2.realme.net/images/realme-c75-mea/173191813749914a7c1ce81ac4da49aac91406d2bd6b6.webp"
+      ],
+      "gallerySource": "realme official product page"
     },
     {
       "id": 16,
@@ -330,7 +371,12 @@
       "accent": "Sandy Titanium",
       "priceFrom": 18990,
       "priceTo": 21990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/camon40/ru/camon-40-pro-5g/assets/images-design-phone-pc-1.png.avif",
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/camon40/ru/camon-40-pro-5g/assets/images-color-7-r-0-pc-1.jpg.avif"
+      ],
+      "gallerySource": "TECNO official product page"
     },
     {
       "id": 17,
