@@ -136,7 +136,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin:50px 0 10px;line
 footer a{color:#cfc2ff}
 .scanbar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:18px auto 4px;display:none;max-width:520px}
 .scanbar i{display:block;height:100%;width:0;background:var(--acc)}
-@media(max-width:560px){nav.tabs{width:calc(100vw - 20px);max-width:420px;padding:5px;gap:2px;justify-content:space-between;border-radius:18px}nav.tabs button{padding:10px 5px;font-size:11px;gap:5px;flex:1 1 0;min-width:0}nav.tabs button .dot{width:6px;height:6px;flex:none}.grid{grid-template-columns:1fr}.topbar-in{padding:10px 14px}.brand{font-size:14px}}.topbar-in{padding:10px 14px}.brand{font-size:14px}}
+@media(max-width:560px){nav.tabs{width:calc(100vw - 20px);max-width:420px;padding:5px;gap:2px;justify-content:space-between;border-radius:18px}nav.tabs button{padding:10px 5px;font-size:11px;gap:5px;flex:1 1 0;min-width:0}nav.tabs button .dot{width:6px;height:6px;flex:none}.grid{grid-template-columns:1fr}.topbar-in{padding:10px 14px}.brand{font-size:14px}}
 /* ===== Premium product page / Ozon-inspired gallery ===== */
 .phone-detail{background:var(--card);color:var(--fg);border:1px solid var(--border-strong);border-radius:24px;padding:clamp(16px,3vw,30px);margin:10px 0 28px;box-shadow:var(--detail-shadow)}
 .detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
@@ -144,7 +144,7 @@ footer a{color:#cfc2ff}
 .detail-back:hover{border-color:var(--acc);color:var(--gold)}
 .detail-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:clamp(22px,4vw,48px);align-items:start}
 .product-gallery{min-width:0}
-.gallery-stage{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:360px;height:clamp(340px,42vw,510px);padding:24px;background:var(--photo-bg);color:var(--fg);border:1px solid var(--border-strong);border-radius:20px;overflow:hidden;cursor:zoom-in;appearance:none;-webkit-appearance:none;font:inherit;text-align:center;touch-action:pan-y}.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid var(--border-strong);background:var(--chrome-bg);color:var(--text-strong);display:grid;place-items:center;font-size:25px;line-height:1;cursor:pointer;z-index:2;box-shadow:0 4px 16px rgba(0,0,0,.14)}.gallery-arrow.prev{left:12px}.gallery-arrow.next{right:12px}.gallery-counter{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);padding:5px 10px;border-radius:99px;background:var(--chrome-bg);border:1px solid var(--border-strong);color:var(--text-strong);font-size:12px;pointer-events:none}
+.gallery-stage{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:360px;height:clamp(340px,42vw,510px);padding:24px;background:var(--photo-bg);color:var(--fg);border:1px solid var(--border-strong);border-radius:20px;overflow:hidden;cursor:zoom-in;appearance:none;-webkit-appearance:none;font:inherit;text-align:center;touch-action:pan-y}.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid var(--border-strong);background:var(--chrome-bg);color:var(--text-strong);display:grid;place-items:center;font-size:25px;line-height:1;cursor:pointer;z-index:2;box-shadow:0 4px 16px rgba(0,0,0,.14)}.gallery-arrow.prev{left:12px}.gallery-arrow.next{right:12px}.gallery-arrow[hidden],.gallery-counter[hidden]{display:none}.gallery-counter{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);padding:5px 10px;border-radius:99px;background:var(--chrome-bg);border:1px solid var(--border-strong);color:var(--text-strong);font-size:12px;pointer-events:none}
 .gallery-main-image{display:block;width:100%;height:100%;object-fit:contain;object-position:center;mix-blend-mode:var(--photo-blend);transition:opacity .18s ease}
 .gallery-zoom-hint{position:absolute;right:14px;bottom:14px;background:var(--surface-3);border:1px solid var(--border-strong);border-radius:99px;padding:7px 11px;color:var(--text-muted);font-size:12px;pointer-events:none}
 .gallery-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px;max-width:100%}
@@ -357,8 +357,9 @@ function openPhone(id){
   document.getElementById("galleryNext").onclick=e=>{e.stopPropagation();showPhoto(activePhoto+1)};
   stage.addEventListener("click",e=>{if(e.target.closest(".gallery-arrow"))return;openLB(p.id,activePhoto)});
   view.querySelectorAll(".gallery-thumb").forEach(btn=>btn.addEventListener("click",()=>showPhoto(Number(btn.dataset.photoIndex))));
-  let galleryTouchX=null;stage.addEventListener("touchstart",e=>{galleryTouchX=e.touches[0].clientX},{passive:true});
-  stage.addEventListener("touchend",e=>{if(galleryTouchX===null)return;const dx=e.changedTouches[0].clientX-galleryTouchX;if(Math.abs(dx)>45&&hasGallery)showPhoto(activePhoto+(dx<0?1:-1));galleryTouchX=null},{passive:true});
+  let galleryTouchX=null,gallerySwiped=false;stage.addEventListener("touchstart",e=>{galleryTouchX=e.touches[0].clientX},{passive:true});
+  stage.addEventListener("touchend",e=>{if(galleryTouchX===null)return;const dx=e.changedTouches[0].clientX-galleryTouchX;if(Math.abs(dx)>45&&hasGallery){showPhoto(activePhoto+(dx<0?1:-1));gallerySwiped=true;setTimeout(()=>{gallerySwiped=false},450)}galleryTouchX=null},{passive:true});
+  stage.addEventListener("click",e=>{if(gallerySwiped){gallerySwiped=false;e.stopPropagation();e.preventDefault()}},true);
 }
 function closePhone(){
   document.getElementById("v-detail").classList.remove("on");
