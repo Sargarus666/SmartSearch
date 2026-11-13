@@ -508,7 +508,7 @@ function buildChips(){const w=document.getElementById("chips");w.innerHTML="";
   CHIPS.forEach((n,i)=>{const b=document.createElement("button");b.className="chip"+(chip===i?" on":"");b.textContent=n;
     b.onclick=()=>{chip=i;buildChips();list()};w.appendChild(b)});
   [["Дешевле",1],["Рейтинг ★",2]].forEach(pair=>{const b=document.createElement("button");b.className="chip"+(sortMode===pair[1]?" on":"");b.textContent=pair[0];
-    b.onclick=()=>{sortMode=pair[1];buildChips();list()};w.appendChild(b)});
+    b.onclick=()=>{sortMode=sortMode===pair[1]?0:pair[1];document.getElementById("s").value=String(sortMode);buildChips();list()};w.appendChild(b)});
 }
 function list(){
   const q=document.getElementById("q").value.toLowerCase(),s=+document.getElementById("s").value;
@@ -553,7 +553,7 @@ function renderFav(){favGrid.innerHTML="";const l=PHONES.filter(p=>favs.has(p.id
 /* появление карточек */
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");rio.unobserve(e.target)}}),{threshold:.08});
 function reveal(){document.querySelectorAll(".card:not(.vis)").forEach(el=>rio.observe(el))}
-document.getElementById("q").oninput=list;document.getElementById("s").onchange=list;
+document.getElementById("q").oninput=list;document.getElementById("s").onchange=()=>{sortMode=Number(document.getElementById("s").value);buildChips();list()};
 document.getElementById("compareClear").onclick=()=>{compareIds.clear();renderCompare();list()};
 document.getElementById("compareShow").onclick=showCompare;
 /* ---------- вкладки ---------- */
