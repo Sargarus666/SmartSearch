@@ -143,6 +143,45 @@ footer a{color:#cfc2ff}
 .scanbar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:18px auto 4px;display:none;max-width:520px}
 .scanbar i{display:block;height:100%;width:0;background:var(--acc)}
 @media(max-width:560px){nav.tabs{width:calc(100vw - 20px);max-width:420px;padding:5px;gap:2px;justify-content:space-between;border-radius:18px}nav.tabs button{padding:10px 5px;font-size:11px;gap:5px;flex:1 1 0;min-width:0}nav.tabs button .dot{width:6px;height:6px;flex:none}.grid{grid-template-columns:1fr}.topbar-in{padding:10px 14px;gap:9px}.logo{width:38px;height:38px;border-radius:12px}.brand{font-size:15px}.brand-tag{font-size:9px}.topbar-meta{font-size:10px}}
+
+/* Batch polish: mobile cards, accessible gallery and news freshness */
+.card{align-items:stretch}
+.card-media{position:relative;width:clamp(104px,30%,148px);min-width:104px;min-height:150px;display:flex;align-items:center;justify-content:center;background:var(--photo-bg);border-radius:16px;overflow:hidden;cursor:zoom-in}
+.card .ph{width:100%;height:100%;min-height:150px;max-height:190px;object-fit:contain;padding:7px;border-radius:16px;background:transparent}
+.card-photo-tag{position:absolute;left:7px;bottom:7px;border-radius:99px;padding:3px 7px;background:var(--chrome-bg);border:1px solid var(--border-strong);color:var(--text-muted);font-size:8px;font-weight:850;letter-spacing:.08em;pointer-events:none}
+.card-media:has(.ph.image-error)::after{content:"Фото временно недоступно";position:absolute;inset:0;display:grid;place-items:center;padding:12px;text-align:center;color:var(--text-muted);font-size:12px;font-weight:700;background:linear-gradient(145deg,var(--surface-2),var(--photo-bg))}
+.card .ph.image-error{visibility:hidden}
+.news-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+.news-status{font-size:12px;color:var(--text-muted);background:var(--surface-2);border:1px solid var(--border-strong);border-radius:99px;padding:7px 11px}
+.news-refresh{border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text-strong);border-radius:99px;padding:8px 13px;font-weight:750;cursor:pointer}
+.news-refresh:disabled{opacity:.55;cursor:wait}
+.news .nrow{align-items:flex-start}
+.news .nph{object-fit:contain;background:var(--photo-bg)}
+.gallery-stage{min-height:300px}
+@media(max-width:560px){
+ .card{gap:12px;padding:12px}
+ .card-media{width:112px;min-width:112px;min-height:146px}
+ .card .ph{min-height:146px}
+ .info h3{font-size:15px;line-height:1.35}
+ .pr{font-size:17px}
+ .card-specs{gap:5px}
+ .card-secondary-actions{gap:5px}
+ .card-secondary-actions .ic{padding:9px 4px;font-size:11px}
+ .gallery-stage{height:clamp(280px,88vw,420px);min-height:280px;padding:16px}
+ .gallery-thumb{height:86px}
+ .news .nrow{gap:11px}
+ .news .nph{width:88px;height:88px}
+ .news{padding:15px}
+ .news h3{font-size:15px;line-height:1.35}
+ .news p{font-size:12px}
+}
+@media(max-width:370px){
+ .card-media{width:94px;min-width:94px}
+ .card .ph{min-height:130px}
+ .card{gap:9px}
+ .card-secondary-actions .ic{font-size:10px}
+}
+
 /* SmartScan brand refinement */
 .topbar .brand{color:var(--text-strong)}
 .topbar .topbar-meta{padding:7px 11px;border:1px solid var(--border-strong);border-radius:99px;background:var(--surface-2)}
@@ -371,7 +410,7 @@ document.addEventListener("keydown",e=>{if(!document.getElementById("lb").classL
 (function(){let x0=null;const lb=document.getElementById("lb");lb.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});lb.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)lbGo(dx<0?1:-1);x0=null},{passive:true})})();
 "use strict";
 /* ---------- данные ---------- */
-const ASSET=i=>"https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_"+i+".jpg";
+const ASSET=i=>"./assets/phone_"+i+".jpg";
 const fmt=n=>Number(n).toLocaleString("ru-RU")+" ₽";
 const fmtRange=p=>fmt(p.priceFrom)+"–"+fmt(p.priceTo);
 const STORE_SEARCH=[
@@ -455,7 +494,7 @@ function card(p){
    '<div class="rowbtns"><button class="ic primary card-open" type="button">Характеристики и магазины <span aria-hidden="true">→</span></button><div class="card-secondary-actions"><button class="ic fav'+(favs.has(p.id)?" on":"")+'" type="button" aria-label="Добавить в избранное">★</button><button class="ic sh" type="button" aria-label="Поделиться смартфоном">Поделиться</button><button class="ic compare-toggle'+(compareIds.has(p.id)?" selected":"")+'" type="button">'+(compareIds.has(p.id)?"✓ В сравнении":"⇄ Сравнить")+'</button></div></div></div>';
   const cardImage=el.querySelector(".ph");cardImage.addEventListener("error",()=>cardImage.classList.add("image-error"),{once:true});
   const open=()=>openPhone(p.id);
-  el.querySelector(".ph").onclick=e=>{e.stopPropagation();open()};
+  el.querySelector(".ph").onclick=e=>{e.stopPropagation();open()};\n  el.querySelector(".card-media").onclick=e=>{e.stopPropagation();open()};
   el.querySelector(".card-open").onclick=e=>{e.stopPropagation();open()};
   el.querySelector(".fav").onclick=e=>{e.stopPropagation();if(favs.has(p.id)){favs.delete(p.id);e.currentTarget.classList.remove("on")}else{favs.add(p.id);e.currentTarget.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify(Array.from(favs)));renderFav()};
   el.querySelector(".sh").onclick=e=>{e.stopPropagation();const t="📱 "+p.brand+" "+p.model+" — "+fmtRange(p)+"\nОриентировочная цена по России · SmartScan";if(navigator.share)navigator.share({text:t}).catch(()=>{});else if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>alert("Скопировано!")).catch(()=>{});};
@@ -524,16 +563,34 @@ document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
   window.scrollTo({top:0,behavior:"smooth"});
 });
 /* ---------- свежие новости из RSS-сборки ---------- */
+let NEWS_META={generatedAt:"",warnings:[]};
+function newsDate(value){
+ const d=new Date(value);if(Number.isNaN(d.getTime()))return "время неизвестно";
+ return new Intl.DateTimeFormat("ru-RU",{day:"2-digit",month:"long",hour:"2-digit",minute:"2-digit"}).format(d);
+}
 function renderNews(){
  const root=document.getElementById("newsList");
- if(!NEWS.length){root.innerHTML='<div class="panel"><b>Свежие новости пока не загрузились</b><p class="mut">Лента обновляется автоматически. Попробуйте ещё раз чуть позже.</p><button class="btn" id="newsRetry">Обновить ленту</button></div>';document.getElementById("newsRetry").onclick=loadNews;return}
- root.innerHTML='<p class="mut" style="margin:0 0 14px">Свежая лента · обновляется автоматически каждый день</p>'+NEWS.map(n=>'<article class="news"><div class="nrow">'+(n.image?'<img class="nph" loading="lazy" src="'+esc(n.image)+'" alt="" onerror="this.hidden=true">':'<div class="nph news-placeholder" aria-hidden="true">📱</div>')+'<div class="ntx"><span class="tag">'+esc(n.source||"Технологии")+' · '+esc(n.dateLabel||"")+'</span><h3><a href="'+esc(n.url)+'" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">'+esc(n.title)+'</a></h3><p>'+esc(n.summary||"Откройте материал, чтобы прочитать подробности.")+'</p></div></div><div class="rowbtns" style="flex-direction:row"><a class="ic primary" style="text-decoration:none;text-align:center" href="'+esc(n.url)+'" target="_blank" rel="noopener noreferrer">Читать источник ↗</a><button class="ic" type="button" data-share="'+esc(n.title)+'">Поделиться</button></div></article>').join("");
- root.querySelectorAll("[data-share]").forEach(b=>b.onclick=()=>{const item=NEWS.find(n=>n.title===b.dataset.share);const payload={title:b.dataset.share,url:item&&item.url};if(navigator.share)navigator.share(payload).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(payload.url||payload.title)});
+ const stamp=NEWS_META.generatedAt?newsDate(NEWS_META.generatedAt):"дата обновления неизвестна";
+ const status='<div class="news-meta"><span class="news-status">Обновлено: '+esc(stamp)+' · '+NEWS.length+' материалов</span><button class="news-refresh" id="newsRetry" type="button">↻ Обновить</button></div>';
+ if(!NEWS.length){root.innerHTML=status+'<div class="panel"><b>Свежие новости пока не загрузились</b><p class="mut">Лента обновляется автоматически. Попробуйте повторить загрузку позже.</p></div>';document.getElementById("newsRetry").onclick=loadNews;return}
+ root.innerHTML=status+NEWS.map((n,i)=>'<article class="news"><div class="nrow">'+(n.image?'<img class="nph" loading="lazy" src="'+esc(n.image)+'" alt="" onerror="this.hidden=true">':'<div class="nph news-placeholder" aria-hidden="true">📱</div>')+'<div class="ntx"><span class="tag">'+esc(n.source||"Технологии")+' · '+esc(n.dateLabel||"")+'</span><h3><a href="'+esc(n.url)+'" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">'+esc(n.title)+'</a></h3><p>'+esc(n.summary||"Откройте материал, чтобы прочитать подробности.")+'</p></div></div><div class="rowbtns" style="flex-direction:row"><a class="ic primary" style="text-decoration:none;text-align:center" href="'+esc(n.url)+'" target="_blank" rel="noopener noreferrer">Читать источник ↗</a><button class="ic" type="button" data-share-index="'+i+'">Поделиться</button></div></article>').join("");
+ const refresh=document.getElementById("newsRetry");refresh.onclick=loadNews;
+ root.querySelectorAll("[data-share-index]").forEach(b=>b.onclick=()=>{const item=NEWS[Number(b.dataset.shareIndex)];if(!item)return;const payload={title:item.title,url:item.url};if(navigator.share)navigator.share(payload).catch(()=>{});else if(navigator.clipboard?.writeText)navigator.clipboard.writeText(item.url||item.title)});
 }
 async function loadNews(){
- const root=document.getElementById("newsList");root.innerHTML='<div class="panel">Загружаю свежие новости…</div>';
- try{const response=await fetch("./data/news.json?updated="+Date.now(),{cache:"no-store"});if(!response.ok)throw new Error("HTTP "+response.status);const data=await response.json();NEWS=Array.isArray(data.items)?data.items:[];renderNews()}
- catch(error){console.warn("News feed unavailable:",error);NEWS=[];renderNews()}
+ const root=document.getElementById("newsList"),button=document.getElementById("newsRetry");
+ if(button){button.disabled=true;button.textContent="Загружаю…"}else root.innerHTML='<div class="panel">Загружаю свежие новости…</div>';
+ try{
+  const response=await fetch("./data/news.json?updated="+Date.now(),{cache:"no-store"});
+  if(!response.ok)throw new Error("HTTP "+response.status);
+  const data=await response.json();
+  NEWS=Array.isArray(data.items)?data.items.filter(n=>n&&n.title&&/^https?:\\/\\//i.test(n.url||"")):[];
+  NEWS_META={generatedAt:data.generatedAt||"",warnings:Array.isArray(data.warnings)?data.warnings:[]};
+  renderNews();
+ }catch(error){
+  console.warn("News feed unavailable:",error);
+  NEWS=[];NEWS_META={generatedAt:"",warnings:[String(error)]};renderNews();
+ }
 }
 loadNews();
 /* ---------- настройки ---------- */
