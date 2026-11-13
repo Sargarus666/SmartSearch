@@ -52,6 +52,29 @@ def main():
             raise SystemExit(f"Phone {phone.get('id')} does not meet 8 GB physical RAM threshold")
         if int(phone.get("storageGb", 0)) < 1:
             raise SystemExit(f"Phone {phone.get('id')} has invalid storage")
+        if not phone.get("cpu") or not phone.get("battery") or not phone.get("screen"):
+            raise SystemExit(f"Phone {phone.get('id')} is missing core specifications")
+        low, high = int(phone.get("priceFrom", 0)), int(phone.get("priceTo", 0))
+        if low <= 0 or high < low:
+            raise SystemExit(f"Phone {phone.get('id')} has an invalid estimated price range")
+        if not phone.get("priceBasis"):
+            raise SystemExit(f"Phone {phone.get('id')} must explain that its price is an estimate")
+        photo = str(phone.get("photoUrl", ""))
+        if photo.startswith("./assets/"):
+            local_photo = ROOT / "web" / photo.removeprefix("./")
+            if not local_photo.is_file():
+                raise SystemExit(f"Phone {phone.get('id')} local photo is missing: {photo}")
+        else:
+            parsed_photo = urlsplit(photo)
+            if parsed_photo.scheme != "https" or not parsed_photo.hostname:
+                raise SystemExit(f"Phone {phone.get('id')} must have a valid HTTPS photo URL")
+        gallery = phone.get("galleryUrls", [])
+        if not isinstance(gallery, list) or len(gallery) > 12 or len(gallery) != len(set(gallery)):
+            raise SystemExit(f"Phone {phone.get('id')} has an invalid or duplicate photo gallery")
+        for image_url in gallery:
+            parsed_image = urlsplit(str(image_url))
+            if parsed_image.scheme != "https" or not parsed_image.hostname:
+                raise SystemExit(f"Phone {phone.get('id')} gallery contains a non-HTTPS image")
         key = (phone["brand"].casefold(), phone["model"].casefold())
         if key in known:
             raise SystemExit(f"Duplicate brand/model: {phone['brand']} {phone['model']}")

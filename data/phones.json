@@ -20,7 +20,7 @@
       "cpu": "Helio G100 Ultra",
       "colorStart": "#1A2A6C",
       "colorEnd": "#2EBF91",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_1.jpg",
+      "photoUrl": "./assets/phone_1.jpg",
       "photoRes": "phone_1",
       "accent": "Midnight Black",
       "priceFrom": 17990,
@@ -45,12 +45,18 @@
       "cpu": "Helio G100 Ultimate",
       "colorStart": "#141E30",
       "colorEnd": "#4B6CB7",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_2.jpg",
+      "photoUrl": "./assets/phone_2.jpg",
       "photoRes": "phone_2",
       "accent": "Moon Titanium",
       "priceFrom": 15990,
       "priceTo": 17990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/spark-40-pro/assets/images-color-6-l-0-pc-1.jpg.webp",
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/spark-40-pro/assets/images-color-6-r-2-pc-1.jpg",
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/spark-40-pro/assets/images-color-6-r-3-pc-1.jpg"
+      ],
+      "gallerySource": "TECNO official product page"
     },
     {
       "id": 3,
@@ -65,7 +71,7 @@
       "cpu": "Dimensity 7100",
       "colorStart": "#3A1C71",
       "colorEnd": "#D76D77",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_3.jpg",
+      "photoUrl": "./assets/phone_3.jpg",
       "photoRes": "phone_3",
       "accent": "Shadow Black",
       "priceFrom": 17990,
@@ -85,7 +91,7 @@
       "cpu": "Helio G100 Ultimate",
       "colorStart": "#0F2027",
       "colorEnd": "#2C5364",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_4.jpg",
+      "photoUrl": "./assets/phone_4.jpg",
       "photoRes": "phone_4",
       "accent": "Neon Black",
       "priceFrom": 14990,
@@ -105,12 +111,18 @@
       "cpu": "Snapdragon 685",
       "colorStart": "#F7971E",
       "colorEnd": "#FFD200",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_5.jpg",
+      "photoUrl": "./assets/phone_5.jpg",
       "photoRes": "phone_5",
       "accent": "Peacock Green",
       "priceFrom": 17990,
       "priceTo": 19990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://static2.realme.net/images/realme-c85-pro/176127026590754d93aaa144747488c66c606a1e5d150.webp",
+        "https://static2.realme.net/images/realme-c85-pro/17612705043843ba580ae1181415cbd1adaf8113bf219.webp",
+        "https://static2.realme.net/images/realme-c85-pro/17612703562633743216505ab4ed794cf51ce0dcccffa.webp"
+      ],
+      "gallerySource": "realme official product page"
     },
     {
       "id": 6,
@@ -125,7 +137,7 @@
       "cpu": "Exynos 1330",
       "colorStart": "#000428",
       "colorEnd": "#004E92",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_6.jpg",
+      "photoUrl": "./assets/phone_6.jpg",
       "photoRes": "phone_6",
       "accent": "Blue Black",
       "priceFrom": 16990,
@@ -145,12 +157,18 @@
       "cpu": "Snapdragon 685",
       "colorStart": "#CB0000",
       "colorEnd": "#3A0000",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_7.jpg",
+      "photoUrl": "./assets/phone_7.jpg",
       "photoRes": "phone_7",
       "accent": "Power Black",
       "priceFrom": 13990,
       "priceTo": 15990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-m7/PC/m7-kv-product.jpg",
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-m7/PC/a88f5f72f6057adb943d0f03f912f5cc.png",
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-m7/PC/1b30060b339590b4f9810d4a110481d8.jpg"
+      ],
+      "gallerySource": "POCO official product page"
     },
     {
       "id": 8,
@@ -165,7 +183,7 @@
       "cpu": "Snapdragon 685",
       "colorStart": "#134E5E",
       "colorEnd": "#71B280",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_8.jpg",
+      "photoUrl": "./assets/phone_8.jpg",
       "photoRes": "phone_8",
       "accent": "Emerald Lake",
       "priceFrom": 14990,
@@ -185,12 +203,18 @@
       "cpu": "Snapdragon 6 Gen 4",
       "colorStart": "#8E2DE2",
       "colorEnd": "#4A00E0",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_9.jpg",
+      "photoUrl": "./assets/phone_9.jpg",
       "photoRes": "phone_9",
       "accent": "Mecha Silver",
       "priceFrom": 19990,
       "priceTo": 22990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://static2.realme.net/images/realme-14-5g/1741856767368886f85ea94f248e99847fcf82f7cf6c0.webp",
+        "https://static2.realme.net/images/realme-14-5g/17418567908635aee7264192440249f517892fa87821e.webp",
+        "https://static2.realme.net/images/realme-14-5g/17418568831810f6ba5847f254b6d83f848c90f8e862f.webp"
+      ],
+      "gallerySource": "realme official product page"
     },
     {
       "id": 10,
@@ -205,12 +229,17 @@
       "cpu": "Helio G100",
       "colorStart": "#232526",
       "colorEnd": "#414345",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_10.jpg",
+      "photoUrl": "./assets/phone_10.jpg",
       "photoRes": "phone_10",
       "accent": "Emerald Lake Green",
       "priceFrom": 16990,
       "priceTo": 18990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/camon40/ru/camon-40/assets/images-color-5-r-0-pc-1.jpg.avif",
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/camon40/ru/camon-40/assets/images-color-5-l-0-pc-1.jpg.avif"
+      ],
+      "gallerySource": "TECNO official product page"
     },
     {
       "id": 11,
@@ -225,7 +254,7 @@
       "cpu": "Helio G99",
       "colorStart": "#000428",
       "colorEnd": "#004E92",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_11.jpg",
+      "photoUrl": "./assets/phone_11.jpg",
       "photoRes": "phone_11",
       "accent": "Light Green",
       "priceFrom": 13990,
@@ -245,12 +274,18 @@
       "cpu": "Helio G81 Ultra",
       "colorStart": "#232526",
       "colorEnd": "#414345",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_12.jpg",
+      "photoUrl": "./assets/phone_12.jpg",
       "photoRes": "phone_12",
       "accent": "Power Black",
       "priceFrom": 10990,
       "priceTo": 12990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-c85/pc/503352915e8f49115ed19a2d98476d44.jpg",
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-c85/pc/4a0df758220b757035e171d44e666b40.jpg",
+        "https://i02.appmifile.com/mi-com-product/fly-birds/poco-c85/pc/c56d15724d428fc517685ea6640d2878.jpg"
+      ],
+      "gallerySource": "POCO official product page"
     },
     {
       "id": 13,
@@ -265,7 +300,7 @@
       "cpu": "Snapdragon 685",
       "colorStart": "#3A2E1A",
       "colorEnd": "#8A6D3B",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_13.jpg",
+      "photoUrl": "./assets/phone_13.jpg",
       "photoRes": "phone_13",
       "accent": "Desert Gold",
       "priceFrom": 15990,
@@ -285,7 +320,7 @@
       "cpu": "Helio G100",
       "colorStart": "#4A2E6B",
       "colorEnd": "#9D6BC4",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_14.jpg",
+      "photoUrl": "./assets/phone_14.jpg",
       "photoRes": "phone_14",
       "accent": "Blossom Purple",
       "priceFrom": 14990,
@@ -305,12 +340,18 @@
       "cpu": "Helio G92 Max",
       "colorStart": "#8A6D1B",
       "colorEnd": "#F5C542",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_15.jpg",
+      "photoUrl": "./assets/phone_15.jpg",
       "photoRes": "phone_15",
       "accent": "Lightning Gold",
       "priceFrom": 13990,
       "priceTo": 15990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://static2.realme.net/images/realme-c75-mea/17319182823438e6f2f10352a4bb292df2a0f0b261bd4.webp",
+        "https://static2.realme.net/images/realme-c75-mea/17319183398026b329bc0757a45f59adf3bf3be17c84b_new.jpg",
+        "https://static2.realme.net/images/realme-c75-mea/173191813749914a7c1ce81ac4da49aac91406d2bd6b6.webp"
+      ],
+      "gallerySource": "realme official product page"
     },
     {
       "id": 16,
@@ -325,12 +366,17 @@
       "cpu": "Dimensity 7300",
       "colorStart": "#5A6E7A",
       "colorEnd": "#C9D6DD",
-      "photoUrl": "https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_16.jpg",
+      "photoUrl": "./assets/phone_16.jpg",
       "photoRes": "phone_16",
       "accent": "Sandy Titanium",
       "priceFrom": 18990,
       "priceTo": 21990,
-      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина."
+      "priceBasis": "Ориентировочная оценка российского рынка; не предложение магазина.",
+      "galleryUrls": [
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/camon40/ru/camon-40-pro-5g/assets/images-design-phone-pc-1.png.avif",
+        "https://d13pvy8xd75yde.cloudfront.net/global/phones/camon40/ru/camon-40-pro-5g/assets/images-color-7-r-0-pc-1.jpg.avif"
+      ],
+      "gallerySource": "TECNO official product page"
     },
     {
       "id": 17,

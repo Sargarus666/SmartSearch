@@ -37,6 +37,7 @@ jobs:
         run: |
           mkdir -p public/data
           cp web/index.html public/index.html
+          cp -R web/assets public/assets
           sed -i 's#../data/phones.json#./data/phones.json#' public/index.html
           cp data/phones.json public/data/phones.json
           python scripts/fetch_news.py --output public/data/news.json --max-age-days 14
