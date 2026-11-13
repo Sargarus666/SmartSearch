@@ -30,7 +30,7 @@ body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-s
 #fx{position:fixed;inset:0;z-index:0;pointer-events:none}
 .wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 20px 140px;overflow-x:clip}
 /* ===== верхняя шапка как на MMO-сайте ===== */
-.topbar{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar{position:sticky;top:0;z-index:20;background:var(--chrome-bg,rgba(0,0,0,.9));backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .topbar-in{max-width:960px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:10px}
 .logo{width:32px;height:32px;border-radius:9px;background:var(--acc);display:grid;place-items:center;font-size:17px;flex:none}
 .brand{font-weight:800;font-size:15px}
@@ -55,9 +55,9 @@ h1 .grad{background:linear-gradient(92deg,#a98fff 10%,var(--acc) 90%);-webkit-ba
 .stat span{color:var(--sub);font-size:12px}
 /* marquee */
 /* tabs */
-nav.tabs{position:fixed;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:rgba(14,14,20,.96);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:99px;display:flex;padding:6px;z-index:50;box-shadow:0 14px 44px rgba(0,0,0,.6);max-width:calc(100vw - 16px);overflow-x:auto;scrollbar-width:none}
+nav.tabs{position:fixed;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 20px);align-items:center;justify-content:center;gap:4px;background:var(--chrome-bg,rgba(14,14,20,.96));backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--border-strong);border-radius:99px;display:flex;padding:6px;z-index:50;box-shadow:0 12px 34px rgba(20,16,35,.18);overflow-x:auto;scrollbar-width:none}
 nav.tabs::-webkit-scrollbar{display:none}
-nav.tabs button{border:0;background:transparent;color:var(--fg);padding:11px 16px;border-radius:99px;font-size:13px;font-weight:800;cursor:pointer;transition:.25s;display:flex;align-items:center;gap:7px;flex:1 0 auto;white-space:nowrap;justify-content:center}
+nav.tabs button{border:0;background:transparent;color:var(--text-strong,var(--fg));padding:10px 15px;border-radius:99px;font:800 13px/1.2 system-ui,-apple-system,'Segoe UI',sans-serif;cursor:pointer;transition:background .2s,color .2s;display:flex;align-items:center;gap:7px;flex:0 0 auto;white-space:nowrap;justify-content:center;min-height:42px;appearance:none;-webkit-appearance:none;box-shadow:none}
 nav.tabs button.on{background:var(--acc);color:#fff}
 nav.tabs button .dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.6}
 nav.tabs button.on .dot{opacity:1;background:#fff}
@@ -104,10 +104,10 @@ nav.tabs button.on .dot{opacity:1;background:#fff}
 .shop a{color:#b7a6ff;font-weight:700}
 h4.st{font-size:11px;letter-spacing:2.5px;color:var(--gold);margin:16px 0 4px;text-transform:uppercase}
 /* news */
-.news{background:linear-gradient(180deg,#1e1830,#141021);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:14px;transition:.25s}
+.news{background:var(--news-bg,linear-gradient(180deg,#1e1830,#141021));border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:14px;transition:.25s}
 .news:hover{border-color:var(--acc);transform:translateX(4px)}
 .news .tag{display:inline-block;background:var(--acc-soft);border:1px solid rgba(124,92,255,.5);color:#cfc2ff;border-radius:99px;padding:4px 14px;font-size:11px;font-weight:800;letter-spacing:1px}
-.news .nph{width:112px;height:112px;object-fit:cover;border-radius:12px;background:#232031;display:block;flex:none}
+.news .nph{width:112px;height:112px;object-fit:cover;border-radius:12px;background:var(--photo-bg);display:block;flex:none}.news-placeholder{display:grid;place-items:center;font-size:34px}
 .news .nrow{display:flex;gap:16px;align-items:center}
 .news .ntx{flex:1;min-width:0}
 /* лайтбокс */
@@ -136,7 +136,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin:50px 0 10px;line
 footer a{color:#cfc2ff}
 .scanbar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:18px auto 4px;display:none;max-width:520px}
 .scanbar i{display:block;height:100%;width:0;background:var(--acc)}
-@media(max-width:560px){nav.tabs{padding:5px}nav.tabs button{padding:9px 11px;font-size:12px}.grid{grid-template-columns:1fr}.topbar-in{padding:10px 14px}.brand{font-size:14px}}
+@media(max-width:560px){nav.tabs{width:calc(100vw - 20px);max-width:420px;padding:5px;gap:2px;justify-content:space-between;border-radius:18px}nav.tabs button{padding:10px 5px;font-size:11px;gap:5px;flex:1 1 0;min-width:0}nav.tabs button .dot{width:6px;height:6px;flex:none}.grid{grid-template-columns:1fr}.topbar-in{padding:10px 14px}.brand{font-size:14px}}
 /* ===== Premium product page / Ozon-inspired gallery ===== */
 .phone-detail{background:var(--card);color:var(--fg);border:1px solid var(--border-strong);border-radius:24px;padding:clamp(16px,3vw,30px);margin:10px 0 28px;box-shadow:var(--detail-shadow)}
 .detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
@@ -144,11 +144,12 @@ footer a{color:#cfc2ff}
 .detail-back:hover{border-color:var(--acc);color:var(--gold)}
 .detail-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:clamp(22px,4vw,48px);align-items:start}
 .product-gallery{min-width:0}
-.gallery-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:360px;height:clamp(340px,42vw,510px);padding:24px;background:var(--photo-bg);border:1px solid var(--border-strong);border-radius:20px;overflow:hidden;cursor:zoom-in}
+.gallery-stage{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:360px;height:clamp(340px,42vw,510px);padding:24px;background:var(--photo-bg);color:var(--fg);border:1px solid var(--border-strong);border-radius:20px;overflow:hidden;cursor:zoom-in;appearance:none;-webkit-appearance:none;font:inherit;text-align:center;touch-action:pan-y}.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid var(--border-strong);background:var(--chrome-bg);color:var(--text-strong);display:grid;place-items:center;font-size:25px;line-height:1;cursor:pointer;z-index:2;box-shadow:0 4px 16px rgba(0,0,0,.14)}.gallery-arrow.prev{left:12px}.gallery-arrow.next{right:12px}.gallery-arrow[hidden],.gallery-counter[hidden]{display:none}.gallery-counter{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);padding:5px 10px;border-radius:99px;background:var(--chrome-bg);border:1px solid var(--border-strong);color:var(--text-strong);font-size:12px;pointer-events:none}
 .gallery-main-image{display:block;width:100%;height:100%;object-fit:contain;object-position:center;mix-blend-mode:var(--photo-blend);transition:opacity .18s ease}
 .gallery-zoom-hint{position:absolute;right:14px;bottom:14px;background:var(--surface-3);border:1px solid var(--border-strong);border-radius:99px;padding:7px 11px;color:var(--text-muted);font-size:12px;pointer-events:none}
-.gallery-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
-.gallery-thumb{height:104px;min-width:0;border:2px solid var(--border-strong);border-radius:14px;background:var(--photo-bg);padding:5px;overflow:hidden;cursor:pointer;transition:border-color .18s,box-shadow .18s}
+.gallery-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px;max-width:100%}
+.gallery-thumbs:has(.gallery-thumb:only-child){grid-template-columns:minmax(0,104px)}
+.gallery-thumb{height:104px;min-width:0;width:100%;border:2px solid var(--border-strong);border-radius:14px;background:var(--photo-bg);color:var(--fg);padding:5px;overflow:hidden;cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .18s,box-shadow .18s}
 .gallery-thumb.active{border-color:var(--acc);box-shadow:0 0 0 3px rgba(118,85,232,.12)}
 .gallery-thumb:hover{border-color:var(--acc)}
 .gallery-thumb img{width:100%;height:100%;display:block;object-fit:contain;mix-blend-mode:var(--photo-blend)}
@@ -200,6 +201,7 @@ footer a{color:#cfc2ff}
  .detail-specs{grid-template-columns:1fr}
 }
 @media(max-width:430px){
+ nav.tabs{bottom:calc(8px + env(safe-area-inset-bottom));width:calc(100vw - 16px)}nav.tabs button{font-size:10.5px;padding:9px 3px}
  .phone-detail{padding:12px;border-radius:18px}
  .gallery-stage{height:330px;min-height:0}
  .gallery-thumb{height:78px}
@@ -311,17 +313,7 @@ const STORE_SEARCH=[
  ["МТС",q=>"https://shop.mts.ru/search/?q="+q]
 ];
 let PHONES=[];
-const NEWS=[
-["POCO M8 Pro вылетел из бюджета","Был 18 900 ₽, стал 25–28 тыс. Замена в топе — POCO M7 за 17 990 ₽.","14.10 • Проверка цен",7,"https://hi-tech.mail.ru/news/153818-10-populyarnyh-smartfonov-do-20-000-rublej/"],
-["Redmi Note 15: реально 19 899 ₽","Официалы просят 21 990 ₽. Старые цены нейросетей устарели.","14.10 • Проверка цен",1,"https://mi-shop.com/catalog/smartphones/redmi-note-15/"],
-["Только топ из топов","Модель попадает в каталог, если есть минимум в двух свежих рейтингах осени-2026.","14.10 • Методология",2,"https://t-j.ru/best-smartphones-below-20k/"],
-["8+8 — это не 16 ГБ","Виртуальная память не считается: только физическая RAM ≥ 8 ГБ.","12.10 • Гайд",4,"https://www.mvideo.ru/blog/podborki/luchshie-smartfoni-stoimostyu-do-20-000-rublej"],
-["DNS Челны: скидки недели","Ценопады до −23% на Spark 40 Pro и Galaxy A16. Все акции — по ссылке.","15.10 • Акция",2,"https://www.dns-shop.ru/actions/"],
-["М.Видео: промо и бонусы","До 10% бонусами на realme и Samsung, рассрочка 0-0-12.","15.10 • Акция",9,"https://www.mvideo.ru/promo"],
-["Эльдорадо Омега: акции","Трейд-ин, рассрочка и подарки к POCO, Infinix и TECNO.","15.10 • Акция",3,"https://www.eldorado.ru/actions/"],
-["OZON: скидки с картой","Минус 300–500 ₽ по карте на смартфоны. Телефоны — по ссылке.","15.10 • Акция",14,"https://www.ozon.ru/category/mobilnye-telefony-15574/"],
-["В каталоге уже 16 моделей","Galaxy A16, POCO C85, X7d, Hot 50 Pro+, C75 и Camon 40 Pro 5G.","15.10 • Каталог",11,"https://geekchoice.ru/luchshie-smartfony-do-20000-rublej-2026/"],
-["Как выжать −15% сверху","Бонусы 5–10%, трейд-ин −3000 ₽, кэшбэк до 5%. Разбор — по ссылке.","15.10 • Гайд",8,"https://rev.games/blog/kak-poluchit-skidku-techniku"]];
+let NEWS=[];
 /* ---------- состояние ---------- */
 let favs=new Set(JSON.parse(localStorage.getItem("ss_fav")||"[]"));
 let chip=0,sortMode=0;
@@ -336,16 +328,17 @@ function storeUrl(make,p){return make(encodeURIComponent(p.brand+" "+p.model))}
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function openPhone(id){
   const p=PHONES.find(x=>x.id===id);if(!p)return;
-  const view=document.getElementById("phoneDetail"),src=p.photoUrl||ASSET(p.id);
-  const images=phoneImages(p),hasGallery=images.length>1;
-  const previewSources=hasGallery?images.slice(0,3):[src,src,src];
+  const view=document.getElementById("phoneDetail");
+  const images=phoneImages(p),src=images[0]||p.photoUrl||ASSET(p.id),hasGallery=images.length>1;
+  let activePhoto=0;
+  const previewSources=images.slice(0,3);
   const thumbs=previewSources.map((url,i)=>'<button class="gallery-thumb '+(i===0?"active":"")+' '+(!hasGallery&&i===1?"crop-left":!hasGallery&&i===2?"crop-right":"")+'" data-photo-index="'+i+'" aria-label="Открыть фото '+(i+1)+'"><img src="'+esc(url)+'" alt=""></button>').join("");
   const specs=[["Процессор",p.cpu],["Экран",p.screen],["Аккумулятор",p.battery],["Камеры",p.camera],["Память",p.ramGb+" ГБ RAM / "+p.storageGb+" ГБ"],["Цвет",p.accent]].filter(x=>x[1]);
   const highlights=[["Физическая RAM",p.ramGb+" ГБ"],["Накопитель",p.storageGb+" ГБ"],["Экран",p.screen],["Аккумулятор",p.battery]].filter(x=>x[1]).slice(0,4);
   view.innerHTML='<div class="detail-head"><button class="detail-back" id="detailBack">← Каталог</button><span class="ver">SMARTSCAN · '+esc(p.brand)+'</span></div>'+
   '<article class="phone-detail"><div class="detail-layout">'+
-  '<section class="product-gallery"><button class="gallery-stage" id="galleryStage" aria-label="Открыть фото смартфона"><img class="gallery-main-image" id="galleryMainImage" src="'+esc(src)+'" alt="'+esc(p.brand+" "+p.model)+'"><span class="gallery-zoom-hint">⌕ Увеличить фото</span></button>'+
-  '<div class="gallery-thumbs">'+thumbs+'</div><p class="gallery-caption">Нажмите на миниатюру или главное фото, чтобы рассмотреть смартфон</p></section>'+
+  '<section class="product-gallery"><div class="gallery-stage" id="galleryStage" role="group" aria-label="Галерея фотографий смартфона"><button class="gallery-arrow prev" id="galleryPrev" type="button" aria-label="Предыдущее фото" '+(hasGallery?'':'hidden')+'>‹</button><img class="gallery-main-image" id="galleryMainImage" src="'+esc(src)+'" alt="'+esc(p.brand+" "+p.model)+'"><button class="gallery-arrow next" id="galleryNext" type="button" aria-label="Следующее фото" '+(hasGallery?'':'hidden')+'>›</button><span class="gallery-counter" id="galleryCounter" '+(hasGallery?'':'hidden')+'>1 / '+images.length+'</span><span class="gallery-zoom-hint">⌕ Увеличить фото</span></div>'+
+  '<div class="gallery-thumbs">'+thumbs+'</div><p class="gallery-caption">'+(hasGallery?'Листайте стрелками, свайпом или миниатюрами · '+images.length+' фото':'Одно доступное фото · дополнительные ракурсы появятся при наличии источников')+'</p></section>'+
   '<section class="detail-info"><div class="detail-brand">'+esc(p.brand)+'</div><h1 class="detail-title">'+esc(p.model)+'</h1>'+
   '<div class="detail-subline"><span class="detail-pill">'+esc(p.ramGb)+' ГБ физической RAM</span><span class="detail-pill">'+esc(p.storageGb)+' ГБ памяти</span></div>'+
   '<div class="detail-pricebox"><div class="detail-price-label">Ориентировочная цена в России</div><div class="detail-price">'+fmtRange(p)+'</div><div class="detail-price-note">Это рыночный ориентир, а не подтверждённая цена конкретного магазина. Наличие и итоговую стоимость проверяйте у продавца.</div></div>'+
@@ -358,13 +351,15 @@ function openPhone(id){
   document.getElementById("tabs").style.display="none";
   window.scrollTo({top:0,behavior:"smooth"});
   document.getElementById("detailBack").onclick=closePhone;
-  const main=document.getElementById("galleryMainImage");
-  document.getElementById("galleryStage").onclick=()=>openLB(p.id,hasGallery?Math.max(0,images.indexOf(main.src)):0);
-  view.querySelectorAll(".gallery-thumb").forEach(btn=>btn.addEventListener("click",()=>{
-    const i=Number(btn.dataset.photoIndex);
-    if(hasGallery){main.src=images[i];view.querySelectorAll(".gallery-thumb").forEach(t=>t.classList.toggle("active",t===btn))}
-    openLB(p.id,hasGallery?i:0);
-  }));
+  const main=document.getElementById("galleryMainImage"),stage=document.getElementById("galleryStage"),counter=document.getElementById("galleryCounter");
+  const showPhoto=(i)=>{activePhoto=(i+images.length)%images.length;main.src=images[activePhoto]||src;counter.textContent=(activePhoto+1)+" / "+images.length;view.querySelectorAll(".gallery-thumb").forEach(t=>t.classList.toggle("active",Number(t.dataset.photoIndex)===activePhoto));};
+  document.getElementById("galleryPrev").onclick=e=>{e.stopPropagation();showPhoto(activePhoto-1)};
+  document.getElementById("galleryNext").onclick=e=>{e.stopPropagation();showPhoto(activePhoto+1)};
+  stage.addEventListener("click",e=>{if(e.target.closest(".gallery-arrow"))return;openLB(p.id,activePhoto)});
+  view.querySelectorAll(".gallery-thumb").forEach(btn=>btn.addEventListener("click",()=>showPhoto(Number(btn.dataset.photoIndex))));
+  let galleryTouchX=null,gallerySwiped=false;stage.addEventListener("touchstart",e=>{galleryTouchX=e.touches[0].clientX},{passive:true});
+  stage.addEventListener("touchend",e=>{if(galleryTouchX===null)return;const dx=e.changedTouches[0].clientX-galleryTouchX;if(Math.abs(dx)>45&&hasGallery){showPhoto(activePhoto+(dx<0?1:-1));gallerySwiped=true;setTimeout(()=>{gallerySwiped=false},450)}galleryTouchX=null},{passive:true});
+  stage.addEventListener("click",e=>{if(gallerySwiped){gallerySwiped=false;e.stopPropagation();e.preventDefault()}},true);
 }
 function closePhone(){
   document.getElementById("v-detail").classList.remove("on");
@@ -423,20 +418,29 @@ document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
   ["list","fav","news","set","detail"].forEach(t=>{document.getElementById("v-"+t).classList.toggle("on",t===b.dataset.t)});
   window.scrollTo({top:0,behavior:"smooth"});
 });
-/* ---------- новости ---------- */
-document.getElementById("newsList").innerHTML=NEWS.map(n=>
- '<div class="news"><div class="nrow"><img class="nph" loading="lazy" src="'+ASSET(n[3])+'" alt="" onclick="openLB('+n[3]+',0)"><div class="ntx"><span class="tag">'+n[2]+'</span><h3><a href="'+n[4]+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+n[0]+'</a></h3><p>'+n[1]+'</p></div></div>'+
- '<div class="rowbtns" style="flex-direction:row"><a class="ic primary" style="text-decoration:none;text-align:center" href="'+n[4]+'" target="_blank" rel="noopener">Читать источник</a><button class="ic" onclick="(function(t){if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t)}})(\''+n[0]+'. '+n[1]+' — Челны СмартСкан\')">Поделиться</button></div></div>').join("");
+/* ---------- свежие новости из RSS-сборки ---------- */
+function renderNews(){
+ const root=document.getElementById("newsList");
+ if(!NEWS.length){root.innerHTML='<div class="panel"><b>Свежие новости пока не загрузились</b><p class="mut">Лента обновляется автоматически. Попробуйте ещё раз чуть позже.</p><button class="btn" id="newsRetry">Обновить ленту</button></div>';document.getElementById("newsRetry").onclick=loadNews;return}
+ root.innerHTML='<p class="mut" style="margin:0 0 14px">Свежая лента · обновляется автоматически каждый день</p>'+NEWS.map(n=>'<article class="news"><div class="nrow">'+(n.image?'<img class="nph" loading="lazy" src="'+esc(n.image)+'" alt="" onerror="this.hidden=true">':'<div class="nph news-placeholder" aria-hidden="true">📱</div>')+'<div class="ntx"><span class="tag">'+esc(n.source||"Технологии")+' · '+esc(n.dateLabel||"")+'</span><h3><a href="'+esc(n.url)+'" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">'+esc(n.title)+'</a></h3><p>'+esc(n.summary||"Откройте материал, чтобы прочитать подробности.")+'</p></div></div><div class="rowbtns" style="flex-direction:row"><a class="ic primary" style="text-decoration:none;text-align:center" href="'+esc(n.url)+'" target="_blank" rel="noopener noreferrer">Читать источник ↗</a><button class="ic" type="button" data-share="'+esc(n.title)+'">Поделиться</button></div></article>').join("");
+ root.querySelectorAll("[data-share]").forEach(b=>b.onclick=()=>{const item=NEWS.find(n=>n.title===b.dataset.share);const payload={title:b.dataset.share,url:item&&item.url};if(navigator.share)navigator.share(payload).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(payload.url||payload.title)});
+}
+async function loadNews(){
+ const root=document.getElementById("newsList");root.innerHTML='<div class="panel">Загружаю свежие новости…</div>';
+ try{const response=await fetch("./data/news.json?updated="+Date.now(),{cache:"no-store"});if(!response.ok)throw new Error("HTTP "+response.status);const data=await response.json();NEWS=Array.isArray(data.items)?data.items:[];renderNews()}
+ catch(error){console.warn("News feed unavailable:",error);NEWS=[];renderNews()}
+}
+loadNews();
 /* ---------- настройки ---------- */
 const THEMES=[["dark","Тёмная","глубокий фон приложения"],["light","Светлая","дневной режим"]];
 function paint(){const th=document.body.dataset.th||"dark";
   const R=document.documentElement.style;
   if(th==="light"){
     R.setProperty("--bg","#faf7ff");R.setProperty("--card","#ffffff");R.setProperty("--fg","#1a1c1e");R.setProperty("--sub","#5a5b6b");R.setProperty("--line","#e5e0e3");
-    R.setProperty("--surface-2","#fff");R.setProperty("--surface-3","#f5f3fa");R.setProperty("--surface-hover","#faf9ff");R.setProperty("--text-strong","#202124");R.setProperty("--text-muted","#777d89");R.setProperty("--border-strong","#e8e9ee");R.setProperty("--photo-bg","#f5f6f8");R.setProperty("--photo-blend","multiply");R.setProperty("--detail-shadow","0 18px 55px rgba(0,0,0,.12)");
+    R.setProperty("--surface-2","#fff");R.setProperty("--surface-3","#f5f3fa");R.setProperty("--surface-hover","#faf9ff");R.setProperty("--text-strong","#202124");R.setProperty("--text-muted","#777d89");R.setProperty("--border-strong","#e8e9ee");R.setProperty("--photo-bg","#f5f6f8");R.setProperty("--photo-blend","multiply");R.setProperty("--detail-shadow","0 18px 55px rgba(0,0,0,.12)");R.setProperty("--chrome-bg","rgba(255,255,255,.94)");R.setProperty("--news-bg","linear-gradient(180deg,#fff,#f7f5fb)");
   } else {
     R.setProperty("--bg","#0e0b1a");R.setProperty("--card","#1b1626");R.setProperty("--fg","#f2edff");R.setProperty("--sub","#b9b0cc");R.setProperty("--line","#2c2438");
-    R.setProperty("--surface-2","#211b30");R.setProperty("--surface-3","#28213a");R.setProperty("--surface-hover","#302742");R.setProperty("--text-strong","#f2edff");R.setProperty("--text-muted","#b9b0cc");R.setProperty("--border-strong","#393047");R.setProperty("--photo-bg","#171322");R.setProperty("--photo-blend","normal");R.setProperty("--detail-shadow","0 18px 55px rgba(0,0,0,.32)");
+    R.setProperty("--surface-2","#211b30");R.setProperty("--surface-3","#28213a");R.setProperty("--surface-hover","#302742");R.setProperty("--text-strong","#f2edff");R.setProperty("--text-muted","#b9b0cc");R.setProperty("--border-strong","#393047");R.setProperty("--photo-bg","#171322");R.setProperty("--photo-blend","normal");R.setProperty("--detail-shadow","0 18px 55px rgba(0,0,0,.32)");R.setProperty("--chrome-bg","rgba(14,11,26,.96)");R.setProperty("--news-bg","linear-gradient(180deg,#211a32,#171222)");
   }
 }
 function buildThemes(){const w=document.getElementById("themeRows");w.innerHTML="";const cur=document.body.dataset.th||"dark";
