@@ -9,6 +9,9 @@
   --acc:#7c5cff; --acc-d:#5a3ee0; --acc-soft:rgba(124,92,255,.14);
   --bg:#000; --card:#0e0e14; --fg:#f4f4f6; --sub:#8e8e9a; --line:rgba(255,255,255,.1);
   --gold:#b7a6ff; --r:16px;
+  --surface-2:#171322; --surface-3:#211b30; --surface-hover:#28213a;
+  --text-strong:var(--fg); --text-muted:var(--sub); --border-strong:var(--line);
+  --photo-bg:#211b30; --photo-blend:normal; --detail-shadow:0 18px 55px rgba(0,0,0,.28);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -104,7 +107,16 @@ h4.st{font-size:11px;letter-spacing:2.5px;color:var(--gold);margin:16px 0 4px;te
 .news{background:linear-gradient(180deg,#1e1830,#141021);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:14px;transition:.25s}
 .news:hover{border-color:var(--acc);transform:translateX(4px)}
 .news .tag{display:inline-block;background:var(--acc-soft);border:1px solid rgba(124,92,255,.5);color:#cfc2ff;border-radius:99px;padding:4px 14px;font-size:11px;font-weight:800;letter-spacing:1px}
-.news .nph{width:100%;height:150px;object-fit:cover;border-radius:12px;margin-bottom:12px;background:#232031;display:block}
+.news .nph{width:112px;height:112px;object-fit:cover;border-radius:12px;background:#232031;display:block;flex:none}
+.news .nrow{display:flex;gap:16px;align-items:center}
+.news .ntx{flex:1;min-width:0}
+/* лайтбокс */
+#lb{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+#lb.on{display:flex}
+#lb img{max-width:92vw;max-height:76vh;border-radius:14px;object-fit:contain}
+#lb .bar{display:flex;gap:14px;align-items:center;color:#fff;font-weight:800}
+#lb button{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:99px;padding:10px 20px;font-size:15px;font-weight:800;cursor:pointer}
+#lb button:hover{background:var(--acc)}
 .news h3{margin:12px 0 6px;font-size:18px}
 .news p{color:var(--sub);font-size:14px;line-height:1.6;margin:0 0 12px}
 /* settings */
@@ -125,18 +137,91 @@ footer a{color:#cfc2ff}
 .scanbar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:18px auto 4px;display:none;max-width:520px}
 .scanbar i{display:block;height:100%;width:0;background:var(--acc)}
 @media(max-width:560px){nav.tabs{padding:5px}nav.tabs button{padding:9px 11px;font-size:12px}.grid{grid-template-columns:1fr}.topbar-in{padding:10px 14px}.brand{font-size:14px}}
+/* ===== Premium product page / Ozon-inspired gallery ===== */
+.phone-detail{background:var(--card);color:var(--fg);border:1px solid var(--border-strong);border-radius:24px;padding:clamp(16px,3vw,30px);margin:10px 0 28px;box-shadow:var(--detail-shadow)}
+.detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.detail-back{border:1px solid var(--border-strong);background:var(--surface-2);color:var(--fg);border-radius:12px;padding:10px 15px;font-weight:700;cursor:pointer}
+.detail-back:hover{border-color:var(--acc);color:var(--gold)}
+.detail-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:clamp(22px,4vw,48px);align-items:start}
+.product-gallery{min-width:0}
+.gallery-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:360px;height:clamp(340px,42vw,510px);padding:24px;background:var(--photo-bg);border:1px solid var(--border-strong);border-radius:20px;overflow:hidden;cursor:zoom-in}
+.gallery-main-image{display:block;width:100%;height:100%;object-fit:contain;object-position:center;mix-blend-mode:var(--photo-blend);transition:opacity .18s ease}
+.gallery-zoom-hint{position:absolute;right:14px;bottom:14px;background:var(--surface-3);border:1px solid var(--border-strong);border-radius:99px;padding:7px 11px;color:var(--text-muted);font-size:12px;pointer-events:none}
+.gallery-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.gallery-thumb{height:104px;min-width:0;border:2px solid var(--border-strong);border-radius:14px;background:var(--photo-bg);padding:5px;overflow:hidden;cursor:pointer;transition:border-color .18s,box-shadow .18s}
+.gallery-thumb.active{border-color:var(--acc);box-shadow:0 0 0 3px rgba(118,85,232,.12)}
+.gallery-thumb:hover{border-color:var(--acc)}
+.gallery-thumb img{width:100%;height:100%;display:block;object-fit:contain;mix-blend-mode:var(--photo-blend)}
+.gallery-thumb.crop-left img{object-fit:cover;object-position:28% center;transform:scale(1.2)}
+.gallery-thumb.crop-right img{object-fit:cover;object-position:72% center;transform:scale(1.2)}
+.gallery-caption{font-size:12px;color:var(--text-muted);margin:9px 2px 0}
+.detail-info{min-width:0}
+.detail-brand{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);font-weight:800}
+.detail-title{font-size:clamp(24px,3vw,34px);line-height:1.15;letter-spacing:-.035em;margin:7px 0 12px;color:var(--text-strong)}
+.detail-subline{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.detail-pill{background:var(--acc-soft);color:var(--gold);border-radius:99px;padding:6px 10px;font-size:12px;font-weight:700}
+.detail-pricebox{border:1px solid var(--border-strong);background:var(--surface-2);border-radius:18px;padding:18px;margin:18px 0}
+.detail-price-label{font-size:12px;color:var(--text-muted);margin-bottom:4px}
+.detail-price{font-size:clamp(25px,3vw,32px);font-weight:850;letter-spacing:-.04em;color:var(--text-strong);margin:0}
+.detail-price-note{font-size:12px;color:var(--text-muted);line-height:1.5;margin-top:7px}
+.detail-spec-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:18px 0}
+.detail-highlight{border:1px solid var(--border-strong);border-radius:14px;padding:12px;min-width:0}
+.detail-highlight span{display:block;font-size:11px;color:var(--text-muted);margin-bottom:4px}
+.detail-highlight b{font-size:13px;line-height:1.35;color:var(--text-strong);overflow-wrap:anywhere}
+.detail-section-title{font-size:17px;font-weight:800;letter-spacing:-.02em;color:var(--text-strong);margin:28px 0 12px}
+.detail-specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;border-top:1px solid var(--border-strong)}
+.detail-spec-row{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--border-strong);font-size:13px}
+.detail-spec-row span{color:var(--text-muted);flex:0 0 42%}
+.detail-spec-row b{color:var(--text-strong);text-align:right;font-weight:650}
+.store-intro{font-size:13px;color:var(--text-muted);margin:-4px 0 12px}
+.shop-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:12px}
+.shop-link{display:flex;align-items:center;justify-content:center;min-height:46px;text-align:center;text-decoration:none;background:var(--surface-2);border:1px solid var(--border-strong);border-radius:12px;padding:9px;color:var(--fg);font-size:13px;font-weight:750;transition:.18s}
+.shop-link:hover{border-color:var(--acc);color:var(--gold);background:var(--surface-hover)}
+.detail-photo-full{width:100%;height:auto}
+#lb{padding:18px}
+#lb img{max-width:min(94vw,1100px);max-height:82vh;object-fit:contain;background:var(--photo-bg);border-radius:18px}
+#lb .bar{gap:10px}
+#lb .bar button{min-width:44px;min-height:44px}
+.card{background:var(--card);color:var(--fg);border:1px solid var(--border-strong);border-radius:18px;padding:13px;box-shadow:var(--detail-shadow);transform:none!important}
+.card:hover{border-color:var(--acc);box-shadow:var(--detail-shadow)}
+.card .ph{width:116px;height:150px;object-fit:contain;background:var(--photo-bg);border-radius:13px;padding:7px;mix-blend-mode:var(--photo-blend)}
+.info h3{color:var(--text-strong);font-size:16px;line-height:1.35}
+.info .mut{color:var(--text-muted)}
+.info .pr{color:var(--text-strong);font-size:19px}
+.info .promo{color:var(--gold)}
+.info .stars{color:var(--text-muted)}
+.ic{color:var(--fg);background:var(--surface-2);border-color:var(--border-strong)}
+.ic.fav.on{background:var(--acc-soft);color:var(--gold);border-color:var(--acc)}
+@media(max-width:760px){
+ .detail-layout{grid-template-columns:1fr;gap:22px}
+ .gallery-stage{height:min(92vw,430px);min-height:290px;padding:18px}
+ .gallery-thumb{height:88px}
+ .shop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .detail-specs{grid-template-columns:1fr}
+}
+@media(max-width:430px){
+ .phone-detail{padding:12px;border-radius:18px}
+ .gallery-stage{height:330px;min-height:0}
+ .gallery-thumb{height:78px}
+ .detail-spec-highlights{gap:7px}
+ .detail-highlight{padding:10px}
+ .detail-title{font-size:25px}
+ .card{gap:11px;padding:10px}
+ .card .ph{width:100px;height:136px}
+}
+
 </style>
 </head>
 <body>
 <div id="loader">
   <svg class="ring" viewBox="0 0 100 100"><circle class="bgc" cx="50" cy="50" r="40"/><circle class="fgc" cx="50" cy="50" r="40"/></svg>
-  <b>СМАРТСКАН</b><small>СКАНИРУЮ ЦЕНЫ ЧЕЛНОВ…</small>
+  <b>СМАРТСКАН</b><small>ЗАГРУЖАЮ КАТАЛОГ…</small>
 </div>
 <canvas id="fx"></canvas>
 <header class="topbar"><div class="topbar-in">
-  <div class="logo">📱</div><div class="brand">СмартСкан</div><span class="ver">2.0</span>
+  <div class="logo">📱</div><div class="brand">СмартСкан</div><span class="ver">2.2</span>
   <div class="sp"></div>
-  <a class="btn" style="padding:8px 16px;font-size:13px" id="apkTop" href="https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/chelny-smartscan-2.0.apk">Скачать APK</a>
+  <a class="btn" style="padding:8px 16px;font-size:13px" id="apkTop" href="https://github.com/Sargarus666/SmartSearch/releases/download/v2.2/chelny-smartscan-2.2.apk">Скачать APK</a>
 </div></header>
 <div class="wrap">
   <header class="hero" id="top">
@@ -144,11 +229,10 @@ footer a{color:#cfc2ff}
     <h1>Сканер смартфонов</h1>
     <p class="sub">Цены и скидки на топовые бюджетники 10–20 тыс ₽ в Набережных Челнах.</p>
     <div class="btnrow">
-      <button class="btn" id="scanBtn">Сканировать цены</button>
-      <a class="btn ghost" id="apkBtn" href="https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/chelny-smartscan-2.0.apk">Скачать APK</a>
+      <button class="btn" id="catalogBtn">Смотреть каталог</button>
+      <a class="btn ghost" id="apkBtn" href="https://github.com/Sargarus666/SmartSearch/releases/download/v2.2/chelny-smartscan-2.2.apk">Скачать APK</a>
     </div>
-    <div class="scanbar" id="scanbar"><i id="scanfill"></i></div>
-    <p class="sub" id="scanLabel" style="font-size:13px"></p>
+    <p class="sub" id="scanLabel" style="font-size:13px">Ориентировочные цены по российскому рынку</p>
   </header>
 
   <nav class="tabs" id="tabs">
@@ -175,6 +259,7 @@ footer a{color:#cfc2ff}
     <div class="orn"><h2>Новости</h2></div>
     <div id="newsList"></div>
   </section>
+  <section class="sect" id="v-detail"><div id="phoneDetail"></div></section>
   <section class="sect" id="v-set">
     <div class="orn"><h2>Настройки</h2></div>
     <div class="panel">
@@ -184,30 +269,48 @@ footer a{color:#cfc2ff}
     </div>
   </section>
 
-  <footer>Челны СмартСкан • DNS / М.Видео / Эльдорадо / OZON / WB / Маркет, Челны<br>RAM только физическая ≥ 8 ГБ • <a id="relLink" href="https://github.com/Sargarus666/SmartSearch/releases">все версии</a></footer>
+  <footer>Челны СмартСкан • DNS / М.Видео / Эльдорадо / OZON / WB / Маркет, Челны<br>Только физическая RAM ≥ 8 ГБ • <a id="relLink" href="https://github.com/Sargarus666/SmartSearch/releases">все версии</a></footer>
 </div>
+<div id="lb"><img id="lbImg" src="" alt=""><div class="bar"><button id="lbPrev" onclick="lbGo(-1)" aria-label="Предыдущее фото">←</button><span id="lbCount"></span><button id="lbNext" onclick="lbGo(1)" aria-label="Следующее фото">→</button><button onclick="closeLB()" aria-label="Закрыть фото">✕</button></div></div>
 <script>
+/* Лайтбокс: открывает реальные изображения выбранного смартфона */
+let LB={phone:null,list:[],pos:0};
+function phoneImages(p){
+  const gallery=Array.isArray(p.galleryUrls)?p.galleryUrls.filter(Boolean):[];
+  return gallery.length?gallery.slice(0,12):[p.photoUrl||ASSET(p.id)];
+}
+function openLB(id,index=0){
+  const p=PHONES.find(x=>x.id===id);if(!p)return;
+  LB.phone=p;LB.list=phoneImages(p);LB.pos=Math.max(0,Math.min(index,LB.list.length-1));
+  paintLB();document.getElementById("lb").classList.add("on");
+}
+function paintLB(){
+  if(!LB.list.length)return;
+  document.getElementById("lbImg").src=LB.list[LB.pos];
+  document.getElementById("lbCount").textContent=LB.list.length>1?(LB.pos+1)+" / "+LB.list.length:"Фото смартфона";
+  document.getElementById("lbPrev").hidden=LB.list.length<2;
+  document.getElementById("lbNext").hidden=LB.list.length<2;
+}
+function lbGo(d){if(LB.list.length<2)return;LB.pos=(LB.pos+d+LB.list.length)%LB.list.length;paintLB()}
+function closeLB(){document.getElementById("lb").classList.remove("on")}
+document.getElementById("lb").onclick=e=>{if(e.target.id==="lb"||e.target.id==="lbImg")closeLB()};
+document.addEventListener("keydown",e=>{if(!document.getElementById("lb").classList.contains("on"))return;if(e.key==="Escape")closeLB();if(e.key==="ArrowRight")lbGo(1);if(e.key==="ArrowLeft")lbGo(-1)});
+(function(){let x0=null;const lb=document.getElementById("lb");lb.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});lb.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)lbGo(dx<0?1:-1);x0=null},{passive:true})})();
 "use strict";
 /* ---------- данные ---------- */
 const ASSET=i=>"https://github.com/Sargarus666/SmartSearch/releases/download/v2.0/phone_"+i+".jpg";
-const PHONES=[
-{id:1,brand:"Xiaomi",model:"Redmi Note 15 8/256",ram:8,st:256,price:19899,old:21990,promo:"−9% • 108 Мп • хит топов",rate:4.9,scr:'6.77" AMOLED 120 Гц',cpu:"Helio G100 Ultra",off:[["DNS","Московский пр-т, 128А",19899],["М.Видео","пр. Мира, 49А",20490],["Эльдорадо","Московский пр-т, 140",20690]],on:[["Маркет","доставка 1–2 дня",20500],["OZON","ПВЗ Сююмбике, 61",19990],["WB","ПВЗ Набережночелнинский, 41",20290]]},
-{id:2,brand:"TECNO",model:"Spark 40 Pro 8/256",ram:8,st:256,price:14999,old:17990,promo:"−17% • топ МТС и M.Video",rate:4.8,scr:'6.78" AMOLED 144 Гц',cpu:"Helio G100U",off:[["DNS","Набережночелнинский пр-т, 10Б",14999],["МТС","пр. Хасана Туфана, 12",15490]],on:[["OZON","ПВЗ Московский, 140",14490],["DNS онлайн","Сююмбике, 67В",14999]]},
-{id:3,brand:"Infinix",model:"Note Edge 8/256",ram:8,st:256,price:19490,old:21990,promo:"−11% • Dimensity 7100 • для игр",rate:4.8,scr:'6.78" AMOLED 120 Гц',cpu:"Dimensity 7100",off:[["Эльдорадо","Московский пр-т, 140",19490],["DNS","пр-т Сююмбике, 67В",19990]],on:[["WB","ПВЗ пр. Мира, 52",19690],["OZON","ПВЗ Татарстан, 25",19790]]},
-{id:4,brand:"TECNO",model:"Pova 7 Neo 8/256",ram:8,st:256,price:15490,old:17490,promo:"−11% • 7000 мА·ч",rate:4.7,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100U",off:[["DNS","Московский пр-т, 128А",15490],["М.Видео","пр. Мира, 49А",15990]],on:[["OZON","ПВЗ пр. Чулман, 23",15190],["Маркет","доставка 1–3 дня",15490]]},
-{id:5,brand:"realme",model:"C85 Pro 8/256",ram:8,st:256,price:16599,old:18999,promo:"−13% • IP69 • 7000 мА·ч",rate:4.7,scr:'6.8" AMOLED 120 Гц',cpu:"Snapdragon 685",off:[["М.Видео","пр. Мира, 49А",16599],["DNS","Набережночелнинский пр-т, 10Б",16990]],on:[["Маркет","доставка",16590],["OZON","ПВЗ",16790]]},
-{id:6,brand:"Samsung",model:"Galaxy A17 8/256",ram:8,st:256,price:19099,old:21499,promo:"−11% • 6 лет обновлений",rate:4.6,scr:'6.7" Super AMOLED',cpu:"Exynos 1330",off:[["МТС","пр. Хасана Туфана, 12",19099],["DNS","пр-т Сююмбике, 67В",19490]],on:[["М.Видео онлайн","доставка 2 дня",19099],["WB","ПВЗ",19290]]},
-{id:7,brand:"POCO",model:"M7 8/256",ram:8,st:256,price:17990,old:19990,promo:"−10% • 7000 мА·ч",rate:4.6,scr:'6.9" IPS 144 Гц',cpu:"Snapdragon 685",off:[["DNS","Московский пр-т, 128А",17990],["Эльдорадо","Московский пр-т, 140",18490]],on:[["OZON","ПВЗ",17590],["Маркет","—",17990]]},
-{id:8,brand:"HONOR",model:"X8c 8/256",ram:8,st:256,price:16999,old:19999,promo:"−15% • 108 Мп OIS",rate:4.6,scr:'6.7" AMOLED 120 Гц',cpu:"Snapdragon 685",off:[["DNS","Набережночелнинский пр-т, 10Б",16999]],on:[["WB","ПВЗ",16790],["OZON","ПВЗ",16990]]},
-{id:9,brand:"realme",model:"14 5G 8/256",ram:8,st:256,price:17599,old:19999,promo:"−12% • SD 6 Gen 4 • 6000 мА·ч",rate:4.7,scr:'6.67" AMOLED 120 Гц',cpu:"Snapdragon 6 Gen 4",off:[["М.Видео","пр. Мира, 49А",17599],["DNS","пр-т Сююмбике, 67В",17990]],on:[["Маркет","—",17599],["OZON","ПВЗ",17790]]},
-{id:10,brand:"TECNO",model:"Camon 40 8/256",ram:8,st:256,price:17199,old:18999,promo:"−9% • выбор Т-Ж",rate:4.6,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100",off:[["Эльдорадо","Московский пр-т, 140",17199],["DNS","Московский пр-т, 128А",17490]],on:[["OZON","ПВЗ",16890],["Ситилинк","доставка",17190]]},
-{id:11,brand:"Samsung",model:"Galaxy A16 8/256",ram:8,st:256,price:14990,old:17990,promo:"−17% • 6 лет обновлений",rate:4.5,scr:'6.7" Super AMOLED',cpu:"Helio G99",off:[["DNS","Московский пр-т, 128А",14990],["М.Видео","пр. Мира, 49А",15490]],on:[["WB","ПВЗ",14990],["OZON","ПВЗ",15190],["Маркет","доставка",15290]]},
-{id:12,brand:"POCO",model:"C85 8/256",ram:8,st:256,price:15990,old:17990,promo:"−11% • топ цена/качество",rate:4.6,scr:'6.9" IPS 120 Гц',cpu:"Helio G81 Ultra",off:[["DNS","Набережночелнинский пр-т, 10Б",15990],["Эльдорадо","Московский пр-т, 140",16490]],on:[["OZON","ПВЗ",15590],["WB","ПВЗ",15790]]},
-{id:13,brand:"HONOR",model:"X7d 8/256",ram:8,st:256,price:17990,old:19990,promo:"−10% • 6500 мА·ч",rate:4.6,scr:'6.77" IPS 120 Гц',cpu:"Snapdragon 685",off:[["МТС","пр. Хасана Туфана, 12",17990],["DNS","пр-т Сююмбике, 67В",18490]],on:[["OZON","ПВЗ",18290],["Маркет","доставка",18990]]},
-{id:14,brand:"Infinix",model:"Hot 50 Pro+ 8/256",ram:8,st:256,price:17459,old:21990,promo:"−21% • 6.8 мм • JBL",rate:4.6,scr:'6.78" AMOLED 120 Гц',cpu:"Helio G100",off:[["DNS","Московский пр-т, 128А",17490],["М.Видео","пр. Мира, 49А",17990]],on:[["OZON","ПВЗ",17459],["WB","ПВЗ",17690]]},
-{id:15,brand:"realme",model:"C75 8/256",ram:8,st:256,price:13999,old:15554,promo:"−10% • IP69",rate:4.5,scr:'6.72" IPS 90 Гц',cpu:"Helio G92 Max",off:[["DNS","Набережночелнинский пр-т, 10Б",13999],["М.Видео","пр. Мира, 49А",14490]],on:[["OZON","ПВЗ",14290],["WB","ПВЗ",14190]]},
-{id:16,brand:"TECNO",model:"Camon 40 Pro 5G 8/256",ram:8,st:256,price:18910,old:21999,promo:"−14% • Dimensity 7300 • 5G",rate:4.7,scr:'6.78" AMOLED 120 Гц',cpu:"Dimensity 7300",off:[["Эльдорадо","Московский пр-т, 140",18990],["DNS","Московский пр-т, 128А",19490]],on:[["Маркет","доставка",18910],["OZON","ПВЗ",19190]]}
+const fmt=n=>Number(n).toLocaleString("ru-RU")+" ₽";
+const fmtRange=p=>fmt(p.priceFrom)+"–"+fmt(p.priceTo);
+const STORE_SEARCH=[
+ ["DNS",q=>"https://www.dns-shop.ru/search/?q="+q],
+ ["Ситилинк",q=>"https://www.citilink.ru/search/?text="+q],
+ ["Ozon",q=>"https://www.ozon.ru/search/?text="+q],
+ ["М.Видео",q=>"https://www.mvideo.ru/search?query="+q],
+ ["МегаФон",q=>"https://shop.megafon.ru/search/?q="+q],
+ ["Билайн",q=>"https://beeline.ru/shop/search/?q="+q],
+ ["МТС",q=>"https://shop.mts.ru/search/?q="+q]
 ];
+let PHONES=[];
 const NEWS=[
 ["POCO M8 Pro вылетел из бюджета","Был 18 900 ₽, стал 25–28 тыс. Замена в топе — POCO M7 за 17 990 ₽.","14.10 • Проверка цен",7,"https://hi-tech.mail.ru/news/153818-10-populyarnyh-smartfonov-do-20-000-rublej/"],
 ["Redmi Note 15: реально 19 899 ₽","Официалы просят 21 990 ₽. Старые цены нейросетей устарели.","14.10 • Проверка цен",1,"https://mi-shop.com/catalog/smartphones/redmi-note-15/"],
@@ -222,35 +325,67 @@ const NEWS=[
 /* ---------- состояние ---------- */
 let favs=new Set(JSON.parse(localStorage.getItem("ss_fav")||"[]"));
 let chip=0,sortMode=0;
-const fmt=n=>n.toLocaleString("ru-RU")+" ₽";
+
 const grid=document.getElementById("grid"),favGrid=document.getElementById("favGrid");
 /* ---------- прелоадер ---------- */
 window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loader").classList.add("done"),1500));
 setTimeout(()=>document.getElementById("loader").classList.add("done"),3500);
 /* ---------- карточки ---------- */
 const SHOP_SEARCH={"DNS":q=>"https://www.dns-shop.ru/search/?q="+q,"М.Видео":q=>"https://www.mvideo.ru/search?query="+q,"Эльдорадо":q=>"https://www.eldorado.ru/search/catalog.php?q="+q,"OZON":q=>"https://www.ozon.ru/search/?text="+q,"Wildberries":q=>"https://www.wildberries.ru/catalog/0/search.aspx?search="+q,"Яндекс Маркет":q=>"https://market.yandex.ru/search?text="+q,"Ситилинк":q=>"https://www.citilink.ru/search/?text="+q,"DNS онлайн":q=>"https://www.dns-shop.ru/search/?q="+q,"DNS-Shop онлайн":q=>"https://www.dns-shop.ru/search/?q="+q,"М.Видео онлайн":q=>"https://www.mvideo.ru/search?query="+q};
-function shopUrl(shop,p){const f=SHOP_SEARCH[shop];if(!f)return null;return f(encodeURIComponent(p.brand+" "+p.model))}
-function shopBox(o,p){const u=shopUrl(o[0],p);return '<div class="shop"><b>'+o[0]+'</b> — '+fmt(o[2])+'<br>'+o[1]+(u?'<br><a href="'+u+'" target="_blank" rel="noopener">Открыть товар →</a>':'')+'</div>'}
+function storeUrl(make,p){return make(encodeURIComponent(p.brand+" "+p.model))}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function openPhone(id){
+  const p=PHONES.find(x=>x.id===id);if(!p)return;
+  const view=document.getElementById("phoneDetail"),src=p.photoUrl||ASSET(p.id);
+  const images=phoneImages(p),hasGallery=images.length>1;
+  const previewSources=hasGallery?images.slice(0,3):[src,src,src];
+  const thumbs=previewSources.map((url,i)=>'<button class="gallery-thumb '+(i===0?"active":"")+' '+(!hasGallery&&i===1?"crop-left":!hasGallery&&i===2?"crop-right":"")+'" data-photo-index="'+i+'" aria-label="Открыть фото '+(i+1)+'"><img src="'+esc(url)+'" alt=""></button>').join("");
+  const specs=[["Процессор",p.cpu],["Экран",p.screen],["Аккумулятор",p.battery],["Камеры",p.camera],["Память",p.ramGb+" ГБ RAM / "+p.storageGb+" ГБ"],["Цвет",p.accent]].filter(x=>x[1]);
+  const highlights=[["Физическая RAM",p.ramGb+" ГБ"],["Накопитель",p.storageGb+" ГБ"],["Экран",p.screen],["Аккумулятор",p.battery]].filter(x=>x[1]).slice(0,4);
+  view.innerHTML='<div class="detail-head"><button class="detail-back" id="detailBack">← Каталог</button><span class="ver">SMARTSCAN · '+esc(p.brand)+'</span></div>'+
+  '<article class="phone-detail"><div class="detail-layout">'+
+  '<section class="product-gallery"><button class="gallery-stage" id="galleryStage" aria-label="Открыть фото смартфона"><img class="gallery-main-image" id="galleryMainImage" src="'+esc(src)+'" alt="'+esc(p.brand+" "+p.model)+'"><span class="gallery-zoom-hint">⌕ Увеличить фото</span></button>'+
+  '<div class="gallery-thumbs">'+thumbs+'</div><p class="gallery-caption">Нажмите на миниатюру или главное фото, чтобы рассмотреть смартфон</p></section>'+
+  '<section class="detail-info"><div class="detail-brand">'+esc(p.brand)+'</div><h1 class="detail-title">'+esc(p.model)+'</h1>'+
+  '<div class="detail-subline"><span class="detail-pill">'+esc(p.ramGb)+' ГБ физической RAM</span><span class="detail-pill">'+esc(p.storageGb)+' ГБ памяти</span></div>'+
+  '<div class="detail-pricebox"><div class="detail-price-label">Ориентировочная цена в России</div><div class="detail-price">'+fmtRange(p)+'</div><div class="detail-price-note">Это рыночный ориентир, а не подтверждённая цена конкретного магазина. Наличие и итоговую стоимость проверяйте у продавца.</div></div>'+
+  '<div class="detail-spec-highlights">'+highlights.map(x=>'<div class="detail-highlight"><span>'+esc(x[0])+'</span><b>'+esc(x[1])+'</b></div>').join("")+'</div>'+
+  '<div class="detail-section-title">Где посмотреть цену</div><p class="store-intro">Откройте поиск этой модели в выбранном магазине.</p>'+
+  '<div class="shop-grid">'+STORE_SEARCH.map(s=>'<a class="shop-link" href="'+storeUrl(s[1],p)+'" target="_blank" rel="noopener">'+esc(s[0])+' ↗</a>').join("")+'</div></section></div>'+
+  '<div class="detail-section-title">Все характеристики</div><div class="detail-specs">'+specs.map(x=>'<div class="detail-spec-row"><span>'+esc(x[0])+'</span><b>'+esc(x[1])+'</b></div>').join("")+'</div></article>';
+  document.querySelectorAll(".sect").forEach(s=>s.classList.remove("on"));
+  document.getElementById("v-detail").classList.add("on");
+  document.getElementById("tabs").style.display="none";
+  window.scrollTo({top:0,behavior:"smooth"});
+  document.getElementById("detailBack").onclick=closePhone;
+  const main=document.getElementById("galleryMainImage");
+  document.getElementById("galleryStage").onclick=()=>openLB(p.id,hasGallery?Math.max(0,images.indexOf(main.src)):0);
+  view.querySelectorAll(".gallery-thumb").forEach(btn=>btn.addEventListener("click",()=>{
+    const i=Number(btn.dataset.photoIndex);
+    if(hasGallery){main.src=images[i];view.querySelectorAll(".gallery-thumb").forEach(t=>t.classList.toggle("active",t===btn))}
+    openLB(p.id,hasGallery?i:0);
+  }));
+}
+function closePhone(){
+  document.getElementById("v-detail").classList.remove("on");
+  document.getElementById("v-list").classList.add("on");
+  document.getElementById("tabs").style.display="";
+  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t==="list"));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
 function card(p){
-  const d=Math.round((p.old-p.price)/p.old*100);
   const el=document.createElement("div");el.className="card";
-  el.innerHTML=
-   '<img class="ph" loading="lazy" src="'+ASSET(p.id)+'" alt="'+p.brand+" "+p.model+'">'+
+  el.innerHTML='<img class="ph" loading="lazy" src="'+(p.photoUrl||ASSET(p.id))+'" alt="'+p.brand+" "+p.model+'" style="cursor:pointer;object-fit:contain">'+
    '<div class="info"><h3>'+p.brand+" "+p.model+'</h3>'+
-   '<div class="mut">'+p.ram+' ГБ физ. • '+p.st+' ГБ • '+p.cpu+'</div>'+
-   '<div class="pr">'+fmt(p.price)+'<span class="old">'+fmt(p.old)+'</span><span class="off">−'+d+'%</span></div>'+
-   '<div class="promo">⚡ '+p.promo.replace(/^−\d+% • /,'')+'</div>'+
-   '<div class="stars">★ '+p.rate+' &nbsp;•&nbsp; '+fmt(Math.min.apply(null,p.off.map(o=>o[2])))+' &nbsp;•&nbsp; онлайн '+fmt(Math.min.apply(null,p.on.map(o=>o[2])))+'</div>'+
-   '<div class="rowbtns"><button class="ic fav'+(favs.has(p.id)?" on":"")+'">★ В избранное</button><button class="ic sh">Поделиться</button></div>'+
-   '<div class="det"><div class="det-in"><h4 class="st">Офлайн • Челны</h4>'+
-     p.off.map(o=>shopBox(o,p)).join("")+
-     '<h4 class="st">Онлайн • в Челны</h4>'+
-     p.on.map(o=>shopBox(o,p)).join("")+
-   '</div></div>'+
-   '<div class="rowbtns"><button class="ic primary more" style="width:100%">Магазины · онлайн / офлайн</button></div></div>';
-  el.querySelector(".more").onclick=()=>el.querySelector(".det").classList.toggle("open");
-  el.querySelector(".fav").onclick=e=>{if(favs.has(p.id)){favs.delete(p.id);e.target.classList.remove("on")}else{favs.add(p.id);e.target.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify(Array.from(favs)));renderFav()};
-  el.querySelector(".sh").onclick=()=>{const t="📱 "+p.brand+" "+p.model+" — "+fmt(p.price)+" (−"+d+"%)\n"+p.promo+"\nЧелны СмартСкан";if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t);alert("Скопировано!")}};
+   '<div class="mut">'+p.ramGb+' ГБ физ. RAM • '+p.storageGb+' ГБ • '+(p.cpu||"характеристики уточняются")+'</div>'+
+   '<div class="pr">'+fmtRange(p)+'</div>'+
+   '<div class="promo">Ориентировочная цена по России</div>'+
+   '<div class="stars">'+(p.screen||"")+'</div>'+
+   '<div class="rowbtns"><button class="ic fav'+(favs.has(p.id)?" on":"")+'">★ В избранное</button><button class="ic sh">Поделиться</button></div></div>';
+  el.querySelector(".ph").onclick=e=>{e.stopPropagation();openPhone(p.id)};
+  el.querySelector(".fav").onclick=e=>{e.stopPropagation();if(favs.has(p.id)){favs.delete(p.id);e.target.classList.remove("on")}else{favs.add(p.id);e.target.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify(Array.from(favs)));renderFav()};
+  el.querySelector(".sh").onclick=e=>{e.stopPropagation();const t="📱 "+p.brand+" "+p.model+" — "+fmtRange(p)+"\nОриентировочная цена по России • Челны СмартСкан";if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t);alert("Скопировано!")}};
+  el.addEventListener("click",()=>openPhone(p.id));
   el.addEventListener("mousemove",e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform="perspective(900px) rotateY("+(x*6)+"deg) rotateX("+(-y*6)+"deg)"});
   el.addEventListener("mouseleave",()=>{el.style.transform=""});
   return el;
@@ -265,12 +400,12 @@ function buildChips(){const w=document.getElementById("chips");w.innerHTML="";
 }
 function list(){
   const q=document.getElementById("q").value.toLowerCase(),s=+document.getElementById("s").value;
-  let l=PHONES.filter(p=>p.ram>=8&&p.price>=10000&&p.price<=20000);
+  let l=PHONES.filter(p=>p.ramGb>=8&&p.priceFrom<=20000&&p.priceTo>=15000);
   if(q)l=l.filter(p=>(p.brand+" "+p.model+" "+p.cpu).toLowerCase().indexOf(q)>=0);
-  if(chip===1)l=l.filter(p=>p.price<=15000);
-  if(chip===2)l=l.filter(p=>p.scr.indexOf("AMOLED")>=0);
-  if(chip===3)l=l.filter(p=>(p.old-p.price)/p.old>=.15);
-  l=l.sort((a,b)=>s===1?a.price-b.price:s===2?b.rate-a.rate:(b.old-b.price)/b.old-(a.old-a.price)/a.old);
+  if(chip===1)l=l.filter(p=>p.priceTo<=15000);
+  if(chip===2)l=l.filter(p=>(p.screen||"").indexOf("AMOLED")>=0);
+  if(chip===3)l=l.filter(p=>p.priceTo>0&&(p.priceTo-p.priceFrom)/p.priceTo>=.15);
+  l=l.sort((a,b)=>s===1?a.priceFrom-b.priceFrom:s===2?(b.rating||0)-(a.rating||0):a.priceFrom-b.priceFrom);
   grid.innerHTML="";l.forEach(p=>grid.appendChild(card(p)));
   reveal();return l.length;
 }
@@ -285,19 +420,24 @@ document.getElementById("q").oninput=list;document.getElementById("s").onchange=
 /* ---------- вкладки ---------- */
 document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
   document.querySelectorAll("#tabs button").forEach(x=>x.classList.remove("on"));b.classList.add("on");
-  ["list","fav","news","set"].forEach(t=>{document.getElementById("v-"+t).classList.toggle("on",t===b.dataset.t)});
+  ["list","fav","news","set","detail"].forEach(t=>{document.getElementById("v-"+t).classList.toggle("on",t===b.dataset.t)});
   window.scrollTo({top:0,behavior:"smooth"});
 });
 /* ---------- новости ---------- */
 document.getElementById("newsList").innerHTML=NEWS.map(n=>
- '<div class="news"><a href="'+n[4]+'" target="_blank" rel="noopener"><img class="nph" loading="lazy" src="'+ASSET(n[3])+'" alt=""></a><span class="tag">'+n[2]+'</span><h3><a href="'+n[4]+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+n[0]+'</a></h3><p>'+n[1]+'</p>'+
+ '<div class="news"><div class="nrow"><img class="nph" loading="lazy" src="'+ASSET(n[3])+'" alt="" onclick="openLB('+n[3]+',0)"><div class="ntx"><span class="tag">'+n[2]+'</span><h3><a href="'+n[4]+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+n[0]+'</a></h3><p>'+n[1]+'</p></div></div>'+
  '<div class="rowbtns" style="flex-direction:row"><a class="ic primary" style="text-decoration:none;text-align:center" href="'+n[4]+'" target="_blank" rel="noopener">Читать источник</a><button class="ic" onclick="(function(t){if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard.writeText(t)}})(\''+n[0]+'. '+n[1]+' — Челны СмартСкан\')">Поделиться</button></div></div>').join("");
 /* ---------- настройки ---------- */
 const THEMES=[["dark","Тёмная","глубокий фон приложения"],["light","Светлая","дневной режим"]];
 function paint(){const th=document.body.dataset.th||"dark";
   const R=document.documentElement.style;
-  if(th==="light"){R.setProperty("--bg","#faf7ff");R.setProperty("--card","#ffffff");R.setProperty("--fg","#1a1c1e");R.setProperty("--sub","#5a5b6b");R.setProperty("--line","#e5e0e3")}
-  else{R.setProperty("--bg","#0e0b1a");R.setProperty("--card","#1b1626");R.setProperty("--fg","#f2edff");R.setProperty("--sub","#b9b0cc");R.setProperty("--line","#2c2438")}
+  if(th==="light"){
+    R.setProperty("--bg","#faf7ff");R.setProperty("--card","#ffffff");R.setProperty("--fg","#1a1c1e");R.setProperty("--sub","#5a5b6b");R.setProperty("--line","#e5e0e3");
+    R.setProperty("--surface-2","#fff");R.setProperty("--surface-3","#f5f3fa");R.setProperty("--surface-hover","#faf9ff");R.setProperty("--text-strong","#202124");R.setProperty("--text-muted","#777d89");R.setProperty("--border-strong","#e8e9ee");R.setProperty("--photo-bg","#f5f6f8");R.setProperty("--photo-blend","multiply");R.setProperty("--detail-shadow","0 18px 55px rgba(0,0,0,.12)");
+  } else {
+    R.setProperty("--bg","#0e0b1a");R.setProperty("--card","#1b1626");R.setProperty("--fg","#f2edff");R.setProperty("--sub","#b9b0cc");R.setProperty("--line","#2c2438");
+    R.setProperty("--surface-2","#211b30");R.setProperty("--surface-3","#28213a");R.setProperty("--surface-hover","#302742");R.setProperty("--text-strong","#f2edff");R.setProperty("--text-muted","#b9b0cc");R.setProperty("--border-strong","#393047");R.setProperty("--photo-bg","#171322");R.setProperty("--photo-blend","normal");R.setProperty("--detail-shadow","0 18px 55px rgba(0,0,0,.32)");
+  }
 }
 function buildThemes(){const w=document.getElementById("themeRows");w.innerHTML="";const cur=document.body.dataset.th||"dark";
   THEMES.forEach(t=>{const d=document.createElement("div");d.className="setrow"+(cur===t[0]?" sel":"");
@@ -308,14 +448,7 @@ document.body.dataset.th=localStorage.getItem("ss_th")||"dark";paint();buildThem
 const ACC=["#7c5cff","#b7a6ff","#009688","#1e88e5","#43a047","#ff8f00","#ec407a"];
 const sw=document.getElementById("sw");ACC.forEach((c,i)=>{const d=document.createElement("div");d.className="sw"+(i===0?" on":"");d.style.background=c;d.style.color=c;
   d.onclick=()=>{document.documentElement.style.setProperty("--acc",c);document.querySelectorAll(".sw").forEach(x=>x.classList.remove("on"));d.classList.add("on")};sw.appendChild(d)});
-/* ---------- скан ---------- */
-document.getElementById("scanBtn").onclick=()=>{
-  const bar=document.getElementById("scanbar"),fill=document.getElementById("scanfill");
-  bar.style.display="block";let p=0;
-  const t=setInterval(()=>{p+=6;fill.style.width=p+"%";
-    if(p>=100){clearInterval(t);bar.style.display="none";
-      document.getElementById("scanLabel").textContent="Обновлено: "+new Date().toLocaleString("ru-RU")+" • Челны • "+list()+" моделей"}},70);
-};
+document.getElementById("catalogBtn").onclick=()=>{document.getElementById("v-list").scrollIntoView({behavior:"smooth"});document.getElementById("tabs").style.display="";};
 /* ---------- фон-угли ---------- */
 const cv=document.getElementById("fx"),cx=cv.getContext("2d");let ps=[];
 function size(){cv.width=innerWidth;cv.height=innerHeight}size();addEventListener("resize",size);
@@ -328,8 +461,11 @@ for(let i=0;i<70;i++)ps.push({x:Math.random(),y:Math.random(),r:Math.random()*2+
     cx.fillStyle=g;cx.beginPath();cx.arc(p.x*cv.width,p.y*cv.height,p.r*4,0,7);cx.fill()});
   requestAnimationFrame(anim)})();
 /* ---------- старт ---------- */
-buildChips();list();renderFav();
-document.getElementById("scanLabel").textContent="Каталог от 14.10.2026 • 10 моделей • Челны";
+fetch("../data/phones.json").then(r=>{if(!r.ok)throw new Error("Не удалось загрузить каталог");return r.json()}).then(data=>{
+  PHONES=(data.phones||[]).map(p=>({...p,ramGb:Number(p.ramGb),storageGb:Number(p.storageGb),priceFrom:Number(p.priceFrom),priceTo:Number(p.priceTo)})).filter(p=>p.ramGb>=8&&p.priceFrom>0&&p.priceTo>=p.priceFrom);
+  buildChips();list();renderFav();
+  document.getElementById("scanLabel").textContent="Каталог: "+PHONES.length+" моделей • Набережные Челны • цены ориентировочные";
+}).catch(err=>{document.getElementById("scanLabel").textContent="Ошибка загрузки каталога: "+err.message;});
 </script>
 </body>
 </html>
