@@ -270,6 +270,13 @@ footer a{color:#cfc2ff}
  .card .card-open{font-size:10px;padding:9px 9px}
 }
 @media(max-width:360px){.card{grid-template-columns:88px minmax(0,1fr);gap:9px}.card-media,.card .ph{min-height:150px}}
+
+.compare-tray{display:none;margin:14px 0 18px;padding:16px;border:1px solid var(--line);border-radius:18px;background:var(--surface-2);box-shadow:var(--detail-shadow)}
+.compare-tray.on{display:block}.compare-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.compare-head b{font-size:15px}.compare-head small{color:var(--sub)}
+.compare-picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.compare-pick{min-width:0;padding:10px;border-radius:13px;background:var(--surface-3);border:1px solid var(--line);display:flex;align-items:center;gap:8px}.compare-pick img{width:42px;height:52px;object-fit:contain}.compare-pick span{font-size:11px;line-height:1.3;min-width:0;overflow-wrap:anywhere}.compare-pick button{margin-left:auto;border:0;background:transparent;color:var(--sub);font-size:18px}
+.compare-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.compare-table-wrap{overflow-x:auto;margin-top:14px}.compare-table{width:100%;min-width:560px;border-collapse:collapse;font-size:12px}.compare-table th,.compare-table td{padding:10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}.compare-table th:first-child,.compare-table td:first-child{color:var(--sub);width:115px}.compare-table th{color:var(--fg)}
+.card .compare-toggle{font-size:11px;padding:7px 9px}.card .compare-toggle.selected{background:var(--acc-soft);border-color:var(--acc);color:var(--fg)}
+@media(max-width:560px){.compare-tray{padding:12px}.compare-picks{grid-template-columns:1fr}.compare-pick{padding:7px}.compare-pick img{width:34px;height:42px}}
 </style>
 </head>
 <body>
@@ -310,6 +317,7 @@ footer a{color:#cfc2ff}
       <select id="s"><option value="0">Рекомендуемые</option><option value="1">Сначала дешевле</option><option value="2">По рейтингу</option></select>
     </div>
     <div class="chips" id="chips"></div>
+    <div class="compare-tray" id="compareTray" aria-live="polite"><div class="compare-head"><div><b>Сравнение смартфонов</b><br><small id="compareCount">Выберите до трёх моделей</small></div><button class="ic" id="compareClear" type="button">Очистить</button></div><div class="compare-picks" id="comparePicks"></div><div class="compare-actions"><button class="ic primary" id="compareShow" type="button">Сравнить характеристики →</button></div><div class="compare-table-wrap" id="compareTableWrap" hidden></div></div>
     <div class="grid" id="grid"></div>
   </section>
   <section class="sect" id="v-fav">
@@ -376,6 +384,7 @@ let NEWS=[];
 /* ---------- состояние ---------- */
 let favs=new Set(JSON.parse(localStorage.getItem("ss_fav")||"[]"));
 let chip=0,sortMode=0;
+const compareIds=new Set();
 
 const grid=document.getElementById("grid"),favGrid=document.getElementById("favGrid");
 /* ---------- прелоадер ---------- */
@@ -437,12 +446,13 @@ function card(p){
    '<div class="card-specs"><span>'+p.ramGb+' ГБ RAM</span><span>'+p.storageGb+' ГБ</span>'+(battery?'<span>'+esc(battery)+'</span>':'')+'</div>'+
    '<div class="card-cpu">'+esc(cpu||"Процессор уточняется")+'</div>'+
    '<div class="card-price-row"><div><div class="pr">'+fmtRange(p)+'</div><div class="promo">Ориентир по России · не цена магазина</div></div></div>'+
-   '<div class="rowbtns"><button class="ic primary card-open" type="button">Характеристики и магазины <span aria-hidden="true">→</span></button><div class="card-secondary-actions"><button class="ic fav'+(favs.has(p.id)?" on":"")+'" type="button" aria-label="Добавить в избранное">★</button><button class="ic sh" type="button" aria-label="Поделиться смартфоном">Поделиться</button></div></div></div>';
+   '<div class="rowbtns"><button class="ic primary card-open" type="button">Характеристики и магазины <span aria-hidden="true">→</span></button><div class="card-secondary-actions"><button class="ic fav'+(favs.has(p.id)?" on":"")+'" type="button" aria-label="Добавить в избранное">★</button><button class="ic sh" type="button" aria-label="Поделиться смартфоном">Поделиться</button><button class="ic compare-toggle'+(compareIds.has(p.id)?" selected":"")+'" type="button">'+(compareIds.has(p.id)?"✓ В сравнении":"⇄ Сравнить")+'</button></div></div></div>';
   const open=()=>openPhone(p.id);
   el.querySelector(".ph").onclick=e=>{e.stopPropagation();open()};
   el.querySelector(".card-open").onclick=e=>{e.stopPropagation();open()};
   el.querySelector(".fav").onclick=e=>{e.stopPropagation();if(favs.has(p.id)){favs.delete(p.id);e.currentTarget.classList.remove("on")}else{favs.add(p.id);e.currentTarget.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify(Array.from(favs)));renderFav()};
   el.querySelector(".sh").onclick=e=>{e.stopPropagation();const t="📱 "+p.brand+" "+p.model+" — "+fmtRange(p)+"\nОриентировочная цена по России · SmartScan";if(navigator.share)navigator.share({text:t}).catch(()=>{});else if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>alert("Скопировано!")).catch(()=>{});};
+  el.querySelector(".compare-toggle").onclick=e=>{e.stopPropagation();toggleCompare(p.id);};
   el.addEventListener("click",e=>{if(!e.target.closest("button"))open()});
   return el;
 }
@@ -470,6 +480,26 @@ function list(){
   if(reset)reset.onclick=()=>{document.getElementById("q").value="";document.getElementById("s").value="0";chip=0;sortMode=0;buildChips();list()};
   reveal();return l.length;
 }
+function toggleCompare(id){
+ if(compareIds.has(id))compareIds.delete(id);
+ else if(compareIds.size>=3){alert("Можно сравнить не больше трёх смартфонов.");return}
+ else compareIds.add(id);
+ renderCompare();list();
+}
+function renderCompare(){
+ const tray=document.getElementById("compareTray"),picks=document.getElementById("comparePicks"),wrap=document.getElementById("compareTableWrap"),count=document.getElementById("compareCount");
+ if(!tray)return;const items=PHONES.filter(p=>compareIds.has(p.id));tray.classList.toggle("on",items.length>0);
+ count.textContent=items.length+" из 3 моделей выбрано";
+ picks.innerHTML=items.map(p=>'<div class="compare-pick"><img src="'+esc(p.photoUrl||ASSET(p.id))+'" alt=""><span><b>'+esc(p.brand)+'</b><br>'+esc(p.model)+'</span><button type="button" data-remove="'+p.id+'" aria-label="Убрать из сравнения">×</button></div>').join("");
+ picks.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{compareIds.delete(Number(b.dataset.remove));renderCompare();list()});
+ wrap.hidden=true;wrap.innerHTML="";
+}
+function showCompare(){
+ const items=PHONES.filter(p=>compareIds.has(p.id));if(items.length<2){alert("Добавьте хотя бы два смартфона для сравнения.");return}
+ const rows=[["Процессор",p=>p.cpu],["Экран",p=>p.screen],["Аккумулятор",p=>p.battery],["Камеры",p=>p.camera],["Оперативная память",p=>p.ramGb+" ГБ"],["Накопитель",p=>p.storageGb+" ГБ"],["Цена",p=>fmtRange(p)],["Рейтинг",p=>p.rating?"★ "+p.rating:"Нет данных"]];
+ const wrap=document.getElementById("compareTableWrap");wrap.hidden=false;
+ wrap.innerHTML='<table class="compare-table"><thead><tr><th>Характеристика</th>'+items.map(p=>'<th>'+esc(p.brand+" "+p.model)+'</th>').join("")+'</tr></thead><tbody>'+rows.map(row=>'<tr><td>'+row[0]+'</td>'+items.map(p=>'<td>'+esc(row[1](p)||"Нет данных")+'</td>').join("")+'</tr>').join("")+'</tbody></table>';
+}
 function renderFav(){favGrid.innerHTML="";const l=PHONES.filter(p=>favs.has(p.id));
   document.getElementById("favCount").textContent=l.length?"("+l.length+")":"";
   l.forEach(p=>favGrid.appendChild(card(p)));
@@ -478,6 +508,8 @@ function renderFav(){favGrid.innerHTML="";const l=PHONES.filter(p=>favs.has(p.id
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");rio.unobserve(e.target)}}),{threshold:.08});
 function reveal(){document.querySelectorAll(".card:not(.vis)").forEach(el=>rio.observe(el))}
 document.getElementById("q").oninput=list;document.getElementById("s").onchange=list;
+document.getElementById("compareClear").onclick=()=>{compareIds.clear();renderCompare();list()};
+document.getElementById("compareShow").onclick=showCompare;
 /* ---------- вкладки ---------- */
 document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
   document.querySelectorAll("#tabs button").forEach(x=>x.classList.remove("on"));b.classList.add("on");
