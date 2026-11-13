@@ -494,7 +494,8 @@ function card(p){
    '<div class="rowbtns"><button class="ic primary card-open" type="button">Характеристики и магазины <span aria-hidden="true">→</span></button><div class="card-secondary-actions"><button class="ic fav'+(favs.has(p.id)?" on":"")+'" type="button" aria-label="Добавить в избранное">★</button><button class="ic sh" type="button" aria-label="Поделиться смартфоном">Поделиться</button><button class="ic compare-toggle'+(compareIds.has(p.id)?" selected":"")+'" type="button">'+(compareIds.has(p.id)?"✓ В сравнении":"⇄ Сравнить")+'</button></div></div></div>';
   const cardImage=el.querySelector(".ph");cardImage.addEventListener("error",()=>cardImage.classList.add("image-error"),{once:true});
   const open=()=>openPhone(p.id);
-  el.querySelector(".ph").onclick=e=>{e.stopPropagation();open()};\n  el.querySelector(".card-media").onclick=e=>{e.stopPropagation();open()};
+  el.querySelector(".ph").onclick=e=>{e.stopPropagation();open()};
+  el.querySelector(".card-media").onclick=e=>{e.stopPropagation();open()};
   el.querySelector(".card-open").onclick=e=>{e.stopPropagation();open()};
   el.querySelector(".fav").onclick=e=>{e.stopPropagation();if(favs.has(p.id)){favs.delete(p.id);e.currentTarget.classList.remove("on")}else{favs.add(p.id);e.currentTarget.classList.add("on")}localStorage.setItem("ss_fav",JSON.stringify(Array.from(favs)));renderFav()};
   el.querySelector(".sh").onclick=e=>{e.stopPropagation();const t="📱 "+p.brand+" "+p.model+" — "+fmtRange(p)+"\nОриентировочная цена по России · SmartScan";if(navigator.share)navigator.share({text:t}).catch(()=>{});else if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>alert("Скопировано!")).catch(()=>{});};
