@@ -29,13 +29,18 @@ body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-s
 @keyframes blink{50%{opacity:.3}}
 #fx{position:fixed;inset:0;z-index:0;pointer-events:none}
 .wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 20px 140px;overflow-x:clip}
-/* ===== верхняя шапка как на MMO-сайте ===== */
-.topbar{position:sticky;top:0;z-index:20;background:var(--chrome-bg,rgba(0,0,0,.9));backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.topbar-in{max-width:960px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:10px}
-.logo{width:32px;height:32px;border-radius:9px;background:var(--acc);display:grid;place-items:center;font-size:17px;flex:none}
-.brand{font-weight:800;font-size:15px}
-.ver{font-size:11px;color:var(--acc);border:1px solid var(--acc);border-radius:99px;padding:2px 10px;font-weight:700;white-space:nowrap}
+/* ===== фирменная шапка SmartScan ===== */
+.topbar{position:sticky;top:0;z-index:20;background:var(--chrome-bg,rgba(0,0,0,.9));backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border-strong);box-shadow:0 8px 28px rgba(0,0,0,.12)}
+.topbar-in{max-width:1100px;margin:0 auto;padding:13px 22px;display:flex;align-items:center;gap:13px}
+.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#9b7bff,#6543df);display:grid;place-items:center;flex:none;box-shadow:0 7px 20px rgba(124,92,255,.32);color:#fff}
+.logo svg{width:27px;height:27px;display:block}
+.brand-lockup{display:flex;flex-direction:column;gap:0;min-width:0}
+.brand{font-weight:900;font-size:17px;letter-spacing:-.045em;line-height:1.15}
+.brand-tag{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--text-muted);font-weight:750;margin-top:3px}
+.ver{font-size:10px;color:var(--gold);background:var(--acc-soft);border:1px solid rgba(124,92,255,.35);border-radius:99px;padding:4px 9px;font-weight:800;white-space:nowrap}
 .sp{flex:1}
+.topbar-meta{font-size:12px;color:var(--text-muted);font-weight:650;white-space:nowrap}
+
 /* ===== HERO ===== */
 .hero{position:relative;text-align:center;padding:44px 0 6px;overflow:hidden}
 .hero .glow{position:absolute;left:50%;top:-140px;width:min(700px,100vw);height:440px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(124,92,255,.32),transparent 70%);pointer-events:none;animation:breathe 5s ease-in-out infinite}
@@ -136,7 +141,23 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin:50px 0 10px;line
 footer a{color:#cfc2ff}
 .scanbar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:18px auto 4px;display:none;max-width:520px}
 .scanbar i{display:block;height:100%;width:0;background:var(--acc)}
-@media(max-width:560px){nav.tabs{width:calc(100vw - 20px);max-width:420px;padding:5px;gap:2px;justify-content:space-between;border-radius:18px}nav.tabs button{padding:10px 5px;font-size:11px;gap:5px;flex:1 1 0;min-width:0}nav.tabs button .dot{width:6px;height:6px;flex:none}.grid{grid-template-columns:1fr}.topbar-in{padding:10px 14px}.brand{font-size:14px}}
+@media(max-width:560px){nav.tabs{width:calc(100vw - 20px);max-width:420px;padding:5px;gap:2px;justify-content:space-between;border-radius:18px}nav.tabs button{padding:10px 5px;font-size:11px;gap:5px;flex:1 1 0;min-width:0}nav.tabs button .dot{width:6px;height:6px;flex:none}.grid{grid-template-columns:1fr}.topbar-in{padding:10px 14px;gap:9px}.logo{width:38px;height:38px;border-radius:12px}.brand{font-size:15px}.brand-tag{font-size:9px}.topbar-meta{font-size:10px}}
+/* SmartScan brand refinement */
+.topbar .brand{color:var(--text-strong)}
+.topbar .topbar-meta{padding:7px 11px;border:1px solid var(--border-strong);border-radius:99px;background:var(--surface-2)}
+.hero{padding-top:38px}
+.hero h1{font-weight:900;letter-spacing:-.055em}
+.hero .sub{max-width:600px}
+.toolbar{align-items:center}
+.toolbar input,.toolbar select{min-height:48px}
+.chip{min-height:40px}
+@media(max-width:430px){
+ .topbar-in{padding:9px 12px}
+ .topbar-meta{max-width:112px;overflow:hidden;text-overflow:ellipsis}
+ .ver{padding:3px 7px;font-size:9px}
+ .hero{padding-top:28px}
+ .hero .sub{font-size:14px;padding:0 8px}
+}
 /* ===== Premium product page / Ozon-inspired gallery ===== */
 .phone-detail{background:var(--card);color:var(--fg);border:1px solid var(--border-strong);border-radius:24px;padding:clamp(16px,3vw,30px);margin:10px 0 28px;box-shadow:var(--detail-shadow)}
 .detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
@@ -221,9 +242,11 @@ footer a{color:#cfc2ff}
 </div>
 <canvas id="fx"></canvas>
 <header class="topbar"><div class="topbar-in">
-  <div class="logo">📱</div><div class="brand">СмартСкан</div><span class="ver">2.2</span>
+  <div class="logo" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M7 9.5 16 4l9 5.5v13L16 28l-9-5.5v-13Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="m11 13 5-3 5 3v6l-5 3-5-3v-6Z" fill="currentColor" opacity=".96"/><path d="M16 10v12" stroke="#7450e8" stroke-width="1.8"/></svg></div>
+  <div class="brand-lockup"><div class="brand">SMART<span style="color:var(--gold)">SCAN</span></div><div class="brand-tag">умный выбор смартфона</div></div>
+  <span class="ver">2.3</span>
   <div class="sp"></div>
-  <a class="btn" style="padding:8px 16px;font-size:13px" id="apkTop" href="https://github.com/Sargarus666/SmartSearch/releases/download/v2.2/chelny-smartscan-2.2.apk">Скачать APK</a>
+  <div class="topbar-meta">Набережные Челны</div>
 </div></header>
 <div class="wrap">
   <header class="hero" id="top">
@@ -232,7 +255,6 @@ footer a{color:#cfc2ff}
     <p class="sub">Цены и скидки на топовые бюджетники 10–20 тыс ₽ в Набережных Челнах.</p>
     <div class="btnrow">
       <button class="btn" id="catalogBtn">Смотреть каталог</button>
-      <a class="btn ghost" id="apkBtn" href="https://github.com/Sargarus666/SmartSearch/releases/download/v2.2/chelny-smartscan-2.2.apk">Скачать APK</a>
     </div>
     <p class="sub" id="scanLabel" style="font-size:13px">Ориентировочные цены по российскому рынку</p>
   </header>
@@ -247,7 +269,7 @@ footer a{color:#cfc2ff}
   <section class="sect on" id="v-list">
     <div class="orn"><h2>Каталог</h2></div>
     <div class="toolbar">
-      <input id="q" placeholder="Поиск: redmi, tecno, amoled…">
+      <input id="q" placeholder="Поиск модели или процессора…">
       <select id="s"><option value="0">Со скидкой</option><option value="1">Подешевле</option><option value="2">По рейтингу</option></select>
     </div>
     <div class="chips" id="chips"></div>
@@ -386,7 +408,7 @@ function card(p){
   return el;
 }
 /* ---------- список + чипы ---------- */
-const CHIPS=["Все","До 15 000 ₽","AMOLED","Скидка ≥15%"];
+const CHIPS=["Все","До 15 000 ₽","Snapdragon","Скидка ≥15%"];
 function buildChips(){const w=document.getElementById("chips");w.innerHTML="";
   CHIPS.forEach((n,i)=>{const b=document.createElement("button");b.className="chip"+(chip===i?" on":"");b.textContent=n;
     b.onclick=()=>{chip=i;buildChips();list()};w.appendChild(b)});
@@ -398,7 +420,7 @@ function list(){
   let l=PHONES.filter(p=>p.ramGb>=8&&p.priceFrom<=20000&&p.priceTo>=15000);
   if(q)l=l.filter(p=>(p.brand+" "+p.model+" "+p.cpu).toLowerCase().indexOf(q)>=0);
   if(chip===1)l=l.filter(p=>p.priceTo<=15000);
-  if(chip===2)l=l.filter(p=>(p.screen||"").indexOf("AMOLED")>=0);
+  if(chip===2)l=l.filter(p=>/snapdragon/i.test(p.cpu||""));
   if(chip===3)l=l.filter(p=>p.priceTo>0&&(p.priceTo-p.priceFrom)/p.priceTo>=.15);
   l=l.sort((a,b)=>s===1?a.priceFrom-b.priceFrom:s===2?(b.rating||0)-(a.rating||0):a.priceFrom-b.priceFrom);
   grid.innerHTML="";l.forEach(p=>grid.appendChild(card(p)));
