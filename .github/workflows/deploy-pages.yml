@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         with:
           enablement: true
       - name: Prepare static site and refresh RSS news
