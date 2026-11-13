@@ -8,8 +8,6 @@ on:
       - "data/phones.json"
       - "scripts/fetch_news.py"
       - ".github/workflows/deploy-pages.yml"
-  schedule:
-    - cron: "15 4 * * *"
   workflow_dispatch:
 
 permissions:
