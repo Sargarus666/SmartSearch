@@ -1,0 +1,23 @@
+name: SmartScan catalog audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic catalog audit (no API key required)
+        run: python scripts/ai_catalog_auditor.py
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: smartscan-catalog-audit
+          path: catalog-audit.md
+          retention-days: 30

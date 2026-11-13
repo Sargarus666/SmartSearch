@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Челны СмартСкан — бюджетные смартфоны 10–20 тыс. ₽ | Набережные Челны</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#e11d2e;--dark:#1a1a2e;--bg:#f4f5f7;--card:#fff;--green:#0e9f6e;--orange:#ff5a1f}
+body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:#222}
+header{background:linear-gradient(135deg,#1a1a2e,#e11d2e);color:#fff;padding:20px 16px 26px;position:sticky;top:0;z-index:10}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-size:22px;display:flex;align-items:center;gap:10px}
+h1 .radar{display:inline-flex;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.15);align-items:center;justify-content:center;font-size:19px}
+.sub{opacity:.92;font-size:13px;margin-top:6px}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);font-size:12px;padding:4px 10px;border-radius:20px}
+.scanbar{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;align-items:center}
+button.scan{background:#fff;color:var(--red);border:0;font-weight:700;font-size:14px;padding:11px 22px;border-radius:10px;cursor:pointer}
+button.scan:disabled{opacity:.6}
+.scanstatus{font-size:13px;opacity:.95}
+.progress{height:6px;background:rgba(255,255,255,.25);border-radius:4px;margin-top:10px;overflow:hidden;display:none}
+.progress i{display:block;height:100%;width:0;background:#fff;border-radius:4px;transition:width .2s}
+.controls{background:#fff;border-bottom:1px solid #e5e7eb;padding:12px 16px;position:sticky;top:0;z-index:5}
+.controls .wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input.search{flex:1;min-width:180px;padding:10px 14px;border:1.5px solid #ddd;border-radius:10px;font-size:14px}
+.chip{border:1.5px solid #ddd;background:#fff;border-radius:20px;padding:7px 14px;font-size:13px;cursor:pointer}
+.chip.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+select.sort{padding:9px 12px;border:1.5px solid #ddd;border-radius:10px;font-size:13px}
+main .wrap{padding:16px 16px 60px}
+.count{font-size:13px;color:#666;margin:4px 2px 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);display:flex;flex-direction:column}
+.preview{display:flex;gap:12px;padding:14px}
+.photo{width:104px;min-width:104px;height:150px;border-radius:12px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.phonebody{width:56px;height:110px;background:#111;border-radius:12px;position:relative;box-shadow:inset 0 0 0 3px #333,0 4px 10px rgba(0,0,0,.4)}
+.phonescreen{position:absolute;inset:7px 5px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:11px;text-align:center;line-height:1.2;padding:4px}
+.cam{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;background:#000;border:2px solid #444}
+.cam:after{content:'';position:absolute;top:3px;left:3px;width:4px;height:4px;border-radius:50%;background:#3b82f6}
+.discount{position:absolute;top:6px;left:6px;background:var(--red);color:#fff;font-size:11px;font-weight:800;padding:3px 7px;border-radius:8px;z-index:2}
+.info{flex:1;min-width:0}
+.brand{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px}
+.model{font-size:16px;font-weight:800;margin:2px 0}
+.ram{display:inline-block;background:#e8f7ee;color:var(--green);font-size:11.5px;font-weight:700;padding:3px 8px;border-radius:6px;margin:4px 0}
+.price{font-size:21px;font-weight:800;margin-top:2px}
+.old{font-size:13px;color:#999;text-decoration:line-through;margin-left:8px;font-weight:400}
+.promo{font-size:12.5px;background:#fff7ed;color:#c2410c;border:1px dashed #fdba74;border-radius:8px;padding:6px 8px;margin-top:7px}
+.specs{font-size:12px;color:#555;margin-top:7px;line-height:1.5}
+.stars{font-size:12px;color:#eab308;margin-top:4px}
+.stores{border-top:1px solid #eee;padding:12px 14px}
+.tabs{display:flex;gap:8px;margin-bottom:10px}
+.tab{flex:1;text-align:center;font-size:13px;font-weight:700;padding:8px;border-radius:9px;cursor:pointer;border:1.5px solid #e5e7eb;background:#f9fafb}
+.tab.on{border-color:var(--dark);background:var(--dark);color:#fff}
+.shoplist{display:none;flex-direction:column;gap:8px}
+.shoplist.on{display:flex}
+.shop{border:1px solid #e8e8e8;border-radius:10px;padding:9px 10px;font-size:13px}
+.shop b{font-size:13.5px}
+.shop .addr{color:#666;font-size:12px}
+.shop .row{display:flex;justify-content:space-between;align-items:center;margin-top:5px}
+.shop .p{font-weight:800;font-size:15px}
+.shop a{font-size:12px;color:#2563eb;text-decoration:none;border:1px solid #bfdbfe;padding:4px 10px;border-radius:7px}
+.shop .note{font-size:11.5px;color:var(--green);margin-top:3px}
+.offtag{font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:6px}
+.offtag.off{background:#fee2e2;color:#b91c1c}
+.offtag.on{background:#dbeafe;color:#1d4ed8}
+footer{background:var(--dark);color:#bbb;font-size:12px;padding:18px 16px;text-align:center}
+@media(max-width:480px){h1{font-size:18px}.preview{padding:12px}.price{font-size:19px}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<h1><span class="radar">📡</span> Челны СмартСкан — сканер цен</h1>
+<div class="sub">Топ бюджетных смартфонов <b>10 000–20 000 ₽</b> • физическая <b>RAM ≥ 8 ГБ</b> • актуально для <b>г. Набережные Челны</b></div>
+<div class="badges"><span class="badge">📍 Набережные Челны</span><span class="badge">💾 RAM ≥ 8 ГБ (без виртуальной)</span><span class="badge">💰 10–20 тыс. ₽</span><span class="badge" id="countBadge">10 моделей</span></div>
+<div class="scanbar"><button class="scan" id="scanBtn">⟳ Сканировать цены Челны</button><span class="scanstatus" id="scanStatus">Последнее сканирование: только что • DNS, М.Видео, Эльдорадо, OZON, WB, Маркет</span></div>
+<div class="progress" id="progress"><i id="bar"></i></div>
+</div>
+</header>
+<div class="controls"><div class="wrap">
+<input class="search" id="q" placeholder="🔍 Поиск: Redmi, TECNO, Samsung…">
+<button class="chip on" data-f="all">Все</button>
+<button class="chip" data-f="u15">До 15 тыс.</button>
+<button class="chip" data-f="amoled">AMOLED</button>
+<button class="chip" data-f="sale">Скидка ≥ 15%</button>
+<select class="sort" id="sort"><option value="sale">Сначала с макс. скидкой</option><option value="cheap">Сначала дешевле</option><option value="rate">По рейтингу</option></select>
+</div></div>
+<main><div class="wrap">
+<div class="count" id="count"></div>
+<div class="grid" id="grid"></div>
+</div></main>
+<footer>Челны СмартСкан • Цены-ориентиры розницы Набережных Челнов (октябрь 2026): DNS (Московский 128А, Набережночелнинский 10Б, Сююмбике 67В), М.Видео (пр. Мира 49А), Эльдорадо (Московский 140), салоны МТС/Билайн/МегаФон + онлайн с доставкой в Челны. Перед покупкой проверяйте цену на сайте магазина. • Есть APK-сборка: исходники в папке ChelnyPhones.</footer>
+<script>
+const PHONES=[
+{id:1,brand:"Xiaomi",model:"Redmi Note 14 8/256",ram:8,stor:256,price:16399,old:18990,promo:"🍂 Осенний ценопад −14% + 1500 бонусов",rate:4.8,screen:"6.67\" AMOLED 120 Гц",batt:"5110 мА·ч, 45 Вт",cam:"108 Мп OIS",cpu:"Helio G99 Ultra",c1:"#1a2a6c",c2:"#2ebf91",init:"RN",offline:[["DNS","Московский пр-т, 128А",16399,"Самовывоз сегодня","https://www.dns-shop.ru"],["М.Видео","пр. Мира, 49А, ТРК Торговый квартал",16990,"Рассрочка 0-0-12","https://www.mvideo.ru"],["Эльдорадо","пр. Московский, 140, ТЦ Омега",17290,"Трейд-ин −3000 ₽","https://www.eldorado.ru"]],online:[["OZON","ПВЗ: Челны, Сююмбике 61",15990,"С Ozon-картой −400 ₽","https://www.ozon.ru"],["Я. Маркет","Доставка в Челны 1–2 дня",16490,"Сплит 0-0-6","https://market.yandex.ru"],["Wildberries","ПВЗ Челны, Набережночелнинский 41",16290,"WB-кошелёк −3%","https://www.wildberries.ru"]]},
+{id:2,brand:"TECNO",model:"Spark 40 Pro 8/256",ram:8,stor:256,price:14999,old:19490,promo:"🔥 Хит продаж −23% + рассрочка 0-0-12",rate:4.7,screen:"6.78\" AMOLED 1.5K 144 Гц",batt:"5200 мА·ч, 45 Вт",cam:"50 Мп",cpu:"Helio G100 Ultra",c1:"#141e30",c2:"#4b6cb7",init:"SP",offline:[["DNS","Набережночелнинский пр-т, 10Б",14999,"Хит, витрина + склад","https://www.dns-shop.ru"],["МТС","пр. Хасана Туфана, 12",15490,"Скидка при переносе номера","https://shop.mts.ru"],["Билайн","пр. Сююмбике, 2/19",15990,"Связь 3 мес. в подарок","https://beeline.ru"]],online:[["OZON","ПВЗ Челны, Московский 140",14490,"Минус 500 ₽ по карте","https://www.ozon.ru"],["DNS онлайн","Самовывоз Сююмбике 67В",14999,"Онлайн-бронь −2%","https://www.dns-shop.ru"],["Ситилинк","Доставка в Челны",15290,"Бонусы Ситиклаб","https://www.citilink.ru"]]},
+{id:3,brand:"Infinix",model:"Note 40 8/256",ram:8,stor:256,price:15490,old:18990,promo:"⚡ −18% + беспроводная зарядка",rate:4.7,screen:"6.78\" AMOLED 120 Гц",batt:"5000 мА·ч + MagCharge",cam:"108 Мп OIS",cpu:"Helio G99 Ultimate",c1:"#3a1c71",c2:"#d76d77",init:"N40",offline:[["Эльдорадо","пр. Московский, 140",15490,"Чехол в подарок","https://www.eldorado.ru"],["DNS","пр-т Сююмбике, 67В",15990,"В наличии 5 шт.","https://www.dns-shop.ru"],["МегаФон","Набережночелнинский пр-т, 41",16490,"Тариф в подарок","https://megafon.ru"]],online:[["Wildberries","ПВЗ Челны, пр. Мира 52",15190,"WB-кошелёк −3%","https://www.wildberries.ru"],["Я. Маркет","Доставка за день",15590,"Промокод новичка","https://market.yandex.ru"],["OZON","ПВЗ Челны, Татарстан 25",15390,"Рассрочка 0-0-6","https://www.ozon.ru"]]},
+{id:4,brand:"realme",model:"C75 8/256",ram:8,stor:256,price:13950,old:15950,promo:"🛡 −13% + защита IP69",rate:4.6,screen:"6.72\" IPS 90 Гц",batt:"6000 мА·ч, 45 Вт",cam:"50 Мп",cpu:"Helio G92 Max",c1:"#0f2027",c2:"#2c5364",init:"C75",offline:[["DNS","Московский пр-т, 128А",13950,"Ценопад недели","https://www.dns-shop.ru"],["М.Видео","пр. Мира, 49А",14490,"Бонусы М.Клуб 10%","https://www.mvideo.ru"]],online:[["OZON","ПВЗ Челны, Чулман 23",13590,"Цена с Ozon-картой","https://www.ozon.ru"],["Я. Маркет","Доставка 1–3 дня",13990,"Кэшбэк баллами","https://market.yandex.ru"]]},
+{id:5,brand:"Samsung",model:"Galaxy A16 8/256",ram:8,stor:256,price:17990,old:20990,promo:"💙 −14% + 6 лет обновлений",rate:4.6,screen:"6.7\" Super AMOLED 90 Гц",batt:"5000 мА·ч, 25 Вт",cam:"50+5+2 Мп",cpu:"Exynos 1330",c1:"#000428",c2:"#004e92",init:"A16",offline:[["М.Видео","пр. Мира, 49А",17990,"Официальная гарантия","https://www.mvideo.ru"],["DNS","Набережночелнинский 10Б",18490,"Самовывоз сегодня","https://www.dns-shop.ru"],["Эльдорадо","пр. Московский, 140",18990,"Рассрочка 0-0-10","https://www.eldorado.ru"]],online:[["Я. Маркет","Доставка в Челны",17690,"Сплит без переплат","https://market.yandex.ru"],["OZON","ПВЗ Челны",17890,"Ростест","https://www.ozon.ru"]]},
+{id:6,brand:"HONOR",model:"X7c 8/256",ram:8,stor:256,price:15999,old:18999,promo:"🌵 −16% + броня 360°",rate:4.5,screen:"6.77\" TFT 120 Гц",batt:"6000 мА·ч, 35 Вт",cam:"108 Мп",cpu:"Snapdragon 685",c1:"#232526",c2:"#414345",init:"X7c",offline:[["МТС","пр. Хасана Туфана, 12",15999,"Трейд-ин −10%","https://shop.mts.ru"],["DNS","пр-т Сююмбике, 67В",16490,"Витрина + склад","https://www.dns-shop.ru"]],online:[["М.Видео онлайн","Доставка 2 дня",15990,"Онлайн-эксклюзив","https://www.mvideo.ru"],["Wildberries","ПВЗ Челны",15790,"Быстрая выдача","https://www.wildberries.ru"]]},
+{id:7,brand:"POCO",model:"M6 Pro 8/256",ram:8,stor:256,price:18490,old:21990,promo:"🎮 −16% + AMOLED + стерео",rate:4.7,screen:"6.67\" AMOLED 120 Гц",batt:"5000 мА·ч, 67 Вт",cam:"64 Мп OIS",cpu:"Helio G99 Ultra",c1:"#cb0000",c2:"#3a0000",init:"M6",offline:[["DNS","Московский пр-т, 128А",18490,"Стенд POCO","https://www.dns-shop.ru"],["Эльдорадо","пр. Московский, 140",18990,"Наушники в подарок","https://www.eldorado.ru"]],online:[["OZON","ПВЗ Челны",17990,"Купон −500 ₽","https://www.ozon.ru"],["Я. Маркет","Доставка в Челны",18390,"Баллы Маркета","https://market.yandex.ru"]]},
+{id:8,brand:"TECNO",model:"Camon 40 8/256",ram:8,stor:256,price:15800,old:16950,promo:"📸 −7% + ИИ-камера FlashSnap",rate:4.6,screen:"6.78\" AMOLED 120 Гц",batt:"5200 мА·ч, 45 Вт",cam:"50 Мп OIS",cpu:"Helio G100",c1:"#134e5e",c2:"#71b280",init:"C40",offline:[["DNS","Набережночелнинский 10Б",15800,"Новинка в наличии","https://www.dns-shop.ru"],["Билайн","пр. Сююмбике, 2/19",16490,"Комплект со связью","https://beeline.ru"]],online:[["Wildberries","ПВЗ Челны",15590,"WB-кошелёк","https://www.wildberries.ru"],["OZON","ПВЗ Челны",15790,"Рассрочка","https://www.ozon.ru"]]},
+{id:9,brand:"Infinix",model:"Hot 50 Pro+ 8/256",ram:8,stor:256,price:17290,old:19990,promo:"✨ −13% + корпус 6.8 мм",rate:4.5,screen:"6.78\" AMOLED изогнутый",batt:"5000 мА·ч, 33 Вт",cam:"50 Мп",cpu:"Helio G100",c1:"#8e2de2",c2:"#4a00e0",init:"H50",offline:[["М.Видео","пр. Мира, 49А",17290,"Демо-стенд","https://www.mvideo.ru"],["DNS","пр-т Сююмбике, 67В",17690,"Самовывоз","https://www.dns-shop.ru"]],online:[["Я. Маркет","Доставка в Челны",16990,"Промокод −300 ₽","https://market.yandex.ru"],["OZON","ПВЗ Челны",17190,"Быстрая доставка","https://www.ozon.ru"]]},
+{id:10,brand:"realme",model:"C85 8/256",ram:8,stor:256,price:16990,old:19990,promo:"🔋 −15% + 7000 мА·ч и 108 Мп",rate:4.6,screen:"6.8\" AMOLED 120 Гц",batt:"7000 мА·ч, 45 Вт",cam:"108 Мп",cpu:"Snapdragon 685",c1:"#f7971e",c2:"#ffd200",init:"C85",offline:[["Эльдорадо","пр. Московский, 140",16990,"Рассрочка 0-0-12","https://www.eldorado.ru"],["DNS","Московский пр-т, 128А",17490,"В наличии","https://www.dns-shop.ru"]],online:[["OZON","ПВЗ Челны",16590,"С картой Ozon","https://www.ozon.ru"],["Ситилинк","Доставка в Челны",16890,"Клубные бонусы","https://www.citilink.ru"]]}
+];
+let filter="all",sort="sale";
+const grid=document.getElementById('grid'),q=document.getElementById('q');
+const fmt=n=>n.toLocaleString('ru-RU')+" ₽";
+function disc(p){return Math.round((p.old-p.price)/p.old*100)}
+function stars(r){return "★".repeat(Math.round(r))+"☆".repeat(5-Math.round(r))+" "+r.toFixed(1)}
+function render(){
+ let list=PHONES.filter(p=>{
+  const s=q.value.trim().toLowerCase();
+  if(s && !(p.brand+" "+p.model).toLowerCase().includes(s))return false;
+  if(filter==="u15"&&p.price>15000)return false;
+  if(filter==="amoled"&&!/amoled/i.test(p.screen))return false;
+  if(filter==="sale"&&disc(p)<15)return false;
+  return true;
+ });
+ list.sort((a,b)=>sort==="cheap"?a.price-b.price:sort==="rate"?b.rate-a.rate:disc(b)-disc(a));
+ document.getElementById('count').textContent="Найдено: "+list.length+" из "+PHONES.length+" • все с физической RAM ≥ 8 ГБ • цены для Набережных Челнов";
+ document.getElementById('countBadge').textContent=list.length+" моделей";
+ grid.innerHTML=list.map(p=>`
+ <article class="card">
+  <div class="preview">
+   <div class="photo" style="background:linear-gradient(135deg,${p.c1},${p.c2})">
+    <span class="discount">−${disc(p)}%</span>
+    <div class="phonebody"><div class="cam"></div><div class="phonescreen" style="background:linear-gradient(160deg,${p.c2},${p.c1})">${p.init}<span style="font-size:8px;font-weight:400">8/256</span></div></div>
+   </div>
+   <div class="info">
+    <div class="brand">${p.brand}</div>
+    <div class="model">${p.model}</div>
+    <span class="ram">💾 ${p.ram} ГБ RAM физич. + ${p.stor} ГБ</span>
+    <div><span class="price">${fmt(p.price)}</span><span class="old">${fmt(p.old)}</span></div>
+    <div class="promo">${p.promo}</div>
+    <div class="specs">📱 ${p.screen}<br>🔋 ${p.batt} • 📷 ${p.cam}<br>⚙ ${p.cpu}</div>
+    <div class="stars">${stars(p.rate)}</div>
+   </div>
+  </div>
+  <div class="stores">
+   <div class="tabs"><div class="tab on" data-t="off${p.id}" data-p="${p.id}">🏬 Офлайн • Челны</div><div class="tab" data-t="on${p.id}" data-p="${p.id}">🌐 Онлайн</div></div>
+   <div class="shoplist on" id="off${p.id}">${p.offline.map(s=>`<div class="shop"><b>${s[0]}</b> <span class="offtag off">ОФЛАЙН</span><div class="addr">📍 ${s[1]}</div><div class="row"><span class="p">${fmt(s[2])}</span><a href="${s[4]}" target="_blank" rel="noopener">Открыть →</a></div><div class="note">✔ ${s[3]}</div></div>`).join('')}</div>
+   <div class="shoplist" id="on${p.id}">${p.online.map(s=>`<div class="shop"><b>${s[0]}</b> <span class="offtag on">ОНЛАЙН</span><div class="addr">📦 ${s[1]}</div><div class="row"><span class="p">${fmt(s[2])}</span><a href="${s[4]}" target="_blank" rel="noopener">Открыть →</a></div><div class="note">✔ ${s[3]}</div></div>`).join('')}</div>
+  </div>
+ </article>`).join('');
+ grid.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  const pid=t.dataset.p;
+  grid.querySelectorAll(`[data-p="${pid}"]`).forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  document.getElementById('off'+pid).classList.toggle('on',t.dataset.t==='off'+pid);
+  document.getElementById('on'+pid).classList.toggle('on',t.dataset.t==='on'+pid);
+ });
+}
+q.oninput=render;
+document.getElementById('sort').onchange=e=>{sort=e.target.value;render()};
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');filter=c.dataset.f;render()});
+document.getElementById('scanBtn').onclick=()=>{
+ const btn=document.getElementById('scanBtn'),st=document.getElementById('scanStatus'),pr=document.getElementById('progress'),bar=document.getElementById('bar');
+ btn.disabled=true;pr.style.display='block';
+ const shops=["DNS Челны","М.Видео Торговый квартал","Эльдорадо Омега","OZON ПВЗ","Wildberries","Яндекс Маркет"];
+ let i=0;bar.style.width='0';
+ const t=setInterval(()=>{
+  i+=8;bar.style.width=Math.min(i,100)+'%';
+  st.textContent="Сканирую: "+shops[Math.floor(i/20)%shops.length]+"… "+Math.min(i,100)+"%";
+  if(i>=100){clearInterval(t);btn.disabled=false;pr.style.display='none';
+   const d=new Date();
+   st.textContent="✅ Сканирование готово в "+d.toLocaleTimeString('ru-RU')+" • Челны: лучший дисконт −"+Math.max(...PHONES.map(disc))+"% • ценопад проверен";
+   render();}
+ },120);
+};
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+name: Deploy SmartScan to GitHub Pages
+
+on:
+  push:
+    branches: [feature/live-chelny-prices]
+    paths:
+      - "web/**"
+      - "data/phones.json"
+      - "scripts/fetch_news.py"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Prepare static site and refresh RSS news
+        run: |
+          mkdir -p public/data
+          cp web/index.html public/index.html
+          cp -R web/assets public/assets
+          sed -i 's#../data/phones.json#./data/phones.json#' public/index.html
+          cp data/phones.json public/data/phones.json
+          python scripts/fetch_news.py --output public/data/news.json --max-age-days 14
+          touch public/.nojekyll
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
