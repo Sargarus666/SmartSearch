@@ -25,6 +25,8 @@ jobs:
         run: python scripts/validate_catalog.py
       - name: Check Python syntax
         run: python -m compileall -q scripts
+      - name: Test RSS and Atom news parsing
+        run: python -m unittest scripts.test_fetch_news -v
       - name: Check web JavaScript syntax
         run: python scripts/check_web.py
       - name: Check whitespace errors
